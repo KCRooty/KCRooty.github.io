@@ -36,6 +36,10 @@ html{scroll-behavior:smooth}
   --bright:   #f2f2f4;
   --accent:   #5294e2;
   --aglow:    rgba(82,148,226,.10);
+  --green:    #4ec9b0;
+  --yellow:   #d4ac67;
+  --red:      #e0656e;
+  --purple:   #c286dd;
   --mono:     'JetBrains Mono', monospace;
   --sans:     'Outfit', sans-serif;
 }
@@ -178,19 +182,38 @@ a{text-decoration:none;color:inherit}
 /* ===== PROJECTS GRID ===== */
 .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .pcard{
-  background:var(--card);border:1px solid var(--border);
+  background:var(--card);
+  border:1px solid var(--c,var(--accent));
   border-radius:10px;padding:1.4rem;
   display:block;color:inherit;
-  transition:all .2s;
+  transition:all .25s;
   text-align:left;
+  box-shadow:0 0 14px color-mix(in srgb, var(--c,var(--accent)) 25%, transparent);
 }
-.pcard:hover{border-color:var(--border2);background:var(--card2)}
+.pcard:hover{
+  background:var(--card2);
+  transform:translateY(-2px);
+  box-shadow:0 0 26px color-mix(in srgb, var(--c,var(--accent)) 45%, transparent),
+             0 0 55px color-mix(in srgb, var(--c,var(--accent)) 18%, transparent);
+}
 .pstatus{
-  font-size:.72rem;
+  font-family:var(--mono);font-size:.72rem;
   text-transform:uppercase;letter-spacing:.04em;
-  color:var(--dim);margin-bottom:.6rem;
+  color:var(--c,var(--dim));margin-bottom:.6rem;
+  display:flex;align-items:center;gap:6px;
 }
-.pname{font-size:1.05rem;font-weight:600;color:var(--bright);margin-bottom:.5rem}
+.pdot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--c,var(--accent));
+  box-shadow:0 0 8px var(--c,var(--accent));
+  animation:pdot-pulse 2s infinite;
+}
+@keyframes pdot-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.pname{
+  font-size:1.05rem;font-weight:600;color:var(--bright);margin-bottom:.5rem;
+  text-shadow:0 0 10px color-mix(in srgb, var(--c,var(--accent)) 65%, transparent),
+              0 0 24px color-mix(in srgb, var(--c,var(--accent)) 35%, transparent);
+}
 .pdesc{font-size:.88rem;color:var(--dim);line-height:1.65;margin-bottom:1rem}
 .ptags{display:flex;flex-wrap:wrap;gap:5px}
 .ptag{
@@ -447,8 +470,8 @@ footer a:hover{color:var(--bright)}
     <h2 class="sec-title" data-es="Proyectos" data-en="Projects" data-ca="Projectes">Proyectos</h2>
     <div class="proj-grid">
 
-      <a class="pcard" href="donnies.html">
-        <div class="pstatus" data-es="en desarrollo · desde 2021" data-en="in development · since 2021" data-ca="en desenvolupament · des de 2021">en desarrollo · desde 2021</div>
+      <a class="pcard" href="donnies.html" style="--c:var(--red)">
+        <div class="pstatus"><span class="pdot"></span><span data-es="en desarrollo · desde 2021" data-en="in development · since 2021" data-ca="en desenvolupament · des de 2021">en desarrollo · desde 2021</span></div>
         <div class="pname">Donnie Origins</div>
         <div class="pdesc" data-es="Fangame de FNaF con terror analógico y ambición máxima. Source Engine, renders 3D y una historia construida desde cero."
              data-en="FNaF fangame with analog horror and maximum ambition. Source Engine, 3D renders and an original story."
@@ -461,8 +484,8 @@ footer a:hover{color:var(--bright)}
         </div>
       </a>
 
-      <div class="pcard" role="button" tabindex="0" onclick="showWip()" onkeydown="if(event.key==='Enter')showWip()" style="cursor:pointer">
-        <div class="pstatus" data-es="en construcción" data-en="in construction" data-ca="en construcció">en construcción</div>
+      <div class="pcard" role="button" tabindex="0" onclick="showWip()" onkeydown="if(event.key==='Enter')showWip()" style="--c:var(--purple);cursor:pointer">
+        <div class="pstatus"><span class="pdot"></span><span data-es="en construcción" data-en="in construction" data-ca="en construcció">en construcción</span></div>
         <div class="pname">LADA</div>
         <div class="pdesc" data-es="Proyecto de personajes originales con historia de ficción extensa, worldbuilding propio y una trama construida desde cero."
              data-en="Original characters project with an extensive fiction story, own worldbuilding and a plot built from scratch."
@@ -474,8 +497,8 @@ footer a:hover{color:var(--bright)}
         </div>
       </div>
 
-      <a class="pcard" href="fnaf-as.html">
-        <div class="pstatus" data-es="en desarrollo" data-en="in development" data-ca="en desenvolupament">en desarrollo</div>
+      <a class="pcard" href="fnaf-as.html" style="--c:var(--yellow)">
+        <div class="pstatus"><span class="pdot"></span><span data-es="en desarrollo" data-en="in development" data-ca="en desenvolupament">en desarrollo</span></div>
         <div class="pname">FNaF AS</div>
         <div class="pdesc" data-es="Five Nights at Freddy's Alternative Stories: universo alternativo, lore propio y una experiencia visual basada en glitch y renders 3D."
              data-en="Five Nights at Freddy's Alternative Stories: alternate universe, original lore and a glitch/3D render visual experience."
@@ -487,8 +510,8 @@ footer a:hover{color:var(--bright)}
         </div>
       </a>
 
-      <a class="pcard" href="https://github.com/KCRooty/X-USB" target="_blank">
-        <div class="pstatus" data-es="activo" data-en="active" data-ca="actiu">activo</div>
+      <a class="pcard" href="https://github.com/KCRooty/X-USB" target="_blank" style="--c:var(--green)">
+        <div class="pstatus"><span class="pdot"></span><span data-es="activo" data-en="active" data-ca="actiu">activo</span></div>
         <div class="pname">X-USB</div>
         <div class="pdesc" data-es="App Android open-source tipo Rufus/Ventoy. Gratis, sin anuncios, uso ilimitado. ISO Burner, MultiOS USB UEFI, Partition Wizard y más."
              data-en="Open-source Android app like Rufus/Ventoy. Free, no ads, unlimited use. ISO Burner, MultiOS USB UEFI, Partition Wizard and more."
@@ -501,8 +524,8 @@ footer a:hover{color:var(--bright)}
         </div>
       </a>
 
-      <a class="pcard" href="foros.html">
-        <div class="pstatus" data-es="comunitario" data-en="community" data-ca="comunitari">comunitario</div>
+      <a class="pcard" href="foros.html" style="--c:var(--accent)">
+        <div class="pstatus"><span class="pdot"></span><span data-es="comunitario" data-en="community" data-ca="comunitari">comunitario</span></div>
         <div class="pname">Foro</div>
         <div class="pdesc" data-es="Espacio comunitario con sistema de login. Publica mensajes y comparte ideas."
              data-en="Community space with login system. Post messages and share ideas."
