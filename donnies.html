@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donnie's Origins · STATIC FORGE</title>
+  <meta name="description" content="Donnie's Origins — fangame de FNaF con terror analógico. Source Engine, renders 3D, una historia propia.">
+  <meta property="og:title" content="Donnie's Origins · STATIC FORGE">
+  <meta property="og:description" content="Fangame de FNaF. Una pizzería. Tres animatrónicos. Una noche que no debería existir.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050608;--bg2:#080a0d;
+  --card:rgba(10,12,8,.94);
+  --border:rgba(255,255,255,.07);
+  --text:#dde6d0;--dim:#7a8870;
+  --gold:#d4ac67;--gold2:#f0c84a;--gold3:rgba(212,172,103,.12);
+  --green:#4ec9b0;--purple:#c286dd;--red:#e05252;
+  --mono:'JetBrains Mono',monospace;--sans:'Outfit',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;font-family:var(--sans);color:var(--text);
+  background:var(--bg);position:relative;overflow-x:hidden;
+}
+
+/* ---- fondo con ruido estático ---- */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(212,172,103,.05), transparent 60%),
+    radial-gradient(ellipse 50% 70% at 100% 100%, rgba(80,60,20,.04), transparent 50%);
+}
+body::after{
+  content:'';position:fixed;inset:-50%;width:200%;height:200%;
+  pointer-events:none;z-index:0;opacity:.038;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  animation:staticShift 0.18s steps(1) infinite;
+}
+@keyframes staticShift{
+  0%  {transform:translate(0,0)}
+  25% {transform:translate(-3px,1px)}
+  50% {transform:translate(2px,-2px)}
+  75% {transform:translate(-1px,3px)}
+}
+
+/* scanlines sutiles */
+.scanlines{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.04) 3px,rgba(0,0,0,.04) 4px);
+}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  position:sticky;top:0;z-index:20;
+  background:rgba(5,6,8,.96);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1.5rem;height:42px;
+  font-family:var(--mono);font-size:.76rem;
+}
+.tb-left{display:flex;align-items:center;gap:10px}
+.dots{display:flex;gap:5px}
+.dots span{width:10px;height:10px;border-radius:50%}
+.d-r{background:#d4ac67}.d-y{background:#8a7040}.d-g{background:#4ec9b0}
+.tb-title{color:var(--dim)}
+.tb-nav{display:flex;gap:1.2rem;list-style:none}
+.tb-nav a{color:var(--dim);text-decoration:none;transition:color .18s;font-size:.7rem}
+.tb-nav a:hover{color:var(--gold)}
+
+/* ===== LAYOUT ===== */
+.wrap{
+  position:relative;z-index:2;
+  max-width:1000px;margin:0 auto;padding:0 1.5rem 4rem;
+}
+
+/* ===== GLITCH en título ===== */
+@keyframes glitch-main{
+  0%,92%,100%{clip-path:none;transform:none;color:#fff;}
+  93%{clip-path:polygon(0 10%,100% 10%,100% 28%,0 28%);transform:skewX(-4deg) translateX(5px);color:var(--gold2);opacity:.9;}
+  94%{clip-path:polygon(0 60%,100% 60%,100% 75%,0 75%);transform:skewX(3deg) translateX(-4px);color:#fff;}
+  95%{clip-path:polygon(0 40%,100% 40%,100% 55%,0 55%);transform:skewX(-1deg) translateX(2px);color:var(--gold);}
+  96%{clip-path:none;transform:translateX(-2px);color:#fff;}
+}
+@keyframes glitch-before{
+  0%,92%,100%{opacity:0;}
+  93%{opacity:.6;clip-path:polygon(0 20%,100% 20%,100% 38%,0 38%);transform:skewX(3deg) translateX(-6px);color:var(--gold2);}
+  94%{opacity:.4;clip-path:polygon(0 65%,100% 65%,100% 80%,0 80%);transform:skewX(-2deg) translateX(4px);}
+  95%{opacity:0;}
+}
+.glitch-wrap{position:relative;display:inline-block}
+.glitch-wrap::before{
+  content:attr(data-text);
+  position:absolute;inset:0;
+  font:inherit;color:var(--gold2);
+  pointer-events:none;
+  animation:glitch-before 7s ease-in-out infinite;
+}
+.hero-h1{
+  font-family:var(--mono);
+  font-size:clamp(2.2rem,6vw,3.6rem);
+  line-height:1.05;color:#fff;margin-bottom:.5rem;
+  text-shadow:0 0 22px rgba(212,172,103,.25), 0 0 60px rgba(212,172,103,.08);
+  animation:glitch-main 7s ease-in-out infinite;
+}
+
+/* ===== HERO ===== */
+.hero{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);}
+.hero-pre{
+  font-family:var(--mono);font-size:.72rem;
+  color:var(--dim);margin-bottom:.8rem;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-pre::before{content:'';width:20px;height:1px;background:var(--gold);display:inline-block}
+.hero-sub{
+  font-size:1rem;color:var(--dim);line-height:1.75;
+  max-width:660px;margin-bottom:1.6rem;
+}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn{
+  font-family:var(--mono);font-size:.72rem;
+  padding:7px 18px;border-radius:4px;
+  border:1px solid rgba(212,172,103,.2);background:rgba(212,172,103,.05);
+  color:var(--text);cursor:pointer;transition:all .2s;
+  letter-spacing:.04em;display:inline-block;text-decoration:none;
+}
+.btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(212,172,103,.1)}
+.btn.pri{background:var(--gold);color:#0d0c08;border-color:var(--gold);font-weight:600}
+.btn.pri:hover{background:var(--gold2);border-color:var(--gold2)}
+
+/* ===== SECTIONS ===== */
+.sec{padding:2.5rem 0;border-bottom:1px solid var(--border);}
+.sec:last-child{border-bottom:none}
+.sec-label{
+  font-family:var(--mono);font-size:.67rem;
+  color:var(--gold);text-transform:uppercase;letter-spacing:.14em;
+  margin-bottom:.4rem;display:flex;align-items:center;gap:.6rem;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:rgba(212,172,103,.15)}
+.sec-title{font-size:1.55rem;font-weight:600;color:#fff;margin-bottom:1.2rem;line-height:1.2}
+
+/* ===== CARDS ===== */
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;padding:1.3rem;
+  transition:border-color .2s;
+}
+.card:hover{border-color:rgba(212,172,103,.2)}
+.card h3{
+  font-family:var(--mono);font-size:.72rem;
+  color:var(--gold);letter-spacing:.07em;
+  text-transform:uppercase;margin-bottom:.7rem;
+}
+.card p{color:var(--dim);font-size:.92rem;line-height:1.72}
+.card p strong{color:var(--text)}
+
+/* ===== PERSONAJES ===== */
+.char-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.char-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:8px;padding:1.2rem;
+  border-top:2px solid var(--c,var(--gold));
+  transition:border-color .22s,background .22s;
+}
+.char-card:hover{background:rgba(255,255,255,.02)}
+.char-name{
+  font-family:var(--mono);font-size:.88rem;
+  font-weight:600;color:#fff;margin-bottom:.25rem;
+}
+.char-role{
+  font-family:var(--mono);font-size:.62rem;
+  color:var(--c,var(--gold));letter-spacing:.06em;
+  text-transform:uppercase;margin-bottom:.65rem;
+}
+.char-desc{font-size:.86rem;color:var(--dim);line-height:1.65}
+.char-detail{
+  margin-top:.65rem;font-family:var(--mono);font-size:.63rem;
+  color:var(--dim);opacity:.6;
+}
+
+/* ===== PROD STATUS ===== */
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.prod-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:8px;padding:1rem 1.2rem;
+  display:flex;align-items:flex-start;gap:.8rem;
+}
+.prod-dot{
+  width:7px;height:7px;border-radius:50%;
+  margin-top:.5rem;flex-shrink:0;
+  background:var(--c,var(--gold));
+  box-shadow:0 0 6px var(--c,var(--gold));
+}
+.prod-item h4{
+  font-family:var(--mono);font-size:.72rem;
+  color:#fff;margin-bottom:.2rem;
+}
+.prod-item p{font-size:.82rem;color:var(--dim);line-height:1.5}
+
+/* note/warning box */
+.note{
+  background:rgba(212,172,103,.06);
+  border:1px solid rgba(212,172,103,.18);
+  border-radius:8px;padding:1rem 1.2rem;
+  font-size:.88rem;color:var(--text);line-height:1.65;
+  margin-top:1rem;
+}
+
+/* vhs tag */
+.vhs-tag{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--mono);font-size:.65rem;
+  color:var(--gold);letter-spacing:.06em;
+  border:1px solid rgba(212,172,103,.25);
+  border-radius:3px;padding:3px 8px;
+  margin-bottom:.9rem;
+}
+.vhs-tag::before{content:'▶';font-size:.5rem}
+
+/* ===== GISCUS ===== */
+.giscus,.giscus-frame{width:100%}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:720px){
+  .card-grid,.char-grid,.prod-grid{grid-template-columns:1fr}
+  .hero-h1{font-size:2rem}
+  .tb-nav{display:none}
+}
+</style>
+</head>
+<body>
+<div class="scanlines"></div>
+
+<header class="topbar">
+  <div class="tb-left">
+    <div class="dots"><span class="d-r"></span><span class="d-y"></span><span class="d-g"></span></div>
+    <span class="tb-title">STATIC FORGE — Donnie's Origins</span>
+  </div>
+  <nav><ul class="tb-nav">
+    <li><a href="index.html">home</a></li>
+    <li><a href="fnaf-as.html">FNAF AS</a></li>
+    <li><a href="foros.html">foro</a></li>
+    <li><a href="https://gamejolt.com/games/Donnies2001/885221" target="_blank">GameJolt ↗</a></li>
+  </ul></nav>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-pre">core@forge · fangame · Source Engine · analog horror</div>
+    <div class="glitch-wrap" data-text="Donnie's Origins">
+      <h1 class="hero-h1">Donnie's Origins</h1>
+    </div>
+    <p class="hero-sub">
+      Un fangame de FNaF que empezó en 2021 y no ha parado desde entonces.
+      Una pizzería familiar abandonada desde los 90. Tres animatrónicos que llevan ahí demasiado tiempo.
+      Y una noche que no va a terminar como debería.
+    </p>
+    <div class="hero-cta">
+      <a href="https://gamejolt.com/games/Donnies2001/885221" target="_blank" class="btn pri">Ver en GameJolt ↗</a>
+      <a href="index.html#projects" class="btn">← Volver</a>
+    </div>
+  </section>
+
+  <!-- QUÉ ES -->
+  <section class="sec">
+    <div class="sec-label">01 · el proyecto</div>
+    <h2 class="sec-title">¿Qué es esto?</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>El juego</h3>
+        <p>
+          Terror analógico y supervivencia nocturna. La premisa es simple: estás en Donnie's Dinners Place,
+          el local lleva una década cerrado, y los animatrónicos no deberían estar activos.
+          Mecánicas clásicas de FNaF — cámaras, puertas, linterna — pero la historia va a otro sitio.
+        </p>
+      </div>
+      <div class="card">
+        <h3>El universo</h3>
+        <p>
+          Donnie's no es solo el juego. Hay <strong>dos juegos</strong> con sus propias noches y
+          una <strong>serie de analog horror en YouTube</strong> de 6 episodios. Los dos medios cuentan
+          la misma historia pero no se solapan — hay cosas que solo se entienden si ves ambos.
+        </p>
+      </div>
+      <div class="card">
+        <h3>El tono</h3>
+        <p>
+          Referentes visuales: Dormitabis, FNAF 1–4, Half-Life 2. Terror con peso real — no gore gratuito,
+          sino consecuencias y personajes que hacen que te importe lo que pasa.
+          La oscuridad tiene razón de ser.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Ambientación</h3>
+        <p>
+          Yellow Springs, Ohio. Pueblo pequeño, ~3.500 habitantes, donde todo el mundo se conoce.
+          No es un lugar oscuro ni raro. Es exactamente un sitio normal.
+          Eso es lo que lo hace funcionar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANIMATRÓNICOS -->
+  <section class="sec">
+    <div class="sec-label">02 · personajes</div>
+    <h2 class="sec-title">Los animatrónicos</h2>
+    <p style="color:var(--dim);font-size:.9rem;margin-bottom:.3rem">
+      Donnie's Dinners Place tenía tres en escena. Superan los dos metros.
+      Llevan años en el edificio. La pregunta no es si están activos —
+      es <em style="color:var(--text)">qué quieren</em>.
+    </p>
+    <div class="char-grid">
+      <div class="char-card" style="--c:var(--gold)">
+        <div class="char-name">Donnie</div>
+        <div class="char-role">Animatrónico principal</div>
+        <p class="char-desc">
+          Perro marrón, ojos amarillos. Calmado — el tipo que pone orden sin pedirlo.
+          El primero en moverse.
+        </p>
+        <div class="char-detail">marrón · ojos amarillo</div>
+      </div>
+      <div class="char-card" style="--c:var(--green)">
+        <div class="char-name">Lany</div>
+        <div class="char-role">Animatrónico</div>
+        <p class="char-desc">
+          Coneja rosa-salmón, ojos verdes. La más expresiva del grupo.
+          También la más defectuosa.
+        </p>
+        <div class="char-detail">rosa/salmón · ojos verde</div>
+      </div>
+      <div class="char-card" style="--c:var(--purple)">
+        <div class="char-name">Shadow</div>
+        <div class="char-role">Animatrónico</div>
+        <p class="char-desc">
+          Gato negro-gris, ojos morados. Silencioso. Aparece donde no lo esperas.
+          No suele hablar.
+        </p>
+        <div class="char-detail">negro/gris · ojos morado</div>
+      </div>
+    </div>
+    <div class="note">
+      Están diseñados para resultar imponentes. En el escenario de un restaurante familiar abandonado,
+      esa escala hace todo lo que tiene que hacer.
+    </div>
+  </section>
+
+  <!-- LOS JUEGOS -->
+  <section class="sec">
+    <div class="sec-label">03 · juegos</div>
+    <h2 class="sec-title">Dos juegos, una historia</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Juego 1 — 2001</h3>
+        <p>
+          La primera noche. El local lleva diez años cerrado.
+          6 niveles, una hora por nivel. Linterna, puertas, cámaras.
+          Los animatrónicos <strong>no deberían estar activos</strong>.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Juego 2 — 2002</h3>
+        <p>
+          Un año después. El mapa se expande — hay más que el local de arriba.
+          Los animatrónicos están dañados. Dos noches, 12 niveles.
+          El juego termina de forma <strong>definitiva</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA SERIE -->
+  <section class="sec">
+    <div class="sec-label">04 · serie YouTube</div>
+    <h2 class="sec-title">Analog Horror — 6 episodios</h2>
+    <div class="vhs-tag">VHS · FORMAT · ██/██/2001</div>
+    <div class="card">
+      <h3>La misma historia, otro ángulo</h3>
+      <p>
+        6 episodios, 3–5 minutos cada uno, ~25 minutos en total. Formato documental-VHS.
+        Cada episodio es un tipo de documento distinto: grabaciones de seguridad, reportajes, audiologs, transmisiones.
+      </p>
+      <p style="margin-top:.8rem;color:var(--dim)">
+        La serie explica lo que los juegos no muestran directamente. Qué pasó antes.
+        Qué pasó con el restaurante. Por qué los animatrónicos son lo que son.
+        Si solo juegas, te falta la mitad. Si solo ves la serie, igual.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRODUCCIÓN -->
+  <section class="sec">
+    <div class="sec-label">05 · producción</div>
+    <h2 class="sec-title">Stack y estado</h2>
+    <div class="prod-grid">
+      <div class="prod-item" style="--c:var(--gold)">
+        <div class="prod-dot" style="--c:var(--gold)"></div>
+        <div>
+          <h4>Motor</h4>
+          <p>Source Engine SDK 2013 Singleplayer + Hammer Editor</p>
+        </div>
+      </div>
+      <div class="prod-item" style="--c:#5294e2">
+        <div class="prod-dot" style="--c:#5294e2"></div>
+        <div>
+          <h4>3D</h4>
+          <p>Cinema 4D R20 + Blender 3.6 → Crowbar → Source .mdl</p>
+        </div>
+      </div>
+      <div class="prod-item" style="--c:var(--green)">
+        <div class="prod-dot" style="--c:var(--green)"></div>
+        <div>
+          <h4>Estado actual</h4>
+          <p>Fase de modelado — cabeza de Donnie completada. Juego en desarrollo.</p>
+        </div>
+      </div>
+      <div class="prod-item" style="--c:var(--purple)">
+        <div class="prod-dot" style="--c:var(--purple)"></div>
+        <div>
+          <h4>Pendiente</h4>
+          <p>Modelos de Lany, Shadow, Isaac, The Fox. OST. Mapas del juego.</p>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      El proyecto lleva en desarrollo desde 2021. Largo recorrido — no hay fecha de lanzamiento.
+      Sigue el progreso en <a href="https://gamejolt.com/games/Donnies2001/885221" target="_blank" style="color:var(--gold)">GameJolt</a>
+      y en el canal de YouTube de Static Forge.
+    </div>
+  </section>
+
+  <!-- COMENTARIOS -->
+  <section class="sec">
+    <div class="sec-label">06 · comentarios</div>
+    <h2 class="sec-title" style="margin-bottom:.5rem">Comentarios</h2>
+    <p style="color:var(--dim);font-size:.85rem;margin-bottom:1.5rem">
+      Login con GitHub. Los comentarios se guardan en los Discussions del repo.
+    </p>
+    <!--
+      GISCUS SETUP — 3 pasos:
+      1. Ir a https://github.com/KCRooty/KCRooty.github.io → Settings → Features → activar "Discussions"
+      2. Ir a https://giscus.app → repo: KCRooty/KCRooty.github.io → mapping: pathname → categoría: Comments
+      3. Reemplazar el <script> de abajo con el que genera giscus.app
+    -->
+    <script src="https://giscus.app/client.js"
+      data-repo="KCRooty/KCRooty.github.io"
+      data-repo-id="REEMPLAZAR_CON_REPO_ID"
+      data-category="Comments"
+      data-category-id="REEMPLAZAR_CON_CATEGORY_ID"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="transparent_dark"
+      data-lang="es"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </section>
+
+</div>
+
+<footer style="position:relative;z-index:2;padding:1.2rem 1.5rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:.67rem;color:var(--dim);text-align:center">
+  core@forge · <b style="color:var(--gold)">Donnie's Origins</b> · <a href="index.html" style="color:#5294e2">← home</a>
+</footer>
+
+</body>
+</html>

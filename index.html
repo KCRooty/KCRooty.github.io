@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core · Static Forge</title>
+
+<!-- SEO / OG -->
+<meta name="description" content="Developer · Artist · Content Creator. Game dev, open source apps, analog horror projects and digital art.">
+<meta property="og:title" content="Core · Static Forge">
+<meta property="og:description" content="Developer · Artist · Content Creator. Game dev, open source, art &amp; illustration.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kcrooty.github.io">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Core · Static Forge">
+<meta name="twitter:description" content="Developer · Artist · Content Creator.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== RESET ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ===== TOKENS ===== */
+:root{
+  --bg:       #0b0b0d;
+  --card:     #131316;
+  --card2:    #17171b;
+  --border:   #232328;
+  --border2:  #2d2d34;
+  --text:     #d6d6db;
+  --dim:      #86868f;
+  --bright:   #f2f2f4;
+  --accent:   #5294e2;
+  --aglow:    rgba(82,148,226,.10);
+  --mono:     'JetBrains Mono', monospace;
+  --sans:     'Outfit', sans-serif;
+}
+
+/* ===== BASE ===== */
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+::selection{background:rgba(82,148,226,.3)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  position:sticky;top:0;z-index:200;
+  height:56px;
+  background:rgba(11,11,13,.9);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1.5rem;
+}
+.tb-logo{font-family:var(--sans);font-weight:600;font-size:.98rem;color:var(--bright);letter-spacing:.01em}
+.tb-logo span{color:var(--dim);font-weight:400}
+.tb-nav{display:flex;gap:1.9rem;list-style:none}
+.tb-nav a{color:var(--dim);transition:color .18s;font-size:.86rem}
+.tb-nav a:hover{color:var(--bright)}
+
+/* hamburger */
+.hamburger{
+  display:none;
+  background:none;
+  border:1px solid var(--border2);
+  color:var(--dim);font-size:.85rem;
+  cursor:pointer;padding:4px 10px;border-radius:6px;
+  transition:all .18s;line-height:1;
+}
+.hamburger:hover{border-color:var(--accent);color:var(--accent)}
+
+/* mobile nav overlay */
+.mob-nav{
+  display:none;flex-direction:column;gap:0;
+  position:fixed;top:56px;left:0;right:0;
+  background:rgba(11,11,13,.98);
+  border-bottom:1px solid var(--border);
+  z-index:190;
+  font-size:.9rem;
+  backdrop-filter:blur(14px);
+}
+.mob-nav.open{display:flex}
+.mob-nav a{
+  color:var(--dim);transition:color .18s;
+  padding:.85rem 1.5rem;
+  border-bottom:1px solid var(--border);
+}
+.mob-nav a:hover{color:var(--bright);background:var(--aglow)}
+
+/* ===== WRAPPER ===== */
+.wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 1.5rem}
+
+/* ===== HERO ===== */
+.hero{padding:5rem 0 4rem}
+.hero-eyebrow{
+  font-size:.85rem;font-weight:500;
+  color:var(--accent);margin-bottom:1rem;
+  letter-spacing:.02em;
+}
+.hero-name{
+  font-size:clamp(2.6rem,7vw,4.2rem);
+  font-weight:700;color:var(--bright);
+  line-height:1.05;letter-spacing:-.02em;
+  margin-bottom:1rem;
+}
+.hero-sub{font-size:1.05rem;color:var(--dim);font-weight:300;margin-bottom:1.6rem;max-width:560px}
+.hero-sub strong{color:var(--text);font-weight:500}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2.2rem}
+.tag{
+  font-size:.78rem;
+  padding:5px 12px;border-radius:20px;
+  background:var(--card);border:1px solid var(--border);
+  color:var(--dim);
+}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn{
+  font-size:.85rem;
+  padding:10px 20px;border-radius:8px;
+  border:1px solid var(--border2);background:var(--card);
+  color:var(--text);cursor:pointer;transition:all .2s;
+  display:inline-block;
+}
+.btn:hover{border-color:var(--border2);background:var(--card2)}
+.btn.pri{background:var(--bright);color:#0b0b0d;border-color:var(--bright);font-weight:500}
+.btn.pri:hover{background:#fff;opacity:.9}
+
+/* ===== SECTIONS ===== */
+.sec{padding:3.5rem 0;border-top:1px solid var(--border)}
+.sec-label{
+  font-size:.78rem;
+  color:var(--accent);letter-spacing:.06em;
+  text-transform:uppercase;margin-bottom:.5rem;
+}
+.sec-title{font-size:1.6rem;font-weight:600;color:var(--bright);margin-bottom:1.5rem;line-height:1.2}
+
+/* ===== ABOUT GRID ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.acard{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:1.4rem;transition:border-color .2s;
+}
+.acard:hover{border-color:var(--border2)}
+.acard.full{grid-column:1/-1}
+.acard h3{
+  font-size:.82rem;font-weight:600;
+  color:var(--bright);margin-bottom:.85rem;
+}
+.acard p{color:var(--text);font-size:.92rem;line-height:1.7}
+.acard p + p{margin-top:.6rem;color:var(--dim);font-size:.88rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:.7rem}
+.chip{
+  font-size:.76rem;
+  padding:3px 10px;border-radius:14px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  color:var(--dim);
+}
+
+/* stack list */
+.stack-list{display:grid;gap:.55rem;font-size:.88rem}
+.stack-list .k{color:var(--dim);display:inline-block;min-width:6.5rem}
+.stack-list .v{color:var(--text)}
+
+/* ===== PROJECTS GRID ===== */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.pcard{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:1.4rem;
+  display:block;color:inherit;
+  transition:all .2s;
+  text-align:left;
+}
+.pcard:hover{border-color:var(--border2);background:var(--card2)}
+.pstatus{
+  font-size:.72rem;
+  text-transform:uppercase;letter-spacing:.04em;
+  color:var(--dim);margin-bottom:.6rem;
+}
+.pname{font-size:1.05rem;font-weight:600;color:var(--bright);margin-bottom:.5rem}
+.pdesc{font-size:.88rem;color:var(--dim);line-height:1.65;margin-bottom:1rem}
+.ptags{display:flex;flex-wrap:wrap;gap:5px}
+.ptag{
+  font-size:.72rem;
+  padding:3px 9px;border-radius:12px;
+  background:var(--bg);border:1px solid var(--border);
+  color:var(--dim);
+}
+
+/* ===== GALLERY ===== */
+.gfilt{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.4rem}
+.fbtn{
+  font-size:.8rem;
+  padding:5px 14px;border-radius:16px;
+  background:var(--card);border:1px solid var(--border);
+  color:var(--dim);cursor:pointer;transition:all .18s;
+}
+.fbtn.on,.fbtn:hover{border-color:var(--border2);color:var(--bright);background:var(--card2)}
+.ggrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;min-height:160px;
+}
+.gempty{
+  grid-column:1/-1;
+  border:1px dashed var(--border2);border-radius:10px;
+  padding:2.5rem 1rem;text-align:center;
+  font-size:.85rem;color:var(--dim);
+}
+.gempty b{color:var(--text)}
+.gitem{
+  aspect-ratio:1;border-radius:8px;overflow:hidden;
+  border:1px solid var(--border);background:var(--card);
+  cursor:pointer;transition:border-color .2s;
+  position:relative;
+}
+.gitem:hover{border-color:var(--border2)}
+.gitem img{width:100%;height:100%;object-fit:cover;display:block}
+.gitem .gname{
+  position:absolute;bottom:0;left:0;right:0;
+  font-size:.7rem;
+  background:rgba(11,11,13,.85);color:var(--dim);
+  padding:4px 7px;opacity:0;transition:opacity .2s;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.gitem:hover .gname{opacity:1}
+.gupload-row{margin-top:1rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+.gcount{font-size:.82rem;color:var(--dim)}
+
+/* ===== LANG PILL ===== */
+.lang-bar{
+  position:fixed;bottom:1.2rem;right:1.4rem;
+  z-index:300;
+  display:flex;gap:6px;
+}
+.lang-btn{
+  font-size:.75rem;
+  padding:5px 11px;border-radius:20px;
+  background:var(--card2);border:1px solid var(--border2);
+  color:var(--dim);cursor:pointer;transition:all .2s;
+}
+.lang-btn.active{background:var(--aglow);border-color:var(--accent);color:var(--accent)}
+.lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ===== FOOTER ===== */
+footer{padding:1.6rem 0;border-top:1px solid var(--border);text-align:center;font-size:.8rem;color:var(--dim)}
+footer a{color:var(--dim);transition:color .18s}
+footer a:hover{color:var(--bright)}
+
+/* ===== LIGHTBOX ===== */
+.lb{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,.9);
+  align-items:center;justify-content:center;
+  flex-direction:column;gap:1rem;
+  padding:2rem;
+}
+.lb.open{display:flex}
+.lb img{max-width:90vw;max-height:80vh;border-radius:8px;border:1px solid var(--border2)}
+.lb-name{font-size:.85rem;color:var(--dim)}
+.lb-close{
+  position:absolute;top:1rem;right:1.5rem;
+  font-size:.85rem;
+  color:var(--dim);cursor:pointer;background:none;border:none;
+  transition:color .18s;
+}
+.lb-close:hover{color:var(--bright)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:680px){
+  .tb-nav{display:none}
+  .hamburger{display:block}
+  .about-grid,.proj-grid{grid-template-columns:1fr}
+  .ggrid{grid-template-columns:repeat(2,1fr)}
+  .lang-bar{bottom:.8rem;right:.8rem}
+}
+
+/* ===== WIP POPUP ===== */
+.wip-backdrop{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,.55);
+  display:grid;place-items:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .2s;
+}
+.wip-backdrop.show{opacity:1;pointer-events:auto}
+.wip-box{
+  background:var(--card2);
+  border:1px solid var(--border2);
+  border-radius:12px;
+  padding:1.8rem 2.2rem;
+  text-align:center;
+  transform:translateY(10px) scale(.97);
+  transition:transform .2s;
+  max-width:320px;width:calc(100%-3rem);
+}
+.wip-backdrop.show .wip-box{transform:none}
+.wip-icon{font-size:1.8rem;margin-bottom:.8rem;opacity:.7}
+.wip-title{font-size:.98rem;color:var(--bright);margin-bottom:.4rem}
+.wip-sub{font-size:.82rem;color:var(--dim)}
+.wip-close{
+  margin-top:1.2rem;
+  font-size:.78rem;color:var(--dim);
+  cursor:pointer;display:inline-block;
+  transition:color .15s;
+}
+.wip-close:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="tb-logo">Static<span> Forge</span></div>
+  <nav><ul class="tb-nav">
+    <li><a href="#about" data-es="about" data-en="about" data-ca="sobre">about</a></li>
+    <li><a href="#projects" data-es="projects" data-en="projects" data-ca="projectes">projects</a></li>
+    <li><a href="#gallery" data-es="gallery" data-en="gallery" data-ca="galeria">gallery</a></li>
+    <li><a href="fnaf-as.html">FNAF AS</a></li>
+    <li><a href="donnies.html">Donnies</a></li>
+    <li><a href="foros.html" data-es="foro" data-en="forum" data-ca="foro">foro</a></li>
+  </ul></nav>
+  <button class="hamburger" id="hamburger" onclick="toggleMobNav()" aria-label="menu">☰</button>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mob-nav" id="mob-nav">
+  <a href="#about" onclick="closeMobNav()" data-es="about" data-en="about" data-ca="sobre">about</a>
+  <a href="#projects" onclick="closeMobNav()" data-es="projects" data-en="projects" data-ca="projectes">projects</a>
+  <a href="#gallery" onclick="closeMobNav()" data-es="gallery" data-en="gallery" data-ca="galeria">gallery</a>
+  <a href="fnaf-as.html">FNAF AS</a>
+  <a href="donnies.html">Donnies</a>
+  <a href="foros.html" data-es="foro" data-en="forum" data-ca="foro">foro</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-eyebrow">Static Forge</div>
+    <h1 class="hero-name">Core</h1>
+    <p class="hero-sub"><strong>Developer · Artist · Content Creator</strong><br>
+      <span data-es="Open source, diseño minimalista y arte digital." data-en="Open source, minimalist design and digital art." data-ca="Open source, disseny minimalista i art digital.">Open source, diseño minimalista y arte digital.</span>
+    </p>
+    <div class="hero-tags">
+      <span class="tag">game dev</span>
+      <span class="tag">open source</span>
+      <span class="tag">art &amp; illustration</span>
+      <span class="tag">content creator</span>
+      <span class="tag">català · español · english</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn pri" data-es="ver proyectos" data-en="view projects" data-ca="veure projectes">ver proyectos</a>
+      <a href="#gallery" class="btn" data-es="galería" data-en="gallery" data-ca="galeria">galería</a>
+      <a href="donnies.html" class="btn" data-es="Donnies →" data-en="Donnies →" data-ca="Donnies →">Donnies →</a>
+      <a href="fnaf-as.html" class="btn">FNAF AS →</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sec" id="about">
+    <div class="sec-label">01</div>
+    <h2 class="sec-title" data-es="Sobre mí" data-en="About me" data-ca="Sobre mi">Sobre mí</h2>
+    <div class="about-grid">
+
+      <div class="acard full">
+        <h3 data-es="Bio" data-en="Bio" data-ca="Bio">Bio</h3>
+        <p data-es="¡Hola! Soy Core, un creador de contenido, desarrollador y artista. Me apasionan los proyectos creativos: desde fangames de terror analógico hasta apps open-source para Android."
+           data-en="Hi! I'm Core, a content creator, developer and artist. I'm passionate about creative projects: from analog horror fangames to open-source Android apps."
+           data-ca="Hola! Sóc en Core, un creador de contingut, desenvolupador i artista. M'apassionen els projectes creatius: des de fangames de terror analògic fins a apps open-source per a Android.">
+          ¡Hola! Soy <strong style="color:var(--bright)">Core</strong>, un creador de contenido, desarrollador y artista.
+          Me apasionan los proyectos creativos: desde fangames de terror analógico hasta apps open-source para Android.
+        </p>
+        <p data-es="Esta página es mi archivo personal donde catalogo mis trabajos y comparto mi proceso. Hablo català, castellano i english y trabajo con ideas que combinan código, diseño y narrativa."
+           data-en="This is my personal archive where I catalog my work and share my process. I speak català, castellano and english, and work with ideas that combine code, design and narrative."
+           data-ca="Aquesta pàgina és el meu arxiu personal on catalogo els meus treballs i comparteixo el meu procés. Parlo català, castellà i anglès i treballo amb idees que combinen codi, disseny i narrativa.">
+          Esta página es mi archivo personal donde catalogo mis trabajos y comparto mi proceso.
+          Hablo català, castellano i english y trabajo con ideas que combinan código, diseño y narrativa.
+        </p>
+      </div>
+
+      <div class="acard">
+        <h3 data-es="Skills" data-en="Skills" data-ca="Skills">Skills</h3>
+        <div class="chips">
+          <span class="chip">Game Dev</span>
+          <span class="chip">Android Dev</span>
+          <span class="chip">Open Source</span>
+          <span class="chip">Art / Illustration</span>
+          <span class="chip">Content Creation</span>
+          <span class="chip">Linux</span>
+          <span class="chip">Git / GitHub</span>
+          <span class="chip">VS Code</span>
+        </div>
+      </div>
+
+      <div class="acard">
+        <h3 data-es="Herramientas" data-en="Tools" data-ca="Eines">Herramientas</h3>
+        <p data-es="Principal stack: Kotlin, Jetpack Compose, Godot 4.6, Python, HTML/CSS/JS y VS Code."
+           data-en="Main stack: Kotlin, Jetpack Compose, Godot 4.6, Python, HTML/CSS/JS and VS Code."
+           data-ca="Stack principal: Kotlin, Jetpack Compose, Godot 4.6, Python, HTML/CSS/JS i VS Code.">
+          Principal stack: Kotlin, Jetpack Compose, Godot 4.6, Python, HTML/CSS/JS y VS Code.
+        </p>
+        <div class="chips" style="margin-top:.85rem">
+          <span class="chip">Cinema 4D</span>
+          <span class="chip">Blender</span>
+          <span class="chip">Krita</span>
+          <span class="chip">Source SDK</span>
+          <span class="chip">GameMaker</span>
+          <span class="chip">LMMS</span>
+          <span class="chip">Audacity</span>
+        </div>
+      </div>
+
+      <div class="acard full">
+        <h3 data-es="Stack" data-en="Stack" data-ca="Stack">Stack</h3>
+        <div class="stack-list">
+          <div><span class="k">OS</span><span class="v">CachyOS // Arch Linux</span></div>
+          <div><span class="k">WM</span><span class="v">Hyprland + Waybar</span></div>
+          <div><span class="k">Editor</span><span class="v">VS Code</span></div>
+          <div><span class="k">Dev</span><span class="v">Kotlin · Python · GDScript · HTML/CSS/JS</span></div>
+          <div><span class="k">3D/Art</span><span class="v">Cinema 4D · Blender · Krita</span></div>
+          <div><span class="k">Audio</span><span class="v">LMMS · Ardour · Audacity</span></div>
+          <div><span class="k">AI</span><span class="v">Claude Code · Ollama · llama.cpp</span></div>
+          <div><span class="k">Game</span><span class="v">Godot 4.6 · Source SDK 2013 · GameMaker</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="sec" id="projects">
+    <div class="sec-label">02</div>
+    <h2 class="sec-title" data-es="Proyectos" data-en="Projects" data-ca="Projectes">Proyectos</h2>
+    <div class="proj-grid">
+
+      <a class="pcard" href="donnies.html">
+        <div class="pstatus" data-es="en desarrollo · desde 2021" data-en="in development · since 2021" data-ca="en desenvolupament · des de 2021">en desarrollo · desde 2021</div>
+        <div class="pname">Donnie Origins</div>
+        <div class="pdesc" data-es="Fangame de FNaF con terror analógico y ambición máxima. Source Engine, renders 3D y una historia construida desde cero."
+             data-en="FNaF fangame with analog horror and maximum ambition. Source Engine, 3D renders and an original story."
+             data-ca="Fangame de FNaF amb terror analògic i màxima ambició. Source Engine, renders 3D i una història construïda des de zero.">
+          Fangame de FNaF con terror analógico y ambición máxima. Source Engine, renders 3D y una historia construida desde cero.
+        </div>
+        <div class="ptags">
+          <span class="ptag">FNaF</span><span class="ptag">Source Engine</span>
+          <span class="ptag">Terror analógico</span><span class="ptag">ver más →</span>
+        </div>
+      </a>
+
+      <div class="pcard" role="button" tabindex="0" onclick="showWip()" onkeydown="if(event.key==='Enter')showWip()" style="cursor:pointer">
+        <div class="pstatus" data-es="en construcción" data-en="in construction" data-ca="en construcció">en construcción</div>
+        <div class="pname">LADA</div>
+        <div class="pdesc" data-es="Proyecto de personajes originales con historia de ficción extensa, worldbuilding propio y una trama construida desde cero."
+             data-en="Original characters project with an extensive fiction story, own worldbuilding and a plot built from scratch."
+             data-ca="Projecte de personatges originals amb una història de ficció extensa, worldbuilding propi i una trama construïda des de zero.">
+          Proyecto de personajes originales con historia de ficción extensa, worldbuilding propio y una trama construida desde cero.
+        </div>
+        <div class="ptags">
+          <span class="ptag">OC / Original</span><span class="ptag">Ficción</span><span class="ptag">Worldbuilding</span>
+        </div>
+      </div>
+
+      <a class="pcard" href="fnaf-as.html">
+        <div class="pstatus" data-es="en desarrollo" data-en="in development" data-ca="en desenvolupament">en desarrollo</div>
+        <div class="pname">FNaF AS</div>
+        <div class="pdesc" data-es="Five Nights at Freddy's Alternative Stories: universo alternativo, lore propio y una experiencia visual basada en glitch y renders 3D."
+             data-en="Five Nights at Freddy's Alternative Stories: alternate universe, original lore and a glitch/3D render visual experience."
+             data-ca="Five Nights at Freddy's Alternative Stories: univers alternatiu, lore propi i una experiència visual basada en glitch i renders 3D.">
+          Five Nights at Freddy's Alternative Stories: universo alternativo, lore propio y una experiencia visual basada en glitch y renders 3D.
+        </div>
+        <div class="ptags">
+          <span class="ptag">FNAF</span><span class="ptag">Fan project</span><span class="ptag">3D</span>
+        </div>
+      </a>
+
+      <a class="pcard" href="https://github.com/KCRooty/X-USB" target="_blank">
+        <div class="pstatus" data-es="activo" data-en="active" data-ca="actiu">activo</div>
+        <div class="pname">X-USB</div>
+        <div class="pdesc" data-es="App Android open-source tipo Rufus/Ventoy. Gratis, sin anuncios, uso ilimitado. ISO Burner, MultiOS USB UEFI, Partition Wizard y más."
+             data-en="Open-source Android app like Rufus/Ventoy. Free, no ads, unlimited use. ISO Burner, MultiOS USB UEFI, Partition Wizard and more."
+             data-ca="App Android open-source tipus Rufus/Ventoy. Gratis, sense anuncis, ús il·limitat. ISO Burner, MultiOS USB UEFI, Partition Wizard i més.">
+          App Android open-source tipo Rufus/Ventoy. Gratis, sin anuncios, uso ilimitado. ISO Burner, MultiOS USB UEFI, Partition Wizard y más.
+        </div>
+        <div class="ptags">
+          <span class="ptag">Android</span><span class="ptag">Open Source</span>
+          <span class="ptag">USB Tools</span><span class="ptag">GitHub ↗</span>
+        </div>
+      </a>
+
+      <a class="pcard" href="foros.html">
+        <div class="pstatus" data-es="comunitario" data-en="community" data-ca="comunitari">comunitario</div>
+        <div class="pname">Foro</div>
+        <div class="pdesc" data-es="Espacio comunitario con sistema de login. Publica mensajes y comparte ideas."
+             data-en="Community space with login system. Post messages and share ideas."
+             data-ca="Espai comunitari amb sistema de login. Publica missatges i comparteix idees.">
+          Espacio comunitario con sistema de login. Publica mensajes y comparte ideas.
+        </div>
+        <div class="ptags">
+          <span class="ptag">Foro</span><span class="ptag">Chat</span><span class="ptag">Login</span>
+        </div>
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- GALLERY -->
+  <section class="sec" id="gallery">
+    <div class="sec-label">03</div>
+    <h2 class="sec-title" data-es="Galería" data-en="Gallery" data-ca="Galeria">Galería</h2>
+    <div class="gfilt">
+      <button class="fbtn on" onclick="setF(this,'all')" data-es="Todo" data-en="All" data-ca="Tot">Todo</button>
+      <button class="fbtn" onclick="setF(this,'oc')" data-es="OC / Original" data-en="OC / Original" data-ca="OC / Original">OC / Original</button>
+      <button class="fbtn" onclick="setF(this,'fanart')" data-es="Fanart" data-en="Fanart" data-ca="Fanart">Fanart</button>
+      <button class="fbtn" onclick="setF(this,'concept')" data-es="Concept Art" data-en="Concept Art" data-ca="Concept Art">Concept Art</button>
+      <button class="fbtn" onclick="setF(this,'other')" data-es="Otro" data-en="Other" data-ca="Altre">Otro</button>
+    </div>
+    <div class="ggrid" id="ggrid">
+      <div class="gempty"><b>~/gallery</b> · 0 archivos<br><span style="font-size:.75rem;opacity:.7;display:block;margin-top:5px">las imágenes se guardan localmente</span></div>
+    </div>
+    <div class="gupload-row">
+      <input type="file" id="fInput" accept="image/*" multiple style="display:none" onchange="handleUp(event)">
+      <button class="btn" onclick="document.getElementById('fInput').click()"
+              data-es="+ subir dibujo" data-en="+ upload drawing" data-ca="+ pujar dibuix">+ subir dibujo</button>
+      <span class="gcount" id="gcount"></span>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<!-- WIP POPUP -->
+<div class="wip-backdrop" id="wip-backdrop" onclick="closeWip()">
+  <div class="wip-box" onclick="event.stopPropagation()">
+    <div class="wip-icon">🚧</div>
+    <div class="wip-title">aún bajo construcción</div>
+    <div class="wip-sub">este apartado estará disponible próximamente</div>
+    <span class="wip-close" onclick="closeWip()">[ cerrar ]</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">Static Forge · <a href="https://github.com/KCRooty/KCRooty.github.io">github ↗</a></div>
+</footer>
+
+<!-- LANG SWITCHER -->
+<div class="lang-bar">
+  <button class="lang-btn active" data-lang="es" onclick="setLang('es')">ES</button>
+  <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" data-lang="ca" onclick="setLang('ca')">CA</button>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLb()">
+  <button class="lb-close" onclick="closeLb()">[ ✕ cerrar ]</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-name" id="lbName"></div>
+</div>
+
+<script>
+/* ===== WIP ===== */
+function showWip(){document.getElementById('wip-backdrop').classList.add('show');}
+function closeWip(){document.getElementById('wip-backdrop').classList.remove('show');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeWip();});
+
+/* ===== HAMBURGER ===== */
+function toggleMobNav(){
+  document.getElementById('mob-nav').classList.toggle('open');
+}
+function closeMobNav(){
+  document.getElementById('mob-nav').classList.remove('open');
+}
+
+/* ===== GALLERY ===== */
+const HARDCODED=[
+  {src:'assets/gallery/clip5_2.png',name:'Render FNAF AS 1',cat:'fanart'},
+  {src:'assets/gallery/clip5.png',  name:'Render FNAF AS 2',cat:'fanart'},
+  {src:'assets/gallery/clip5_1.png',name:'Render FNAF AS 3',cat:'fanart'}
+];
+let imgs=[...HARDCODED];
+let curF='all';
+
+function loadGallery(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('alfy_gallery')||'[]');
+    imgs=[...HARDCODED,...saved];
+  }catch(e){imgs=[...HARDCODED];}
+}
+
+function saveGallery(){
+  const uploads=imgs.filter(i=>!HARDCODED.some(h=>h.src===i.src));
+  try{localStorage.setItem('alfy_gallery',JSON.stringify(uploads));}catch(e){}
+}
+
+function setF(btn,f){
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');curF=f;renderG();
+}
+
+function handleUp(e){
+  Array.from(e.target.files).forEach(file=>{
+    const r=new FileReader();
+    r.onload=ev=>{
+      imgs.push({src:ev.target.result,name:file.name,cat:'other'});
+      saveGallery();
+      renderG();
+    };
+    r.readAsDataURL(file);
+  });
+  e.target.value='';
+}
+
+function renderG(){
+  const grid=document.getElementById('ggrid');
+  const cnt=document.getElementById('gcount');
+  const list=curF==='all'?imgs:imgs.filter(i=>i.cat===curF);
+  cnt.textContent=imgs.length>0?`${imgs.length} archivo${imgs.length!==1?'s':''}`:'' ;
+  if(!list.length){
+    grid.innerHTML=`<div class="gempty"><b>Galería vacía</b><br><span style="font-size:.75rem;opacity:.7;display:block;margin-top:5px">No hay imágenes en esta categoría.</span></div>`;
+    return;
+  }
+  grid.innerHTML=list.map(img=>`
+    <div class="gitem" onclick="openLb('${img.src.replace(/'/g,"\\'")}','${img.name.replace(/'/g,"\\'")}')">
+      <img src="${img.src}" alt="${img.name}" loading="lazy">
+      <div class="gname">${img.name}</div>
+    </div>`).join('');
+}
+
+function openLb(src,name){
+  document.getElementById('lbImg').src=src;
+  document.getElementById('lbName').textContent=name;
+  document.getElementById('lb').classList.add('open');
+}
+function closeLb(){document.getElementById('lb').classList.remove('open');}
+
+/* ===== LANG ===== */
+function setLang(l){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  const activeBtn=document.querySelector(`.lang-btn[data-lang="${l}"]`);
+  if(activeBtn)activeBtn.classList.add('active');
+  document.querySelectorAll(`[data-${l}]`).forEach(el=>{
+    const v=el.getAttribute(`data-${l}`);
+    if(v)el.textContent=v;
+  });
+}
+
+/* ===== INIT ===== */
+window.addEventListener('DOMContentLoaded',()=>{
+  loadGallery();
+  renderG();
+});
+</script>
+
+</body></html>

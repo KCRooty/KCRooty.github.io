@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FNAF AS · STATIC FORGE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050607;--bg2:#090b10;--card:rgba(10,12,16,.88);--border:#1c2532;--text:#e8eef7;--dim:#7d8ba4;--accent:#c286dd;--accent2:#5294e2;--mono:'JetBrains Mono',monospace;--sans:'Outfit',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;font-family:var(--sans);color:var(--text);background:#050607 url('assets/gallery/clip5_2.png') center/cover no-repeat;position:relative;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at top,rgba(255,255,255,.08),transparent 40%),linear-gradient(180deg,rgba(0,0,0,.24),rgba(0,0,0,.9));mix-blend-mode:overlay;pointer-events:none;}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);opacity:.18;pointer-events:none;}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(5,6,7,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.5rem;font-family:var(--mono);font-size:.82rem;}
+.tb-left{display:flex;align-items:center;gap:10px}
+.dots{display:flex;gap:5px}
+.dots span{width:10px;height:10px;border-radius:50%;background:#444}
+.tb-title{color:var(--dim)}
+.tb-nav{display:flex;gap:1rem;list-style:none}
+.tb-nav a{color:var(--dim);text-decoration:none;transition:color .18s}
+.tb-nav a:hover{color:var(--accent2)}
+.wrap{max-width:1040px;margin:0 auto;padding:1.5rem}
+.hero{padding:3rem 0;}
+.hero h1{font-family:var(--mono);font-size:clamp(2.6rem,5vw,4rem);line-height:1.02;color:#fff;margin-bottom:.5rem;}
+.hero p{max-width:760px;color:var(--text);line-height:1.8;font-size:1rem;margin-bottom:1.5rem;}
+.sec{padding:1.8rem 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.sec-label{font-family:var(--mono);font-size:.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:.14em;margin-bottom:.45rem;display:flex;align-items:center;gap:.6rem;}
+.sec-title{font-size:1.8rem;color:#fff;margin-bottom:1rem;}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
+.acard{background:rgba(5,7,11,.96);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:1.4rem;}
+.acard h3{font-family:var(--mono);font-size:.88rem;color:var(--accent);margin-bottom:.8rem;}
+.acard p{line-height:1.75;color:var(--dim);font-size:.96rem;}
+.feature-list{display:grid;gap:.9rem;margin-top:1rem;}
+.feature{display:flex;gap:.8rem;align-items:flex-start;}
+.feature-icon{width:10px;height:10px;margin-top:.6rem;background:var(--accent2);border-radius:50%;flex-shrink:0;}
+.gallery-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0.9rem;margin-top:1rem;}
+.gallery-item{border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;background:rgba(0,0,0,.45);}
+.gallery-item img{width:100%;display:block;}
+.note{background:rgba(82,148,226,.08);border:1px solid rgba(82,148,226,.16);border-radius:12px;padding:1rem;color:var(--text);margin-top:1rem;}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 1.2rem;border-radius:9px;background:var(--accent2);color:#fff;text-decoration:none;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;transition:transform .16s,background .18s;}
+.btn:hover{transform:translateY(-1px);background:#3ba686;}
+@media(max-width:900px){.card-grid,.gallery-row{grid-template-columns:1fr}} 
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="tb-left">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="tb-title">STATIC FORGE — FNAF AS</span>
+  </div>
+  <nav><ul class="tb-nav">
+    <li><a href="index.html">home</a></li>
+    <li><a href="donnies.html">Donnies</a></li>
+    <li><a href="fnaf-as.html">FNAF AS</a></li>
+    <li><a href="foros.html">foro</a></li>
+  </ul></nav>
+</header>
+<div class="wrap">
+  <section class="hero">
+    <h1>Five Nights at Freddy's Alternative Stories</h1>
+    <p>FNAF AS es un proyecto narrativo y visual que reimagina los eventos de Five Nights at Freddy's desde historias alternativas. La web complementa el universo con lore, renders 3D y una atmósfera tipo menú de juego sin texto, con glitch y estática de fondo.</p>
+    <a class="btn" href="foros.html">Ir al foro</a>
+  </section>
+  <section class="sec">
+    <div class="sec-label">Qué es</div>
+    <h2 class="sec-title">Alternative Stories</h2>
+    <div class="acard">
+      <h3>Nombre completo</h3>
+      <p>Five Nights at Freddy's Alternative Stories es un concepto de fanfic y universo alternativo donde los eventos clásicos de FNAF se cruzan con nuevas tramas, personajes y finales alternativos.</p>
+    </div>
+    <div class="acard" style="margin-top:1rem;">
+      <h3>De qué va</h3>
+      <p>La idea es explorar versiones alternativas del terror animatrónico, con cambios drásticos en el lore: animatrónicos que actúan como guardianes o rebeldes, archivos secretos, carreras contrarreloj dentro de una pizzería corrupta, y finales donde la realidad se distorsiona.</p>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="sec-label">Narrativa</div>
+    <h2 class="sec-title">Historia y estilo</h2>
+    <div class="card-grid">
+      <div class="acard">
+        <h3>Trama principal</h3>
+        <p>En FNAF AS, el protagonista accede a un archivador olvidado que contiene rutas alternativas del programa Freddy Fazbear. Cada noche desbloquea un capítulo diferente, y las decisiones influyen en cómo se revela el pasado de los animatrónicos.</p>
+      </div>
+      <div class="acard">
+        <h3>Estilo visual</h3>
+        <p>El tono visual busca un menú de juego corrupto: glitch, estática y fondos con renders 3D de animatrónicos. La navegación debe sentirse como entrar en una versión pirateada del universo original.</p>
+      </div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="sec-label">Renders</div>
+    <h2 class="sec-title">Galería de arte</h2>
+    <div class="gallery-row">
+      <div class="gallery-item"><img src="assets/gallery/clip5_2.png" alt="Render FNAF AS 1"></div>
+      <div class="gallery-item"><img src="assets/gallery/clip5.png" alt="Render FNAF AS 2"></div>
+      <div class="gallery-item"><img src="assets/gallery/clip5_1.png" alt="Render FNAF AS 3"></div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="sec-label">Por qué ver</div>
+    <h2 class="sec-title">¿Por qué FNAF AS?</h2>
+    <div class="note">Este espacio complementario está pensado para los fans del universo FNAF que quieren explorar historias alternativas, estética glitch y arte 3D. En el foro podrás comentar teorías y compartir ideas.</div>
+  </section>
+  <section class="sec">
+    <div class="sec-label">Comentarios</div>
+    <h2 class="sec-title">Comentarios</h2>
+    <p style="color:var(--dim);font-size:.85rem;margin-bottom:1.2rem">Login con GitHub. Los comentarios se guardan en los Discussions del repo.</p>
+    <!--
+      GISCUS SETUP — completar en 3 pasos:
+      1. Ir a https://github.com/KCRooty/KCRooty.github.io → Settings → Features → activar "Discussions"
+      2. Ir a https://giscus.app → repo: KCRooty/KCRooty.github.io → mapping: pathname → categoría: Comments
+      3. Reemplazar el bloque <script> de abajo con el que genera giscus.app
+    -->
+    <script src="https://giscus.app/client.js"
+      data-repo="KCRooty/KCRooty.github.io"
+      data-repo-id="REEMPLAZAR_CON_REPO_ID"
+      data-category="Comments"
+      data-category-id="REEMPLAZAR_CON_CATEGORY_ID"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="transparent_dark"
+      data-lang="es"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </section>
+</div>
+</body>
+</html>

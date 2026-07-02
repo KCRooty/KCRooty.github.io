@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foro · STATIC FORGE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050607;
+  --bg2:#0b1018;
+  --card:#121821;
+  --border:#1f2a3a;
+  --text:#e3e8f0;
+  --dim:#7f8ba0;
+  --accent:#5294e2;
+  --accent2:#4ec9b0;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Outfit',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:#050607;color:var(--text);font-family:var(--sans);background-image:radial-gradient(circle at top left,rgba(82,148,226,.08) 0,transparent 30%),radial-gradient(circle at right,rgba(78,201,176,.05) 0,transparent 28%);}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:100% 24px,24px 100%;opacity:.25;}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(5,6,7,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.5rem;font-family:var(--mono);font-size:0.82rem;}
+.tb-left{display:flex;align-items:center;gap:10px}
+.dots{display:flex;gap:5px}
+.dots span{width:10px;height:10px;border-radius:50%;background:#444}
+.tb-title{color:var(--dim)}
+.tb-nav{display:flex;gap:1.1rem;list-style:none}
+.tb-nav a{color:var(--dim);text-decoration:none;transition:color .18s}
+.tb-nav a:hover{color:var(--accent)}
+.wrap{max-width:1100px;margin:0 auto;padding:1.5rem}
+.hero{padding:2rem 0;}
+.hero h1{font-family:var(--mono);font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;color:#fff;margin-bottom:0.6rem;}
+.hero p{color:var(--dim);max-width:760px;line-height:1.8;margin-bottom:1.5rem;}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem;}
+.card h2{font-family:var(--mono);font-size:1rem;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.75rem;}
+.card p{color:var(--text);line-height:1.75;font-size:.95rem;}
+.form-panel{display:grid;gap:1rem;}
+.input-group{display:grid;gap:0.4rem}
+.input-group label{font-size:.78rem;color:var(--dim);letter-spacing:.04em}
+.input-group input, .input-group textarea{width:100%;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text);padding:0.85rem 1rem;border-radius:8px;font-family:var(--mono);font-size:.95rem;}
+.button{display:inline-flex;align-items:center;justify-content:center;padding:0.88rem 1.5rem;border-radius:8px;border:1px solid transparent;background:var(--accent);color:#fff;font-family:var(--mono);cursor:pointer;transition:transform .16s,background .18s;}
+.button:hover{transform:translateY(-1px);background:#4a82c0;}
+.posts{display:grid;gap:1rem}
+.post{background:rgba(255,255,255,.03);border:1px solid rgba(82,148,226,.12);border-radius:12px;padding:1rem;}
+.post-header{display:flex;justify-content:space-between;gap:1rem;align-items:center;margin-bottom:0.8rem;font-family:var(--mono);font-size:.82rem;color:var(--dim);}
+.post-body{color:var(--text);line-height:1.75;white-space:pre-wrap;}
+.status-bar{margin-top:1rem;padding:0.95rem 1rem;border:1px dashed rgba(82,148,226,.2);border-radius:10px;color:var(--dim);font-size:.88rem;}
+.hidden{display:none!important}
+@media(max-width:860px){.card-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="tb-left">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <span class="tb-title">STATIC FORGE — Foro</span>
+  </div>
+  <nav><ul class="tb-nav">
+    <li><a href="index.html">home</a></li>
+    <li><a href="fnaf-as.html">FNAF AS</a></li>
+    <li><a href="foros.html">foro</a></li>
+  </ul></nav>
+</header>
+<div class="wrap">
+  <section class="hero">
+    <h1>Foro comunitario</h1>
+    <p>En este foro base puedes registrarte con nombre de usuario y contraseña para comentar sin usar correo. Los datos se guardan en tu navegador y el foro se mantiene localmente.</p>
+  </section>
+  <div class="card-grid">
+    <div class="card">
+      <h2>Ingreso rápido</h2>
+      <div class="form-panel" id="auth-panel">
+        <div class="input-group">
+          <label for="username">Usuario</label>
+          <input type="text" id="username" placeholder="tu usuario" autocomplete="username">
+        </div>
+        <div class="input-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" placeholder="tu contraseña" autocomplete="current-password">
+        </div>
+        <div style="display:flex;gap:.7rem;flex-wrap:wrap;">
+          <button class="button" onclick="loginUser()">Entrar</button>
+          <button class="button" style="background:var(--accent2);" onclick="registerUser()">Registrar</button>
+        </div>
+        <div class="status-bar" id="auth-status">Usuario + contraseña, sin email. Crea tu cuenta para publicar.</div>
+      </div>
+      <div class="form-panel hidden" id="logged-panel">
+        <div class="status-bar" id="logged-msg"></div>
+        <button class="button" onclick="logoutUser()" style="background:#e0656e;border-color:#d45c66;">Cerrar sesión</button>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Cómo funciona</h2>
+      <p>El foro es una implementación simple en el navegador. El inicio de sesión solo requiere usuario y contraseña, y las publicaciones se guardan en el almacenamiento local del navegador.</p>
+      <p>Para un foro verdaderamente público y compartido entre usuarios necesitas un servidor, pero aquí puedes empezar a organizar ideas y dejar un registro de mensajes.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Publicar mensaje</h2>
+    <div class="form-panel">
+      <div class="input-group">
+        <label for="post-text">Mensaje</label>
+        <textarea id="post-text" rows="5" placeholder="Escribe tu mensaje"></textarea>
+      </div>
+      <button class="button" onclick="postMessage()">Publicar</button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Mensajes</h2>
+    <div class="posts" id="posts"></div>
+  </div>
+</div>
+<script>
+const USERS_KEY='fnaf_forum_users';
+const POSTS_KEY='fnaf_forum_posts';
+const CURRENT_KEY='fnaf_forum_current';
+function getUsers(){return JSON.parse(localStorage.getItem(USERS_KEY)||'[]');}
+function getPosts(){return JSON.parse(localStorage.getItem(POSTS_KEY)||'[]');}
+function saveUsers(users){localStorage.setItem(USERS_KEY,JSON.stringify(users));}
+function savePosts(posts){localStorage.setItem(POSTS_KEY,JSON.stringify(posts));}
+function currentUser(){return localStorage.getItem(CURRENT_KEY)||'';}
+function setCurrent(user){localStorage.setItem(CURRENT_KEY,user);}
+function clearCurrent(){localStorage.removeItem(CURRENT_KEY);}
+function loginUser(){const user=document.getElementById('username').value.trim();const pass=document.getElementById('password').value;const status=document.getElementById('auth-status');
+ if(!user||!pass){status.textContent='Usuario y contraseña son obligatorios.';return;}
+ const users=getUsers();const found=users.find(u=>u.user===user&&u.pass===pass);
+ if(!found){status.textContent='Usuario no encontrado o contraseña incorrecta.';return;}
+ setCurrent(user); status.textContent='Bienvenido '+user+'!'; updateAuth();}
+function registerUser(){const user=document.getElementById('username').value.trim();const pass=document.getElementById('password').value;const status=document.getElementById('auth-status');
+ if(!user||!pass){status.textContent='Usuario y contraseña son obligatorios.';return;}
+ const users=getUsers();if(users.find(u=>u.user===user)){status.textContent='Ese usuario ya existe.';return;}
+ users.push({user,pass});saveUsers(users);setCurrent(user);status.textContent='Cuenta creada. Bienvenido '+user+'!';updateAuth();}
+function logoutUser(){clearCurrent();updateAuth();}
+function updateAuth(){const user=currentUser();document.getElementById('auth-panel').classList.toggle('hidden',!!user);document.getElementById('logged-panel').classList.toggle('hidden',!user);
+ const msg=document.getElementById('logged-msg'); if(user){msg.textContent='Sesión activa: '+user;} renderPosts();}
+function postMessage(){const user=currentUser();const text=document.getElementById('post-text').value.trim();if(!user){alert('Debes iniciar sesión primero.');return;} if(!text){alert('Escribe un mensaje antes de publicar.');return;} const posts=getPosts();posts.unshift({user,text,date:new Date().toLocaleString()});savePosts(posts);document.getElementById('post-text').value='';renderPosts();}
+function renderPosts(){const postsEl=document.getElementById('posts');const posts=getPosts();if(!posts.length){postsEl.innerHTML='<div class="status-bar">Todavía no hay mensajes. Sé el primero en escribir.</div>';return;} postsEl.innerHTML=posts.map(p=>`<div class="post"><div class="post-header"><span>${p.user}</span><span>${p.date}</span></div><div class="post-body">${escapeHtml(p.text)}</div></div>`).join('');}
+function escapeHtml(str){return str.replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));}
+window.addEventListener('DOMContentLoaded',()=>{updateAuth();});
+</script>
+</body>
+</html>
