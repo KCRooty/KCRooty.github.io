@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Static Linux · STATIC FORGE</title>
+  <meta name="description" content="Static Linux — distribución Linux de Static Forge basada en Arch. Rápida, privada, tuya. XFCE tematizado, instalador Calamares, herramientas SF propias.">
+  <meta property="og:title" content="Static Linux · STATIC FORGE">
+  <meta property="og:description" content="Distro Linux basada en Arch. fast. private. yours.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050807;--bg2:#080b09;
+  --card:rgba(8,14,11,.94);
+  --border:rgba(255,255,255,.07);
+  --text:#d8e6dc;--dim:#748577;
+  --cyan:#4ade80;--cyan2:#86efac;--cyan3:rgba(74,222,128,.12);
+  --purple:#7B61FF;--gold:#facc15;--red:#e0656e;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Outfit',sans-serif;
+  --exo:'Exo 2',sans-serif;
+  --orbit:'Orbitron',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;font-family:var(--sans);color:var(--text);background:var(--bg);position:relative;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 40% at 50% 0%,rgba(74,222,128,.06),transparent 60%),radial-gradient(ellipse 50% 70% at 100% 100%,rgba(123,97,255,.05),transparent 50%)}
+.scanlines{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.04) 3px,rgba(0,0,0,.04) 4px)}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(74,222,128,.3);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:rgba(74,222,128,.6)}
+
+.topbar{position:sticky;top:0;z-index:20;background:rgba(5,8,7,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:46px}
+.tb-left{display:flex;align-items:center;gap:10px}
+.tb-logo{font-size:1.1rem;line-height:1}
+.tb-title{font-family:var(--orbit);font-size:.65rem;color:var(--dim);letter-spacing:.08em}
+.tb-title span{color:var(--cyan)}
+.tb-nav{display:flex;gap:1.2rem;list-style:none}
+.tb-nav a{color:var(--dim);text-decoration:none;transition:color .18s;font-size:.72rem;font-family:var(--exo);font-weight:500;letter-spacing:.02em}
+.tb-nav a:hover{color:var(--cyan)}
+
+.wrap{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:0 1.5rem 4rem}
+
+.hero-h1{font-family:var(--orbit);font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.05;color:#fff;margin-bottom:.5rem;text-shadow:0 0 22px rgba(74,222,128,.25),0 0 60px rgba(74,222,128,.08)}
+
+.hero{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border)}
+.hero-pre{font-family:var(--mono);font-size:.72rem;color:var(--dim);margin-bottom:.8rem;display:flex;align-items:center;gap:8px;letter-spacing:.02em}
+.hero-pre::before{content:'';width:16px;height:1px;background:var(--cyan);display:inline-block}
+.hero-sub{font-size:.98rem;color:var(--dim);line-height:1.75;max-width:660px;margin-bottom:1.6rem}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.6rem}
+.hero-tag{font-family:var(--exo);font-size:.68rem;color:var(--dim);border:1px solid var(--border);border-radius:100px;padding:3px 12px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+
+.btn{font-family:var(--exo);font-size:.72rem;font-weight:600;padding:7px 18px;border-radius:6px;border:1px solid rgba(74,222,128,.2);background:rgba(74,222,128,.05);color:var(--text);cursor:pointer;transition:all .2s;letter-spacing:.03em;display:inline-block;text-decoration:none}
+.btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(74,222,128,.1)}
+.btn.pri{background:var(--cyan);color:#04140a;border-color:var(--cyan);font-weight:700}
+.btn.pri:hover{background:var(--cyan2);border-color:var(--cyan2)}
+
+.sec{padding:2.5rem 0;border-bottom:1px solid var(--border)}
+.sec:last-child{border-bottom:none}
+.sec-label{font-family:var(--orbit);font-size:.62rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.14em;margin-bottom:.4rem;display:flex;align-items:center;gap:.6rem}
+.sec-label::after{content:'';flex:1;height:1px;background:rgba(74,222,128,.15)}
+.sec-title{font-family:var(--exo);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:1.2rem;line-height:1.2;letter-spacing:.02em}
+
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.3rem;transition:border-color .2s}
+.card:hover{border-color:rgba(74,222,128,.2)}
+.card h3{font-family:var(--exo);font-size:.7rem;font-weight:700;color:var(--cyan);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem}
+.card p{color:var(--dim);font-size:.9rem;line-height:1.72}
+.card p strong{color:var(--text)}
+
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.prod-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;display:flex;align-items:flex-start;gap:.8rem}
+.prod-dot{width:7px;height:7px;border-radius:50%;margin-top:.5rem;flex-shrink:0;background:var(--c,var(--cyan));box-shadow:0 0 6px var(--c,var(--cyan))}
+.prod-item h4{font-family:var(--exo);font-size:.72rem;font-weight:700;color:#fff;margin-bottom:.2rem;letter-spacing:.04em}
+.prod-item p{font-size:.82rem;color:var(--dim);line-height:1.5}
+
+.note{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.18);border-radius:8px;padding:1rem 1.2rem;font-size:.88rem;color:var(--text);line-height:1.65;margin-top:1rem}
+
+.swatch-row{display:flex;gap:6px;margin-top:.9rem;flex-wrap:wrap}
+.swatch{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.15)}
+
+@media(max-width:720px){.card-grid,.prod-grid{grid-template-columns:1fr}.hero-h1{font-size:2rem}.tb-nav{display:none}}
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<header class="topbar">
+  <div class="tb-left">
+    <span class="tb-logo">🐧</span>
+    <span class="tb-title">STATIC FORGE <span>· Static Linux</span></span>
+  </div>
+  <nav><ul class="tb-nav">
+    <li><a href="/">home</a></li>
+    <li><a href="/Static_Forge.html">documento</a></li>
+    <li><a href="https://github.com/KCRooty/static-linux" target="_blank">GitHub ↗</a></li>
+    <li><a href="/foros.html">foro</a></li>
+  </ul></nav>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="hero-pre">core@forge:~$ static-linux --info</div>
+    <h1 class="hero-h1">Static Linux</h1>
+    <p class="hero-sub">
+      La distribución Linux propia de Static Forge. Base Arch, instalador Calamares y un escritorio XFCE
+      tematizado con la identidad visual del estudio. Sin telemetría, sin relleno — rápida, privada y tuya
+      desde el primer arranque.
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag">arch-linux</span>
+      <span class="hero-tag">archiso</span>
+      <span class="hero-tag">calamares</span>
+      <span class="hero-tag">xfce</span>
+      <span class="hero-tag">hyprland</span>
+      <span class="hero-tag">privacy</span>
+    </div>
+    <div class="hero-cta">
+      <a href="https://github.com/KCRooty/static-linux" target="_blank" class="btn pri">Ver en GitHub ↗</a>
+      <a href="/" class="btn">← Volver</a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-label">01 · el proyecto</div>
+    <h2 class="sec-title">¿Qué es Static Linux?</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Base</h3>
+        <p>Construida sobre <strong>Arch Linux</strong> con <strong>archiso</strong>. Rolling release, paquetería de Arch al completo, sin capas innecesarias entre el sistema y el usuario.</p>
+      </div>
+      <div class="card">
+        <h3>Escritorio</h3>
+        <p><strong>XFCE</strong> tematizado como entorno principal, ligero y estable. Explorando también un entorno <strong>Hyprland</strong> para quien prefiera un flujo en mosaico.</p>
+      </div>
+      <div class="card">
+        <h3>Instalador</h3>
+        <p><strong>Calamares</strong>, el instalador gráfico estándar de las distros basadas en Arch. Particionado guiado, sin fricción, listo en minutos.</p>
+      </div>
+      <div class="card">
+        <h3>Filosofía</h3>
+        <p>Privacidad por defecto: sin telemetría ni servicios de terceros metidos con calzador. <em style="color:var(--text)">fast. private. yours.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-label">02 · herramientas propias</div>
+    <h2 class="sec-title">sl-ctl &amp; sl-detect</h2>
+    <p style="color:var(--dim);font-size:.9rem;margin-bottom:1rem">Static Linux no es solo una capa visual sobre Arch: trae herramientas propias de Static Forge integradas en el sistema.</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>sl-detect</h3>
+        <p>Detección de hardware con reglas propias y su propia batería de tests. Identifica el equipo en el arranque para aplicar la configuración correcta sin intervención manual.</p>
+      </div>
+      <div class="card">
+        <h3>sl-ctl</h3>
+        <p>Utilidad de control y configuración del sistema, pensada para gestionar Static Linux desde línea de comandos con las convenciones del propio Static Forge.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-label">03 · identidad visual</div>
+    <h2 class="sec-title">Branding propio</h2>
+    <div class="card">
+      <h3>Sistema de acentos</h3>
+      <p>Sistema de color de acento "whole-look" con <strong>10 acentos</strong> distintos, para que cada instalación se pueda personalizar manteniendo la coherencia visual de Static Forge en cada rincón del sistema.</p>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#7B61FF"></div>
+        <div class="swatch" style="background:#4ade80"></div>
+        <div class="swatch" style="background:#facc15"></div>
+        <div class="swatch" style="background:#e0656e"></div>
+        <div class="swatch" style="background:#5294e2"></div>
+        <div class="swatch" style="background:#c286dd"></div>
+        <div class="swatch" style="background:#d4ac67"></div>
+        <div class="swatch" style="background:#4ec9b0"></div>
+      </div>
+    </div>
+    <div class="note">Incluye además un <code style="font-family:var(--mono)">os-release</code> propio y un <strong>fastfetch</strong> minimalista de fábrica — el sello de Static Forge desde el primer <code style="font-family:var(--mono)">neofetch</code>.</div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-label">04 · estado y stack</div>
+    <h2 class="sec-title">Producción</h2>
+    <div class="prod-grid">
+      <div class="prod-item" style="--c:var(--cyan)">
+        <div class="prod-dot"></div>
+        <div><h4>Base</h4><p>Arch Linux + archiso</p></div>
+      </div>
+      <div class="prod-item" style="--c:#5294e2">
+        <div class="prod-dot" style="--c:#5294e2"></div>
+        <div><h4>Instalador</h4><p>Calamares</p></div>
+      </div>
+      <div class="prod-item" style="--c:var(--purple)">
+        <div class="prod-dot" style="--c:var(--purple)"></div>
+        <div><h4>Escritorio</h4><p>XFCE tematizado · Hyprland en exploración</p></div>
+      </div>
+      <div class="prod-item" style="--c:var(--gold)">
+        <div class="prod-dot" style="--c:var(--gold)"></div>
+        <div><h4>Licencia</h4><p>GPL-3.0 · código abierto</p></div>
+      </div>
+    </div>
+    <div class="note">Proyecto en desarrollo activo. Sigue el progreso, ISOs y releases en el <a href="https://github.com/KCRooty/static-linux" target="_blank" style="color:var(--cyan)">repositorio de GitHub</a>.</div>
+  </section>
+
+</div>
+
+<footer style="position:relative;z-index:2;padding:1.2rem 1.5rem;border-top:1px solid var(--border);font-family:'Exo 2',sans-serif;font-size:.7rem;color:var(--dim);text-align:center">
+  Static Forge · <b style="color:var(--cyan)">Static Linux</b> · <a href="/" style="color:#5294e2">← home</a>
+</footer>
+
+</body>
+</html>

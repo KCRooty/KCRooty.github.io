@@ -21,7 +21,7 @@ html{scroll-behavior:smooth}
   --border:#1e1e2e;--border2:#2a2a3e;
   --text:#d8d8e8;--dim:#7070a0;--bright:#f0f0f8;
   --accent:#5294e2;--aglow:rgba(82,148,226,.10);
-  --green:#4ec9b0;--yellow:#d4ac67;--red:#e0656e;--purple:#c286dd;
+  --green:#4ec9b0;--yellow:#d4ac67;--red:#e0656e;--purple:#c286dd;--cyan:#4ade80;
   --mono:'JetBrains Mono',monospace;
   --sans:'Outfit',sans-serif;
   --exo:'Exo 2',sans-serif;
@@ -162,6 +162,7 @@ footer a:hover{color:var(--bright)}
     <li><a href="#gallery" data-es="galería" data-en="gallery" data-ca="galeria">galería</a></li>
     <li><a href="fnaf-as.html">FNAF AS</a></li>
     <li><a href="donnies.html">Donnies</a></li>
+    <li><a href="linux/">Static Linux</a></li>
     <li><a href="foros.html" data-es="foro" data-en="forum" data-ca="foro">foro</a></li>
   </ul></nav>
   <button class="hamburger" id="hamburger" onclick="toggleMobNav()" aria-label="menu">☰</button>
@@ -173,6 +174,7 @@ footer a:hover{color:var(--bright)}
   <a href="#gallery" onclick="closeMobNav()" data-es="galería" data-en="gallery" data-ca="galeria">galería</a>
   <a href="fnaf-as.html">FNAF AS</a>
   <a href="donnies.html">Donnies</a>
+  <a href="linux/">Static Linux</a>
   <a href="foros.html" data-es="foro" data-en="forum" data-ca="foro">foro</a>
 </nav>
 
@@ -197,6 +199,7 @@ footer a:hover{color:var(--bright)}
       <a href="#gallery" class="btn" data-es="galería" data-en="gallery" data-ca="galeria">galería</a>
       <a href="donnies.html" class="btn">Donnies →</a>
       <a href="fnaf-as.html" class="btn">FNAF AS →</a>
+      <a href="linux/" class="btn">Static Linux →</a>
     </div>
   </section>
 
@@ -314,6 +317,17 @@ footer a:hover{color:var(--bright)}
           App Android open-source tipo Rufus/Ventoy. Gratis, sin anuncios, uso ilimitado. ISO Burner, MultiOS USB UEFI, Partition Wizard y más.
         </div>
         <div class="ptags"><span class="ptag">Android</span><span class="ptag">Open Source</span><span class="ptag">USB Tools</span><span class="ptag">GitHub ↗</span></div>
+      </a>
+
+      <a class="pcard" href="linux/" style="--c:var(--cyan)">
+        <div class="pstatus"><span class="pdot"></span><span data-es="en desarrollo" data-en="in development" data-ca="en desenvolupament">en desarrollo</span></div>
+        <div class="pname">Static Linux</div>
+        <div class="pdesc" data-es="Distro Linux propia de Static Forge. Base Arch, instalador Calamares y escritorio XFCE tematizado. fast. private. yours."
+             data-en="Static Forge's own Linux distro. Arch base, Calamares installer and a themed XFCE desktop. fast. private. yours."
+             data-ca="Distro Linux pròpia de Static Forge. Base Arch, instal·lador Calamares i escriptori XFCE tematitzat. fast. private. yours.">
+          Distro Linux propia de Static Forge. Base Arch, instalador Calamares y escritorio XFCE tematizado. fast. private. yours.
+        </div>
+        <div class="ptags"><span class="ptag">Arch Linux</span><span class="ptag">Calamares</span><span class="ptag">XFCE</span><span class="ptag">ver más →</span></div>
       </a>
 
       <a class="pcard" href="foros.html" style="--c:var(--accent)">
