@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Static Linux · STATIC FORGE</title>
-  <meta name="description" content="Static Linux — distribución Linux de Static Forge basada en Arch. Rápida, privada, tuya. XFCE tematizado, instalador Calamares, herramientas SF propias.">
+  <meta name="description" content="Static Linux — distribución Linux de Static Forge basada en Arch. Detección automática de hardware, entornos adaptativos, perfiles de privacidad y arranque con snapshots. Rápida, privada, tuya.">
   <meta property="og:title" content="Static Linux · STATIC FORGE">
   <meta property="og:description" content="Distro Linux basada en Arch. fast. private. yours.">
   <meta property="og:type" content="website">
@@ -17,8 +17,8 @@
   --card:rgba(8,14,11,.94);
   --border:rgba(255,255,255,.07);
   --text:#d8e6dc;--dim:#748577;
-  --cyan:#4ade80;--cyan2:#86efac;--cyan3:rgba(74,222,128,.12);
-  --purple:#7B61FF;--gold:#facc15;--red:#e0656e;
+  --cyan:#00c8a0;--cyan2:#5eead4;--cyan3:rgba(0,200,160,.12);
+  --purple:#7B61FF;--gold:#facc15;--red:#e0656e;--blue:#5aa6f5;
   --mono:'JetBrains Mono',monospace;
   --sans:'Outfit',sans-serif;
   --exo:'Exo 2',sans-serif;
@@ -27,52 +27,56 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{min-height:100vh;font-family:var(--sans);color:var(--text);background:var(--bg);position:relative;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 40% at 50% 0%,rgba(74,222,128,.06),transparent 60%),radial-gradient(ellipse 50% 70% at 100% 100%,rgba(123,97,255,.05),transparent 50%)}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 40% at 50% 0%,rgba(0,200,160,.06),transparent 60%),radial-gradient(ellipse 50% 70% at 100% 100%,rgba(123,97,255,.05),transparent 50%)}
 .scanlines{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.04) 3px,rgba(0,0,0,.04) 4px)}
 
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:rgba(74,222,128,.3);border-radius:2px}
-::-webkit-scrollbar-thumb:hover{background:rgba(74,222,128,.6)}
+::-webkit-scrollbar-thumb{background:rgba(0,200,160,.3);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:rgba(0,200,160,.6)}
 
 .topbar{position:sticky;top:0;z-index:20;background:rgba(5,8,7,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:46px}
 .tb-left{display:flex;align-items:center;gap:10px}
 .tb-logo{font-size:1.1rem;line-height:1}
 .tb-title{font-family:var(--orbit);font-size:.65rem;color:var(--dim);letter-spacing:.08em}
 .tb-title span{color:var(--cyan)}
-.tb-nav{display:flex;gap:1.2rem;list-style:none}
-.tb-nav a{color:var(--dim);text-decoration:none;transition:color .18s;font-size:.72rem;font-family:var(--exo);font-weight:500;letter-spacing:.02em}
+.tb-nav{display:flex;gap:1.1rem;list-style:none}
+.tb-nav a{color:var(--dim);text-decoration:none;transition:color .18s;font-size:.7rem;font-family:var(--exo);font-weight:500;letter-spacing:.02em}
 .tb-nav a:hover{color:var(--cyan)}
 
-.wrap{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:0 1.5rem 4rem}
+.wrap{position:relative;z-index:2;max-width:1040px;margin:0 auto;padding:0 1.5rem 4rem}
 
-.hero-h1{font-family:var(--orbit);font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.05;color:#fff;margin-bottom:.5rem;text-shadow:0 0 22px rgba(74,222,128,.25),0 0 60px rgba(74,222,128,.08)}
+.hero-h1{font-family:var(--orbit);font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.05;color:#fff;margin-bottom:.5rem;text-shadow:0 0 22px rgba(0,200,160,.25),0 0 60px rgba(0,200,160,.08)}
 
 .hero{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border)}
 .hero-pre{font-family:var(--mono);font-size:.72rem;color:var(--dim);margin-bottom:.8rem;display:flex;align-items:center;gap:8px;letter-spacing:.02em}
 .hero-pre::before{content:'';width:16px;height:1px;background:var(--cyan);display:inline-block}
-.hero-sub{font-size:.98rem;color:var(--dim);line-height:1.75;max-width:660px;margin-bottom:1.6rem}
+.hero-sub{font-size:.98rem;color:var(--dim);line-height:1.75;max-width:680px;margin-bottom:1.1rem}
+.hero-status{display:inline-flex;align-items:center;gap:7px;font-family:var(--exo);font-size:.7rem;color:var(--gold);border:1px solid rgba(250,204,21,.25);background:rgba(250,204,21,.06);border-radius:100px;padding:4px 12px;margin-bottom:1.4rem}
+.hero-status .d{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold)}
 .hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.6rem}
 .hero-tag{font-family:var(--exo);font-size:.68rem;color:var(--dim);border:1px solid var(--border);border-radius:100px;padding:3px 12px}
 .hero-cta{display:flex;gap:10px;flex-wrap:wrap}
 
-.btn{font-family:var(--exo);font-size:.72rem;font-weight:600;padding:7px 18px;border-radius:6px;border:1px solid rgba(74,222,128,.2);background:rgba(74,222,128,.05);color:var(--text);cursor:pointer;transition:all .2s;letter-spacing:.03em;display:inline-block;text-decoration:none}
-.btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(74,222,128,.1)}
+.btn{font-family:var(--exo);font-size:.72rem;font-weight:600;padding:7px 18px;border-radius:6px;border:1px solid rgba(0,200,160,.2);background:rgba(0,200,160,.05);color:var(--text);cursor:pointer;transition:all .2s;letter-spacing:.03em;display:inline-block;text-decoration:none}
+.btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,200,160,.1)}
 .btn.pri{background:var(--cyan);color:#04140a;border-color:var(--cyan);font-weight:700}
 .btn.pri:hover{background:var(--cyan2);border-color:var(--cyan2)}
 
 .sec{padding:2.5rem 0;border-bottom:1px solid var(--border)}
 .sec:last-child{border-bottom:none}
 .sec-label{font-family:var(--orbit);font-size:.62rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.14em;margin-bottom:.4rem;display:flex;align-items:center;gap:.6rem}
-.sec-label::after{content:'';flex:1;height:1px;background:rgba(74,222,128,.15)}
-.sec-title{font-family:var(--exo);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:1.2rem;line-height:1.2;letter-spacing:.02em}
+.sec-label::after{content:'';flex:1;height:1px;background:rgba(0,200,160,.15)}
+.sec-title{font-family:var(--exo);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.6rem;line-height:1.2;letter-spacing:.02em}
+.sec-intro{color:var(--dim);font-size:.9rem;line-height:1.7;max-width:700px;margin-bottom:1.2rem}
 
 .card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.3rem;transition:border-color .2s}
-.card:hover{border-color:rgba(74,222,128,.2)}
+.card:hover{border-color:rgba(0,200,160,.2)}
 .card h3{font-family:var(--exo);font-size:.7rem;font-weight:700;color:var(--cyan);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem}
 .card p{color:var(--dim);font-size:.9rem;line-height:1.72}
 .card p strong{color:var(--text)}
+.card p+p{margin-top:.6rem}
 
 .prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
 .prod-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;display:flex;align-items:flex-start;gap:.8rem}
@@ -80,12 +84,40 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .prod-item h4{font-family:var(--exo);font-size:.72rem;font-weight:700;color:#fff;margin-bottom:.2rem;letter-spacing:.04em}
 .prod-item p{font-size:.82rem;color:var(--dim);line-height:1.5}
 
-.note{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.18);border-radius:8px;padding:1rem 1.2rem;font-size:.88rem;color:var(--text);line-height:1.65;margin-top:1rem}
+.note{background:rgba(0,200,160,.06);border:1px solid rgba(0,200,160,.18);border-radius:8px;padding:1rem 1.2rem;font-size:.88rem;color:var(--text);line-height:1.65;margin-top:1rem}
+.note.warn{background:rgba(250,204,21,.06);border-color:rgba(250,204,21,.2)}
+.note a{color:var(--cyan)}
+.note code, p code, li code{font-family:var(--mono);font-size:.84em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--cyan2)}
 
 .swatch-row{display:flex;gap:6px;margin-top:.9rem;flex-wrap:wrap}
-.swatch{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.15)}
+.swatch-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.swatch{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.15)}
+.swatch-label{font-family:var(--mono);font-size:.55rem;color:var(--dim)}
 
-@media(max-width:720px){.card-grid,.prod-grid{grid-template-columns:1fr}.hero-h1{font-size:2rem}.tb-nav{display:none}}
+pre.term{background:#020403;border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;font-family:var(--mono);font-size:.78rem;color:var(--cyan2);line-height:1.7;overflow-x:auto;margin-top:.9rem}
+pre.term .dim{color:var(--dim)}
+pre.term .w{color:#fff}
+
+table.tbl{width:100%;border-collapse:collapse;margin-top:.9rem;font-size:.84rem}
+table.tbl th{text-align:left;padding:8px 10px;font-family:var(--exo);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border-bottom:1px solid var(--border)}
+table.tbl td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--dim)}
+table.tbl td:first-child{color:#fff;font-family:var(--exo);font-weight:600;white-space:nowrap}
+table.tbl tr:hover td{background:rgba(255,255,255,.02)}
+table.tbl code{font-family:var(--mono);font-size:.78em}
+
+.cmd-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:.9rem}
+.cmd{font-family:var(--mono);font-size:.76rem;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:6px 12px;color:var(--cyan2)}
+.cmd span{color:var(--dim);font-family:var(--sans);margin-left:8px;font-size:.72rem}
+
+.chk-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.4rem}
+.chk-col h4{font-family:var(--exo);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.chk-col.done h4{color:var(--cyan)}
+.chk-col.todo h4{color:var(--gold)}
+.chk-col ul{list-style:none;font-size:.85rem;color:var(--dim);line-height:2}
+.chk-col.done li::before{content:'✓ ';color:var(--cyan)}
+.chk-col.todo li::before{content:'○ ';color:var(--gold)}
+
+@media(max-width:720px){.card-grid,.prod-grid,.chk-grid{grid-template-columns:1fr}.hero-h1{font-size:2rem}.tb-nav{display:none}table.tbl{font-size:.76rem}}
 </style>
 </head>
 <body>
@@ -99,9 +131,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
   </div>
   <nav><ul class="tb-nav">
     <li><a href="/">home</a></li>
-    <li><a href="/Static_Forge.html">documento</a></li>
+    <li><a href="#arquitectura">arquitectura</a></li>
+    <li><a href="#deteccion">sl-detect</a></li>
+    <li><a href="#privacidad">privacidad</a></li>
+    <li><a href="#estado">estado</a></li>
     <li><a href="https://github.com/KCRooty/static-linux" target="_blank">GitHub ↗</a></li>
-    <li><a href="/foros.html">foro</a></li>
   </ul></nav>
 </header>
 
@@ -111,111 +145,235 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
     <div class="hero-pre">core@forge:~$ static-linux --info</div>
     <h1 class="hero-h1">Static Linux</h1>
     <p class="hero-sub">
-      La distribución Linux propia de Static Forge. Base Arch, instalador Calamares y un escritorio XFCE
-      tematizado con la identidad visual del estudio. Sin telemetría, sin relleno — rápida, privada y tuya
-      desde el primer arranque.
+      La distribución Linux propia de Static Forge. Base Arch Linux, detección automática de hardware
+      con <strong style="color:var(--text)">sl-detect</strong>, entornos que se adaptan a la máquina y
+      perfiles de privacidad configurables desde la instalación. Sin telemetría. Sin relleno.
     </p>
+    <div class="hero-status"><span class="d"></span>en desarrollo activo · sin ISO pública todavía</div>
     <div class="hero-tags">
       <span class="hero-tag">arch-linux</span>
       <span class="hero-tag">archiso</span>
       <span class="hero-tag">calamares</span>
+      <span class="hero-tag">sl-detect</span>
       <span class="hero-tag">xfce</span>
-      <span class="hero-tag">hyprland</span>
+      <span class="hero-tag">hyprland + astal</span>
+      <span class="hero-tag">btrfs</span>
       <span class="hero-tag">privacy</span>
+      <span class="hero-tag">GPL-3.0</span>
     </div>
     <div class="hero-cta">
       <a href="https://github.com/KCRooty/static-linux" target="_blank" class="btn pri">Ver en GitHub ↗</a>
+      <a href="https://github.com/KCRooty/static-linux/blob/main/CONTRIBUTING.md" target="_blank" class="btn">Contribuir</a>
       <a href="/" class="btn">← Volver</a>
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec" id="arquitectura">
     <div class="sec-label">01 · el proyecto</div>
-    <h2 class="sec-title">¿Qué es Static Linux?</h2>
+    <h2 class="sec-title">Arquitectura</h2>
+    <p class="sec-intro">Static Linux no es un remaster estático de Arch con un wallpaper distinto: cada instalación se adapta al hardware real de la máquina, desde un netbook de 2013 hasta un equipo moderno con GPU dedicada.</p>
     <div class="card-grid">
       <div class="card">
         <h3>Base</h3>
-        <p>Construida sobre <strong>Arch Linux</strong> con <strong>archiso</strong>. Rolling release, paquetería de Arch al completo, sin capas innecesarias entre el sistema y el usuario.</p>
+        <p>Construida sobre <strong>Arch Linux</strong> con <strong>archiso</strong>. Rolling release, paquetería de Arch al completo. Dos perfiles de ISO en el repo: <code>profiledir-online</code> (~1 GB, se actualiza cada mes) y <code>profiledir-offline</code> (~4 GB, cada trimestre).</p>
       </div>
       <div class="card">
-        <h3>Escritorio</h3>
-        <p><strong>XFCE</strong> tematizado como entorno principal, ligero y estable. Explorando también un entorno <strong>Hyprland</strong> para quien prefiera un flujo en mosaico.</p>
+        <h3>Entornos adaptativos</h3>
+        <p><strong>Hyprland + Astal</strong> (full o lite, Wayland) en equipos con RAM suficiente, <strong>XFCE tematizado</strong> (Xorg) cuando el hardware no soporta Wayland o anda justo de RAM, y <strong>Openbox minimal</strong> para máquinas de 512 MB. Lo decide <code>sl-detect</code>, no el usuario a mano.</p>
       </div>
       <div class="card">
-        <h3>Instalador</h3>
-        <p><strong>Calamares</strong>, el instalador gráfico estándar de las distros basadas en Arch. Particionado guiado, sin fricción, listo en minutos.</p>
+        <h3>Sistema de archivos</h3>
+        <p><strong>BTRFS</strong> por defecto en SSD con ≥4 GB de RAM (snapshots vía Snapper), <strong>ext4</strong> como opción segura, <strong>F2FS</strong> en almacenamiento eMMC. XFS también soportado. ZFS está en el roadmap.</p>
       </div>
       <div class="card">
-        <h3>Filosofía</h3>
-        <p>Privacidad por defecto: sin telemetría ni servicios de terceros metidos con calzador. <em style="color:var(--text)">fast. private. yours.</em></p>
+        <h3>Privacidad</h3>
+        <p>Tres perfiles seleccionables en el instalador — Básico, Mejorado y Máximo — cada uno con su propio kernel y su propia capa de herramientas. Ver la sección <a href="#privacidad" style="color:var(--cyan)">Privacidad</a> más abajo.</p>
       </div>
     </div>
   </section>
 
-  <section class="sec">
-    <div class="sec-label">02 · herramientas propias</div>
-    <h2 class="sec-title">sl-ctl &amp; sl-detect</h2>
-    <p style="color:var(--dim);font-size:.9rem;margin-bottom:1rem">Static Linux no es solo una capa visual sobre Arch: trae herramientas propias de Static Forge integradas en el sistema.</p>
+  <section class="sec" id="deteccion">
+    <div class="sec-label">02 · sl-detect</div>
+    <h2 class="sec-title">Detección automática de hardware</h2>
+    <p class="sec-intro">Antes de que aparezca la interfaz de Calamares, <code>sl-detect</code> ya sabe qué máquina tiene delante. Es Python puro de librería estándar (corre en la ISO live mínima, como root, sin dependencias) y nunca falla: cualquier sonda que no puede completarse cae a un fallback seguro — XFCE, ext4, kernel LTS.</p>
+    <pre class="term"><span class="dim">$</span> sl-detect --all
+<span class="dim">$</span> sl-detect --json              <span class="dim"># consumido por el módulo de Calamares</span>
+<span class="dim">$</span> sl-detect --recommend-env     <span class="dim">-> hyprland-astal-full | ...-lite | xfce-themed | openbox-minimal</span>
+<span class="dim">$</span> sl-detect --recommend-fs      <span class="dim">-> btrfs | ext4 | f2fs</span>
+<span class="dim">$</span> sl-detect --recommend-kernel  <span class="dim">-> linux-lts | linux-zen</span>
+<span class="dim">$</span> sl-detect --gpu               <span class="dim"># modelo, driver, soporte Wayland</span></pre>
+
+    <table class="tbl">
+      <tr><th>Detecta</th><th>Devuelve</th></tr>
+      <tr><td>Arquitectura</td><td>x86_64 / arm64 / arm32</td></tr>
+      <tr><td>Firmware</td><td>UEFI / BIOS</td></tr>
+      <tr><td>RAM</td><td>total utilizable, en MB</td></tr>
+      <tr><td>GPU</td><td>modelo, driver, familia, soporte Wayland</td></tr>
+      <tr><td>Almacenamiento</td><td>SSD / HDD / eMMC</td></tr>
+      <tr><td>CPU</td><td>año aproximado de la CPU (afina la elección del kernel)</td></tr>
+    </table>
+
+    <div class="note">Ejemplo real — el primer equipo de pruebas del proyecto, un Packard Bell iMedia S2883 (Celeron J1900, Bay Trail, 3.64 GB usables, HDD de 250 GB, UEFI):
+    <pre class="term" style="margin-top:.7rem">→ entorno   : <span class="w">xfce-themed</span>      <span class="dim">(Bay Trail = sin Wayland, forzado)</span>
+→ fs        : <span class="w">ext4</span>             <span class="dim">(HDD)</span>
+→ kernel    : <span class="w">linux-lts</span>        <span class="dim">(HDD + CPU de 2013)</span>
+→ I/O sched : <span class="w">bfq</span>
+swapfile 2G : <span class="w">true</span>              <span class="dim">(RAM &lt; 4 GB — necesario para compilar con paru/Rust)</span></pre>
+    </div>
+    <p style="color:var(--dim);font-size:.85rem;margin-top:.9rem">El conocimiento de hardware vive en archivos <code>.rules</code> (GPU, Wayland, entorno, kernel) — añadir una GPU nueva no toca una línea de código Python. 28 tests unitarios sin dependencias externas cubren la lógica.</p>
+  </section>
+
+  <section class="sec" id="arranque">
+    <div class="sec-label">03 · arranque</div>
+    <h2 class="sec-title">Bootloader y gestión de memoria</h2>
+    <p class="sec-intro">Hoy el instalador configura <strong style="color:var(--text)">GRUB</strong> con <code>efibootmgr</code> y <code>os-prober</code> (detecta otros sistemas operativos al instalar). Con BTRFS, <code>grub-btrfs</code> añade automáticamente los snapshots de <strong>Snapper</strong> como entradas de arranque — puedes arrancar directamente una foto del sistema anterior a un tweak que salió mal.</p>
     <div class="card-grid">
       <div class="card">
-        <h3>sl-detect</h3>
-        <p>Detección de hardware con reglas propias y su propia batería de tests. Identifica el equipo en el arranque para aplicar la configuración correcta sin intervención manual.</p>
+        <h3>Arranque actual</h3>
+        <p><code>grub</code> + <code>efibootmgr</code> + <code>os-prober</code> + <code>grub-btrfs</code>. UEFI y BIOS. Fallback a <code>BOOTX64.EFI</code> en UEFI limitado (validado en el Packard Bell de pruebas).</p>
       </div>
       <div class="card">
-        <h3>sl-ctl</h3>
-        <p>Utilidad de control y configuración del sistema, pensada para gestionar Static Linux desde línea de comandos con las convenciones del propio Static Forge.</p>
+        <h3>En el roadmap</h3>
+        <p>El diseño del proyecto contempla también <strong>systemd-boot</strong>, <strong>Limine</strong> y <strong>rEFInd</strong> como alternativas — todavía no hay módulo de Calamares para elegir entre ellos; por ahora es GRUB para todos.</p>
+      </div>
+      <div class="card">
+        <h3>Memoria</h3>
+        <p><code>zram-generator</code> + <code>earlyoom</code> de fábrica: swap comprimida en RAM y el proceso que más memoria consume se mata antes de que el sistema se congele.</p>
+      </div>
+      <div class="card">
+        <h3>Kernel según hardware</h3>
+        <p><code>linux-lts</code> por defecto (o si hay HDD / CPU anterior a 2015), <code>linux-zen</code> en los perfiles de privacidad Básico y Mejorado, <code>linux-hardened</code> en el perfil Máximo.</p>
       </div>
     </div>
   </section>
 
-  <section class="sec">
-    <div class="sec-label">03 · identidad visual</div>
+  <section class="sec" id="privacidad">
+    <div class="sec-label">04 · privacidad</div>
+    <h2 class="sec-title">Tres perfiles, un interruptor</h2>
+    <p class="sec-intro">Desde cero, cada instalación ya lleva <code>ufw</code>, <code>dnscrypt-proxy</code> y <code>apparmor</code>. Los tres perfiles añaden capas por encima — y cada acción que tocan es reversible con backup automático, sin excepciones.</p>
+    <table class="tbl">
+      <tr><th>Perfil</th><th>Kernel</th><th>Añade sobre el baseline</th></tr>
+      <tr><td>Básico</td><td><code>linux-zen</code></td><td>Baseline (ufw, dnscrypt-proxy, apparmor) — nada más encima.</td></tr>
+      <tr><td>Mejorado</td><td><code>linux-zen</code></td><td>+ <code>firejail</code> (sandboxing) · <code>usbguard</code> · <code>bleachbit</code> + <code>mat2</code> (limpieza de metadatos)</td></tr>
+      <tr><td>Máximo</td><td><code>linux-hardened</code></td><td>+ todo lo anterior + proxy <code>tor</code>/<code>torsocks</code>/<code>proxychains-ng</code> · swap cifrada (<code>cryptsetup</code>) · MAC randomization agresiva · <em>kloak</em> (ofuscación del timing de teclado, paquete AUR)</td></tr>
+    </table>
+    <div class="note">Se elige durante la instalación con el módulo <code>privacidad</code> de Calamares, y se puede cambiar después con <code>sl-ctl privacy</code>.</div>
+  </section>
+
+  <section class="sec" id="sl-ctl">
+    <div class="sec-label">05 · gestión post-instalación</div>
+    <h2 class="sec-title">sl-ctl</h2>
+    <p class="sec-intro">Una única CLI para administrar el sistema una vez instalado, con las convenciones de Static Forge.</p>
+    <div class="cmd-grid">
+      <span class="cmd">detect <span>relanza sl-detect</span></span>
+      <span class="cmd">info <span>info del sistema con marca SF</span></span>
+      <span class="cmd">privacy <span>ver / cambiar de perfil</span></span>
+      <span class="cmd">accent <span>ver / cambiar el color de acento</span></span>
+      <span class="cmd">tweaks <span>ajustes reversibles del sistema</span></span>
+      <span class="cmd">snapshot <span>snapshots con Snapper</span></span>
+      <span class="cmd">flavor <span>añadir/quitar presets post-instalación</span></span>
+      <span class="cmd">update <span>pacman + AUR + Flatpak en un comando</span></span>
+      <span class="cmd">mirror <span>refresca el mirrorlist con reflector</span></span>
+      <span class="cmd">welcome <span>relanza la app de bienvenida</span></span>
+    </div>
+  </section>
+
+  <section class="sec" id="branding">
+    <div class="sec-label">06 · identidad visual</div>
     <h2 class="sec-title">Branding propio</h2>
     <div class="card">
       <h3>Sistema de acentos</h3>
-      <p>Sistema de color de acento "whole-look" con <strong>10 acentos</strong> distintos, para que cada instalación se pueda personalizar manteniendo la coherencia visual de Static Forge en cada rincón del sistema.</p>
+      <p>Un único selector recolorea <strong>todo</strong> el sistema — fastfetch, GTK 3/4, el borde de ventana de xfwm4, xfce4-terminal, el greeter de LightDM y el fondo de pantalla — a partir de <code>palette.conf</code>. <strong>Morado</strong> es el acento por defecto.</p>
       <div class="swatch-row">
-        <div class="swatch" style="background:#7B61FF"></div>
-        <div class="swatch" style="background:#4ade80"></div>
-        <div class="swatch" style="background:#facc15"></div>
-        <div class="swatch" style="background:#e0656e"></div>
-        <div class="swatch" style="background:#5294e2"></div>
-        <div class="swatch" style="background:#c286dd"></div>
-        <div class="swatch" style="background:#d4ac67"></div>
-        <div class="swatch" style="background:#4ec9b0"></div>
+        <div class="swatch-item"><div class="swatch" style="background:#C0A0F0"></div><span class="swatch-label">purple</span></div>
+        <div class="swatch-item"><div class="swatch" style="background:#F2C94C"></div><span class="swatch-label">yellow</span></div>
+        <div class="swatch-item"><div class="swatch" style="background:#E85D6B"></div><span class="swatch-label">red</span></div>
+        <div class="swatch-item"><div class="swatch" style="background:#00C8A0"></div><span class="swatch-label">green</span></div>
+        <div class="swatch-item"><div class="swatch" style="background:#5AA6F5"></div><span class="swatch-label">blue</span></div>
+        <div class="swatch-item"><div class="swatch" style="background:#F48FB1"></div><span class="swatch-label">pink</span></div>
+        <div class="swatch-item"><div class="swatch" style="background:#AAB0C0"></div><span class="swatch-label">grey</span></div>
+        <div class="swatch-item"><div class="swatch" style="background:#E6E8EE"></div><span class="swatch-label">mono</span></div>
+        <div class="swatch-item"><div class="swatch" style="background:#000;border-color:#fff"></div><span class="swatch-label">hc-dark</span></div>
+        <div class="swatch-item"><div class="swatch" style="background:#fff;border-color:#000"></div><span class="swatch-label">hc-light</span></div>
+      </div>
+      <p style="margin-top:.9rem"><code>sl-ctl accent blue</code> — cambia de acento en caliente, con backup automático del estado anterior.</p>
+    </div>
+    <div class="card-grid" style="margin-top:1rem">
+      <div class="card">
+        <h3>os-release &amp; fastfetch</h3>
+        <p><code>/etc/os-release</code> propio (<code>NAME="Static Linux"</code>, <code>ID_LIKE=arch</code>, color ANSI = Signal Green) y un <strong>fastfetch</strong> minimalista de fábrica con el logo de Static Forge — el sello del estudio desde el primer arranque de terminal.</p>
+      </div>
+      <div class="card">
+        <h3>XFCE tematizado</h3>
+        <p>Adwaita-dark + Papirus-Dark, tipografías Space Grotesk / JetBrains Mono, tema de ventana <strong>Static-Void</strong>, panel único con Whisker, tiling con Super+flechas y greeter de LightDM con la marca del estudio.</p>
       </div>
     </div>
-    <div class="note">Incluye además un <code style="font-family:var(--mono)">os-release</code> propio y un <strong>fastfetch</strong> minimalista de fábrica — el sello de Static Forge desde el primer <code style="font-family:var(--mono)">neofetch</code>.</div>
   </section>
 
-  <section class="sec">
-    <div class="sec-label">04 · estado y stack</div>
-    <h2 class="sec-title">Producción</h2>
-    <div class="prod-grid">
-      <div class="prod-item" style="--c:var(--cyan)">
-        <div class="prod-dot"></div>
-        <div><h4>Base</h4><p>Arch Linux + archiso</p></div>
+  <section class="sec" id="instalador">
+    <div class="sec-label">07 · instalador</div>
+    <h2 class="sec-title">Calamares, automatizado</h2>
+    <p class="sec-intro">El instalador gráfico estándar de las distros basadas en Arch, con módulos propios que conectan directamente con las herramientas de Static Linux:</p>
+    <table class="tbl">
+      <tr><th>Módulo</th><th>Qué hace</th></tr>
+      <tr><td>sl-detect</td><td>corre el informe de hardware y lo publica para el resto de módulos</td></tr>
+      <tr><td>entorno</td><td>preselecciona el escritorio recomendado según el hardware detectado</td></tr>
+      <tr><td>privacidad</td><td>selector de perfil (Básico / Mejorado / Máximo)</td></tr>
+      <tr><td>accent</td><td>aplica el acento de color elegido dentro del sistema objetivo</td></tr>
+    </table>
+  </section>
+
+  <section class="sec" id="estado">
+    <div class="sec-label">08 · estado del proyecto</div>
+    <h2 class="sec-title">Qué hay hecho, qué falta</h2>
+    <div class="chk-grid">
+      <div class="chk-col done">
+        <h4>Ya funciona</h4>
+        <ul>
+          <li>sl-detect (hardware, 28 tests)</li>
+          <li>3 perfiles de privacidad</li>
+          <li>Sistema de acentos (10 colores)</li>
+          <li>Entorno XFCE tematizado</li>
+          <li>os-release / fastfetch propios</li>
+          <li>Módulos base de Calamares</li>
+        </ul>
       </div>
-      <div class="prod-item" style="--c:#5294e2">
-        <div class="prod-dot" style="--c:#5294e2"></div>
-        <div><h4>Instalador</h4><p>Calamares</p></div>
-      </div>
-      <div class="prod-item" style="--c:var(--purple)">
-        <div class="prod-dot" style="--c:var(--purple)"></div>
-        <div><h4>Escritorio</h4><p>XFCE tematizado · Hyprland en exploración</p></div>
-      </div>
-      <div class="prod-item" style="--c:var(--gold)">
-        <div class="prod-dot" style="--c:var(--gold)"></div>
-        <div><h4>Licencia</h4><p>GPL-3.0 · código abierto</p></div>
+      <div class="chk-col todo">
+        <h4>En camino</h4>
+        <ul>
+          <li>sl-welcome (app GTK4 de bienvenida)</li>
+          <li>Sabores / presets de instalación</li>
+          <li>Entornos Hyprland+Astal y Openbox</li>
+          <li>Build de ISO automatizado</li>
+          <li>systemd-boot / Limine / rEFInd</li>
+          <li>Primera ISO pública firmada</li>
+        </ul>
       </div>
     </div>
-    <div class="note">Proyecto en desarrollo activo. Sigue el progreso, ISOs y releases en el <a href="https://github.com/KCRooty/static-linux" target="_blank" style="color:var(--cyan)">repositorio de GitHub</a>.</div>
+    <div class="note warn">Todavía no hay una ISO pública para descargar. Los perfiles de <code>archiso</code> (online / offline) están en el repo pero el script de build se está terminando de automatizar. Sigue el progreso real, commit a commit, en <a href="https://github.com/KCRooty/static-linux" target="_blank">GitHub</a>.</div>
+  </section>
+
+  <section class="sec" id="contribuir" style="border-bottom:none">
+    <div class="sec-label">09 · comunidad</div>
+    <h2 class="sec-title">Contribuir</h2>
+    <p class="sec-intro">Es un proyecto de Static Forge, licenciado <strong style="color:var(--text)">GPL-3.0</strong>. Toda contribución debe ser compatible con esa licencia, y para cambios grandes se abre un issue antes de tocar código.</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Dónde hace falta ayuda</h3>
+        <p>Reglas de GPU para hardware raro y placas ARM · integración de sabores y perfiles en Calamares · desarrollo de sl-welcome (GTK4) · wallpapers y tema de SDDM/Plymouth · testing en hardware variado, sobre todo equipos antiguos · port a ARM64 (RPi 4/5, Pinebook Pro, RK3588).</p>
+      </div>
+      <div class="card">
+        <h3>Reportar un bug</h3>
+        <p>Plantillas de <em>bug report</em> y de <em>hardware report</em> en GitHub Issues. Incluye siempre la salida de <code>sl-detect --all</code>, el modelo de hardware y qué ISO (online/offline) estabas usando.</p>
+      </div>
+    </div>
+    <div class="note">Commits convencionales (<code>feat:</code>, <code>fix:</code>, <code>docs:</code>...) y cada tweak de <code>sl-ctl</code> o acción de privacidad con backup/restore automático — ningún cambio irreversible, nunca.</div>
   </section>
 
 </div>
 
 <footer style="position:relative;z-index:2;padding:1.2rem 1.5rem;border-top:1px solid var(--border);font-family:'Exo 2',sans-serif;font-size:.7rem;color:var(--dim);text-align:center">
-  Static Forge · <b style="color:var(--cyan)">Static Linux</b> · <a href="/" style="color:#5294e2">← home</a>
+  Static Forge · <b style="color:var(--cyan)">Static Linux</b> · GPL-3.0 · <a href="https://github.com/KCRooty/static-linux" target="_blank" style="color:var(--cyan)">GitHub ↗</a> · <a href="/" style="color:var(--blue)">← home</a>
 </footer>
 
 </body>
