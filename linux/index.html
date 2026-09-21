@@ -85,7 +85,24 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .swatch-row{display:flex;gap:6px;margin-top:.9rem;flex-wrap:wrap}
 .swatch{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.15)}
 
-@media(max-width:720px){.card-grid,.prod-grid{grid-template-columns:1fr}.hero-h1{font-size:2rem}.tb-nav{display:none}}
+.tab-bar{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:1.4rem;border-bottom:1px solid var(--border);padding-bottom:0}
+.tab-btn{font-family:var(--exo);font-size:.74rem;font-weight:600;letter-spacing:.02em;color:var(--dim);background:none;border:none;border-bottom:2px solid transparent;padding:.6rem .9rem;cursor:pointer;transition:color .18s,border-color .18s}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--cyan);border-color:var(--cyan)}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadein .25s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+.tier-table{width:100%;border-collapse:collapse;font-size:.84rem;margin-top:.8rem}
+.tier-table th{font-family:var(--exo);font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--cyan);text-align:left;padding:.5rem .7rem;border-bottom:1px solid var(--border)}
+.tier-table td{color:var(--dim);padding:.55rem .7rem;border-bottom:1px solid var(--border)}
+.tier-table tr:last-child td{border-bottom:none}
+.tier-table td:first-child{color:var(--text);font-weight:600}
+
+.tag-list{display:flex;gap:6px;flex-wrap:wrap;margin-top:.6rem}
+.tag-list .hero-tag{font-size:.66rem}
+
+@media(max-width:720px){.card-grid,.prod-grid{grid-template-columns:1fr}.hero-h1{font-size:2rem}.tb-nav{display:none}.tier-table{font-size:.76rem}.tier-table th,.tier-table td{padding:.4rem .4rem}}
 </style>
 </head>
 <body>
@@ -100,6 +117,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
   <nav><ul class="tb-nav">
     <li><a href="/">home</a></li>
     <li><a href="/Static_Forge.html">documento</a></li>
+    <li><a href="#wiki">wiki</a></li>
     <li><a href="https://github.com/KCRooty/static-linux" target="_blank">GitHub ↗</a></li>
     <li><a href="/foros.html">foro</a></li>
   </ul></nav>
@@ -125,6 +143,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
     </div>
     <div class="hero-cta">
       <a href="https://github.com/KCRooty/static-linux" target="_blank" class="btn pri">Ver en GitHub ↗</a>
+      <a href="#wiki" class="btn">Wiki</a>
       <a href="/" class="btn">← Volver</a>
     </div>
   </section>
@@ -212,11 +231,103 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
     <div class="note">Proyecto en desarrollo activo. Sigue el progreso, ISOs y releases en el <a href="https://github.com/KCRooty/static-linux" target="_blank" style="color:var(--cyan)">repositorio de GitHub</a>.</div>
   </section>
 
+  <section class="sec" id="wiki">
+    <div class="sec-label">05 · documentación</div>
+    <h2 class="sec-title">Wiki</h2>
+    <p style="color:var(--dim);font-size:.9rem;margin-bottom:1rem">Lo esencial de cada pieza, en el mismo sitio. Para el detalle completo (reglas de <code style="font-family:var(--mono)">sl-detect</code>, listas de paquetes, PKGBUILD...) está el <a href="https://github.com/KCRooty/static-linux/tree/main/docs/wiki" target="_blank" style="color:var(--cyan)">wiki fuente en GitHub</a>.</p>
+
+    <div class="tab-bar" role="tablist">
+      <button class="tab-btn active" data-tab="instalacion" role="tab" aria-selected="true">Instalación</button>
+      <button class="tab-btn" data-tab="hardware" role="tab" aria-selected="false">Hardware</button>
+      <button class="tab-btn" data-tab="entornos" role="tab" aria-selected="false">Entornos</button>
+      <button class="tab-btn" data-tab="privacidad" role="tab" aria-selected="false">Privacidad</button>
+      <button class="tab-btn" data-tab="sabores" role="tab" aria-selected="false">Sabores</button>
+      <button class="tab-btn" data-tab="faq" role="tab" aria-selected="false">FAQ</button>
+    </div>
+
+    <div class="tab-panel active" data-panel="instalacion">
+      <div class="note" style="margin-top:0;margin-bottom:1rem">El instalador gráfico (Calamares) todavía está en desarrollo — la vía probada hoy es la manual, la misma con la que se validó Static Linux en el iMedia S2883.</div>
+      <div class="card-grid">
+        <div class="card"><h3>1 · Live + partición</h3><p>Arranca el live de Arch, particiona EFI + raíz. <code style="font-family:var(--mono)">sl-detect</code> recomienda EXT4 en HDD, BTRFS en SSD con ≥4 GB.</p></div>
+        <div class="card"><h3>2 · Base</h3><p><code style="font-family:var(--mono)">pacstrap</code> con <code style="font-family:var(--mono)">packages/lists/base.list</code>, GRUB con fallback a <code style="font-family:var(--mono)">BOOTX64.EFI</code> para firmwares UEFI limitados.</p></div>
+        <div class="card"><h3>3 · Entorno</h3><p>Instala el paquete del entorno elegido y corre su <code style="font-family:var(--mono)">install.sh --home</code> — dotfiles, tema y acento de una vez.</p></div>
+        <div class="card"><h3>4 · Después</h3><p><code style="font-family:var(--mono)">sl-welcome</code> se abre solo en el primer arranque: apariencia, perfil de privacidad y catálogo de apps extra.</p></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="hardware">
+      <table class="tier-table">
+        <tr><th>Nivel</th><th>RAM</th><th>Almacenamiento</th><th>Entorno</th></tr>
+        <tr><td>Mínimo absoluto</td><td>512 MB</td><td>10 GB</td><td>Openbox minimal</td></tr>
+        <tr><td>Mínimo funcional</td><td>1 GB</td><td>15 GB</td><td>XFCE temático</td></tr>
+        <tr><td>Estándar</td><td>2 GB</td><td>20 GB</td><td>XFCE o Hyprland lite</td></tr>
+        <tr><td>Recomendado (techo)</td><td>4 GB</td><td>30 GB</td><td>Hyprland + Astal full</td></tr>
+      </table>
+      <div class="note">Validado en un <strong>Packard Bell iMedia S2883</strong> (Celeron J1900, 2013, rescatado de la basura): 3.64 GB usables, GPU Bay Trail sin Wayland viable → <code style="font-family:var(--mono)">sl-detect</code> recomendó XFCE + EXT4 + linux-lts, tal cual.</div>
+    </div>
+
+    <div class="tab-panel" data-panel="entornos">
+      <div class="card-grid">
+        <div class="card"><h3>XFCE temático</h3><p>≥1 GB, Xorg. El único entorno <strong style="color:var(--text)">validado en hardware real</strong> hasta ahora.</p></div>
+        <div class="card"><h3>Openbox minimal</h3><p>512 MB, Xorg. Sin compositor por defecto — cero MB de más en reposo.</p></div>
+        <div class="card"><h3>Hyprland + Astal (lite)</h3><p>2-4 GB, Wayland. Shell propio en Astal/AGS, sin blur ni sombras.</p></div>
+        <div class="card"><h3>Hyprland + Astal (full)</h3><p>≥4 GB, Wayland. Mismo shell, blur y animaciones completas.</p></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="privacidad">
+      <div class="card-grid">
+        <div class="card"><h3>Básico</h3><p>Defaults de día 0 + UFW + aleatorización de MAC. Kernel <code style="font-family:var(--mono)">linux-zen</code>.</p></div>
+        <div class="card"><h3>Mejorado</h3><p>+ Firejail + AppArmor + USBGuard. Kernel <code style="font-family:var(--mono)">linux-zen</code>.</p></div>
+        <div class="card" style="grid-column:1/-1"><h3>Máximo</h3><p>+ Tor + kloak + swap cifrado. Kernel <code style="font-family:var(--mono)">linux-hardened</code>.</p></div>
+      </div>
+      <div class="note">Los tres con backup/restore automático antes de tocar nada — reversibles siempre, sin excepción.</div>
+    </div>
+
+    <div class="tab-panel" data-panel="sabores">
+      <p style="color:var(--dim);font-size:.9rem;margin-bottom:.5rem">Presets opcionales encima del entorno base (Daily Driver siempre incluido):</p>
+      <div class="tag-list">
+        <span class="hero-tag">🎮 Gaming</span>
+        <span class="hero-tag">🎨 Content Creation</span>
+        <span class="hero-tag">💻 Development</span>
+        <span class="hero-tag">🔒 Cybersecurity</span>
+        <span class="hero-tag">📄 Office</span>
+        <span class="hero-tag">🖥️ Server/Homelab</span>
+        <span class="hero-tag">🧪 Virtual Machines</span>
+        <span class="hero-tag">🎓 Education</span>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="faq">
+      <div class="card-grid">
+        <div class="card"><h3>¿Por qué Arch?</h3><p>Base rodante, AUR para todo, y es sobre lo que ya está construido <code style="font-family:var(--mono)">sl-detect</code>. Decisión cerrada.</p></div>
+        <div class="card"><h3>¿Secure Boot?</h3><p>No soportado. GRUB sin firmar + Secure Boot puede dejar el sistema sin arrancar — el instalador avisa si lo detecta.</p></div>
+        <div class="card"><h3>¿Por qué el techo son 4 GB?</h3><p>Porque el hardware que este proyecto quiere revivir vive ahí o por debajo — no es un límite duro, es dónde se prueba primero.</p></div>
+        <div class="card"><h3>¿Cero telemetría de verdad?</h3><p>Sí, en los tres perfiles. No es un perfil — es la línea base.</p></div>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <footer style="position:relative;z-index:2;padding:1.2rem 1.5rem;border-top:1px solid var(--border);font-family:'Exo 2',sans-serif;font-size:.7rem;color:var(--dim);text-align:center">
   Static Forge · <b style="color:var(--cyan)">Static Linux</b> · <a href="/" style="color:#5294e2">← home</a>
 </footer>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var name = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(function(b){
+      b.classList.toggle('active', b === btn);
+      b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+    });
+    document.querySelectorAll('.tab-panel').forEach(function(p){
+      p.classList.toggle('active', p.dataset.panel === name);
+    });
+  });
+});
+</script>
 
 </body>
 </html>
