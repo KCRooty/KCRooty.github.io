@@ -253,14 +253,15 @@ footer a:hover{color:var(--bright)}
       <div class="acard full">
         <div class="acard-label">Stack</div>
         <div class="stack-list">
-          <div><span class="k">OS</span><span class="v">CachyOS // Arch Linux</span></div>
-          <div><span class="k">WM</span><span class="v">Hyprland + Waybar</span></div>
-          <div><span class="k">Editor</span><span class="v">VS Code</span></div>
-          <div><span class="k">Dev</span><span class="v">Kotlin · Python · GDScript · HTML/CSS/JS</span></div>
-          <div><span class="k">3D/Art</span><span class="v">Cinema 4D · Blender · Krita</span></div>
+          <div><span class="k">OS</span><span class="v">CachyOS // Arch Linux · Windows 11 Pro (WinForge)</span></div>
+          <div><span class="k">WM</span><span class="v">Hyprland · XFCE · KDE · Openbox + Waybar</span></div>
+          <div><span class="k">Editor</span><span class="v">VS Code · Android Studio</span></div>
+          <div><span class="k">Dev</span><span class="v">Kotlin · Python · GDScript · Rust · HTML/CSS/JS</span></div>
+          <div><span class="k">3D/Art</span><span class="v">Cinema 4D · Blender · Krita · Affinity</span></div>
           <div><span class="k">Audio</span><span class="v">LMMS · Ardour · Audacity</span></div>
           <div><span class="k">AI</span><span class="v">Claude Code · Ollama · llama.cpp</span></div>
           <div><span class="k">Game</span><span class="v">Godot 4.6 · Source SDK 2013 · GameMaker</span></div>
+          <div><span class="k">Apps</span><span class="v">DaVinci Resolve · OBS · VLC · Affinity Suite</span></div>
         </div>
       </div>
 
@@ -340,6 +341,28 @@ footer a:hover{color:var(--bright)}
         </div>
         <div class="ptags"><span class="ptag">Foro</span><span class="ptag">Chat</span><span class="ptag">Login</span></div>
       </a>
+
+      <div class="pcard" role="button" tabindex="0" onclick="showWip()" onkeydown="if(event.key==='Enter')showWip()" style="--c:#e8944a;cursor:pointer">
+        <div class="pstatus"><span class="pdot"></span><span data-es="en desarrollo" data-en="in development" data-ca="en desenvolupament">en desarrollo</span></div>
+        <div class="pname">Forge OS</div>
+        <div class="pdesc" data-es="Sistema operativo completo desde cero en Rust. Kernel monolítico bare-metal x86_64, userland propio (Ember, Bellows, Crucible, Anvil) y sin compatibilidad binaria externa."
+             data-en="Full operating system from scratch in Rust. Bare-metal x86_64 monolithic kernel, custom userland (Ember, Bellows, Crucible, Anvil) and no external binary compatibility."
+             data-ca="Sistema operatiu complet des de zero en Rust. Kernel monolític bare-metal x86_64, userland propi (Ember, Bellows, Crucible, Anvil) i sense compatibilitat binària externa.">
+          Sistema operativo completo desde cero en Rust. Kernel monolítico bare-metal x86_64, userland propio (Ember, Bellows, Crucible, Anvil) y sin compatibilidad binaria externa.
+        </div>
+        <div class="ptags"><span class="ptag">Rust</span><span class="ptag">OS Dev</span><span class="ptag">Bare-metal</span><span class="ptag">Static Forge</span></div>
+      </div>
+
+      <div class="pcard" role="button" tabindex="0" onclick="showWip()" onkeydown="if(event.key==='Enter')showWip()" style="--c:#38bdf8;cursor:pointer">
+        <div class="pstatus"><span class="pdot"></span><span data-es="en construcción" data-en="in construction" data-ca="en construcció">en construcción</span></div>
+        <div class="pname">RCK</div>
+        <div class="pdesc" data-es="Proyecto en desarrollo. Más información próximamente."
+             data-en="Project in development. More information coming soon."
+             data-ca="Projecte en desenvolupament. Més informació pròximament.">
+          Proyecto en desarrollo. Más información próximamente.
+        </div>
+        <div class="ptags"><span class="ptag">Static Forge</span><span class="ptag">WIP</span></div>
+      </div>
 
     </div>
   </section>
