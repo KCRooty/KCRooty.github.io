@@ -57,6 +57,8 @@ a{text-decoration:none;color:inherit}
 .hero-eyebrow{font-family:var(--exo);font-size:.76rem;font-weight:600;color:var(--accent);margin-bottom:.9rem;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
 .hero-eyebrow::before{content:'';width:18px;height:1px;background:var(--accent);display:inline-block}
 .hero-name{font-family:var(--orbit);font-size:clamp(2.4rem,7vw,4rem);font-weight:900;color:var(--bright);line-height:1.05;letter-spacing:-.01em;margin-bottom:.9rem}
+.hero-ascii{font-family:var(--mono);font-size:clamp(0.28rem,0.61vw,0.61rem);line-height:1.18;letter-spacing:0;white-space:pre;color:var(--accent);text-shadow:0 0 12px rgba(82,148,226,.45),0 0 30px rgba(82,148,226,.15);margin-bottom:.9rem;overflow-x:auto;display:block}
+.hero-name-mobile{display:none}
 .hero-sub{font-size:1rem;color:var(--dim);font-weight:300;margin-bottom:1.5rem;max-width:520px}
 .hero-sub strong{color:var(--text);font-weight:500}
 .hero-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:2rem}
@@ -146,6 +148,8 @@ footer a:hover{color:var(--bright)}
   .lang-bar{bottom:.7rem;right:.7rem}
   .hero{padding:3.5rem 0 3rem}
   .hero-name{font-size:clamp(2rem,10vw,2.8rem)}
+  .hero-ascii{display:none}
+  .hero-name-mobile{display:block}
 }
 </style>
 </head>
@@ -182,7 +186,14 @@ footer a:hover{color:var(--bright)}
 
   <section class="hero" id="home">
     <div class="hero-eyebrow">Static Forge</div>
-    <h1 class="hero-name">Core</h1>
+    <pre class="hero-ascii" aria-hidden="true">░▒▓███████▓▒░▒▓████████▓▒░▒▓██████▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓██████▓▒░       ░▒▓████████▓▒░▒▓██████▓▒░░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓████████▓▒░
+░▒▓█▓▒░         ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░
+░▒▓█▓▒░         ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░
+ ░▒▓██████▓▒░   ░▒▓█▓▒░  ░▒▓████████▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░             ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓█▓▒▒▓███▓▒░▒▓██████▓▒░
+       ░▒▓█▓▒░  ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░
+       ░▒▓█▓▒░  ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░
+░▒▓███████▓▒░   ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓██████▓▒░       ░▒▓█▓▒░      ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓████████▓▒░</pre>
+    <h1 class="hero-name hero-name-mobile">Core</h1>
     <p class="hero-sub">
       <strong>Developer · Artist · Content Creator</strong><br>
       <span data-es="Open source, diseño minimalista y arte digital." data-en="Open source, minimalist design and digital art." data-ca="Open source, disseny minimalista i art digital.">Open source, diseño minimalista y arte digital.</span>
