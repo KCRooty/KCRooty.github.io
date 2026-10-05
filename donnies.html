@@ -148,7 +148,12 @@ footer{padding:1.2rem 0;border-top:1px solid var(--border);text-align:center;
 footer a{color:var(--dim);transition:color .18s}
 footer a:hover{color:var(--gold)}
 
-@media(max-width:720px){.card-grid,.char-grid,.prod-grid{grid-template-columns:1fr}.hero-h1{font-size:2rem}.tb-nav{display:none}}
+.wip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1rem}
+.wip-item{margin:0;position:relative;overflow:hidden;border-radius:4px;border:1px solid var(--border2);background:var(--card)}
+.wip-item img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;filter:brightness(.9) contrast(1.05);transition:filter .3s}
+.wip-item:hover img{filter:brightness(1) contrast(1.05)}
+.wip-item figcaption{font-family:var(--mono);font-size:.58rem;color:var(--dim);padding:.35rem .5rem;text-align:center;border-top:1px solid var(--border)}
+@media(max-width:720px){.card-grid,.char-grid,.prod-grid,.wip-grid{grid-template-columns:1fr}.hero-h1{font-size:2rem}.tb-nav{display:none}}
 </style>
 </head>
 <body>
@@ -198,7 +203,7 @@ footer a:hover{color:var(--gold)}
       </div>
       <div class="card">
         <h3>El universo</h3>
-        <p>Donnie's no es solo el juego. Hay también una <strong>serie de analog horror en YouTube</strong> de 6 episodios. Los dos medios cuentan la misma historia desde ángulos distintos — hay cosas que solo se entienden si combinas los dos.</p>
+        <p>Un fangame de FNaF con historia propia — sin lore importado, sin referencias directas. Yellow Springs, 2001. AnimaTech Corp. Tres animatrónicos que no deberían seguir encendidos.</p>
       </div>
       <div class="card">
         <h3>El tono</h3>
@@ -264,13 +269,25 @@ Recomendación del sistema: EVACUACIÓN INMEDIATA</pre>
   </section>
 
   <section class="sec">
-    <div class="sec-label">04 · serie YouTube</div>
-    <h2 class="sec-title">Analog Horror — 6 episodios</h2>
-    <div class="vhs-tag">VHS · FORMAT · ██/██/2001</div>
+    <div class="sec-label">04 · notas de desarrollo</div>
+    <h2 class="sec-title">WIPs</h2>
     <div class="card">
-      <h3>La misma historia, otro ángulo</h3>
-      <p>6 episodios, 3–5 minutos cada uno, ~25 minutos en total. Formato documental-VHS. Cada episodio es un tipo de documento distinto: grabaciones de seguridad, reportajes, audiologs, transmisiones.</p>
-      <p style="margin-top:.8rem;color:var(--dim)">La serie explica lo que el juego no muestra directamente. Qué pasó antes. Qué pasó con el restaurante. Por qué los animatrónicos son lo que son. Si solo juegas, te falta la mitad. Si solo ves la serie, igual.</p>
+      <h3>Cabeza de Donnie — completada</h3>
+      <p>Modelado en Cinema 4D R20. Traje exterior e interior (endosqueleto) terminados. Siguientes: torso, cuerpo completo, articulaciones.</p>
+    </div>
+    <div class="wip-grid">
+      <figure class="wip-item">
+        <img src="assets/donnies/donnie-endo-head.png" alt="Donnie endosqueleto — cabeza WIP" loading="lazy">
+        <figcaption>Endosqueleto · cabeza</figcaption>
+      </figure>
+      <figure class="wip-item">
+        <img src="assets/donnies/donnie-suit-head.webp" alt="Donnie traje — cabeza frontal WIP" loading="lazy">
+        <figcaption>Traje · frontal</figcaption>
+      </figure>
+      <figure class="wip-item">
+        <img src="assets/donnies/donnie-suit-head-2.webp" alt="Donnie traje — cabeza ángulo WIP" loading="lazy">
+        <figcaption>Traje · tres cuartos</figcaption>
+      </figure>
     </div>
   </section>
 
