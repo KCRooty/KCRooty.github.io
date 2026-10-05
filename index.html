@@ -151,6 +151,28 @@ footer a:hover{color:var(--bright)}
   .hero-ascii{display:none}
   .hero-name-mobile{display:block}
 }
+
+/* ── RETRO ZONE (proyectos →) ─────────────────────────────────────── */
+.retro-sep{height:140px;background:linear-gradient(to bottom,#08080f 0%,#0d0800 100%);position:relative;display:flex;align-items:center;justify-content:center}
+.retro-sep::after{content:'· · · ◆ · · ·';font-family:var(--mono);font-size:.6rem;color:#4a2c08;letter-spacing:.55em;position:absolute;bottom:18px;left:50%;transform:translateX(-50%)}
+.retro-zone{background:#0d0800;position:relative;
+  --bg:#0d0800;--card:#150c00;--card2:#1e1200;
+  --border:#301b05;--border2:#4f2e09;
+  --text:#c4a052;--dim:#6e5022;--bright:#f5e6b0;
+  --accent:#e8b84b;--aglow:rgba(232,184,75,.12);
+  --green:#8ab850;--yellow:#e8c040;--red:#e8732a;
+  --purple:#c882e0;--cyan:#c09828}
+.retro-zone::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:780px;height:400px;background:radial-gradient(circle,rgba(232,184,75,.05) 0,transparent 70%);pointer-events:none}
+.retro-zone .wrap{position:relative;z-index:1}
+.retro-zone .sec{border-top-color:var(--border)}
+.retro-zone .sec-num{background:rgba(232,184,75,.07);border:1px solid var(--border2);border-radius:3px;padding:1px 7px;opacity:1}
+.retro-zone .fbtn{background:var(--card);border-color:var(--border);color:var(--dim)}
+.retro-zone .fbtn.on,.retro-zone .fbtn:hover{background:var(--card2);border-color:var(--accent);color:var(--accent)}
+.retro-zone .gitem{border-color:var(--border);background:var(--card)}
+.retro-zone .gitem:hover{border-color:var(--border2)}
+.retro-zone .gitem .gname{background:rgba(13,8,0,.9);color:var(--dim)}
+.retro-zone .btn{background:var(--card);border-color:var(--border2);color:var(--text)}
+.retro-zone .btn:hover{border-color:var(--accent);color:var(--bright)}
 </style>
 </head>
 <body>
@@ -281,7 +303,12 @@ ___/ / __/
 
     </div>
   </section>
+</div><!-- /wrap -->
 
+<div class="retro-sep"></div>
+
+<div class="retro-zone">
+<div class="wrap">
   <section class="sec" id="projects">
     <div class="sec-header">
       <span class="sec-num">02</span>
@@ -405,7 +432,8 @@ ___/ / __/
     </div>
   </section>
 
-</div>
+</div><!-- /wrap -->
+</div><!-- /retro-zone -->
 
 <div class="wip-backdrop" id="wip-backdrop" onclick="closeWip()">
   <div class="wip-box" onclick="event.stopPropagation()">
