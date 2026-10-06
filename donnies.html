@@ -74,18 +74,6 @@ a{text-decoration:none;color:inherit}
 .rec-tag .dot{width:5px;height:5px;border-radius:50%;background:var(--red);
   animation:rec-blink 1.2s step-end infinite}
 @keyframes rec-blink{0%,100%{opacity:1}50%{opacity:0}}
-.glitch-wrap{position:relative;display:inline-block;margin-bottom:.6rem}
-.hero-h1{font-family:var(--orbit);font-size:clamp(2rem,7vw,3.8rem);font-weight:900;line-height:1.05;
-  color:var(--bright);letter-spacing:.02em;
-  text-shadow:0 0 28px rgba(232,160,48,.28),0 0 70px rgba(232,160,48,.09)}
-.glitch-wrap::before,.glitch-wrap::after{content:attr(data-text);position:absolute;top:0;left:0;
-  font-family:var(--orbit);font-size:clamp(2rem,7vw,3.8rem);font-weight:900;line-height:1.05}
-.glitch-wrap::before{color:var(--orange);opacity:.65;clip-path:polygon(0 25%,100% 25%,100% 45%,0 45%);
-  animation:ga 3.4s infinite;text-shadow:2px 0 0 rgba(232,160,48,.55)}
-.glitch-wrap::after{color:var(--red);opacity:.45;clip-path:polygon(0 58%,100% 58%,100% 72%,0 72%);
-  animation:gb 4.2s infinite;text-shadow:-2px 0 0 rgba(200,48,24,.5)}
-@keyframes ga{0%,88%,100%{transform:none;opacity:0}89%{transform:translate(3px,-1px);opacity:.65}92%{transform:translate(-2px,1px);opacity:.4}96%{transform:translate(1px,2px);opacity:.65}}
-@keyframes gb{0%,83%,100%{transform:none;opacity:0}84%{transform:translate(-3px,1px);opacity:.45}88%{transform:translate(2px,-2px);opacity:.3}92%{transform:translate(-1px,1px);opacity:.45}}
 .hero-sub{font-size:.95rem;color:var(--dim);max-width:560px;line-height:1.75;margin-bottom:1.5rem}
 .hero-sub strong{color:var(--text)}
 .hero-cta{display:flex;gap:9px;flex-wrap:wrap}
@@ -156,7 +144,17 @@ footer a:hover{color:var(--gold)}
 .wip-item img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;filter:brightness(.9) contrast(1.05);transition:filter .3s}
 .wip-item:hover img{filter:brightness(1) contrast(1.05)}
 .wip-item figcaption{font-family:var(--mono);font-size:.58rem;color:var(--dim);padding:.35rem .5rem;text-align:center;border-top:1px solid var(--border)}
-@media(max-width:720px){.card-grid,.char-grid,.prod-grid,.wip-grid{grid-template-columns:1fr}.hero-h1{font-size:2rem}.tb-nav{display:none}}
+.logo-anim{position:relative;display:inline-block;max-width:580px;width:100%;margin-bottom:.6rem;animation:logo-shake 3.8s ease-in-out infinite}
+.logo-anim img{display:block;width:100%;height:auto;filter:drop-shadow(0 0 22px rgba(232,160,48,.25)) drop-shadow(0 0 60px rgba(232,160,48,.07))}
+.logo-anim .lf2,.logo-anim .lf3{position:absolute;top:0;left:0;width:100%;height:auto;opacity:0}
+@keyframes lf1-a{0%,89%,97%,100%{opacity:1}90%,96%{opacity:0}}
+@keyframes lf2-a{0%,89%,92%,100%{opacity:0}90%,91%{opacity:1}}
+@keyframes lf3-a{0%,93%,96%,100%{opacity:0}94%,95%{opacity:1}}
+@keyframes logo-shake{0%,87%,100%{transform:none}88%{transform:translate(3px,-1px) skewX(.5deg)}90%{transform:translate(-2px,1px)}93%{transform:translate(2px,-1px) skewX(-.3deg)}95%{transform:translate(-1px,1px)}97%{transform:none}}
+.lf1{animation:lf1-a 3.8s steps(1) infinite}
+.lf2{animation:lf2-a 3.8s steps(1) infinite}
+.lf3{animation:lf3-a 3.8s steps(1) infinite}
+@media(max-width:720px){.card-grid,.char-grid,.prod-grid,.wip-grid{grid-template-columns:1fr}.logo-anim{max-width:100%}.tb-nav{display:none}}
 </style>
 </head>
 <body>
@@ -180,8 +178,10 @@ footer a:hover{color:var(--gold)}
   <section class="hero">
     <div class="hero-pre">core@forge · fangame · Source Engine · analog horror</div>
     <div class="rec-tag"><span class="dot"></span>GRABANDO · 01/██/2001</div>
-    <div class="glitch-wrap" data-text="Donnie's Origins">
-      <h1 class="hero-h1">Donnie's Origins</h1>
+    <div class="logo-anim">
+      <img class="lf1" src="assets/donnies/logo-f1.png" alt="Donnie's Origins">
+      <img class="lf2" src="assets/donnies/logo-f2.png" aria-hidden="true">
+      <img class="lf3" src="assets/donnies/logo-f3.png" aria-hidden="true">
     </div>
     <p class="hero-sub">
       Un fangame de FNaF que empezó en 2021 y no ha parado desde entonces.
@@ -205,15 +205,15 @@ footer a:hover{color:var(--gold)}
       </div>
       <div class="card">
         <h3>El universo</h3>
-        <p>Yellow Springs, Ohio. 2001. AnimaTech Corp construyó los animatrónicos. Bill diseñó el endoesqueleto. Alguien mató a cuatro niños en 1985 con un traje de zorro. El local lleva cerrado desde 1991 — pero no está vacío.</p>
+        <p>Yellow Springs, Ohio. 2001. AnimaTech Corp construyó los animatrónicos. Bill diseñó el endoesqueleto. Cuatro niños desaparecieron en 1985. El local cerró en 1991 — y lleva años sin abrir.</p>
       </div>
       <div class="card">
         <h3>El tono</h3>
         <p>Referentes: Dormitabis, FNAF 1–4, Half-Life 2. No es gore — es peso. Hay lore real detrás de cada sala. Cada cosa tiene una explicación. El horror viene de entender qué pasó aquí, no de jumpscares.</p>
       </div>
       <div class="card">
-        <h3>El antagonista</h3>
-        <p>No es sobrenatural. Es humano. Lleva diez años viviendo bajo el restaurante. Conoce el local mejor que tú. Y controla a los animatrónicos.</p>
+        <h3>La pregunta</h3>
+        <p>Donnie's Dinners Place lleva más de diez años cerrado. Nadie ha entrado desde entonces. Nadie debería seguir dentro.</p>
       </div>
     </div>
   </section>
@@ -221,13 +221,13 @@ footer a:hover{color:var(--gold)}
   <section class="sec">
     <div class="sec-label">02 · personajes</div>
     <h2 class="sec-title">El elenco</h2>
-    <p style="color:var(--dim);font-size:.9rem;margin-bottom:1rem">Tres animatrónicos en escena, uno en el sublevel, y el hombre que lleva diez años bajo el restaurante. Todos superan los dos metros — salvo el último.</p>
+    <p style="color:var(--dim);font-size:.9rem;margin-bottom:1rem">Tres animatrónicos. Diseñados por AnimaTech Corp para un restaurante familiar. Llevan más de diez años en el local. La pregunta no es si están activos — es <em style="color:var(--text)">qué quieren</em>.</p>
     <div class="char-grid">
       <div class="char-card" style="--c:var(--gold)">
         <div class="char-name">Donnie <span style="font-family:var(--mono);font-size:.55rem;color:var(--dim)">/Leo</span></div>
         <div class="char-role">Animatrónico principal · U-01</div>
         <p class="char-desc">Perro marrón caoba, ojos ámbar. Lento, metódico. Se mueve cuando no lo estás mirando. El primero en activarse.</p>
-        <div class="char-detail">2.10m · 180kg · Gravitación</div>
+        <div class="char-detail">2.10m · 180kg · felpa marrón caoba</div>
       </div>
       <div class="char-card" style="--c:var(--green)">
         <div class="char-name">Lany <span style="font-family:var(--mono);font-size:.55rem;color:var(--dim)">/Ana</span></div>
@@ -241,20 +241,8 @@ footer a:hover{color:var(--gold)}
         <p class="char-desc">Gato negro-gris, ojos morados. Cono visual de 25°, casi sordo. Sprint máximo. Cuando lo escuchas ya es tarde.</p>
         <div class="char-detail">2.15m · 175kg · casi sordo</div>
       </div>
-      <div class="char-card" style="--c:var(--red)">
-        <div class="char-name">Isaac</div>
-        <div class="char-role">Prototipo · solo en sublevel</div>
-        <p class="char-desc">Oso rojo oscuro. Ojo derecho encendido en rojo, ojo izquierdo apagado. Prototipo de AnimaTech que nunca llegó al escenario. Detecta movimiento, no sonido.</p>
-        <div class="char-detail">2.2m · prototipo · solo detecta mov.</div>
-      </div>
-      <div class="char-card" style="--c:var(--orange)">
-        <div class="char-name">Philip</div>
-        <div class="char-role">Antagonista humano · The Fox</div>
-        <p class="char-desc">No es un animatrónico — es el hombre que lleva diez años viviendo bajo el restaurante. Tiene su propio traje. Conoce cada sala mejor que los animatrónicos.</p>
-        <div class="char-detail">The Fox F1 · Twisted Fox F2</div>
-      </div>
     </div>
-    <div class="note">Nick (24 años, guardia de seguridad) no sabe nada de esto cuando empieza la primera noche.</div>
+    <div class="note">Están diseñados para resultar imponentes. En el escenario de un restaurante familiar abandonado, esa escala hace todo lo que tiene que hacer.</div>
   </section>
 
   <section class="sec">
@@ -264,7 +252,18 @@ footer a:hover{color:var(--gold)}
       <p>La primera noche. El local lleva diez años cerrado. <strong>6 niveles, una hora por nivel.</strong> Linterna, puertas, cámaras. Los animatrónicos <strong>no deberían estar activos</strong>.</p>
       <p style="margin-top:.8rem;color:var(--dim)">Nick despierta en una silla de oficina en el subsuelo. El monitor CRT está apagado. Pulsas <kbd style="background:var(--card2);border:1px solid var(--border2);padding:0 5px;border-radius:2px;font-family:var(--mono);font-size:.75em">E</kbd> para encenderlo.</p>
     </div>
-    <div class="card" style="margin-top:1rem;background:var(--card2);border-color:var(--border2)">
+    <div class="card" style="margin-top:1rem;background:var(--card2);border-color:var(--border2);overflow-x:auto">
+      <pre style="font-family:var(--mono);font-size:.3rem;color:#1a8a1a;line-height:1.4;background:transparent;opacity:.7;margin-bottom:.6rem">▄▄▄▄▄▄▄▄     ▄▄▄▄▄▄   ▄▄▄▄▄▄▄    ▄▄▄▄▄▄▄    ▄▄▄▄▄   ▄▄▄▄▄▄   ▄▄▄▄   ▄▄▄▄▄▄          ▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄   ▄▄▄▄▄   ▄▄▄▄▄▄▄▄ ▄▄▄▄▄ ▄▄▄▄▄▄▄      ▄▄▄▄▄▄
+█▓▒░    ▀▄ ▄▀▒░    ▀▄ █▓▒░   ▀▄  █▓▒░   ▀▄  █▓▒░▓ ▄▀▒░    ▀▄ ▓▓░░ ▄▀▒░    ▀▄      ▄▀▒░    ▀▄ █▓▒░    ▀▄ █▓▒░▓ ▄▀▒░     ▓ █▓▒░▓ █▓▒░   ▀▄  ▄▀▒░    ▀▄
+█▒░ ▄▀▄  █ █▒░ ▄▀▄  █ █▒░ █▀▄  ▓ █▒░ █▀▄  ▓ █▒░ ▒ █▒░ ▓▀░  ░ ▒░▓▀ █▒░ █▀▄  ▓      █▒░ ▄▀▄  █ █▒░ ▓▀░  ▓ █▒░ ▒ █▒░ ▓▀▒  ▒ █▒░ ▒ █▒░ █▀▄  ▓ █▒░ █▀▄  ▓
+█░  ▒ ▒  █ █░  ▒ ▒  █ █░  █ ░  ▒ █░  █ ░  ▒ █░  ░ █░  ▒ ▀▀▀▀ ▓▀   █░  ▒ ▒▄▄▓      █░  ▒ ▒  █ █░  ▒ ░  ▒ █░  ░ █░  ▒ ▀▀▀▀ █░  ░ █░  █ ░  ▒ █░  ▒ ▒▄▄▓
+█   ░ █  ▓ █   ░ █  ▓ █   █ ▒  ░ █   █ ▒  ░ █   █ █   ▀▀▀▓        █   ▓▄▄▄        █   ░ █  ▓ █   ▀▀▀ ▄▀ █   █ █   ▀▀▀▀▀▓ █   █ █   █ ▒  ░ █   ▓▄▄▄
+▓   ▓ ▓  ▒ ▓   ▓ ▓  ▒ ▓   █ ▓  █ ▓   █ ▓  █ ▓   █ ▓   ▄▄▄▒         ▀▄▄    ▀▄      ▓   ▓ ▓  ▒ ▓   ▄▄ ▀▄  ▓   █ ▓   █▄▄  ░ ▓   █ ▓   █ ▓  █  ▀▄▄    ▀▄
+▒   ▓ ░  ░ ▒   ▓ ░  ░ ▒   ▓ █  ▓ ▒   ▓ █  ▓ ▒   ▓ ▒   ░ ▄▄▄▄          ▀▀░  ░      ▒   ▓ ░  ░ ▒   ░ █  █ ▒   ▓ ▒   ▓ ░  ░ ▒   ▓ ▒   ▓ █  ▓     ▀▀░  ░
+░   ▒ ▒  ▒ ░   ▒ ▒  ▒ ░   ▒ ▓  ▒ ░   ▒ ▓  ▒ ░   ▒ ░   ▒ ▒  ▒      ▓▀▀▀▒ ▒  ▒      ░   ▒ ▒  ▒ ░   ▒ █  ▓ ░   ▒ ░   ▒ ▒  ▒ ░   ▒ ░   ▒ ▓  ▒ ▓▀▀▀▒ ▒  ▒
+█   ░▄▀ ░░ █   ▀▄▀ ░░ █  ░░ ▒ ░░ █  ░░ ▒ ░░ █  ░░ █   ░▄░ ░░      ▒▒░ ░▄▓ ░░      █   ▀▄▀ ░░ █  ░░ █ ░▒ █  ░░ █   ░▄▀ ░░ █  ░░ █  ░░ ▒ ░░ ▒▒░ ░▄▓ ░░
+█      ░▓▀ ▀▄     ░▓▀ █ ░▒█ ░░▒█ █ ░▒█ ░░▒█ █ ░▒  ▀▄     ░▓█      ░      ░▒█      ▀▄     ░▓▀ █ ░▓█ █░▓░ █ ░▒  ▀▄     ░▓█ █ ░▒  █ ░▒█ ░░▒█ ░      ░▒█
+▀▀▀▀▀▀▀▀     ▀▀▀▀▀▀   ▀▀▀▀▀ ▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀ ▀▀▀▀▀   ▀▀▀▀▀▀▀       ▀▀▀▀▀▀▀▀▀         ▀▀▀▀▀▀   ▀▀▀▀▀ ▀▀▀▀ ▀▀▀▀▀   ▀▀▀▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀ ▀▀▀▀▀▀▀▀▀</pre>
       <h3 style="font-family:var(--mono);font-size:.65rem;color:#33FF00;margin-bottom:.5rem;letter-spacing:.08em">ANIMATECH CORP · SISTEMA DE GESTIÓN DE UNIDADES v2.1</h3>
       <pre style="font-family:var(--mono);font-size:.62rem;color:#33FF00;line-height:1.5;background:transparent">Iniciando diagnóstico de unidades...
 &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608; 100%
@@ -342,7 +341,7 @@ Recomendación del sistema: EVACUACIÓN INMEDIATA</pre>
       </div>
       <div class="prod-item" style="--c:var(--purple)">
         <div class="prod-dot" style="--c:var(--purple)"></div>
-        <div><h4>Pendiente</h4><p>Endosqueleto de Donnie. Modelos de Lany, Shadow, Isaac, The Fox. OST. Mapas del juego. Sublevel de Philip (REF-03).</p></div>
+        <div><h4>Pendiente</h4><p>Endosqueleto de Donnie. Modelos del resto del elenco. OST. Mapas del juego.</p></div>
       </div>
     </div>
     <div class="note">El proyecto lleva en desarrollo desde 2021. Sin fecha de lanzamiento. Sigue el progreso en <a href="https://gamejolt.com/games/Donnies2001/885221" target="_blank" style="color:var(--gold)">GameJolt</a>.</div>
