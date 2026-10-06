@@ -154,6 +154,8 @@ footer a:hover{color:var(--gold)}
 .lf1{animation:lf1-a 3.8s steps(1) infinite}
 .lf2{animation:lf2-a 3.8s steps(1) infinite}
 .lf3{animation:lf3-a 3.8s steps(1) infinite}
+@keyframes crt-fill{0%,8%{width:0%}75%,100%{width:100%}}
+.crt-load-bar{animation:crt-fill 1.8s ease-out .4s both}
 @media(max-width:720px){.card-grid,.char-grid,.prod-grid,.wip-grid{grid-template-columns:1fr}.logo-anim{max-width:100%}.tb-nav{display:none}}
 </style>
 </head>
@@ -248,35 +250,43 @@ footer a:hover{color:var(--gold)}
   <section class="sec">
     <div class="sec-label">03 · el juego</div>
     <div class="logo-anim" style="max-width:420px;margin-bottom:1.2rem">
-      <img class="lf1" src="assets/donnies/logo-f1.png" alt="Donnie's Origins" style="filter:drop-shadow(0 0 16px rgba(51,255,0,.35)) drop-shadow(0 0 40px rgba(51,255,0,.1)) brightness(.88) saturate(0) sepia(1) hue-rotate(85deg) saturate(3)">
-      <img class="lf2" src="assets/donnies/logo-f2.png" aria-hidden="true" style="filter:drop-shadow(0 0 16px rgba(51,255,0,.35)) drop-shadow(0 0 40px rgba(51,255,0,.1)) brightness(.88) saturate(0) sepia(1) hue-rotate(85deg) saturate(3)">
-      <img class="lf3" src="assets/donnies/logo-f3.png" aria-hidden="true" style="filter:drop-shadow(0 0 16px rgba(51,255,0,.35)) drop-shadow(0 0 40px rgba(51,255,0,.1)) brightness(.88) saturate(0) sepia(1) hue-rotate(85deg) saturate(3)">
+      <img class="lf1" src="assets/donnies/logo-f1.png" alt="Donnie's Origins">
+      <img class="lf2" src="assets/donnies/logo-f2.png" aria-hidden="true">
+      <img class="lf3" src="assets/donnies/logo-f3.png" aria-hidden="true">
     </div>
     <div class="card">
       <p>La primera noche. El local lleva diez años cerrado. <strong>6 niveles, una hora por nivel.</strong> Linterna, puertas, cámaras. Los animatrónicos <strong>no deberían estar activos</strong>.</p>
       <p style="margin-top:.8rem;color:var(--dim)">Nick despierta en una silla de oficina en el subsuelo. El monitor CRT está apagado. Pulsas <kbd style="background:var(--card2);border:1px solid var(--border2);padding:0 5px;border-radius:2px;font-family:var(--mono);font-size:.75em">E</kbd> para encenderlo.</p>
     </div>
-    <div class="card" style="margin-top:1rem;background:var(--card2);border-color:var(--border2);overflow-x:auto">
-      <pre style="font-family:var(--mono);font-size:.3rem;color:#1a8a1a;line-height:1.4;background:transparent;opacity:.7;margin-bottom:.6rem">▄▄▄▄▄▄▄▄     ▄▄▄▄▄▄   ▄▄▄▄▄▄▄    ▄▄▄▄▄▄▄    ▄▄▄▄▄   ▄▄▄▄▄▄   ▄▄▄▄   ▄▄▄▄▄▄          ▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄   ▄▄▄▄▄   ▄▄▄▄▄▄▄▄ ▄▄▄▄▄ ▄▄▄▄▄▄▄      ▄▄▄▄▄▄
-█▓▒░    ▀▄ ▄▀▒░    ▀▄ █▓▒░   ▀▄  █▓▒░   ▀▄  █▓▒░▓ ▄▀▒░    ▀▄ ▓▓░░ ▄▀▒░    ▀▄      ▄▀▒░    ▀▄ █▓▒░    ▀▄ █▓▒░▓ ▄▀▒░     ▓ █▓▒░▓ █▓▒░   ▀▄  ▄▀▒░    ▀▄
-█▒░ ▄▀▄  █ █▒░ ▄▀▄  █ █▒░ █▀▄  ▓ █▒░ █▀▄  ▓ █▒░ ▒ █▒░ ▓▀░  ░ ▒░▓▀ █▒░ █▀▄  ▓      █▒░ ▄▀▄  █ █▒░ ▓▀░  ▓ █▒░ ▒ █▒░ ▓▀▒  ▒ █▒░ ▒ █▒░ █▀▄  ▓ █▒░ █▀▄  ▓
-█░  ▒ ▒  █ █░  ▒ ▒  █ █░  █ ░  ▒ █░  █ ░  ▒ █░  ░ █░  ▒ ▀▀▀▀ ▓▀   █░  ▒ ▒▄▄▓      █░  ▒ ▒  █ █░  ▒ ░  ▒ █░  ░ █░  ▒ ▀▀▀▀ █░  ░ █░  █ ░  ▒ █░  ▒ ▒▄▄▓
-█   ░ █  ▓ █   ░ █  ▓ █   █ ▒  ░ █   █ ▒  ░ █   █ █   ▀▀▀▓        █   ▓▄▄▄        █   ░ █  ▓ █   ▀▀▀ ▄▀ █   █ █   ▀▀▀▀▀▓ █   █ █   █ ▒  ░ █   ▓▄▄▄
-▓   ▓ ▓  ▒ ▓   ▓ ▓  ▒ ▓   █ ▓  █ ▓   █ ▓  █ ▓   █ ▓   ▄▄▄▒         ▀▄▄    ▀▄      ▓   ▓ ▓  ▒ ▓   ▄▄ ▀▄  ▓   █ ▓   █▄▄  ░ ▓   █ ▓   █ ▓  █  ▀▄▄    ▀▄
-▒   ▓ ░  ░ ▒   ▓ ░  ░ ▒   ▓ █  ▓ ▒   ▓ █  ▓ ▒   ▓ ▒   ░ ▄▄▄▄          ▀▀░  ░      ▒   ▓ ░  ░ ▒   ░ █  █ ▒   ▓ ▒   ▓ ░  ░ ▒   ▓ ▒   ▓ █  ▓     ▀▀░  ░
-░   ▒ ▒  ▒ ░   ▒ ▒  ▒ ░   ▒ ▓  ▒ ░   ▒ ▓  ▒ ░   ▒ ░   ▒ ▒  ▒      ▓▀▀▀▒ ▒  ▒      ░   ▒ ▒  ▒ ░   ▒ █  ▓ ░   ▒ ░   ▒ ▒  ▒ ░   ▒ ░   ▒ ▓  ▒ ▓▀▀▀▒ ▒  ▒
-█   ░▄▀ ░░ █   ▀▄▀ ░░ █  ░░ ▒ ░░ █  ░░ ▒ ░░ █  ░░ █   ░▄░ ░░      ▒▒░ ░▄▓ ░░      █   ▀▄▀ ░░ █  ░░ █ ░▒ █  ░░ █   ░▄▀ ░░ █  ░░ █  ░░ ▒ ░░ ▒▒░ ░▄▓ ░░
-█      ░▓▀ ▀▄     ░▓▀ █ ░▒█ ░░▒█ █ ░▒█ ░░▒█ █ ░▒  ▀▄     ░▓█      ░      ░▒█      ▀▄     ░▓▀ █ ░▓█ █░▓░ █ ░▒  ▀▄     ░▓█ █ ░▒  █ ░▒█ ░░▒█ ░      ░▒█
-▀▀▀▀▀▀▀▀     ▀▀▀▀▀▀   ▀▀▀▀▀ ▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀ ▀▀▀▀▀   ▀▀▀▀▀▀▀       ▀▀▀▀▀▀▀▀▀         ▀▀▀▀▀▀   ▀▀▀▀▀ ▀▀▀▀ ▀▀▀▀▀   ▀▀▀▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀ ▀▀▀▀▀▀▀▀▀</pre>
-      <h3 style="font-family:var(--mono);font-size:.65rem;color:#33FF00;margin-bottom:.5rem;letter-spacing:.08em">ANIMATECH CORP · SISTEMA DE GESTIÓN DE UNIDADES v2.1</h3>
-      <pre style="font-family:var(--mono);font-size:.62rem;color:#33FF00;line-height:1.5;background:transparent">Iniciando diagnóstico de unidades...
-&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608; 100%
+    <div class="card" style="margin-top:1rem;background:#010901;border:2px solid #1e5c1e;overflow-x:auto;position:relative;padding:1rem 1rem .9rem">
+      <div aria-hidden="true" style="position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(0,0,0,.18) 3px,rgba(0,0,0,.18) 4px);pointer-events:none;z-index:2"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 55% at 50% 25%,rgba(51,255,0,.045),transparent 70%);pointer-events:none;z-index:2"></div>
+      <span aria-hidden="true" style="position:absolute;top:7px;right:10px;font-family:var(--mono);font-size:.45rem;color:#33FF00;opacity:.5;letter-spacing:.06em;z-index:3">● REC</span>
+      <div style="position:relative;z-index:3">
+        <div style="text-align:center;padding:.4rem 0 .65rem;border-bottom:1px solid #1e5c1e;margin-bottom:.75rem">
+          <div style="font-family:var(--mono);font-size:1.1rem;font-weight:700;color:#33FF00;letter-spacing:.3em;text-shadow:0 0 10px rgba(51,255,0,.85),0 0 30px rgba(51,255,0,.4),0 0 60px rgba(51,255,0,.15)">ANIMA-TECH CORP</div>
+          <div style="font-family:var(--mono);font-size:.48rem;color:#1aaa1a;letter-spacing:.12em;margin-top:.25rem;opacity:.8">ANIMATRONIC MANAGEMENT SYSTEM · v2.1.04-STABLE</div>
+        </div>
+        <div style="font-family:var(--mono);font-size:.62rem;color:#33FF00;text-shadow:0 0 4px rgba(51,255,0,.3);margin-bottom:.5rem">
+          <div>Iniciando diagnóstico de unidades...</div>
+          <div style="display:flex;align-items:center;gap:.5rem;margin:.35rem 0 0">
+            <div style="flex:1;height:8px;background:rgba(51,255,0,.1);border:1px solid #1a5a1a;overflow:hidden"><div class="crt-load-bar" style="height:100%;background:#33FF00;box-shadow:0 0 6px rgba(51,255,0,.7)"></div></div>
+            <span style="font-size:.58rem;min-width:2.2rem;text-align:right">100%</span>
+          </div>
+        </div>
+        <pre style="font-family:var(--mono);font-size:.62rem;color:#33FF00;line-height:1.65;background:transparent;text-shadow:0 0 3px rgba(51,255,0,.25)">&gt; Conectando sensores de presencia...........  OK
+&gt; Verificando última posición registrada......  FALLO
+&gt; Diagnóstico de unidades activas:
 
-ERROR: UNIDAD 01 (DONNIE)  - SIN RESPUESTA
-ERROR: UNIDAD 02 (LANY)    - SIN RESPUESTA
-ERROR: UNIDAD 03 (SHADOW)  - SIN RESPUESTA
+    [✗] UNIDAD 01 — DONNIE   ·  SIN RESPUESTA
+    [✗] UNIDAD 02 — LANY     ·  SIN RESPUESTA
+    [✗] UNIDAD 03 — SHADOW   ·  SIN RESPUESTA
 
-Recomendación del sistema: EVACUACIÓN INMEDIATA</pre>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<span style="color:#e8c820;text-shadow:0 0 8px rgba(232,200,32,.5)">⚠  ALERTA: 3/3 UNIDADES FUERA DE RANGO</span>
+   RECOMENDACIÓN: <span style="color:#e85020;text-shadow:0 0 8px rgba(232,80,32,.5)">EVACUACIÓN INMEDIATA</span>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</pre>
+      </div>
     </div>
     <div class="card" style="margin-top:.8rem">
       <h3>Mecánicas</h3>
