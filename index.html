@@ -60,6 +60,7 @@ a{text-decoration:none;color:inherit}
 .hero-eyebrow::before{content:'';width:18px;height:1px;background:var(--accent);display:inline-block}
 .hero-name{font-family:var(--orbit);font-size:clamp(2.4rem,7vw,4rem);font-weight:900;color:var(--bright);line-height:1.05;letter-spacing:-.01em;margin-bottom:.9rem}
 .hero-ascii{font-family:var(--mono);font-size:clamp(0.28rem,0.61vw,0.61rem);line-height:1.18;letter-spacing:0;white-space:pre;color:#7B61FF;text-shadow:0 0 12px rgba(123,97,255,.5),0 0 30px rgba(123,97,255,.18);margin-bottom:.9rem;overflow-x:auto;display:block}
+.hero-logo-svg{display:block;width:100%;max-width:480px;height:auto;margin-bottom:.9rem}
 .hero-name-mobile{display:none}
 .hero-sub{font-size:1rem;color:var(--dim);font-weight:300;margin-bottom:1.5rem;max-width:520px}
 .hero-sub strong{color:var(--text);font-weight:500}
@@ -151,7 +152,8 @@ footer a:hover{color:var(--bright)}
   .hero{padding:3.5rem 0 3rem}
   .hero-name{font-size:clamp(2rem,10vw,2.8rem)}
   .hero-ascii{display:none}
-  .hero-name-mobile{display:block}
+  .hero-logo-svg{max-width:300px}
+  .hero-name-mobile{display:none}
 }
 
 /* ── RETRO ZONE (proyectos →) ─────────────────────────────────────── */
@@ -216,14 +218,24 @@ footer a:hover{color:var(--bright)}
 <div class="wrap">
 
   <section class="hero" id="home">
-    <div class="hero-eyebrow">Static Forge</div>
-    <pre class="hero-ascii" aria-hidden="true">░▒▓███████▓▒░▒▓████████▓▒░▒▓██████▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓██████▓▒░       ░▒▓████████▓▒░▒▓██████▓▒░░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓████████▓▒░
-░▒▓█▓▒░         ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░
-░▒▓█▓▒░         ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░
- ░▒▓██████▓▒░   ░▒▓█▓▒░  ░▒▓████████▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░             ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓█▓▒▒▓███▓▒░▒▓██████▓▒░
-       ░▒▓█▓▒░  ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░
-       ░▒▓█▓▒░  ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░
-░▒▓███████▓▒░   ░▒▓█▓▒░  ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓██████▓▒░       ░▒▓█▓▒░      ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓████████▓▒░</pre>
+    <svg class="hero-logo-svg" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Static Forge">
+      <defs>
+        <pattern id="hero-hp" patternUnits="userSpaceOnUse" x="0" y="0" width="1" height="9">
+          <rect y="0" width="1" height="4.5" fill="#e2e2e2"/>
+        </pattern>
+        <mask id="hero-sfm" maskUnits="userSpaceOnUse">
+          <text x="240" y="216" font-family="'Bebas Neue',Impact,sans-serif" font-size="200" letter-spacing="4" text-anchor="middle" fill="white">SF</text>
+        </mask>
+      </defs>
+      <rect width="480" height="320" fill="url(#hero-hp)" mask="url(#hero-sfm)"/>
+      <text x="240" y="216" font-family="'Bebas Neue',Impact,sans-serif" font-size="200" letter-spacing="4" text-anchor="middle" fill="none" stroke="#e2e2e2" stroke-width="1.2">SF</text>
+      <line x1="28" y1="236" x2="228" y2="236" stroke="#e2e2e2" stroke-width="1.8"/>
+      <line x1="252" y1="236" x2="452" y2="236" stroke="#e2e2e2" stroke-width="1.8"/>
+      <line x1="28" y1="242" x2="228" y2="242" stroke="#e2e2e2" stroke-width="0.6"/>
+      <line x1="252" y1="242" x2="452" y2="242" stroke="#e2e2e2" stroke-width="0.6"/>
+      <polygon points="240,233 248,239 240,245 232,239" fill="#e2e2e2"/>
+      <text x="240" y="280" font-family="'Oswald','Arial Narrow',sans-serif" font-size="16" font-weight="700" letter-spacing="12" text-anchor="middle" fill="#e2e2e2">STATIC FORGE</text>
+    </svg>
     <h1 class="hero-name hero-name-mobile">Core</h1>
     <p class="hero-sub">
       <strong>Developer · Artist · Content Creator</strong><br>
