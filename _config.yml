@@ -1,0 +1,6 @@
+# GitHub Pages (Jekyll): archivos del repo que no se publican en la web
+exclude:
+  - DESIGN.md
+  - anti-slop
+  - wrangler.toml
+  - .assetsignore
