@@ -14,7 +14,7 @@
 .joinf .jf>label,.joinf .jq{font:600 1rem/1.35 var(--j-font);color:var(--j-ink)}
 .joinf .jopt{font-weight:400;color:var(--j-muted)}
 .joinf .jh{margin:0;font-size:.9rem;line-height:1.45;color:var(--j-muted)}
-.joinf input[type=text],.joinf textarea,.joinf select{
+.joinf input[type=text],.joinf input[type=email],.joinf textarea,.joinf select{
   width:100%;min-height:48px;padding:12px 14px;font:400 1rem/1.5 var(--j-font);color:var(--j-ink);
   background:var(--j-bg);border:1px solid var(--j-line);border-radius:var(--j-r);transition:border-color .2s,box-shadow .2s
 }
@@ -38,7 +38,7 @@
 .joinf .jchk.solo{background:transparent}
 .joinf .jerr{margin:0;min-height:0;font-size:.92rem;font-weight:600;color:var(--j-err)}
 .joinf .jerr:empty{display:none}
-.joinf .bad input[type=text],.joinf .bad textarea,.joinf .bad select,.joinf .bad .jchk{border-color:var(--j-err)}
+.joinf .bad input[type=text],.joinf .bad input[type=email],.joinf .bad textarea,.joinf .bad select,.joinf .bad .jchk{border-color:var(--j-err)}
 .joinf .jtrap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .joinf .jfoot{display:grid;gap:4px}
 .joinf .jprivacy{margin:0;font-size:.9rem;line-height:1.55;color:var(--j-muted);max-width:70ch}
@@ -50,6 +50,8 @@
 .joinf .jdone{padding:28px 24px;border:1px solid var(--j-acc);border-radius:var(--j-r);background:var(--j-panel)}
 .joinf .jdone h3{margin:0 0 8px;font:400 1.6rem/1.1 var(--j-mono);letter-spacing:.06em;color:var(--j-acc);outline:none}
 .joinf .jdone p{margin:0 0 18px;color:var(--j-ink)}
+.joinf .jdone .jmail{color:var(--j-muted)}
+.joinf .jdone .jmail b{color:var(--j-ink);font-weight:600;overflow-wrap:anywhere}
 @media (max-width:560px){
   .joinf .jsec{padding:4px 14px 20px}
   .joinf .jchecks{grid-template-columns:1fr}

@@ -23,7 +23,10 @@
       'f.age': 'Edad', 'age.pick': 'Elige un tramo',
       'age.u14': 'Menos de 14', 'age.14-15': '14 o 15', 'age.16-17': '16 o 17', 'age.18-24': 'De 18 a 24', 'age.25+': '25 o más',
       'f.guardian': 'Tengo permiso de mi madre, padre o tutor para enviar esta solicitud.',
-      'f.contact': 'Cómo te escribimos', 'h.contact': 'Correo, usuario de Discord u otra forma de contactarte.',
+      'f.email': 'Correo electrónico', 'h.email': 'Aquí te llegará la confirmación y la respuesta.',
+      'f.discord': 'Usuario de Discord', 'h.discord': 'Por si prefieres hablar por ahí. Por ejemplo: kcrooty',
+      'e.email': 'Ese correo no parece válido. Revisa que esté bien escrito.', 'e.discord': 'Ese usuario de Discord no parece válido.',
+      'done.mail': 'Te hemos mandado un correo de confirmación a', 'done.spam': 'Si no lo ves en unos minutos, mira en spam.',
       'f.links': 'Redes y portfolio', 'h.links': 'Un enlace por línea: redes, portfolio, GitHub, ArtStation, SoundCloud…',
       'f.who': 'Cuéntanos quién eres', 'h.who': 'Qué haces, qué has hecho y con qué herramientas trabajas.',
       'f.mode': 'Qué te gustaría hacer',
@@ -41,9 +44,9 @@
       'av.': 'Sin especificar', 'av.month': 'Unas horas al mes', 'av.week': 'Unas horas a la semana',
       'av.lots': 'Bastante tiempo', 'av.depends': 'Depende de la época',
       'f.consent': 'He leído el aviso de privacidad y acepto que Static Forge guarde estos datos para valorar mi solicitud.',
-      'privacy': 'Aviso de privacidad: estos datos solo sirven para valorar tu solicitud y escribirte. Solo los lee KCRooty (Core) y no se comparten con nadie. Se borran solos a los 6 meses. Si quieres borrarlos antes, escribe a ',
+      'privacy': 'Aviso de privacidad: estos datos solo sirven para valorar tu solicitud y escribirte. Solo los lee KCRooty (Core) y no se comparten con nadie. Los correos de confirmación salen a través de Resend, un servicio de envío de correo. Todo se borra solo a los 6 meses. Si quieres borrarlo antes, escribe a ',
       'send': 'Enviar solicitud', 'sending': 'Enviando…',
-      'done.h': 'Solicitud enviada', 'done.p': 'Ha llegado bien. Si encaja, te escribiremos al contacto que has dejado.', 'done.again': 'Enviar otra',
+      'done.h': 'Solicitud enviada', 'done.p': 'Ha llegado bien. KCRooty (Core) la leerá y te contestará por correo o por Discord.', 'done.again': 'Enviar otra',
       'e.req': 'Este campo hace falta.', 'e.min': 'Escribe al menos {n} caracteres.', 'e.pick': 'Elige una opción.',
       'e.checks': 'Marca al menos una opción.', 'e.consent': 'Tienes que aceptar el aviso para enviar la solicitud.',
       'e.guardian': 'Con menos de 14 años necesitas este permiso.', 'e.fix': 'Revisa los campos marcados.',
@@ -73,7 +76,10 @@
       'f.age': 'Age', 'age.pick': 'Pick a range',
       'age.u14': 'Under 14', 'age.14-15': '14 or 15', 'age.16-17': '16 or 17', 'age.18-24': '18 to 24', 'age.25+': '25 or older',
       'f.guardian': 'My mother, father or guardian has given me permission to send this application.',
-      'f.contact': 'How can we reach you', 'h.contact': 'Email, Discord username or another way to contact you.',
+      'f.email': 'Email', 'h.email': 'The confirmation and our reply will arrive here.',
+      'f.discord': 'Discord username', 'h.discord': 'In case you would rather talk there. For example: kcrooty',
+      'e.email': 'That email does not look valid. Check the spelling.', 'e.discord': 'That Discord username does not look valid.',
+      'done.mail': 'We have sent a confirmation email to', 'done.spam': 'If you do not see it in a few minutes, check your spam folder.',
       'f.links': 'Social media and portfolio', 'h.links': 'One link per line: social media, portfolio, GitHub, ArtStation, SoundCloud…',
       'f.who': 'Tell us who you are', 'h.who': 'What you do, what you have made and the tools you work with.',
       'f.mode': 'What would you like to do',
@@ -88,9 +94,9 @@
       'f.avail': 'Time you could spend on it',
       'av.': 'Not specified', 'av.month': 'A few hours a month', 'av.week': 'A few hours a week', 'av.lots': 'Quite a lot', 'av.depends': 'It depends on the time of year',
       'f.consent': 'I have read the privacy notice and agree that Static Forge keeps this data to review my application.',
-      'privacy': 'Privacy notice: this data is only used to review your application and get back to you. Only KCRooty (Core) reads it and it is never shared. It is deleted automatically after 6 months. To have it deleted sooner, write to ',
+      'privacy': 'Privacy notice: this data is only used to review your application and get back to you. Only KCRooty (Core) reads it and it is never shared. Confirmation emails are sent through Resend, an email delivery service. Everything is deleted automatically after 6 months. To have it deleted sooner, write to ',
       'send': 'Send application', 'sending': 'Sending…',
-      'done.h': 'Application sent', 'done.p': 'It arrived. If it is a fit, we will write to the contact you left.', 'done.again': 'Send another',
+      'done.h': 'Application sent', 'done.p': 'It arrived. KCRooty (Core) will read it and reply by email or on Discord.', 'done.again': 'Send another',
       'e.req': 'This field is required.', 'e.min': 'Write at least {n} characters.', 'e.pick': 'Pick an option.',
       'e.checks': 'Tick at least one option.', 'e.consent': 'You need to accept the notice to send the application.',
       'e.guardian': 'Under 14 you need this permission.', 'e.fix': 'Check the highlighted fields.',
@@ -104,7 +110,10 @@
       'f.age': 'Edat', 'age.pick': 'Tria una franja',
       'age.u14': 'Menys de 14', 'age.14-15': '14 o 15', 'age.16-17': '16 o 17', 'age.18-24': 'De 18 a 24', 'age.25+': '25 o més',
       'f.guardian': 'Tinc permís de la meva mare, pare o tutor per enviar aquesta sol·licitud.',
-      'f.contact': 'Com t’escrivim', 'h.contact': 'Correu, usuari de Discord o una altra manera de contactar-te.',
+      'f.email': 'Correu electrònic', 'h.email': 'Aquí t’arribarà la confirmació i la resposta.',
+      'f.discord': 'Usuari de Discord', 'h.discord': 'Per si prefereixes parlar per allà. Per exemple: kcrooty',
+      'e.email': 'Aquest correu no sembla vàlid. Revisa que estigui ben escrit.', 'e.discord': 'Aquest usuari de Discord no sembla vàlid.',
+      'done.mail': 'T’hem enviat un correu de confirmació a', 'done.spam': 'Si no el veus d’aquí a uns minuts, mira el correu brossa.',
       'f.links': 'Xarxes i portfolio', 'h.links': 'Un enllaç per línia: xarxes, portfolio, GitHub, ArtStation, SoundCloud…',
       'f.who': 'Explica’ns qui ets', 'h.who': 'Què fas, què has fet i amb quines eines treballes.',
       'f.mode': 'Què t’agradaria fer',
@@ -119,9 +128,9 @@
       'f.avail': 'Temps que hi podries dedicar',
       'av.': 'Sense especificar', 'av.month': 'Unes hores al mes', 'av.week': 'Unes hores a la setmana', 'av.lots': 'Bastant de temps', 'av.depends': 'Depèn de l’època',
       'f.consent': 'He llegit l’avís de privacitat i accepto que Static Forge guardi aquestes dades per valorar la meva sol·licitud.',
-      'privacy': 'Avís de privacitat: aquestes dades només serveixen per valorar la teva sol·licitud i escriure’t. Només les llegeix KCRooty (Core) i no es comparteixen amb ningú. S’esborren soles als 6 mesos. Si vols que s’esborrin abans, escriu a ',
+      'privacy': 'Avís de privacitat: aquestes dades només serveixen per valorar la teva sol·licitud i escriure’t. Només les llegeix KCRooty (Core) i no es comparteixen amb ningú. Els correus de confirmació surten a través de Resend, un servei d’enviament de correu. Tot s’esborra sol als 6 mesos. Si vols que s’esborri abans, escriu a ',
       'send': 'Enviar la sol·licitud', 'sending': 'Enviant…',
-      'done.h': 'Sol·licitud enviada', 'done.p': 'Ha arribat bé. Si encaixa, t’escriurem al contacte que has deixat.', 'done.again': 'Enviar-ne una altra',
+      'done.h': 'Sol·licitud enviada', 'done.p': 'Ha arribat bé. En KCRooty (Core) la llegirà i et respondrà per correu o per Discord.', 'done.again': 'Enviar-ne una altra',
       'e.req': 'Aquest camp és necessari.', 'e.min': 'Escriu almenys {n} caràcters.', 'e.pick': 'Tria una opció.',
       'e.checks': 'Marca almenys una opció.', 'e.consent': 'Has d’acceptar l’avís per enviar la sol·licitud.',
       'e.guardian': 'Amb menys de 14 anys necessites aquest permís.', 'e.fix': 'Revisa els camps marcats.',
@@ -135,6 +144,8 @@
 
   /* ── Definición de cada formulario ── */
   var AGES = ['u14', '14-15', '16-17', '18-24', '25+'];
+  var EMAIL_RE = /^[^\s@<>"',;:()]{1,64}@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+  var DISCORD_RE = /^(?:[a-z0-9_.]{2,32}|[^\s@#:]{2,32}#\d{4})$/i;
   var AVAIL = ['', 'month', 'week', 'lots', 'depends'];
   function opts(keys, prefix) { return keys.map(function (k) { return { v: k, k: prefix + k }; }); }
   function numbered(keys, prefix) { return keys.map(function (k, i) { return { v: k, k: prefix + (i + 1) }; }); }
@@ -143,7 +154,8 @@
     { type: 'text', name: 'name', label: 'f.name', hint: 'h.name', min: 2, max: 60, ac: 'nickname' },
     { type: 'select', name: 'age', label: 'f.age', options: opts(AGES, 'age.'), placeholder: 'age.pick' },
     { type: 'check', name: 'guardian', label: 'f.guardian', showIf: function (v) { return v.age === 'u14'; } },
-    { type: 'text', name: 'contact', label: 'f.contact', hint: 'h.contact', min: 3, max: 120 },
+    { type: 'text', input: 'email', name: 'email', label: 'f.email', hint: 'h.email', min: 6, max: 254, ac: 'email' },
+    { type: 'text', name: 'discord', label: 'f.discord', hint: 'h.discord', min: 0, max: 40, optional: true, ac: 'off' },
     { type: 'area', name: 'links', label: 'f.links', hint: 'h.links', min: 0, max: 800, rows: 3, optional: true },
     { type: 'area', name: 'who', label: 'f.who', hint: 'h.who', min: 20, max: 2000, rows: 5 }
   ];
@@ -206,7 +218,7 @@
     var wrap = '<div class="jf" data-field="' + f.name + '"' + (f.showIf ? ' hidden' : '') + '>';
     if (f.type === 'text') {
       return wrap + '<label for="' + fid + '">' + J(f.label) + opt + '</label>' + hint +
-        '<input type="text" id="' + fid + '" name="' + f.name + '" maxlength="' + f.max + '"' + (f.ac ? ' autocomplete="' + f.ac + '"' : ' autocomplete="off"') +
+        '<input type="' + (f.input || 'text') + '"' + (f.input === 'email' ? ' inputmode="email" spellcheck="false"' : '') + ' id="' + fid + '" name="' + f.name + '" maxlength="' + f.max + '"' + (f.ac ? ' autocomplete="' + f.ac + '"' : ' autocomplete="off"') +
         ' aria-describedby="' + desc + '"' + req + '>' + err + '</div>';
     }
     if (f.type === 'area') {
@@ -312,6 +324,8 @@
       var val = v[f.name], msg = '';
       if (f.type === 'text' || f.type === 'area') {
         if (!f.optional && !val) msg = t('e.req');
+        else if (val && f.input === 'email' && !EMAIL_RE.test(val)) msg = t('e.email');
+        else if (val && f.name === 'discord' && !DISCORD_RE.test(val.replace(/^@/, ''))) msg = t('e.discord');
         else if (val && val.length < f.min) msg = t('e.min').replace('{n}', f.min);
       } else if (f.type === 'select' || f.type === 'radios') {
         if (!f.optional && !val) msg = t('e.pick');
@@ -345,7 +359,7 @@
       return;
     }
     status(form, '');
-    var payload = { track: track };
+    var payload = { track: track, lang: lang() };
     form._fields.forEach(function (f) {
       var w = form.querySelector('[data-field="' + f.name + '"]');
       if (!w.hidden) payload[f.name] = v[f.name];
@@ -361,7 +375,7 @@
     fetch(API + '/api/apply', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {
-        if (res.ok) { done(form, track); return; }
+        if (res.ok) { done(form, track, res.d && res.d.mailed ? v.email : ''); return; }
         var d = res.d || {};
         if (d.error === 'slow_down') status(form, t('e.slow'), 'err');
         else {
@@ -378,9 +392,10 @@
       });
   }
 
-  function done(form, track) {
+  function done(form, track, mailedTo) {
     form.innerHTML = '<div class="jdone"><h3 tabindex="-1" data-j="done.h">' + esc(t('done.h')) + '</h3>' +
       '<p data-j="done.p">' + esc(t('done.p')) + '</p>' +
+      (mailedTo ? '<p class="jmail"><span data-j="done.mail">' + esc(t('done.mail')) + '</span> <b>' + esc(mailedTo) + '</b>. <span data-j="done.spam">' + esc(t('done.spam')) + '</span></p>' : '') +
       '<button type="button" class="btn jbtn-again">' + J('done.again') + '</button></div>';
     form.querySelector('h3').focus();
     form.querySelector('.jbtn-again').addEventListener('click', function () {

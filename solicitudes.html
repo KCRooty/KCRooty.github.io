@@ -138,7 +138,7 @@ function api(path,opts){
 function row(k,v,raw){return v?'<dt>'+k+'</dt><dd>'+(raw?v:esc(v))+'</dd>':''}
 function card(a){
   var d=a.data||{}, ar=AREAS[a.track]||{};
-  var rows=row('Contacto',a.contact)+row('Edad',AGE[a.age]||a.age)+
+  var rows=row('Correo',a.contact?'<a href="mailto:'+esc(a.contact)+'">'+esc(a.contact)+'</a>':'',true)+row('Discord',d.discord)+row('Edad',AGE[a.age]||a.age)+
     row('Redes y portfolio',d.links?linkify(d.links):'',true)+row('Quién es',d.who);
   if(a.track==='sf'){rows+=row('Quiere',MODE[d.mode]||d.mode)+row('Proyectos',map(d.projects,PROJ))+row('Su proyecto',d.own?linkify(d.own):'',true)}
   if(a.track==='linux'){rows+=row('Experiencia',EXP[d.exp]||d.exp)+row('Hardware',d.hw)}
