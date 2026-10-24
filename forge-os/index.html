@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="night" data-crt="on">
+<html lang="es" data-crt="on">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,58 +8,153 @@
 <meta property="og:title" content="Forge OS · Static Forge">
 <meta property="og:description" content="Un sistema operativo escrito desde cero en Rust. Kernel propio para x86_64, código abierto.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#14100C">
+<meta name="theme-color" content="#070502">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..900,100&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
-(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
-var t=g('sf-theme');if(!t){try{t=matchMedia('(prefers-color-scheme: light)').matches?'paper':'night'}catch(e){t='night'}}
-d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');})();
+(function(){var v=null;try{v=localStorage.getItem('sf-crt')}catch(e){}document.documentElement.setAttribute('data-crt',v==='off'?'off':'on')})();
 </script>
-<link rel="stylesheet" href="/assets/sf.css">
 <link rel="stylesheet" href="/assets/join.css">
 <style>
-.spec{padding:0;overflow:hidden}
-.spec-h{display:flex;justify-content:space-between;padding:14px 24px;border-bottom:1px solid var(--line);font:400 1.15rem/1 var(--fc);letter-spacing:.08em;color:var(--phosphor)}
-.spec dl{display:grid;grid-template-columns:auto 1fr;gap:12px 22px;padding:22px 24px 24px;margin:0}
-.spec dt{font:400 1.1rem/1.4 var(--fc);letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
-.spec dd{margin:0;color:var(--ink)}
-.done,.todo{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
-.done li,.todo li{position:relative;padding-left:26px;color:var(--ink)}
-.done li::before,.todo li::before{position:absolute;left:0;top:0;font:400 1.2rem/1.45 var(--fc)}
-.done li::before{content:"✓";color:var(--s3)}
-.todo li::before{content:"›";color:var(--phosphor)}
-.card h3{margin-top:10px}
-.card p{color:var(--muted);margin-top:8px}
-code{font-family:var(--fc);font-size:1.1em;color:var(--ink)}
-.sec-intro a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
-@media (max-width:420px){.spec dl{grid-template-columns:1fr;gap:2px}.spec dd{margin-bottom:10px}}
+/* Forge OS: monitor CRT de fósforo ámbar, monocromo. Tokens en DESIGN.md ("Forge OS"). */
+:root{
+  --bg:#070502; --panel:#0E0904; --amb:#FFB000; --hi:#FFD27A; --dim:#C48A1E;
+  --line:#5C3F0A; --edge:#8C6214; --err:#FF7A5C;
+  --glow:0 0 6px rgba(255,176,0,.45),0 0 1px rgba(255,176,0,.9);
+  --fv:'VT323',ui-monospace,monospace; --fm:'IBM Plex Mono',ui-monospace,monospace;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--amb);font:400 16px/1.7 var(--fm);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+[data-crt="on"] body{text-shadow:var(--glow)}
+a{color:inherit}
+::selection{background:var(--amb);color:var(--bg);text-shadow:none}
+:focus-visible{outline:2px dashed var(--hi);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--amb);color:var(--bg);padding:10px 16px;font-weight:600;text-decoration:none;text-shadow:none}
+.skip:focus{top:12px}
+
+/* Capas del monitor: scanlines, viñeta y un parpadeo muy leve. Todo se apaga con el interruptor. */
+.fx{position:fixed;inset:0;pointer-events:none;z-index:60}
+.scan{background:repeating-linear-gradient(to bottom,rgba(0,0,0,.32) 0 1px,transparent 1px 3px)}
+.vig{background:radial-gradient(ellipse 120% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.65) 100%)}
+.flick{background:rgba(255,176,0,.025);animation:flick 6s infinite steps(1)}
+@keyframes flick{0%,100%{opacity:0}47%{opacity:1}48%{opacity:0}83%{opacity:.6}84%{opacity:0}}
+[data-crt="off"] .fx{display:none}
+
+/* Barra */
+.top{position:sticky;top:0;z-index:50;background:rgba(7,5,2,.94);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:8px 18px;min-height:64px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.mark{display:inline-flex;align-items:center;min-height:44px;font:400 1.75rem/1 var(--fv);letter-spacing:.08em;text-decoration:none;color:var(--hi);margin-right:auto}
+.mark .cur{display:inline-block;width:.5em;height:.85em;margin-left:6px;background:var(--amb);animation:cur 1.06s steps(2) infinite}
+@keyframes cur{50%{opacity:0}}
+.nav{display:flex;flex-wrap:wrap;gap:2px;list-style:none}
+.nav a,.tog{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font:400 1.3rem/1 var(--fv);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--dim);background:none;border:1px solid transparent;cursor:pointer}
+.nav a:hover,.tog:hover{color:var(--hi);border-color:var(--line)}
+.nav a[aria-current="page"]{color:var(--hi)}
+.tog{border-color:var(--line);color:var(--amb);text-shadow:inherit;order:3}
+.top nav{order:2}
+.tog[aria-pressed="false"]{color:var(--dim)}
+
+/* Arranque */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;padding:72px 0 56px}
+.prompt{font:400 1.35rem/1.2 var(--fv);color:var(--dim);letter-spacing:.04em}
+.prompt b{color:var(--hi);font-weight:400}
+h1{margin-top:14px;font:400 clamp(4.4rem,13vw,8rem)/.85 var(--fv);letter-spacing:.04em;text-transform:uppercase;color:var(--hi)}
+.lead{margin-top:22px;max-width:44ch;font-size:1.05rem}
+.lead strong{color:var(--hi);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;font:400 1.45rem/1 var(--fv);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--amb);background:none;border:1px solid var(--amb);cursor:pointer}
+.btn:hover{background:rgba(255,176,0,.1)}
+.btn.pri{background:var(--amb);color:#140C00;text-shadow:none}
+.btn.pri:hover{background:var(--hi)}
+.btn[disabled]{opacity:.65;cursor:progress}
+.boot{margin:0;padding:18px 20px;border:1px solid var(--line);background:var(--panel);font:400 1.22rem/1.45 var(--fv);white-space:pre-wrap;overflow-wrap:anywhere;color:var(--amb)}
+.boot .k{color:var(--hi)}
+.boot .w{color:var(--dim)}
+[data-crt="on"] .boot span{opacity:0;animation:line .01s forwards}
+@keyframes line{to{opacity:1}}
+
+/* Secciones como paneles de terminal */
+section{padding:56px 0}
+.box{position:relative;border:1px solid var(--line);padding:30px 24px 24px;background:var(--panel)}
+.box>.tag{position:absolute;top:-.85em;left:16px;padding:0 10px;background:var(--bg);font:400 1.35rem/1.2 var(--fv);letter-spacing:.06em;text-transform:uppercase;color:var(--hi)}
+h2{font:400 clamp(2.2rem,5vw,3rem)/1 var(--fv);letter-spacing:.04em;text-transform:uppercase;color:var(--hi);margin-bottom:26px}
+h2::before{content:"> ";color:var(--dim)}
+h3{font:400 1.6rem/1.15 var(--fv);letter-spacing:.03em;color:var(--hi);margin-bottom:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 20px}
+.box p{color:var(--amb)}
+.spec dl{display:grid;grid-template-columns:auto 1fr;gap:6px 26px}
+.spec dt{font:400 1.3rem/1.5 var(--fv);color:var(--dim);text-transform:uppercase;letter-spacing:.05em}
+.spec dt::after{content:":"}
+.spec dd{color:var(--hi)}
+.list{list-style:none;display:grid;gap:10px}
+.list li{display:grid;grid-template-columns:4.2em 1fr;gap:8px}
+.list .st{font:400 1.25rem/1.5 var(--fv);color:var(--hi)}
+.list.todo .st{color:var(--dim)}
+code{font-family:var(--fm);color:var(--hi)}
+.intro{max-width:66ch;margin-bottom:6px}
+.intro a{color:var(--hi)}
+
+/* Solicitud: el formulario común con los colores del monitor */
+#unete .joinf{--j-ink:var(--amb);--j-muted:var(--dim);--j-line:var(--edge);--j-bg:#000;--j-panel:var(--panel);--j-acc:var(--hi);--j-font:var(--fm);--j-mono:var(--fv);--j-r:0;--j-err:var(--err)}
+#unete .joinf .jsec{border-color:var(--line)}
+#unete .joinf .jsec>legend{font-size:1.4rem;letter-spacing:.06em}
+#unete .joinf input,#unete .joinf textarea,#unete .joinf select{text-shadow:none;caret-color:var(--hi)}
+#unete .joinf .jdone h3{font-size:2rem}
+
+footer{border-top:1px solid var(--line);padding:28px 0 40px;margin-top:24px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:.95rem;color:var(--dim)}
+.foot .end{font:400 1.3rem/1 var(--fv);letter-spacing:.08em;color:var(--hi)}
+.foot a{color:var(--hi)}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;gap:36px;padding:48px 0 40px}
+  .grid{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .top{position:static}
+  .top-in{gap:4px 8px}
+  .mark{order:1}
+  .tog{order:2}
+  .top nav{order:3;flex-basis:100%}
+  .nav{justify-content:space-between}
+  .nav a{padding:0 6px;font-size:1.15rem}
+  html{scroll-padding-top:12px}
+  .box{padding:28px 16px 20px}
+  .spec dl{grid-template-columns:1fr;gap:0}
+  .spec dd{margin-bottom:10px}
+  .cta .btn{flex:1 1 100%}
+  section{padding:44px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .flick,.mark .cur{animation:none}
+  [data-crt="on"] .boot span{opacity:1;animation:none}
+}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Saltar al contenido</a>
 <div class="fx scan" aria-hidden="true"></div>
 <div class="fx vig" aria-hidden="true"></div>
+<div class="fx flick" aria-hidden="true"></div>
 
-<header class="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="Static Forge, inicio">
-      <span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span class="brand-name">Static Forge</span>
-    </a>
-    <ul class="links" id="links">
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/#proyectos">Proyectos</a></li>
-      <li><a href="/forge-os/" aria-current="page">Forge OS</a></li>
-      <li><a href="#unete">Únete</a></li>
-      <li><a href="/foros.html">Foro</a></li>
-    </ul>
-    <div class="ctrls">
-      <button type="button" class="tbtn" id="themeBtn" aria-pressed="false">PAPEL</button>
-      <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
-      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">MENÚ</button>
-    </div>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="mark" href="#main" aria-label="Forge OS, arriba">FORGE_OS<span class="cur" aria-hidden="true"></span></a>
+    <nav aria-label="Forge OS">
+      <ul class="nav">
+        <li><a href="#que">Qué es</a></li>
+        <li><a href="#estado">Estado</a></li>
+        <li><a href="#unete">Únete</a></li>
+        <li><a href="/">← Static Forge</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="tog" id="crtBtn" aria-pressed="true">CRT</button>
   </div>
 </header>
 
@@ -67,94 +162,105 @@ code{font-family:var(--fc);font-size:1.1em;color:var(--ink)}
 <div class="wrap">
   <header class="hero">
     <div>
-      <p class="osd crt-txt">CH 10 · SISTEMA OPERATIVO</p>
-      <h1 class="h1">Forge OS</h1>
+      <p class="prompt">static forge · <b>sistema operativo</b></p>
+      <h1>Forge OS</h1>
       <p class="lead">Un sistema operativo escrito desde cero en Rust: <strong>kernel propio para x86_64 y userland propio</strong>. Código abierto, sin telemetría y pensado para ser seguro desde la base.</p>
       <div class="cta">
         <a class="btn pri" href="#unete">Únete al proyecto</a>
         <a class="btn" href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener">Código en GitHub ↗</a>
       </div>
     </div>
-    <aside class="card spec" aria-labelledby="h-spec">
-      <div class="spec-h crt-txt"><span id="h-spec">FICHA</span><span>FORGE OS</span></div>
-      <dl>
-        <dt>Lenguaje</dt><dd>Rust (no_std)</dd>
-        <dt>Arquitectura</dt><dd>x86_64</dd>
-        <dt>Kernel</dt><dd>Monolítico, propio</dd>
-        <dt>Userland</dt><dd>Ember, Bellows, Crucible, Anvil</dd>
-        <dt>Licencia</dt><dd>GPL-2.0+</dd>
-        <dt>Se prueba en</dt><dd>QEMU</dd>
-      </dl>
-    </aside>
+    <pre class="boot" aria-label="Resumen del estado actual, en forma de arranque"><span style="animation-delay:.15s" class="k">FORGE OS · x86_64 · Rust (no_std)</span>
+<span style="animation-delay:.35s" class="w">resumen del estado actual</span>
+
+<span style="animation-delay:.6s">[ OK ] kernel monolítico propio</span>
+<span style="animation-delay:.8s">[ OK ] memoria virtual y modo usuario</span>
+<span style="animation-delay:1s">[ OK ] expropiación real y señales</span>
+<span style="animation-delay:1.2s">[ OK ] ember, primer proceso (PID 1)</span>
+<span style="animation-delay:1.4s">[ OK ] red rtl8139: ping al gateway</span>
+<span style="animation-delay:1.6s">[ OK ] disco ahci, ext2 solo lectura</span>
+<span style="animation-delay:1.85s" class="w">[ .. ] mlibc: portando la libc</span>
+<span style="animation-delay:2.05s" class="w">[ .. ] bellows: la shell</span>
+
+<span style="animation-delay:2.3s" class="k">probado en QEMU · 35+ arranques limpios</span></pre>
   </header>
 
-  <section class="sec" aria-labelledby="h-que">
-    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>01 · QUÉ ES</span></p>
-    <h2 id="h-que">Tres ideas de tres sistemas</h2>
-    <div class="grid2">
-      <article class="card">
-        <span class="chan">DISEÑO</span>
+  <section id="que" aria-labelledby="h-que">
+    <h2 id="h-que">Qué es</h2>
+    <div class="grid">
+      <article class="box">
+        <span class="tag">diseño</span>
         <h3>Lo mejor de Linux, OpenBSD y NT</h3>
         <p>La interfaz de llamadas al sistema de Linux, la seguridad por defecto de OpenBSD (W^X, superficie mínima) y una capa de abstracción de hardware al estilo de Windows NT, para que el código de cada fabricante quede fuera del núcleo.</p>
       </article>
-      <article class="card">
-        <span class="chan">PRINCIPIOS</span>
+      <article class="box">
+        <span class="tag">principios</span>
         <h3>Ligero, privado y tuyo</h3>
         <p>Cero telemetría y ningún servicio de fondo que no hayas pedido. La configuración va en texto plano y el escritorio, la shell y el tema se pueden cambiar.</p>
       </article>
+      <aside class="box spec" aria-labelledby="h-spec" style="grid-column:1/-1">
+        <span class="tag" id="h-spec">ficha</span>
+        <dl>
+          <dt>Lenguaje</dt><dd>Rust (no_std)</dd>
+          <dt>Arquitectura</dt><dd>x86_64</dd>
+          <dt>Kernel</dt><dd>Monolítico, propio</dd>
+          <dt>Userland</dt><dd>Ember, Bellows, Crucible, Anvil</dd>
+          <dt>Licencia</dt><dd>GPL-2.0+</dd>
+          <dt>Se prueba en</dt><dd>QEMU</dd>
+        </dl>
+      </aside>
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="h-estado" style="padding-top:0">
-    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>02 · ESTADO</span></p>
-    <h2 id="h-estado">En qué punto está</h2>
-    <div class="grid2">
-      <article class="card">
-        <span class="chan">FUNCIONA</span>
-        <h3>Ya arranca y ejecuta procesos</h3>
-        <ul class="done">
-          <li>Arranca en QEMU, probado en más de 35 arranques seguidos desde cero.</li>
-          <li>Ember funciona como primer proceso del sistema (PID 1).</li>
-          <li>Procesos en modo usuario con expropiación real y señales.</li>
-          <li>Llamadas POSIX básicas: <code>read</code>, <code>write</code>, <code>open</code>, <code>mmap</code> y compañía.</li>
-          <li>Red con driver RTL8139 (hace ping), disco por AHCI, ext2 de solo lectura y tablas GPT/MBR.</li>
+  <section id="estado" aria-labelledby="h-estado">
+    <h2 id="h-estado">Estado</h2>
+    <div class="grid">
+      <article class="box">
+        <span class="tag">funciona</span>
+        <ul class="list">
+          <li><span class="st">[ OK ]</span><span>Arranca en QEMU, probado en más de 35 arranques seguidos desde cero.</span></li>
+          <li><span class="st">[ OK ]</span><span>Ember funciona como primer proceso del sistema (PID 1).</span></li>
+          <li><span class="st">[ OK ]</span><span>Procesos en modo usuario con expropiación real y señales.</span></li>
+          <li><span class="st">[ OK ]</span><span>Llamadas POSIX básicas: <code>read</code>, <code>write</code>, <code>open</code>, <code>mmap</code> y compañía.</span></li>
+          <li><span class="st">[ OK ]</span><span>Red con driver RTL8139 (hace ping), disco por AHCI, ext2 de solo lectura y tablas GPT/MBR.</span></li>
         </ul>
       </article>
-      <article class="card">
-        <span class="chan">EN CURSO</span>
-        <h3>Lo siguiente</h3>
-        <ul class="todo">
-          <li>Terminar de portar mlibc, la libc, para que arranquen programas normales. Ya compila contra Forge OS.</li>
-          <li>Bellows, la shell del sistema.</li>
+      <article class="box">
+        <span class="tag">en curso</span>
+        <ul class="list todo">
+          <li><span class="st">[ .. ]</span><span>Terminar de portar mlibc, la libc, para que arranquen programas normales. Ya compila contra Forge OS.</span></li>
+          <li><span class="st">[ .. ]</span><span>Bellows, la shell del sistema.</span></li>
         </ul>
       </article>
     </div>
   </section>
 
-  <section class="sec" id="unete" aria-labelledby="h-unete" style="padding-top:0">
-    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>03 · ÚNETE</span></p>
-    <h2 id="h-unete">Únete a Forge OS</h2>
-    <p class="sec-intro">Forge OS es un proyecto largo y de bajo nivel. Si te gusta Rust, los kernels o depurar cosas raras en QEMU, hay sitio. No hace falta saberlo todo: también hacen falta pruebas y documentación. Esta solicitud es solo para Forge OS. Para el resto de Static Forge está la <a href="/#solicitud">solicitud general</a>.</p>
+  <section id="unete" aria-labelledby="h-unete">
+    <h2 id="h-unete">Únete</h2>
+    <p class="intro">Forge OS es un proyecto largo y de bajo nivel. Si te gusta Rust, los kernels o depurar cosas raras en QEMU, hay sitio. No hace falta saberlo todo: también hacen falta pruebas y documentación. Esta solicitud es solo para Forge OS. Para el resto de Static Forge está la <a href="/#solicitud">solicitud general</a>.</p>
     <form class="joinf" data-join="forgeos" novalidate aria-labelledby="h-unete"></form>
   </section>
 </div>
 </main>
 
 <footer>
-  <svg class="swoosh" viewBox="0 0 1440 130" preserveAspectRatio="none" aria-hidden="true">
-    <path class="p1" vector-effect="non-scaling-stroke" d="M-20 98 C 380 98, 560 30, 900 38 S 1300 92, 1460 84"/>
-    <path class="p2" vector-effect="non-scaling-stroke" d="M-20 70 C 380 70, 560 2, 900 10 S 1300 64, 1460 56"/>
-    <path class="p3" vector-effect="non-scaling-stroke" d="M-20 126 C 380 126, 560 58, 900 66 S 1300 120, 1460 112"/>
-  </svg>
-  <div class="wrap">
-    <div class="foot">
-      <span class="eob crt-txt">FIN DE LA EMISIÓN</span>
-      <span>© 2026 Static Forge · KCRooty (Core) · <a href="/">staticforge.dpdns.org</a></span>
-    </div>
+  <div class="wrap foot">
+    <span class="end">FIN DE LA TRANSMISIÓN_</span>
+    <span>Forge OS es un proyecto de <a href="/">Static Forge</a> · KCRooty (Core) · GPL-2.0+</span>
   </div>
 </footer>
 
-<script src="/assets/sf.js"></script>
+<script>
+(function(){
+  var d=document.documentElement,b=document.getElementById('crtBtn');
+  function sync(){var on=d.getAttribute('data-crt')!=='off';b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',on?'Efecto CRT activado':'Efecto CRT desactivado')}
+  b.addEventListener('click',function(){
+    var next=d.getAttribute('data-crt')==='off'?'on':'off';
+    d.setAttribute('data-crt',next);try{localStorage.setItem('sf-crt',next)}catch(e){}sync();
+  });
+  sync();
+})();
+</script>
 <script src="/assets/join.js"></script>
 </body>
 </html>
