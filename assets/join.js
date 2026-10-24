@@ -21,7 +21,11 @@
       'lg.areas': 'Qué se te da bien', 'lg.why': 'Por qué',
       'f.name': 'Nombre o alias', 'h.name': 'Como quieras que te llamemos. No hace falta tu nombre real.',
       'f.age': 'Edad', 'age.pick': 'Elige un tramo',
-      'age.u14': 'Menos de 14', 'age.14-15': '14 o 15', 'age.16-17': '16 o 17', 'age.18-24': 'De 18 a 24', 'age.25+': '25 o más',
+      'age.u13': 'Menos de 13', 'age.13': '13', 'age.u14': 'Menos de 14',
+      'info.req': 'Requisitos', 'req.1': 'Tener 13 años o más. Con 13, necesitas permiso de tu madre, padre o tutor.', 'req.2': 'Tener un correo electrónico propio.',
+      'req.3': 'Saber algo de lo que hace el estudio: programar, dibujar, modelar en 3D, componer, doblar, escribir… aunque estés empezando. Solo jugar no cuenta.',
+      'info.ben': 'Qué ganas si entras', 'ben.1': 'Acceso a betas y demos de los juegos antes que nadie.', 'ben.2': 'ISOs de acceso anticipado de Static Linux y Forge OS.', 'ben.3': 'Tus propios proyectos publicados y distribuidos bajo Static Forge.',
+      'f.reqs': 'Cumplo los requisitos de arriba.', 'e.reqs': 'Tienes que cumplir los requisitos para enviar la solicitud.', 'e.age13': 'Para unirte hace falta tener al menos 13 años.', 'age.14-15': '14 o 15', 'age.16-17': '16 o 17', 'age.18-24': 'De 18 a 24', 'age.25+': '25 o más',
       'f.guardian': 'Tengo permiso de mi madre, padre o tutor para enviar esta solicitud.',
       'f.email': 'Correo electrónico', 'h.email': 'Aquí te llegará la confirmación y la respuesta.',
       'f.discord': 'Usuario de Discord', 'h.discord': 'Por si prefieres hablar por ahí. Por ejemplo: kcrooty',
@@ -49,7 +53,7 @@
       'done.h': 'Solicitud enviada', 'done.p': 'Ha llegado bien. KCRooty (Core) la leerá y te contestará por correo o por Discord.', 'done.again': 'Enviar otra',
       'e.req': 'Este campo hace falta.', 'e.min': 'Escribe al menos {n} caracteres.', 'e.pick': 'Elige una opción.',
       'e.checks': 'Marca al menos una opción.', 'e.consent': 'Tienes que aceptar el aviso para enviar la solicitud.',
-      'e.guardian': 'Con menos de 14 años necesitas este permiso.', 'e.fix': 'Revisa los campos marcados.',
+      'e.guardian': 'Con 13 años necesitas este permiso.', 'e.fix': 'Revisa los campos marcados.',
       'e.net': 'No se ha podido conectar con el servidor. Comprueba tu conexión y vuelve a intentarlo.',
       'e.slow': 'Has enviado varias solicitudes hoy. Prueba mañana o escribe a ' + MAIL + '.',
       // Static Linux
@@ -74,7 +78,11 @@
       'lg.you': 'About you', 'lg.what': 'What you want to do', 'lg.areas': 'What you are good at', 'lg.why': 'Why',
       'f.name': 'Name or alias', 'h.name': 'Whatever you want us to call you. Your real name is not needed.',
       'f.age': 'Age', 'age.pick': 'Pick a range',
-      'age.u14': 'Under 14', 'age.14-15': '14 or 15', 'age.16-17': '16 or 17', 'age.18-24': '18 to 24', 'age.25+': '25 or older',
+      'age.u13': 'Under 13', 'age.13': '13', 'age.u14': 'Under 14',
+      'info.req': 'Requirements', 'req.1': '13 or older. At 13, you need permission from your mother, father or guardian.', 'req.2': 'Your own email address.',
+      'req.3': 'Some skill related to what the studio does: coding, drawing, 3D modelling, music, voice acting, writing… even if you are just starting. Only playing games does not count.',
+      'info.ben': 'What you get if you join', 'ben.1': 'Game betas and demos before anyone else.', 'ben.2': 'Early access ISOs of Static Linux and Forge OS.', 'ben.3': 'Your own projects published and distributed under Static Forge.',
+      'f.reqs': 'I meet the requirements above.', 'e.reqs': 'You need to meet the requirements to send the application.', 'e.age13': 'You need to be at least 13 to join.', 'age.14-15': '14 or 15', 'age.16-17': '16 or 17', 'age.18-24': '18 to 24', 'age.25+': '25 or older',
       'f.guardian': 'My mother, father or guardian has given me permission to send this application.',
       'f.email': 'Email', 'h.email': 'The confirmation and our reply will arrive here.',
       'f.discord': 'Discord username', 'h.discord': 'In case you would rather talk there. For example: kcrooty',
@@ -99,7 +107,7 @@
       'done.h': 'Application sent', 'done.p': 'It arrived. KCRooty (Core) will read it and reply by email or on Discord.', 'done.again': 'Send another',
       'e.req': 'This field is required.', 'e.min': 'Write at least {n} characters.', 'e.pick': 'Pick an option.',
       'e.checks': 'Tick at least one option.', 'e.consent': 'You need to accept the notice to send the application.',
-      'e.guardian': 'Under 14 you need this permission.', 'e.fix': 'Check the highlighted fields.',
+      'e.guardian': 'At 13 you need this permission.', 'e.fix': 'Check the highlighted fields.',
       'e.net': 'Could not reach the server. Check your connection and try again.',
       'e.slow': 'You have sent several applications today. Try tomorrow or write to ' + MAIL + '.'
     },
@@ -108,7 +116,11 @@
       'lg.you': 'Qui ets', 'lg.what': 'Què vols fer', 'lg.areas': 'Què se’t dona bé', 'lg.why': 'Per què',
       'f.name': 'Nom o àlies', 'h.name': 'Com vulguis que et diguem. No cal el teu nom real.',
       'f.age': 'Edat', 'age.pick': 'Tria una franja',
-      'age.u14': 'Menys de 14', 'age.14-15': '14 o 15', 'age.16-17': '16 o 17', 'age.18-24': 'De 18 a 24', 'age.25+': '25 o més',
+      'age.u13': 'Menys de 13', 'age.13': '13', 'age.u14': 'Menys de 14',
+      'info.req': 'Requisits', 'req.1': 'Tenir 13 anys o més. Amb 13, necessites permís de la teva mare, pare o tutor.', 'req.2': 'Tenir un correu electrònic propi.',
+      'req.3': 'Saber alguna cosa del que fa l’estudi: programar, dibuixar, modelar en 3D, compondre, doblar, escriure… encara que estiguis començant. Només jugar no compta.',
+      'info.ben': 'Què hi guanyes si entres', 'ben.1': 'Accés a betes i demos dels jocs abans que ningú.', 'ben.2': 'ISOs d’accés anticipat de Static Linux i Forge OS.', 'ben.3': 'Els teus propis projectes publicats i distribuïts sota Static Forge.',
+      'f.reqs': 'Compleixo els requisits de dalt.', 'e.reqs': 'Has de complir els requisits per enviar la sol·licitud.', 'e.age13': 'Per unir-t’hi cal tenir almenys 13 anys.', 'age.14-15': '14 o 15', 'age.16-17': '16 o 17', 'age.18-24': 'De 18 a 24', 'age.25+': '25 o més',
       'f.guardian': 'Tinc permís de la meva mare, pare o tutor per enviar aquesta sol·licitud.',
       'f.email': 'Correu electrònic', 'h.email': 'Aquí t’arribarà la confirmació i la resposta.',
       'f.discord': 'Usuari de Discord', 'h.discord': 'Per si prefereixes parlar per allà. Per exemple: kcrooty',
@@ -133,7 +145,7 @@
       'done.h': 'Sol·licitud enviada', 'done.p': 'Ha arribat bé. En KCRooty (Core) la llegirà i et respondrà per correu o per Discord.', 'done.again': 'Enviar-ne una altra',
       'e.req': 'Aquest camp és necessari.', 'e.min': 'Escriu almenys {n} caràcters.', 'e.pick': 'Tria una opció.',
       'e.checks': 'Marca almenys una opció.', 'e.consent': 'Has d’acceptar l’avís per enviar la sol·licitud.',
-      'e.guardian': 'Amb menys de 14 anys necessites aquest permís.', 'e.fix': 'Revisa els camps marcats.',
+      'e.guardian': 'Amb 13 anys necessites aquest permís.', 'e.fix': 'Revisa els camps marcats.',
       'e.net': 'No s’ha pogut connectar amb el servidor. Comprova la connexió i torna-ho a provar.',
       'e.slow': 'Avui ja has enviat diverses sol·licituds. Prova demà o escriu a ' + MAIL + '.'
     }
@@ -143,7 +155,7 @@
   function t(k) { var l = S[lang()]; return (l[k] != null ? l[k] : S.es[k] != null ? S.es[k] : k); }
 
   /* ── Definición de cada formulario ── */
-  var AGES = ['u14', '14-15', '16-17', '18-24', '25+'];
+  var AGES = ['u13', '13', '14-15', '16-17', '18-24', '25+'];
   var EMAIL_RE = /^[^\s@<>"',;:()]{1,64}@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
   var DISCORD_RE = /^(?:[a-z0-9_.]{2,32}|[^\s@#:]{2,32}#\d{4})$/i;
   var AVAIL = ['', 'month', 'week', 'lots', 'depends'];
@@ -153,7 +165,7 @@
   var YOU = [
     { type: 'text', name: 'name', label: 'f.name', hint: 'h.name', min: 2, max: 60, ac: 'nickname' },
     { type: 'select', name: 'age', label: 'f.age', options: opts(AGES, 'age.'), placeholder: 'age.pick' },
-    { type: 'check', name: 'guardian', label: 'f.guardian', showIf: function (v) { return v.age === 'u14'; } },
+    { type: 'check', name: 'guardian', label: 'f.guardian', showIf: function (v) { return v.age === '13'; } },
     { type: 'text', input: 'email', name: 'email', label: 'f.email', hint: 'h.email', min: 6, max: 254, ac: 'email' },
     { type: 'text', name: 'discord', label: 'f.discord', hint: 'h.discord', min: 0, max: 40, optional: true, ac: 'off' },
     { type: 'area', name: 'links', label: 'f.links', hint: 'h.links', min: 0, max: 800, rows: 3, optional: true },
@@ -248,7 +260,12 @@
     var spec = TRACKS[track];
     if (!spec) return;
     var id = 'j' + track;
-    var html = spec.map(function (sec) {
+    var li = function (k) { return '<li data-j="' + k + '">' + esc(t(k)) + '</li>'; };
+    var info = '<div class="jinfo">' +
+      '<div><h3 id="' + id + '-req" data-j="info.req">' + esc(t('info.req')) + '</h3><ul aria-labelledby="' + id + '-req">' + li('req.1') + li('req.2') + li('req.3') + '</ul></div>' +
+      '<div><h3 id="' + id + '-ben" data-j="info.ben">' + esc(t('info.ben')) + '</h3><ul aria-labelledby="' + id + '-ben">' + li('ben.1') + li('ben.2') + li('ben.3') + '</ul></div>' +
+      '</div>';
+    var html = info + spec.map(function (sec) {
       return '<fieldset class="jsec"><legend data-j="' + sec.legend + '">' + esc(t(sec.legend)) + '</legend>' +
         sec.fields.map(function (f) { return fieldHtml(f, id); }).join('') + '</fieldset>';
     }).join('');
@@ -256,6 +273,8 @@
       '<div class="jtrap" aria-hidden="true"><label>Web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>' +
       '<div class="jfoot">' +
         '<p class="jprivacy"><span data-j="privacy">' + esc(t('privacy')) + '</span><a href="mailto:' + MAIL + '">' + MAIL + '</a>.</p>' +
+        '<div class="jf" data-field="reqs"><label class="jchk solo"><input type="checkbox" name="reqs" id="' + id + '-reqs" aria-describedby="' + id + '-reqs-e" aria-required="true">' + J('f.reqs') + '</label>' +
+        '<p class="jerr" id="' + id + '-reqs-e" aria-live="polite"></p></div>' +
         '<div class="jf" data-field="consent"><label class="jchk solo"><input type="checkbox" name="consent" id="' + id + '-consent" aria-describedby="' + id + '-consent-e" aria-required="true">' + J('f.consent') + '</label>' +
         '<p class="jerr" id="' + id + '-consent-e" aria-live="polite"></p></div>' +
         '<div class="jts" hidden></div>' +
@@ -290,6 +309,7 @@
       }
     });
     v.consent = form.elements.consent.checked;
+    v.reqs = form.elements.reqs.checked;
     v.website = form.elements.website.value;
     return v;
   }
@@ -329,6 +349,7 @@
         else if (val && val.length < f.min) msg = t('e.min').replace('{n}', f.min);
       } else if (f.type === 'select' || f.type === 'radios') {
         if (!f.optional && !val) msg = t('e.pick');
+        else if (f.name === 'age' && val === 'u13') msg = t('e.age13');
       } else if (f.type === 'checks') {
         if (!val.length) msg = t('e.checks');
       } else if (f.type === 'check') {
@@ -336,6 +357,9 @@
       }
       if (msg) { setErr(w, msg); bad.push(w); }
     });
+    var rw = form.querySelector('[data-field="reqs"]');
+    clearErr(rw);
+    if (!v.reqs) { setErr(rw, t('e.reqs')); bad.push(rw); }
     var cw = form.querySelector('[data-field="consent"]');
     clearErr(cw);
     if (!v.consent) { setErr(cw, t('e.consent')); bad.push(cw); }
@@ -365,6 +389,7 @@
       if (!w.hidden) payload[f.name] = v[f.name];
     });
     payload.consent = v.consent;
+    payload.reqs = v.reqs;
     payload.website = v.website;
     if (form._ts) payload.turnstile = form._tsToken || '';
 

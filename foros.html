@@ -240,6 +240,8 @@ authForm.addEventListener('submit',function(e){
   say(authStatus,act==='login'?'Comprobando…':'Creando la cuenta…');
   api('POST',act==='login'?'/api/login':'/api/register',data).then(function(d){
     $('password').value='';setSession(d.token,d.user);say(authStatus,act==='login'?'Hola, '+d.user.name+'.':'Cuenta creada. Bienvenido, '+d.user.name+'.','ok');
+    /* Si venías del panel de solicitudes (p. ej. desde un botón de Discord), vuelve allí. */
+    try{var back=sessionStorage.getItem('sf-return');if(back&&/^\/solicitudes\.html(#[A-Za-z0-9\/]*)?$/.test(back)){sessionStorage.removeItem('sf-return');location.href=back;return}}catch(e){}
     if(current) loadThread(current);
   }).catch(function(err){say(authStatus,err.message,'err')}).then(function(){
     btns.forEach(function(b){b.disabled=false});

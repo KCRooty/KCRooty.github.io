@@ -24,12 +24,15 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
 .bar label{font:400 1.1rem var(--fc);letter-spacing:.06em;color:var(--muted)}
 .count{margin-left:auto;font:400 1.15rem var(--fc);letter-spacing:.06em;color:var(--muted)}
 .apps{display:grid;gap:16px;margin-top:24px}
-.app{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
+.app{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;scroll-margin-top:90px}
 .app.nueva{border-color:var(--phosphor)}
+.app.target{box-shadow:0 0 0 3px color-mix(in srgb,var(--phosphor) 45%,transparent)}
 .app-h{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
 .app-h h2{font:600 1.45rem/1.2 var(--fd);margin:0}
 .tag{font:400 1.05rem/1 var(--fc);letter-spacing:.06em;padding:4px 10px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}
 .tag.tr{color:var(--ink)}
+.tag.ok{color:#3FB950;border-color:#3FB950}
+.tag.no{color:#E5484D;border-color:#E5484D}
 .meta{margin-left:auto;font-size:.9rem;color:var(--muted)}
 .app dl{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:10px 20px;margin:18px 0 0}
 .app dt{font:400 1.05rem/1.45 var(--fc);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -39,8 +42,22 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
 .acts .lbl{font:400 1.05rem var(--fc);letter-spacing:.06em;color:var(--muted);margin-right:4px}
 .sbtn{min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--bg);color:var(--ink);font:500 .92rem var(--fb);cursor:pointer}
 .sbtn[aria-pressed="true"]{border-color:var(--phosphor);background:color-mix(in srgb,var(--phosphor) 14%,var(--bg))}
+.sbtn[disabled]{opacity:.6;cursor:progress}
+.dec{font-weight:700}
+.dec.yes{border-color:#2E8B47}
+.dec.no{border-color:#C0392B}
+.dec.armed.yes{background:#2E8B47;border-color:#2E8B47;color:#fff}
+.dec.armed.no{background:#B3261E;border-color:#B3261E;color:#fff}
+.done-note{font-weight:600}
 .del{margin-left:auto;border-color:color-mix(in srgb,#E5484D 60%,var(--line))}
 .del.armed{background:#B3261E;border-color:#B3261E;color:#fff}
+.msg{width:100%;margin:6px 0 0;font-size:.95rem;font-weight:600}
+.msg.ok{color:#3FB950}
+.msg.err{color:#FF8F80}
+[data-theme="paper"] .msg.ok{color:#1F7A36}
+[data-theme="paper"] .msg.err{color:#B3261E}
+[data-theme="paper"] .tag.ok{color:#1F7A36;border-color:#1F7A36}
+[data-theme="paper"] .tag.no{color:#B3261E;border-color:#B3261E}
 .state{padding:48px 24px;text-align:center;border:1px dashed var(--line);border-radius:var(--r);color:var(--muted);margin-top:24px}
 .state b{display:block;font:400 1.6rem/1.2 var(--fc);letter-spacing:.08em;color:var(--phosphor);margin-bottom:8px}
 .state a{color:var(--ink)}
@@ -77,7 +94,7 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
   <section class="sec" aria-labelledby="h-sol" style="padding-bottom:0">
     <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>ADMINISTRACIÓN</span></p>
     <h1 id="h-sol" class="h1" style="font-size:clamp(2.2rem,5vw,3.4rem)">Solicitudes</h1>
-    <p class="sec-intro">Lo que llega desde los formularios de «Únete». Solo lo ve una cuenta de administración del foro. Cada solicitud se borra sola a los 180 días.</p>
+    <p class="sec-intro">Lo que llega desde los formularios de «Únete». Solo lo ve una cuenta de administración del foro. Al aceptar o rechazar, la persona recibe un correo con la respuesta, en su idioma, y el mensaje de Discord se actualiza. Cada solicitud se borra sola a los 180 días.</p>
     <div class="bar" id="bar" hidden>
       <div class="chips" role="group" aria-label="Formulario">
         <button type="button" class="chip" data-track="" aria-pressed="true">Todas</button>
@@ -88,7 +105,7 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
       <label for="stSel">ESTADO</label>
       <select id="stSel">
         <option value="">Todos</option><option value="nueva">Nuevas</option><option value="vista">Vistas</option>
-        <option value="aceptada">Aceptadas</option><option value="descartada">Descartadas</option>
+        <option value="aceptada">Aceptadas</option><option value="descartada">Rechazadas</option>
       </select>
       <span class="count" id="count" aria-live="polite"></span>
     </div>
@@ -108,7 +125,7 @@ var out=document.getElementById('out'), bar=document.getElementById('bar'), coun
 var track='', status='';
 
 var TRACK={sf:'Estudio',linux:'Static Linux',forgeos:'Forge OS'};
-var AGE={'u14':'Menos de 14','14-15':'14 o 15','16-17':'16 o 17','18-24':'18 a 24','25+':'25 o más'};
+var AGE={'u13':'Menos de 13','13':'13 (con permiso de tutor)','u14':'Menos de 14','14-15':'14 o 15','16-17':'16 o 17','18-24':'18 a 24','25+':'25 o más'};
 var AVAIL={'':'Sin especificar',month:'Unas horas al mes',week:'Unas horas a la semana',lots:'Bastante tiempo',depends:'Depende de la época'};
 var MODE={join:'Unirse a proyectos de SF',own:'Traer un proyecto suyo',both:'Las dos cosas'};
 var PROJ={donnies:"Donnie's Origins",fnafas:'FNAF AS',linux:'Static Linux',forgeos:'Forge OS',winforge:'WinForge',rck:'RCK',kcdl:'KC Downloader',any:'Donde haga falta'};
@@ -119,7 +136,7 @@ var AREAS={
 };
 var EXP={new:'Empezando con Linux',daily:'Usa Linux a diario',arch:'Usa Arch o derivada',maint:'Empaqueta o mantiene software'};
 var RUST={none:'No ha usado Rust',basic:'Lo básico',ok:'Se mueve bien',nostd:'Ha hecho no_std o embebido'};
-var STATUS=['nueva','vista','aceptada','descartada'];
+var LANG={es:'Castellano',en:'Inglés',ca:'Catalán'};
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function map(list,dict){return (list||[]).map(function(k){return dict[k]||k}).join(', ')}
@@ -130,46 +147,90 @@ function linkify(text){
 }
 function state(title,msg,extra){out.innerHTML='<div class="state"><b>'+title+'</b>'+msg+(extra||'')+'</div>'}
 
+/* Llegada desde los botones de Discord: #decidir/ID/aceptar|rechazar o #solicitud/ID */
+var target=null;
+(function(){
+  var m=location.hash.match(/^#(decidir|solicitud)\/(\d+)(?:\/(aceptar|rechazar))?$/);
+  if(m) target={id:m[2],dec:m[1]==='decidir'?m[3]:null};
+})();
+
 function api(path,opts){
   opts=opts||{}; opts.headers=Object.assign({'Authorization':'Bearer '+token},opts.headers||{});
   return fetch(API+path,opts).then(function(r){return r.json().catch(function(){return {}}).then(function(d){return {ok:r.ok,status:r.status,d:d}})});
 }
 
 function row(k,v,raw){return v?'<dt>'+k+'</dt><dd>'+(raw?v:esc(v))+'</dd>':''}
+function decBlock(a){
+  if(a.decided){
+    var yes=a.status==='aceptada';
+    return '<span class="done-note">'+(yes?'✅ Aceptada':'❌ Rechazada')+' · respuesta enviada el '+date(a.decided)+'</span>';
+  }
+  return '<button type="button" class="sbtn dec yes" data-dec="aceptar">Aceptar y avisar</button>'+
+         '<button type="button" class="sbtn dec no" data-dec="rechazar">Rechazar y avisar</button>';
+}
 function card(a){
   var d=a.data||{}, ar=AREAS[a.track]||{};
   var rows=row('Correo',a.contact?'<a href="mailto:'+esc(a.contact)+'">'+esc(a.contact)+'</a>':'',true)+row('Discord',d.discord)+row('Edad',AGE[a.age]||a.age)+
-    row('Redes y portfolio',d.links?linkify(d.links):'',true)+row('Quién es',d.who);
+    row('Idioma',LANG[d.lang]||'')+row('Redes y portfolio',d.links?linkify(d.links):'',true)+row('Quién es',d.who);
   if(a.track==='sf'){rows+=row('Quiere',MODE[d.mode]||d.mode)+row('Proyectos',map(d.projects,PROJ))+row('Su proyecto',d.own?linkify(d.own):'',true)}
   if(a.track==='linux'){rows+=row('Experiencia',EXP[d.exp]||d.exp)+row('Hardware',d.hw)}
   if(a.track==='forgeos'){rows+=row('Rust',RUST[d.rust]||d.rust)+row('Bajo nivel',d.lowlevel)}
-  rows+=row('Áreas',map(d.areas,ar))+row('Por qué',d.why)+row('Tiempo',AVAIL[d.avail||''])+(a.age==='u14'?row('Permiso','Declara tener permiso de su madre, padre o tutor'):'');
-  var btns=STATUS.map(function(s){return '<button type="button" class="sbtn" data-st="'+s+'" aria-pressed="'+(a.status===s)+'">'+s.charAt(0).toUpperCase()+s.slice(1)+'</button>'}).join('');
-  return '<article class="app '+esc(a.status)+'" data-id="'+a.id+'" aria-labelledby="ap'+a.id+'">'+
-    '<div class="app-h"><h2 id="ap'+a.id+'">'+esc(a.name)+'</h2><span class="tag tr">'+esc(TRACK[a.track]||a.track)+'</span><span class="tag">'+esc(a.status.toUpperCase())+'</span>'+
+  rows+=row('Áreas',map(d.areas,ar))+row('Por qué',d.why)+row('Tiempo',AVAIL[d.avail||''])+((a.age==='13'||a.age==='u14')?row('Permiso','Declara tener permiso de su madre, padre o tutor'):'');
+  var tagCls=a.status==='aceptada'?' ok':a.status==='descartada'?' no':'';
+  var stLabel=a.status==='descartada'?'RECHAZADA':a.status.toUpperCase();
+  var seen=a.decided?'':'<span class="lbl">ESTADO</span>'+['nueva','vista'].map(function(s){return '<button type="button" class="sbtn" data-st="'+s+'" aria-pressed="'+(a.status===s)+'">'+(s==='nueva'?'Nueva':'Vista')+'</button>'}).join('');
+  return '<article class="app '+esc(a.status)+'" id="sol-'+a.id+'" data-id="'+a.id+'" aria-labelledby="ap'+a.id+'">'+
+    '<div class="app-h"><h2 id="ap'+a.id+'">'+esc(a.name)+'</h2><span class="tag tr">'+esc(TRACK[a.track]||a.track)+'</span><span class="tag st'+tagCls+'">'+esc(stLabel)+'</span>'+
     '<span class="meta">Llegó el '+date(a.created)+' · se borra el '+date(a.expires)+'</span></div>'+
     '<dl>'+rows+'</dl>'+
-    '<div class="acts" role="group" aria-label="Estado de la solicitud de '+esc(a.name)+'"><span class="lbl">ESTADO</span>'+btns+
-    '<button type="button" class="sbtn del" data-del>Borrar</button></div></article>';
+    '<div class="acts" role="group" aria-label="Acciones sobre la solicitud de '+esc(a.name)+'">'+seen+
+    '<span class="lbl">RESPUESTA</span>'+decBlock(a)+
+    '<button type="button" class="sbtn del" data-del>Borrar</button><p class="msg" role="status"></p></div></article>';
+}
+
+function focusTarget(){
+  if(!target) return;
+  var art=document.getElementById('sol-'+target.id);
+  if(!art){state('NO ENCONTRADA','Esa solicitud ya no existe (puede que se borrara o que pasaran 180 días).');target=null;return}
+  art.classList.add('target'); art.scrollIntoView({block:'start'});
+  if(target.dec){
+    var b=art.querySelector('[data-dec="'+target.dec+'"]');
+    if(b){arm(b);b.focus();say(art,'Pulsa «'+b.textContent+'» para enviar la respuesta por correo.','')}
+    else say(art,'A esta solicitud ya se le respondió.','');
+  } else art.querySelector('h2').setAttribute('tabindex','-1'), art.querySelector('h2').focus();
+  target=null;
 }
 
 function load(){
-  if(!token){state('SIN SESIÓN','Entra en el <a href="/foros.html">foro</a> con una cuenta de administración y vuelve aquí.');return}
+  if(!token){
+    try{sessionStorage.setItem('sf-return',location.pathname+location.hash)}catch(e){}
+    state('SIN SESIÓN','Entra en el <a href="/foros.html">foro</a> con una cuenta de administración. Al entrar volverás aquí.');return;
+  }
   state('SINTONIZANDO…','Cargando solicitudes.');
   var q=[]; if(track) q.push('track='+track); if(status) q.push('status='+status);
   api('/api/applications'+(q.length?'?'+q.join('&'):'')).then(function(r){
-    if(r.status===401){state('SIN SESIÓN','La sesión ha caducado. Vuelve a entrar en el <a href="/foros.html">foro</a>.');return}
+    if(r.status===401){try{sessionStorage.setItem('sf-return',location.pathname+location.hash)}catch(e){}state('SIN SESIÓN','La sesión ha caducado. Vuelve a entrar en el <a href="/foros.html">foro</a>; al entrar volverás aquí.');return}
     if(r.status===403){state('SIN ACCESO','Esta cuenta no es de administración.');return}
     if(!r.ok){throw new Error(r.d.message||'error')}
     bar.hidden=false;
     var list=r.d.applications||[];
     count.textContent=list.length+(list.length===1?' solicitud':' solicitudes');
-    if(!list.length){state('CANAL VACÍO','No hay solicitudes con este filtro.');return}
+    if(!list.length){state('CANAL VACÍO','No hay solicitudes con este filtro.');target=null;return}
     out.innerHTML='<div class="apps">'+list.map(card).join('')+'</div>';
+    focusTarget();
   }).catch(function(){
     state('SIN SEÑAL','La API no responde.','<br><button type="button" class="btn" data-retry>Reintentar</button>');
   });
 }
+
+function say(art,text,kind){var m=art.querySelector('.msg');m.textContent=text;m.className='msg'+(kind?' '+kind:'')}
+function arm(b){
+  out.querySelectorAll('.dec.armed').forEach(function(x){if(x!==b)disarm(x)});
+  b.classList.add('armed');b.dataset.label=b.dataset.label||b.textContent;
+  b.textContent=b.dataset.dec==='aceptar'?'Confirmar: aceptar y enviar correo':'Confirmar: rechazar y enviar correo';
+  clearTimeout(b._t);b._t=setTimeout(function(){disarm(b)},10000);
+}
+function disarm(b){b.classList.remove('armed');if(b.dataset.label)b.textContent=b.dataset.label}
 
 document.querySelectorAll('.chip').forEach(function(b){b.addEventListener('click',function(){
   track=b.dataset.track; document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))}); load();
@@ -179,13 +240,32 @@ document.getElementById('stSel').addEventListener('change',function(e){status=e.
 out.addEventListener('click',function(e){
   if(e.target.closest('[data-retry]')){load();return}
   var art=e.target.closest('.app'); if(!art) return;
-  var id=art.dataset.id, sb=e.target.closest('[data-st]'), del=e.target.closest('[data-del]');
+  var id=art.dataset.id, sb=e.target.closest('[data-st]'), del=e.target.closest('[data-del]'), dec=e.target.closest('[data-dec]');
+  if(dec){
+    if(!dec.classList.contains('armed')){arm(dec);say(art,'Pulsa otra vez para confirmar. Se enviará un correo a esta persona.','');return}
+    clearTimeout(dec._t);
+    var all=art.querySelectorAll('[data-dec]');all.forEach(function(x){x.disabled=true});
+    say(art,'Enviando el correo…','');
+    api('/api/applications/'+id+'/decision',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({decision:dec.dataset.dec})}).then(function(r){
+      if(!r.ok){all.forEach(function(x){x.disabled=false});disarm(dec);say(art,r.d.message||'No se ha podido enviar.','err');return}
+      var yes=r.d.status==='aceptada';
+      art.className='app '+r.d.status;
+      var tag=art.querySelector('.tag.st');tag.textContent=yes?'ACEPTADA':'RECHAZADA';tag.className='tag st '+(yes?'ok':'no');
+      art.querySelectorAll('[data-st]').forEach(function(x){x.remove()});
+      var lbl=art.querySelector('.acts .lbl');if(lbl&&lbl.textContent==='ESTADO')lbl.remove();
+      var wrap=document.createElement('span');wrap.className='done-note';wrap.textContent=(yes?'✅ Aceptada':'❌ Rechazada')+' · respuesta enviada el '+date(r.d.decided);
+      all[0].parentNode.insertBefore(wrap,all[0]);all.forEach(function(x){x.remove()});
+      say(art,yes?'Hecho: le ha llegado el correo de bienvenida y el mensaje de Discord se ha actualizado.':'Hecho: le ha llegado el correo y el mensaje de Discord se ha actualizado.','ok');
+      if(history.replaceState&&/^#decidir/.test(location.hash))history.replaceState(null,'',location.pathname);
+    }).catch(function(){all.forEach(function(x){x.disabled=false});disarm(dec);say(art,'La API no responde. No se ha enviado nada.','err')});
+    return;
+  }
   if(sb){
     var st=sb.dataset.st; sb.disabled=true;
     api('/api/applications/'+id+'/status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:st})}).then(function(r){
       sb.disabled=false; if(!r.ok) return;
       art.querySelectorAll('[data-st]').forEach(function(x){x.setAttribute('aria-pressed',String(x===sb))});
-      art.className='app '+st; art.querySelectorAll('.tag')[1].textContent=st.toUpperCase();
+      art.className='app '+st; art.querySelector('.tag.st').textContent=st.toUpperCase();
     }).catch(function(){sb.disabled=false});
   }
   if(del){
