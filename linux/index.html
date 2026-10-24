@@ -154,7 +154,13 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+/* Solicitud: el formulario común (assets/join.css) con los colores de Static Linux */
+#unete .joinf{--j-ink:var(--text);--j-muted:var(--dim);--j-line:var(--line);--j-bg:var(--void);--j-panel:var(--panel);--j-acc:var(--green);--j-font:var(--fu);--j-mono:var(--fm);--j-r:var(--r-sm)}
+#unete .joinf .jsec>legend{font:500 .9rem/1 var(--fm);text-transform:none;letter-spacing:0}
+#unete .joinf .jdone h3{font:700 1.6rem/1.1 var(--fd);letter-spacing:-.02em}
+.join-intro a{color:var(--green)}
 </style>
+<link rel="stylesheet" href="/assets/join.css">
 </head>
 <body>
 <a class="skip" href="#main">Saltar al contenido</a>
@@ -167,6 +173,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
       <li><a href="#herramientas">Herramientas</a></li>
       <li><a href="#estado">Estado</a></li>
       <li><a href="#wiki">Wiki</a></li>
+      <li><a href="#unete">Únete</a></li>
     </ul>
     <a class="back" href="/">← Static Forge</a>
   </div>
@@ -182,6 +189,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
       <div class="cta">
         <a class="btn pri" href="#estado">Ver en qué punto está</a>
         <a class="btn" href="#wiki">Leer la wiki</a>
+        <a class="btn" href="#unete">Únete</a>
       </div>
       <div class="phases" aria-label="Fases del proyecto">
         <span class="ph ok">fase 1 ✓</span><span class="ph ok">fase 2 ✓</span><span class="ph now">fase 3 · en curso</span>
@@ -343,6 +351,13 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
       </div>
     </div>
   </section>
+
+  <section id="unete" aria-labelledby="h-unete">
+    <p class="label">05 · únete</p>
+    <h2 id="h-unete">Únete a Static Linux</h2>
+    <p class="intro join-intro">Static Linux lo hace un taller pequeño y la fase 3 tiene trabajo para varios perfiles: paquetes, el instalador, <code>sl-detect</code>, escritorios, la wiki o, simplemente, probarlo en equipos distintos. Esta solicitud es solo para Static Linux. Para el resto de Static Forge está la <a href="/#solicitud">solicitud general</a>.</p>
+    <form class="joinf" data-join="linux" novalidate aria-labelledby="h-unete"></form>
+  </section>
 </div>
 </main>
 
@@ -378,5 +393,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
   });
 })();
 </script>
+<script src="/assets/join.js"></script>
 </body>
 </html>

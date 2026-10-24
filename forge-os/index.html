@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="night" data-crt="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge OS · Static Forge</title>
+<meta name="description" content="Forge OS, el sistema operativo de Static Forge escrito desde cero en Rust: kernel propio para x86_64, userland propio y código abierto con licencia GPL-2.0+.">
+<meta property="og:title" content="Forge OS · Static Forge">
+<meta property="og:description" content="Un sistema operativo escrito desde cero en Rust. Kernel propio para x86_64, código abierto.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#14100C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..900,100&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
+<script>
+(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+var t=g('sf-theme');if(!t){try{t=matchMedia('(prefers-color-scheme: light)').matches?'paper':'night'}catch(e){t='night'}}
+d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');})();
+</script>
+<link rel="stylesheet" href="/assets/sf.css">
+<link rel="stylesheet" href="/assets/join.css">
+<style>
+.spec{padding:0;overflow:hidden}
+.spec-h{display:flex;justify-content:space-between;padding:14px 24px;border-bottom:1px solid var(--line);font:400 1.15rem/1 var(--fc);letter-spacing:.08em;color:var(--phosphor)}
+.spec dl{display:grid;grid-template-columns:auto 1fr;gap:12px 22px;padding:22px 24px 24px;margin:0}
+.spec dt{font:400 1.1rem/1.4 var(--fc);letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.spec dd{margin:0;color:var(--ink)}
+.done,.todo{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.done li,.todo li{position:relative;padding-left:26px;color:var(--ink)}
+.done li::before,.todo li::before{position:absolute;left:0;top:0;font:400 1.2rem/1.45 var(--fc)}
+.done li::before{content:"✓";color:var(--s3)}
+.todo li::before{content:"›";color:var(--phosphor)}
+.card h3{margin-top:10px}
+.card p{color:var(--muted);margin-top:8px}
+code{font-family:var(--fc);font-size:1.1em;color:var(--ink)}
+.sec-intro a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+@media (max-width:420px){.spec dl{grid-template-columns:1fr;gap:2px}.spec dd{margin-bottom:10px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="fx scan" aria-hidden="true"></div>
+<div class="fx vig" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Static Forge, inicio">
+      <span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">Static Forge</span>
+    </a>
+    <ul class="links" id="links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/#proyectos">Proyectos</a></li>
+      <li><a href="/forge-os/" aria-current="page">Forge OS</a></li>
+      <li><a href="#unete">Únete</a></li>
+      <li><a href="/foros.html">Foro</a></li>
+    </ul>
+    <div class="ctrls">
+      <button type="button" class="tbtn" id="themeBtn" aria-pressed="false">PAPEL</button>
+      <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">MENÚ</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <p class="osd crt-txt">CH 10 · SISTEMA OPERATIVO</p>
+      <h1 class="h1">Forge OS</h1>
+      <p class="lead">Un sistema operativo escrito desde cero en Rust: <strong>kernel propio para x86_64 y userland propio</strong>. Código abierto, sin telemetría y pensado para ser seguro desde la base.</p>
+      <div class="cta">
+        <a class="btn pri" href="#unete">Únete al proyecto</a>
+        <a class="btn" href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener">Código en GitHub ↗</a>
+      </div>
+    </div>
+    <aside class="card spec" aria-labelledby="h-spec">
+      <div class="spec-h crt-txt"><span id="h-spec">FICHA</span><span>FORGE OS</span></div>
+      <dl>
+        <dt>Lenguaje</dt><dd>Rust (no_std)</dd>
+        <dt>Arquitectura</dt><dd>x86_64</dd>
+        <dt>Kernel</dt><dd>Monolítico, propio</dd>
+        <dt>Userland</dt><dd>Ember, Bellows, Crucible, Anvil</dd>
+        <dt>Licencia</dt><dd>GPL-2.0+</dd>
+        <dt>Se prueba en</dt><dd>QEMU</dd>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="sec" aria-labelledby="h-que">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>01 · QUÉ ES</span></p>
+    <h2 id="h-que">Tres ideas de tres sistemas</h2>
+    <div class="grid2">
+      <article class="card">
+        <span class="chan">DISEÑO</span>
+        <h3>Lo mejor de Linux, OpenBSD y NT</h3>
+        <p>La interfaz de llamadas al sistema de Linux, la seguridad por defecto de OpenBSD (W^X, superficie mínima) y una capa de abstracción de hardware al estilo de Windows NT, para que el código de cada fabricante quede fuera del núcleo.</p>
+      </article>
+      <article class="card">
+        <span class="chan">PRINCIPIOS</span>
+        <h3>Ligero, privado y tuyo</h3>
+        <p>Cero telemetría y ningún servicio de fondo que no hayas pedido. La configuración va en texto plano y el escritorio, la shell y el tema se pueden cambiar.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-estado" style="padding-top:0">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>02 · ESTADO</span></p>
+    <h2 id="h-estado">En qué punto está</h2>
+    <div class="grid2">
+      <article class="card">
+        <span class="chan">FUNCIONA</span>
+        <h3>Ya arranca y ejecuta procesos</h3>
+        <ul class="done">
+          <li>Arranca en QEMU, probado en más de 35 arranques seguidos desde cero.</li>
+          <li>Ember funciona como primer proceso del sistema (PID 1).</li>
+          <li>Procesos en modo usuario con expropiación real y señales.</li>
+          <li>Llamadas POSIX básicas: <code>read</code>, <code>write</code>, <code>open</code>, <code>mmap</code> y compañía.</li>
+          <li>Red con driver RTL8139 (hace ping), disco por AHCI, ext2 de solo lectura y tablas GPT/MBR.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="chan">EN CURSO</span>
+        <h3>Lo siguiente</h3>
+        <ul class="todo">
+          <li>Terminar de portar mlibc, la libc, para que arranquen programas normales. Ya compila contra Forge OS.</li>
+          <li>Bellows, la shell del sistema.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" id="unete" aria-labelledby="h-unete" style="padding-top:0">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>03 · ÚNETE</span></p>
+    <h2 id="h-unete">Únete a Forge OS</h2>
+    <p class="sec-intro">Forge OS es un proyecto largo y de bajo nivel. Si te gusta Rust, los kernels o depurar cosas raras en QEMU, hay sitio. No hace falta saberlo todo: también hacen falta pruebas y documentación. Esta solicitud es solo para Forge OS. Para el resto de Static Forge está la <a href="/#solicitud">solicitud general</a>.</p>
+    <form class="joinf" data-join="forgeos" novalidate aria-labelledby="h-unete"></form>
+  </section>
+</div>
+</main>
+
+<footer>
+  <svg class="swoosh" viewBox="0 0 1440 130" preserveAspectRatio="none" aria-hidden="true">
+    <path class="p1" vector-effect="non-scaling-stroke" d="M-20 98 C 380 98, 560 30, 900 38 S 1300 92, 1460 84"/>
+    <path class="p2" vector-effect="non-scaling-stroke" d="M-20 70 C 380 70, 560 2, 900 10 S 1300 64, 1460 56"/>
+    <path class="p3" vector-effect="non-scaling-stroke" d="M-20 126 C 380 126, 560 58, 900 66 S 1300 120, 1460 112"/>
+  </svg>
+  <div class="wrap">
+    <div class="foot">
+      <span class="eob crt-txt">FIN DE LA EMISIÓN</span>
+      <span>© 2026 Static Forge · KCRooty (Core) · <a href="/">staticforge.dpdns.org</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/sf.js"></script>
+<script src="/assets/join.js"></script>
+</body>
+</html>

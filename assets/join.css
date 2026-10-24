@@ -1,0 +1,58 @@
+/* Static Forge · formulario para unirse (assets/join.js).
+   Usa los tokens de la página que lo carga. Por defecto, los del estilo híbrido;
+   linux/index.html redefine las --j-* con los suyos. */
+.joinf{
+  --j-ink:var(--ink);--j-muted:var(--muted);--j-line:var(--line);--j-bg:var(--bg);--j-panel:var(--surface);
+  --j-acc:var(--phosphor);--j-err:#FF8F80;--j-font:var(--fb);--j-mono:var(--fc);--j-r:var(--r-sm,10px);
+  display:grid;gap:20px;margin-top:28px;color:var(--j-ink);font-family:var(--j-font)
+}
+[data-theme="paper"] .joinf{--j-err:#B3261E}
+.joinf [hidden]{display:none!important}
+.joinf .jsec{margin:0;padding:6px 22px 24px;border:1px solid var(--j-line);border-radius:var(--j-r);background:var(--j-panel);min-width:0}
+.joinf .jsec>legend{padding:0 8px;margin-left:-8px;font:400 1.25rem/1 var(--j-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--j-acc)}
+.joinf .jf{display:grid;gap:6px;margin-top:18px;min-width:0}
+.joinf .jf>label,.joinf .jq{font:600 1rem/1.35 var(--j-font);color:var(--j-ink)}
+.joinf .jopt{font-weight:400;color:var(--j-muted)}
+.joinf .jh{margin:0;font-size:.9rem;line-height:1.45;color:var(--j-muted)}
+.joinf input[type=text],.joinf textarea,.joinf select{
+  width:100%;min-height:48px;padding:12px 14px;font:400 1rem/1.5 var(--j-font);color:var(--j-ink);
+  background:var(--j-bg);border:1px solid var(--j-line);border-radius:var(--j-r);transition:border-color .2s,box-shadow .2s
+}
+.joinf textarea{resize:vertical}
+.joinf select{appearance:none;padding-right:40px;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--j-muted) 50%),linear-gradient(135deg,var(--j-muted) 50%,transparent 50%);
+  background-position:right 20px center,right 14px center;background-size:6px 6px;background-repeat:no-repeat}
+.joinf select option{background:var(--j-bg);color:var(--j-ink)}
+.joinf input:focus-visible,.joinf textarea:focus-visible,.joinf select:focus-visible{outline:none;border-color:var(--j-acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--j-acc) 30%,transparent)}
+.joinf .jgroup{margin:0;padding:0;border:0;min-width:0}
+.joinf .jgroup>legend{padding:0;margin-bottom:8px}
+.joinf .jchecks{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin-top:6px}
+.joinf .jchecks.one{grid-template-columns:1fr}
+.joinf .jchk{display:flex;gap:12px;align-items:flex-start;min-height:44px;padding:11px 14px;border:1px solid var(--j-line);border-radius:var(--j-r);
+  background:var(--j-bg);cursor:pointer;font-size:.97rem;line-height:1.4;transition:border-color .2s,background .2s}
+.joinf .jchk:hover{border-color:color-mix(in srgb,var(--j-acc) 55%,var(--j-line))}
+.joinf .jchk:has(input:checked){border-color:var(--j-acc);background:color-mix(in srgb,var(--j-acc) 9%,var(--j-bg))}
+.joinf .jchk:has(input:focus-visible){box-shadow:0 0 0 3px color-mix(in srgb,var(--j-acc) 30%,transparent)}
+.joinf .jchk input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:var(--j-acc);cursor:pointer}
+.joinf .jchk input:focus-visible{outline:none}
+.joinf .jchk.solo{background:transparent}
+.joinf .jerr{margin:0;min-height:0;font-size:.92rem;font-weight:600;color:var(--j-err)}
+.joinf .jerr:empty{display:none}
+.joinf .bad input[type=text],.joinf .bad textarea,.joinf .bad select,.joinf .bad .jchk{border-color:var(--j-err)}
+.joinf .jtrap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.joinf .jfoot{display:grid;gap:4px}
+.joinf .jprivacy{margin:0;font-size:.9rem;line-height:1.55;color:var(--j-muted);max-width:70ch}
+.joinf .jprivacy a{color:var(--j-ink);text-decoration:underline;text-underline-offset:3px}
+.joinf .jsend{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:14px}
+.joinf .jbtn[disabled]{opacity:.65;cursor:progress}
+.joinf .jstatus{margin:0;font-size:.95rem;color:var(--j-muted)}
+.joinf .jstatus.err{color:var(--j-err);font-weight:600}
+.joinf .jdone{padding:28px 24px;border:1px solid var(--j-acc);border-radius:var(--j-r);background:var(--j-panel)}
+.joinf .jdone h3{margin:0 0 8px;font:400 1.6rem/1.1 var(--j-mono);letter-spacing:.06em;color:var(--j-acc);outline:none}
+.joinf .jdone p{margin:0 0 18px;color:var(--j-ink)}
+@media (max-width:560px){
+  .joinf .jsec{padding:4px 14px 20px}
+  .joinf .jchecks{grid-template-columns:1fr}
+  .joinf .jsend .btn{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){.joinf *{transition:none!important}}

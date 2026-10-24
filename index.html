@@ -311,7 +311,12 @@ footer{padding:0 0 40px}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+.apply{margin-top:56px;max-width:860px}
+.apply h3{font:600 clamp(1.5rem,3vw,1.9rem)/1.15 var(--fd);margin-top:10px}
+.apply>p{color:var(--muted);margin-top:10px;max-width:62ch}
+.apply>p a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 </style>
+<link rel="stylesheet" href="assets/join.css">
 </head>
 <body>
 <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
@@ -480,7 +485,7 @@ footer{padding:0 0 40px}
             <span class="chan">10</span>
             <div><h4>Forge OS</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span></div>
             <p data-i18n="d.fos">Un sistema operativo completo escrito desde cero en Rust: kernel propio para x86_64 y userland propio (Ember, Bellows, Crucible y Anvil).</p>
-            <div class="acts"><a class="lnk" href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener">GitHub ↗</a></div>
+            <div class="acts"><a class="lnk" href="forge-os/" data-i18n="a.page">Ver la página</a><a class="lnk" href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
         </ul>
       </div>
@@ -541,6 +546,12 @@ footer{padding:0 0 40px}
         <a class="lnk" href="foros.html" data-i18n="s.forum">Foro</a>
       </div>
     </div>
+    <div class="apply" id="solicitud">
+      <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="ap.kicker">SOLICITUD</span></p>
+      <h3 data-i18n="ap.h">Rellena la solicitud</h3>
+      <p data-i18n="ap.p">Cuéntanos quién eres, qué haces y qué te gustaría hacer en el estudio, en sus proyectos o con uno tuyo. Lleva unos cinco minutos. Si te interesa Static Linux o Forge OS en concreto, tienen su propia solicitud en <a href="linux/#unete">Static Linux</a> y en <a href="forge-os/#unete">Forge OS</a>.</p>
+      <form class="joinf" data-join="sf" novalidate aria-labelledby="h-sig"></form>
+    </div>
   </section>
 </div>
 </main>
@@ -570,7 +581,7 @@ function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 
 /* ── Textos ES / EN / CA ── */
 var T={
-es:{'skip':'Saltar al contenido','nav.projects':'Proyectos','nav.workshop':"Estudio",'nav.gallery':'Galería','nav.forum':'Foro','nav.menu':'MENÚ',
+es:{'skip':'Saltar al contenido','ap.kicker':'SOLICITUD','ap.h':'Rellena la solicitud','ap.p':'Cuéntanos quién eres, qué haces y qué te gustaría hacer en el estudio, en sus proyectos o con uno tuyo. Lleva unos cinco minutos. Si te interesa Static Linux o Forge OS en concreto, tienen su propia solicitud en <a href="linux/#unete">Static Linux</a> y en <a href="forge-os/#unete">Forge OS</a>.','nav.projects':'Proyectos','nav.workshop':"Estudio",'nav.gallery':'Galería','nav.forum':'Foro','nav.menu':'MENÚ',
 'theme.paper':'PAPEL','theme.night':'NOCHE',
 'hero.osd':'CH 01 · EMITIENDO DESDE EL TALLER','hero.lead':"Juegos, programas, sistemas operativos, arte digital e historias. <strong>Un estudio independiente fundado por KCRooty (Core)</strong>, abierto a quien quiera sumarse.",
 'hero.cta1':'Ver los proyectos','hero.cta2':'Abrir la galería','v.1':'Código abierto','v.2':'Sin anuncios','v.3':'Sin telemetría',
@@ -596,7 +607,7 @@ es:{'skip':'Saltar al contenido','nav.projects':'Proyectos','nav.workshop':"Estu
 's.kicker':"SE BUSCA GENTE",'s.h':"Únete a Static Forge",'s.p':"Siempre hay sitio para ideas, colaboraciones y gente que quiera formar parte del estudio, venga del ámbito que venga. Tus proyectos también se publican y se distribuyen bajo Static Forge.",'s.forum':"Foro",
 'f.eob':'FIN DE LA EMISIÓN','lb.close':'CERRAR [ESC]',
 'nav.join':"Únete",'s.mailk':"CONTACTO",'s.write':"Escribir al estudio",'r.1':"Arte 2D",'r.2':"Arte 3D",'r.3':"Producción musical",'r.4':"Programación",'r.5':"Desarrollo de juegos y apps",'r.6':"Doblaje y voz",'r.7':"Lo que hagas tú"},
-en:{'skip':'Skip to content','nav.projects':'Projects','nav.workshop':"Studio",'nav.gallery':'Gallery','nav.forum':'Forum','nav.menu':'MENU',
+en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the application','ap.p':'Tell us who you are, what you do and what you would like to do in the studio, on its projects or with one of your own. It takes about five minutes. If you are interested in Static Linux or Forge OS specifically, they have their own application on the <a href="linux/#unete">Static Linux</a> and <a href="forge-os/#unete">Forge OS</a> pages (in Spanish).','nav.projects':'Projects','nav.workshop':"Studio",'nav.gallery':'Gallery','nav.forum':'Forum','nav.menu':'MENU',
 'theme.paper':'PAPER','theme.night':'NIGHT',
 'hero.osd':'CH 01 · BROADCASTING FROM THE WORKSHOP','hero.lead':"Games, software, operating systems, digital art and stories. <strong>An independent studio founded by KCRooty (Core)</strong>, open to anyone who wants to join.",
 'hero.cta1':'See the projects','hero.cta2':'Open the gallery','v.1':'Open source','v.2':'No ads','v.3':'No telemetry',
@@ -622,7 +633,7 @@ en:{'skip':'Skip to content','nav.projects':'Projects','nav.workshop':"Studio",'
 's.kicker':"LOOKING FOR PEOPLE",'s.h':"Join Static Forge",'s.p':"There's always room for ideas, collaborations and people who want to be part of the studio, whatever their field. Your projects get published and distributed under Static Forge too.",'s.forum':"Forum",
 'f.eob':'END OF BROADCAST','lb.close':'CLOSE [ESC]',
 'nav.join':"Join",'s.mailk':"CONTACT",'s.write':"Write to the studio",'r.1':"2D art",'r.2':"3D art",'r.3':"Music production",'r.4':"Programming",'r.5':"Game and app development",'r.6':"Voice acting",'r.7':"Whatever you do"},
-ca:{'skip':'Salta al contingut','nav.projects':'Projectes','nav.workshop':"Estudi",'nav.gallery':'Galeria','nav.forum':'Fòrum','nav.menu':'MENÚ',
+ca:{'skip':'Salta al contingut','ap.kicker':'SOL·LICITUD','ap.h':'Omple la sol·licitud','ap.p':'Explica’ns qui ets, què fas i què t’agradaria fer a l’estudi, als seus projectes o amb un de teu. Porta uns cinc minuts. Si t’interessa Static Linux o Forge OS en concret, tenen la seva pròpia sol·licitud a <a href="linux/#unete">Static Linux</a> i a <a href="forge-os/#unete">Forge OS</a> (en castellà).','nav.projects':'Projectes','nav.workshop':"Estudi",'nav.gallery':'Galeria','nav.forum':'Fòrum','nav.menu':'MENÚ',
 'theme.paper':'PAPER','theme.night':'NIT',
 'hero.osd':'CH 01 · EMETENT DES DEL TALLER','hero.lead':"Jocs, programes, sistemes operatius, art digital i històries. <strong>Un estudi independent fundat per KCRooty (Core)</strong>, obert a qui s'hi vulgui sumar.",
 'hero.cta1':'Veure els projectes','hero.cta2':'Obrir la galeria','v.1':'Codi obert','v.2':'Sense anuncis','v.3':'Sense telemetria',
@@ -750,5 +761,6 @@ document.getElementById('mailBtn').href=href;
 applyLang(lang);
 })();
 </script>
+<script src="assets/join.js"></script>
 </body>
 </html>

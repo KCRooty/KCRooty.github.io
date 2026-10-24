@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="night" data-crt="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solicitudes · Static Forge</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#14100C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..900,100&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
+<script>
+(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+var t=g('sf-theme');if(!t){try{t=matchMedia('(prefers-color-scheme: light)').matches?'paper':'night'}catch(e){t='night'}}
+d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');})();
+</script>
+<link rel="stylesheet" href="/assets/sf.css">
+<style>
+.bar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:28px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--ink);font:500 .95rem var(--fb);cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--phosphor);color:var(--phosphor)}
+.bar select{min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--bg);color:var(--ink);font:500 .95rem var(--fb)}
+.bar label{font:400 1.1rem var(--fc);letter-spacing:.06em;color:var(--muted)}
+.count{margin-left:auto;font:400 1.15rem var(--fc);letter-spacing:.06em;color:var(--muted)}
+.apps{display:grid;gap:16px;margin-top:24px}
+.app{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
+.app.nueva{border-color:var(--phosphor)}
+.app-h{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.app-h h2{font:600 1.45rem/1.2 var(--fd);margin:0}
+.tag{font:400 1.05rem/1 var(--fc);letter-spacing:.06em;padding:4px 10px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}
+.tag.tr{color:var(--ink)}
+.meta{margin-left:auto;font-size:.9rem;color:var(--muted)}
+.app dl{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:10px 20px;margin:18px 0 0}
+.app dt{font:400 1.05rem/1.45 var(--fc);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.app dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink)}
+.app dd a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.acts .lbl{font:400 1.05rem var(--fc);letter-spacing:.06em;color:var(--muted);margin-right:4px}
+.sbtn{min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--bg);color:var(--ink);font:500 .92rem var(--fb);cursor:pointer}
+.sbtn[aria-pressed="true"]{border-color:var(--phosphor);background:color-mix(in srgb,var(--phosphor) 14%,var(--bg))}
+.del{margin-left:auto;border-color:color-mix(in srgb,#E5484D 60%,var(--line))}
+.del.armed{background:#B3261E;border-color:#B3261E;color:#fff}
+.state{padding:48px 24px;text-align:center;border:1px dashed var(--line);border-radius:var(--r);color:var(--muted);margin-top:24px}
+.state b{display:block;font:400 1.6rem/1.2 var(--fc);letter-spacing:.08em;color:var(--phosphor);margin-bottom:8px}
+.state a{color:var(--ink)}
+.state .btn{margin-top:16px}
+@media (max-width:600px){.app dl{grid-template-columns:1fr;gap:2px}.app dd{margin-bottom:10px}.meta{margin-left:0;width:100%}.count{margin-left:0;width:100%}.del{margin-left:0}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="fx scan" aria-hidden="true"></div>
+<div class="fx vig" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Static Forge, inicio">
+      <span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">Static Forge</span>
+    </a>
+    <ul class="links" id="links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/foros.html">Foro</a></li>
+      <li><a href="/solicitudes.html" aria-current="page">Solicitudes</a></li>
+    </ul>
+    <div class="ctrls">
+      <button type="button" class="tbtn" id="themeBtn" aria-pressed="false">PAPEL</button>
+      <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">MENÚ</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap" style="padding-bottom:80px">
+  <section class="sec" aria-labelledby="h-sol" style="padding-bottom:0">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>ADMINISTRACIÓN</span></p>
+    <h1 id="h-sol" class="h1" style="font-size:clamp(2.2rem,5vw,3.4rem)">Solicitudes</h1>
+    <p class="sec-intro">Lo que llega desde los formularios de «Únete». Solo lo ve una cuenta de administración del foro. Cada solicitud se borra sola a los 180 días.</p>
+    <div class="bar" id="bar" hidden>
+      <div class="chips" role="group" aria-label="Formulario">
+        <button type="button" class="chip" data-track="" aria-pressed="true">Todas</button>
+        <button type="button" class="chip" data-track="sf" aria-pressed="false">Estudio</button>
+        <button type="button" class="chip" data-track="linux" aria-pressed="false">Static Linux</button>
+        <button type="button" class="chip" data-track="forgeos" aria-pressed="false">Forge OS</button>
+      </div>
+      <label for="stSel">ESTADO</label>
+      <select id="stSel">
+        <option value="">Todos</option><option value="nueva">Nuevas</option><option value="vista">Vistas</option>
+        <option value="aceptada">Aceptadas</option><option value="descartada">Descartadas</option>
+      </select>
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+    <div id="out" aria-live="polite"></div>
+  </section>
+</div>
+</main>
+
+<script src="/assets/sf.js"></script>
+<script>
+(function(){
+'use strict';
+var host=location.hostname, local=host==='127.0.0.1'||host==='localhost';
+var API=local?'http://127.0.0.1:8787':'https://static-forge-foro.staticforge.workers.dev';
+var token=null; try{token=localStorage.getItem('sf-forum-token')}catch(e){}
+var out=document.getElementById('out'), bar=document.getElementById('bar'), count=document.getElementById('count');
+var track='', status='';
+
+var TRACK={sf:'Estudio',linux:'Static Linux',forgeos:'Forge OS'};
+var AGE={'u14':'Menos de 14','14-15':'14 o 15','16-17':'16 o 17','18-24':'18 a 24','25+':'25 o más'};
+var AVAIL={'':'Sin especificar',month:'Unas horas al mes',week:'Unas horas a la semana',lots:'Bastante tiempo',depends:'Depende de la época'};
+var MODE={join:'Unirse a proyectos de SF',own:'Traer un proyecto suyo',both:'Las dos cosas'};
+var PROJ={donnies:"Donnie's Origins",fnafas:'FNAF AS',linux:'Static Linux',forgeos:'Forge OS',winforge:'WinForge',rck:'RCK',kcdl:'KC Downloader',any:'Donde haga falta'};
+var AREAS={
+  sf:{art2d:'Arte 2D',art3d:'Arte 3D',music:'Producción musical',code:'Programación',gamedev:'Juegos y apps',voice:'Doblaje y voz',writing:'Guion y escritura',video:'Vídeo y edición',other:'Otra cosa'},
+  linux:{pkgs:'Paquetes y repositorio',iso:'ISO e instalador',detect:'sl-detect y hardware',desktops:'Escritorios y temas',docs:'Documentación y wiki',testing:'Probar en hardware real',i18n:'Traducción',other:'Otra cosa'},
+  forgeos:{kernel:'Kernel',drivers:'Drivers',fs:'Sistemas de archivos',userland:'Userland',libc:'libc y portar programas',tooling:'Herramientas y compilación',docs:'Documentación',testing:'Pruebas y depuración'}
+};
+var EXP={new:'Empezando con Linux',daily:'Usa Linux a diario',arch:'Usa Arch o derivada',maint:'Empaqueta o mantiene software'};
+var RUST={none:'No ha usado Rust',basic:'Lo básico',ok:'Se mueve bien',nostd:'Ha hecho no_std o embebido'};
+var STATUS=['nueva','vista','aceptada','descartada'];
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function map(list,dict){return (list||[]).map(function(k){return dict[k]||k}).join(', ')}
+function date(ms){return new Date(ms).toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'})}
+/* Enlaces http(s) clicables; el resto, texto tal cual. */
+function linkify(text){
+  return esc(text).replace(/https?:\/\/[^\s<>"']+/g,function(u){return '<a href="'+u+'" target="_blank" rel="noopener noreferrer nofollow">'+u+'</a>'});
+}
+function state(title,msg,extra){out.innerHTML='<div class="state"><b>'+title+'</b>'+msg+(extra||'')+'</div>'}
+
+function api(path,opts){
+  opts=opts||{}; opts.headers=Object.assign({'Authorization':'Bearer '+token},opts.headers||{});
+  return fetch(API+path,opts).then(function(r){return r.json().catch(function(){return {}}).then(function(d){return {ok:r.ok,status:r.status,d:d}})});
+}
+
+function row(k,v,raw){return v?'<dt>'+k+'</dt><dd>'+(raw?v:esc(v))+'</dd>':''}
+function card(a){
+  var d=a.data||{}, ar=AREAS[a.track]||{};
+  var rows=row('Contacto',a.contact)+row('Edad',AGE[a.age]||a.age)+
+    row('Redes y portfolio',d.links?linkify(d.links):'',true)+row('Quién es',d.who);
+  if(a.track==='sf'){rows+=row('Quiere',MODE[d.mode]||d.mode)+row('Proyectos',map(d.projects,PROJ))+row('Su proyecto',d.own?linkify(d.own):'',true)}
+  if(a.track==='linux'){rows+=row('Experiencia',EXP[d.exp]||d.exp)+row('Hardware',d.hw)}
+  if(a.track==='forgeos'){rows+=row('Rust',RUST[d.rust]||d.rust)+row('Bajo nivel',d.lowlevel)}
+  rows+=row('Áreas',map(d.areas,ar))+row('Por qué',d.why)+row('Tiempo',AVAIL[d.avail||''])+(a.age==='u14'?row('Permiso','Declara tener permiso de su madre, padre o tutor'):'');
+  var btns=STATUS.map(function(s){return '<button type="button" class="sbtn" data-st="'+s+'" aria-pressed="'+(a.status===s)+'">'+s.charAt(0).toUpperCase()+s.slice(1)+'</button>'}).join('');
+  return '<article class="app '+esc(a.status)+'" data-id="'+a.id+'" aria-labelledby="ap'+a.id+'">'+
+    '<div class="app-h"><h2 id="ap'+a.id+'">'+esc(a.name)+'</h2><span class="tag tr">'+esc(TRACK[a.track]||a.track)+'</span><span class="tag">'+esc(a.status.toUpperCase())+'</span>'+
+    '<span class="meta">Llegó el '+date(a.created)+' · se borra el '+date(a.expires)+'</span></div>'+
+    '<dl>'+rows+'</dl>'+
+    '<div class="acts" role="group" aria-label="Estado de la solicitud de '+esc(a.name)+'"><span class="lbl">ESTADO</span>'+btns+
+    '<button type="button" class="sbtn del" data-del>Borrar</button></div></article>';
+}
+
+function load(){
+  if(!token){state('SIN SESIÓN','Entra en el <a href="/foros.html">foro</a> con una cuenta de administración y vuelve aquí.');return}
+  state('SINTONIZANDO…','Cargando solicitudes.');
+  var q=[]; if(track) q.push('track='+track); if(status) q.push('status='+status);
+  api('/api/applications'+(q.length?'?'+q.join('&'):'')).then(function(r){
+    if(r.status===401){state('SIN SESIÓN','La sesión ha caducado. Vuelve a entrar en el <a href="/foros.html">foro</a>.');return}
+    if(r.status===403){state('SIN ACCESO','Esta cuenta no es de administración.');return}
+    if(!r.ok){throw new Error(r.d.message||'error')}
+    bar.hidden=false;
+    var list=r.d.applications||[];
+    count.textContent=list.length+(list.length===1?' solicitud':' solicitudes');
+    if(!list.length){state('CANAL VACÍO','No hay solicitudes con este filtro.');return}
+    out.innerHTML='<div class="apps">'+list.map(card).join('')+'</div>';
+  }).catch(function(){
+    state('SIN SEÑAL','La API no responde.','<br><button type="button" class="btn" data-retry>Reintentar</button>');
+  });
+}
+
+document.querySelectorAll('.chip').forEach(function(b){b.addEventListener('click',function(){
+  track=b.dataset.track; document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))}); load();
+})});
+document.getElementById('stSel').addEventListener('change',function(e){status=e.target.value;load()});
+
+out.addEventListener('click',function(e){
+  if(e.target.closest('[data-retry]')){load();return}
+  var art=e.target.closest('.app'); if(!art) return;
+  var id=art.dataset.id, sb=e.target.closest('[data-st]'), del=e.target.closest('[data-del]');
+  if(sb){
+    var st=sb.dataset.st; sb.disabled=true;
+    api('/api/applications/'+id+'/status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:st})}).then(function(r){
+      sb.disabled=false; if(!r.ok) return;
+      art.querySelectorAll('[data-st]').forEach(function(x){x.setAttribute('aria-pressed',String(x===sb))});
+      art.className='app '+st; art.querySelectorAll('.tag')[1].textContent=st.toUpperCase();
+    }).catch(function(){sb.disabled=false});
+  }
+  if(del){
+    if(!del.classList.contains('armed')){del.classList.add('armed');del.textContent='¿Seguro? Borrar';setTimeout(function(){if(del.isConnected){del.classList.remove('armed');del.textContent='Borrar'}},4000);return}
+    del.disabled=true;
+    api('/api/applications/'+id,{method:'DELETE'}).then(function(r){
+      if(!r.ok){del.disabled=false;return}
+      art.remove();
+      var n=out.querySelectorAll('.app').length; count.textContent=n+(n===1?' solicitud':' solicitudes');
+      if(!n) state('CANAL VACÍO','No hay solicitudes con este filtro.');
+    }).catch(function(){del.disabled=false});
+  }
+});
+
+load();
+})();
+</script>
+</body>
+</html>
