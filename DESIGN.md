@@ -2,7 +2,7 @@
 
 Dirección dada por Rooty el 2026-10-24: "una mezcla de estilos entre CRT, retro y minimalista, un híbrido, algo hermoso".
 Referencias de partida: los cuatro prototipos `paleta-demo*.html` (forge, minimal, retro 70s, CRT/VHS). Se toman el
-CRT, el retro 70s y el minimal; el forge/cyberpunk queda fuera (dirección retirada en el CLAUDE.md global).
+CRT, el retro 70s y el minimal; el forge/cyberpunk queda fuera (dirección retirada en las guías de diseño del estudio).
 
 ## Identidad
 
