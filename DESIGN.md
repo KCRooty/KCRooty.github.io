@@ -53,13 +53,14 @@ los divisores y en la guía de proyectos, y se repiten en el pie.
 - Scanlines y viñeta: capa global sutil, desactivable (interruptor CRT, recordado por visitante).
 - Idiomas: ES (por defecto), EN, CA.
 
-## Forge OS (`forge-os/`): monitor CRT ámbar
+## Forge OS (`forge-os/`): Windows 7-10 dentro de un monitor CRT ámbar
 
-Identidad propia, aparte del estilo híbrido y de Static Linux (terminal verde moderno). Petición de KCRooty (Core), 2026-10-24: "solo CRT".
+Identidad propia, aparte del estilo híbrido y de Static Linux. Petición de KCRooty (Core), 2026-10-24: primero "solo CRT", después "mezcla Windows 7-10 con el CRT".
 
-- Monocromo de fósforo ámbar sobre negro cálido: fondo `#070502`, panel `#0E0904`, ámbar `#FFB000` (texto, 11.1:1), ámbar claro `#FFD27A` (títulos, 14.3:1), tenue `#C48A1E` (secundario, 6.8:1), error `#FF7A5C`.
-- Bordes decorativos `#5C3F0A`; bordes de campos `#8C6214` (3:1 como componente).
-- Tipografía: **VT323** para títulos, etiquetas, botones y el bloque de arranque; **IBM Plex Mono** para párrafos y formularios (VT323 nunca en texto largo).
-- Motivo: paneles con etiqueta incrustada en el borde, prefijo `>` en los títulos, estados `[ OK ]` / `[ .. ]`, cursor de bloque.
-- Scanlines, viñeta, parpadeo leve y brillo del texto: todo se apaga con el botón CRT (clave `sf-crt`, compartida con el resto de la web) y el parpadeo y la animación de arranque respetan reducir movimiento.
-- El bloque de arranque resume el estado real del README del repo; no es una salida literal del sistema.
+- Monocromo de fósforo ámbar sobre negro cálido: fondo `#070502`, panel `#0E0904`, ámbar `#FFB000` (texto, 11.1:1), ámbar claro `#FFD27A` (títulos, 14.3:1), tenue `#C48A1E` (secundario, 6.8:1), error `#FF7A5C`. Bordes decorativos `#5C3F0A`; bordes de campos y ventanas `#8C6214`.
+- Estructura de escritorio: cada sección es una **ventana** (barra de título con brillo de cristal tipo Windows 7 en la ventana activa, botones de ventana planos tipo Windows 10, decorativos y ocultos a lectores de pantalla) y abajo una **barra de tareas** fija con botón Inicio (menú con los enlaces), accesos a las secciones con indicador de ventana activa (subrayado tipo 10), botón CRT y reloj real.
+- Ventanas con nombre de programa: `forge_os.exe`, `arranque.log · Visor`, `Propiedades del sistema`, `Administrador de tareas` (tabla de estado) y `Asistente para unirse`.
+- Tipografía: **Segoe UI** (pila del sistema) solo en el cromo de Windows (barras de título, botones, barra de tareas, menú); **VT323** en títulos y el bloque de arranque; **IBM Plex Mono** en párrafos y formularios.
+- Sin logotipos de Microsoft: el botón Inicio lleva una rejilla genérica de 3x3 y la palabra Inicio.
+- Scanlines, viñeta, parpadeo y brillo se apagan con el botón CRT de la bandeja (clave `sf-crt`); parpadeo y animación de arranque respetan reducir movimiento.
+- El bloque de arranque y la tabla de estado resumen el README real del repo; no son salidas literales del sistema.
