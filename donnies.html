@@ -144,6 +144,8 @@ footer a:hover{color:var(--gold)}
 .wip-item img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;filter:brightness(.9) contrast(1.05);transition:filter .3s}
 .wip-item:hover img{filter:brightness(1) contrast(1.05)}
 .wip-item figcaption{font-family:var(--mono);font-size:.58rem;color:var(--dim);padding:.35rem .5rem;text-align:center;border-top:1px solid var(--border)}
+.wip-item.wide{grid-column:1/-1;background:#000}
+.wip-item.wide img{aspect-ratio:auto;max-height:560px;width:auto;max-width:100%;margin:0 auto;object-fit:contain;filter:none}
 .logo-anim{position:relative;display:inline-block;max-width:580px;width:100%;margin-bottom:.6rem;animation:logo-shake 3.8s ease-in-out infinite}
 .logo-anim img{display:block;width:100%;height:auto;filter:drop-shadow(0 0 22px rgba(232,160,48,.25)) drop-shadow(0 0 60px rgba(232,160,48,.07))}
 .logo-anim .lf2,.logo-anim .lf3{position:absolute;top:0;left:0;width:100%;height:auto;opacity:0}
@@ -323,6 +325,10 @@ footer a:hover{color:var(--gold)}
       <p>Modelado en Cinema 4D R20. Traje exterior e interior (endosqueleto) terminados. Siguientes: torso, cuerpo completo, articulaciones.</p>
     </div>
     <div class="wip-grid">
+      <figure class="wip-item wide">
+        <img src="assets/donnies/donnie-render.webp" alt="Render 3D de Donnie con el traje completo" loading="lazy" width="1600" height="1600">
+        <figcaption>Traje completo · render 3D</figcaption>
+      </figure>
       <figure class="wip-item">
         <img src="assets/donnies/donnie-pixel-art.png" alt="Donnie pixel art concept" loading="lazy">
         <figcaption>Pixel art · concept</figcaption>

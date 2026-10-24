@@ -1,119 +1,90 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="night" data-crt="on">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 · STATIC FORGE</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sin señal · Static Forge</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#14100C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..900,100&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
+<script>
+(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+var t=g('sf-theme');if(!t){try{t=matchMedia('(prefers-color-scheme: light)').matches?'paper':'night'}catch(e){t='night'}}
+d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');})();
+</script>
+<link rel="stylesheet" href="/assets/sf.css">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0d1117;--text:#cdd6e0;--dim:#6b7e96;
-  --bright:#e8f0f7;--accent:#5294e2;
-  --red:#e0656e;--green:#4ec9b0;
-  --mono:'JetBrains Mono',monospace;--sans:'Outfit',sans-serif;
-}
-html,body{height:100%}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:var(--sans);display:flex;
-  flex-direction:column;align-items:center;justify-content:center;
-  min-height:100vh;padding:2rem;
-  position:relative;overflow:hidden;
-}
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:radial-gradient(circle,rgba(82,148,226,.05) 1px,transparent 1px);
-  background-size:28px 28px;pointer-events:none;
-}
-.terminal{
-  position:relative;z-index:1;
-  width:min(600px,100%);
-  background:#0a0e14;
-  border:1px solid #1e2b3a;
-  border-radius:8px;
-  overflow:hidden;
-  box-shadow:0 0 60px rgba(82,148,226,.08);
-}
-.terminal-bar{
-  background:#111820;
-  border-bottom:1px solid #1e2b3a;
-  padding:.6rem 1rem;
-  display:flex;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:.7rem;color:var(--dim);
-}
-.dots{display:flex;gap:5px}
-.dots span{width:10px;height:10px;border-radius:50%;display:block}
-.d-r{background:#e0656e}.d-y{background:#d4ac67}.d-g{background:#4ec9b0}
-.tb-title{margin-left:4px}
-.terminal-body{padding:1.5rem 1.5rem 2rem;font-family:var(--mono);font-size:.82rem;line-height:2}
-.line-prompt{color:var(--accent)}
-.line-prompt .at{color:var(--green)}
-.line-prompt .sep{color:var(--dim)}
-.line-prompt .path{color:var(--bright)}
-.line-cmd{color:var(--text)}
-.line-err{color:var(--red)}
-.line-err .code{font-weight:700}
-.line-hint{color:var(--dim);margin-top:.5rem}
-.line-hint a{color:var(--accent);text-decoration:none;transition:color .18s}
-.line-hint a:hover{color:#7ab3ec}
-.cursor{
-  display:inline-block;width:8px;height:1.1em;
-  background:var(--accent);vertical-align:text-bottom;
-  animation:blink 1.1s step-end infinite;margin-left:2px;
-}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
-.bottom-link{
-  margin-top:2rem;position:relative;z-index:1;
-  font-family:var(--mono);font-size:.72rem;color:var(--dim);
-}
-.bottom-link a{
-  color:var(--accent);text-decoration:none;
-  border:1px solid #1e2b3a;padding:6px 14px;border-radius:4px;
-  transition:all .2s;display:inline-block;
-}
-.bottom-link a:hover{border-color:var(--accent);background:rgba(82,148,226,.08)}
+.nosignal{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center;min-height:calc(100vh - 68px - 120px);padding-top:56px;padding-bottom:56px}
+.snow{animation:snow .35s steps(4) infinite}
+@keyframes snow{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}}
+[data-crt="off"] .snow{animation:none}
+.badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;padding:6px 16px;font:400 clamp(1.6rem,4vw,2.2rem)/1 var(--fc);letter-spacing:.08em;color:#FFF3DA;background:#0B0806;border:2px solid #FFF3DA;white-space:nowrap}
+.path{margin-top:10px;color:var(--muted)}
+@media (max-width:900px){.nosignal{grid-template-columns:1fr;gap:40px;min-height:0}.nosignal .tv{order:-1}}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="fx scan" aria-hidden="true"></div>
+<div class="fx vig" aria-hidden="true"></div>
 
-<div class="terminal">
-  <div class="terminal-bar">
-    <div class="dots">
-      <span class="d-r"></span>
-      <span class="d-y"></span>
-      <span class="d-g"></span>
-    </div>
-    <span class="tb-title">core@forge — bash</span>
-  </div>
-  <div class="terminal-body">
-    <div>
-      <span class="line-prompt">
-        <span class="at">core</span><span class="sep">@</span><span class="path">forge</span><span class="sep">:~$</span>
-      </span>
-      <span class="line-cmd"> cd <span id="path-display"></span></span>
-    </div>
-    <div class="line-err">
-      <span class="code">bash:</span> <span id="err-path"></span>: No such file or directory
-    </div>
-    <div class="line-hint">
-      → la ruta que buscas no existe en este servidor.<br>
-      → <a href="/">volver a home</a> · <a href="/index.html#projects">ver proyectos</a><span class="cursor"></span>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Static Forge, inicio">
+      <span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">Static Forge</span>
+    </a>
+    <ul class="links" id="links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/#proyectos">Proyectos</a></li>
+      <li><a href="/fnaf-as.html">FNAF AS</a></li>
+      <li><a href="/foros.html">Foro</a></li>
+    </ul>
+    <div class="ctrls">
+      <button type="button" class="tbtn" id="themeBtn" aria-pressed="false">PAPEL</button>
+      <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">MENÚ</button>
     </div>
   </div>
-</div>
+</header>
 
-<div class="bottom-link">
-  <a href="/">← core@forge · home</a>
+<main id="main">
+<div class="wrap nosignal">
+  <div>
+    <p class="osd crt-txt">ERROR 404 · CANAL VACÍO</p>
+    <h1 class="h1">Sin<span class="stack">señal</span></h1>
+    <p class="lead">Esta página no existe o se ha movido de canal.</p>
+    <p class="path">Dirección: <code id="path">/</code></p>
+    <div class="cta" style="margin-top:30px">
+      <a class="btn pri" href="/">Volver al inicio</a>
+      <a class="btn" href="/#proyectos">Ver los proyectos</a>
+    </div>
+  </div>
+  <div class="tv" aria-hidden="true">
+    <div class="screen">
+      <svg class="snow" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+        <filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+        <rect x="-40" y="-40" width="480" height="380" filter="url(#n)" opacity=".85"/>
+      </svg>
+      <div class="track"></div>
+      <div class="scr-osd"><span>CH --</span><span>AV 1</span></div>
+      <span class="badge">SIN SEÑAL</span>
+    </div>
+    <div class="tv-foot"><span class="tv-model">SF-2001</span><span class="led"></span><span class="knob"></span><span class="knob"></span></div>
+  </div>
 </div>
+</main>
 
-<script>
-const raw = window.location.pathname;
-document.getElementById('path-display').textContent = raw;
-document.getElementById('err-path').textContent = raw;
-</script>
+<footer>
+  <div class="wrap foot">
+    <span class="eob crt-txt">FIN DE LA EMISIÓN</span>
+    <span>© 2026 Static Forge · Core</span>
+  </div>
+</footer>
+
+<script src="/assets/sf.js"></script>
+<script>(function(){var p=location.pathname;try{p=decodeURIComponent(p)}catch(e){}document.getElementById('path').textContent=p.slice(0,120);})();</script>
 </body>
 </html>

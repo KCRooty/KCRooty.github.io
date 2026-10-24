@@ -1,148 +1,241 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="night" data-crt="on">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foro · STATIC FORGE</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com/">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foro · Static Forge</title>
+<meta name="description" content="Foro de Static Forge en beta: de momento las cuentas y los mensajes se guardan solo en tu navegador.">
+<meta name="theme-color" content="#14100C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..900,100&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
+<script>
+(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+var t=g('sf-theme');if(!t){try{t=matchMedia('(prefers-color-scheme: light)').matches?'paper':'night'}catch(e){t='night'}}
+d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');})();
+</script>
+<link rel="stylesheet" href="/assets/sf.css">
 <style>
-:root{
-  --bg:#050607;
-  --bg2:#0b1018;
-  --card:#121821;
-  --border:#1f2a3a;
-  --text:#e3e8f0;
-  --dim:#7f8ba0;
-  --accent:#5294e2;
-  --accent2:#4ec9b0;
-  --mono:'JetBrains Mono',monospace;
-  --sans:'Outfit',sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{min-height:100vh;background:#050607;color:var(--text);font-family:var(--sans);background-image:radial-gradient(circle at top left,rgba(82,148,226,.08) 0,transparent 30%),radial-gradient(circle at right,rgba(78,201,176,.05) 0,transparent 28%);}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:100% 24px,24px 100%;opacity:.25;}
-.topbar{position:sticky;top:0;z-index:20;background:rgba(5,6,7,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.5rem;font-family:var(--mono);font-size:0.82rem;}
-.tb-left{display:flex;align-items:center;gap:10px}
-.dots{display:flex;gap:5px}
-.dots span{width:10px;height:10px;border-radius:50%;background:#444}
-.tb-title{color:var(--dim)}
-.tb-nav{display:flex;gap:1.1rem;list-style:none}
-.tb-nav a{color:var(--dim);text-decoration:none;transition:color .18s}
-.tb-nav a:hover{color:var(--accent)}
-.wrap{max-width:1100px;margin:0 auto;padding:1.5rem}
-.hero{padding:2rem 0;}
-.hero h1{font-family:var(--mono);font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;color:#fff;margin-bottom:0.6rem;}
-.hero p{color:var(--dim);max-width:760px;line-height:1.8;margin-bottom:1.5rem;}
-.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem;}
-.card h2{font-family:var(--mono);font-size:1rem;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.75rem;}
-.card p{color:var(--text);line-height:1.75;font-size:.95rem;}
-.form-panel{display:grid;gap:1rem;}
-.input-group{display:grid;gap:0.4rem}
-.input-group label{font-size:.78rem;color:var(--dim);letter-spacing:.04em}
-.input-group input, .input-group textarea{width:100%;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text);padding:0.85rem 1rem;border-radius:8px;font-family:var(--mono);font-size:.95rem;}
-.button{display:inline-flex;align-items:center;justify-content:center;padding:0.88rem 1.5rem;border-radius:8px;border:1px solid transparent;background:var(--accent);color:#fff;font-family:var(--mono);cursor:pointer;transition:transform .16s,background .18s;}
-.button:hover{transform:translateY(-1px);background:#4a82c0;}
-.posts{display:grid;gap:1rem}
-.post{background:rgba(255,255,255,.03);border:1px solid rgba(82,148,226,.12);border-radius:12px;padding:1rem;}
-.post-header{display:flex;justify-content:space-between;gap:1rem;align-items:center;margin-bottom:0.8rem;font-family:var(--mono);font-size:.82rem;color:var(--dim);}
-.post-body{color:var(--text);line-height:1.75;white-space:pre-wrap;}
-.status-bar{margin-top:1rem;padding:0.95rem 1rem;border:1px dashed rgba(82,148,226,.2);border-radius:10px;color:var(--dim);font-size:.88rem;}
-.hidden{display:none!important}
-@media(max-width:860px){.card-grid{grid-template-columns:1fr}}
+.forum-head{padding:80px 0 8px}
+.forum{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;margin-top:36px;align-items:start}
+.who{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;padding:14px 16px;border-radius:var(--r-sm);background:var(--surface2)}
+.who b{font:400 1.3rem/1 var(--fc);letter-spacing:.05em;color:var(--phosphor)}
+.pair{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.posts{list-style:none;display:grid;gap:12px;margin-top:20px}
+.post{padding:18px 20px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface)}
+.post-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font:400 1.15rem/1.2 var(--fc);letter-spacing:.04em;color:var(--muted);margin-bottom:8px}
+.post-h b{color:var(--phosphor);font-weight:400}
+.post-b{white-space:pre-wrap;overflow-wrap:anywhere}
+.empty{padding:40px 16px;border:1px dashed var(--line);border-radius:var(--r);text-align:center;color:var(--muted)}
+.empty b{display:block;font:400 1.5rem var(--fc);color:var(--phosphor);letter-spacing:.05em}
+.count{font:400 1.15rem var(--fc);color:var(--muted);letter-spacing:.05em}
+@media (max-width:900px){.forum{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header class="topbar">
-  <div class="tb-left">
-    <div class="dots"><span></span><span></span><span></span></div>
-    <span class="tb-title">STATIC FORGE — Foro</span>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="fx scan" aria-hidden="true"></div>
+<div class="fx vig" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Static Forge, inicio">
+      <span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">Static Forge</span>
+    </a>
+    <ul class="links" id="links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/#proyectos">Proyectos</a></li>
+      <li><a href="/fnaf-as.html">FNAF AS</a></li>
+      <li><a href="/foros.html" aria-current="page">Foro</a></li>
+    </ul>
+    <div class="ctrls">
+      <button type="button" class="tbtn" id="themeBtn" aria-pressed="false">PAPEL</button>
+      <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">MENÚ</button>
+    </div>
   </div>
-  <nav><ul class="tb-nav">
-    <li><a href="index.html">home</a></li>
-    <li><a href="fnaf-as.html">FNAF AS</a></li>
-    <li><a href="foros.html">foro</a></li>
-  </ul></nav>
 </header>
+
+<main id="main">
 <div class="wrap">
-  <section class="hero">
-    <h1>Foro comunitario</h1>
-    <p>En este foro base puedes registrarte con nombre de usuario y contraseña para comentar sin usar correo. Los datos se guardan en tu navegador y el foro se mantiene localmente.</p>
+  <header class="forum-head">
+    <p class="osd crt-txt">CH 11 · FORO EN PRUEBAS</p>
+    <h1 class="h1">Foro<span class="stack">beta</span></h1>
+    <p class="lead">Un sitio para dejar teorías, ideas y bugs de los proyectos del taller. Te registras con un nombre y una contraseña, <strong>sin correo</strong>.</p>
+    <div class="note" role="note">
+      <b>BETA LOCAL</b>
+      <span>Por ahora no hay servidor: las cuentas y los mensajes se guardan solo en este navegador. Nadie más los ve y se borran si limpias los datos del sitio. Si quieres que Core lea un bug, ábrelo en el repositorio del proyecto en <a href="https://github.com/KCRooty" target="_blank" rel="noopener">GitHub ↗</a>.</span>
+    </div>
+  </header>
+
+  <div class="forum">
+    <section class="card" aria-labelledby="h-acc">
+      <span class="chan">01</span>
+      <h2 id="h-acc" style="font-size:1.6rem">Cuenta</h2>
+
+      <form id="authForm" novalidate>
+        <div class="field">
+          <label for="username">USUARIO</label>
+          <input type="text" id="username" name="username" autocomplete="username" maxlength="24" required aria-describedby="userHint">
+          <p class="hint" id="userHint">De 3 a 24 caracteres: letras, números, guion o guion bajo.</p>
+        </div>
+        <div class="field">
+          <label for="password">CONTRASEÑA</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" minlength="6" required aria-describedby="passHint">
+          <p class="hint" id="passHint">Mínimo 6 caracteres. Se guarda cifrada (PBKDF2), nunca en texto plano.</p>
+        </div>
+        <div class="pair">
+          <button type="submit" class="btn pri" data-act="login">Entrar</button>
+          <button type="submit" class="btn" data-act="register">Crear cuenta</button>
+        </div>
+      </form>
+
+      <div id="loggedPanel" class="hidden">
+        <div class="who"><span>Sesión activa: <b id="whoName"></b></span><button type="button" class="lnk" id="logoutBtn">Cerrar sesión</button></div>
+      </div>
+      <p class="status" id="authStatus" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="card" aria-labelledby="h-post">
+      <span class="chan">02</span>
+      <h2 id="h-post" style="font-size:1.6rem">Escribir</h2>
+      <form id="postForm" novalidate>
+        <div class="field">
+          <label for="postText">MENSAJE</label>
+          <textarea id="postText" name="postText" maxlength="2000" aria-describedby="postHint"></textarea>
+          <p class="hint" id="postHint">Hasta 2000 caracteres. Necesitas entrar con tu cuenta para publicar.</p>
+        </div>
+        <div class="pair"><button type="submit" class="btn pri" id="postBtn">Publicar</button></div>
+      </form>
+      <p class="status" id="postStatus" role="status" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section class="sec" aria-labelledby="h-msgs" style="padding-top:64px">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span id="postCount" class="count">0 MENSAJES</span></p>
+    <h2 id="h-msgs">Mensajes</h2>
+    <ul class="posts" id="posts" aria-live="polite"></ul>
   </section>
-  <div class="card-grid">
-    <div class="card">
-      <h2>Ingreso rápido</h2>
-      <div class="form-panel" id="auth-panel">
-        <div class="input-group">
-          <label for="username">Usuario</label>
-          <input type="text" id="username" placeholder="tu usuario" autocomplete="username">
-        </div>
-        <div class="input-group">
-          <label for="password">Contraseña</label>
-          <input type="password" id="password" placeholder="tu contraseña" autocomplete="current-password">
-        </div>
-        <div style="display:flex;gap:.7rem;flex-wrap:wrap;">
-          <button class="button" onclick="loginUser()">Entrar</button>
-          <button class="button" style="background:var(--accent2);" onclick="registerUser()">Registrar</button>
-        </div>
-        <div class="status-bar" id="auth-status">Usuario + contraseña, sin email. Crea tu cuenta para publicar.</div>
-      </div>
-      <div class="form-panel hidden" id="logged-panel">
-        <div class="status-bar" id="logged-msg"></div>
-        <button class="button" onclick="logoutUser()" style="background:#e0656e;border-color:#d45c66;">Cerrar sesión</button>
-      </div>
-    </div>
-    <div class="card">
-      <h2>Cómo funciona</h2>
-      <p>El foro es una implementación simple en el navegador. El inicio de sesión solo requiere usuario y contraseña, y las publicaciones se guardan en el almacenamiento local del navegador.</p>
-      <p>Para un foro verdaderamente público y compartido entre usuarios necesitas un servidor, pero aquí puedes empezar a organizar ideas y dejar un registro de mensajes.</p>
-    </div>
-  </div>
-  <div class="card">
-    <h2>Publicar mensaje</h2>
-    <div class="form-panel">
-      <div class="input-group">
-        <label for="post-text">Mensaje</label>
-        <textarea id="post-text" rows="5" placeholder="Escribe tu mensaje"></textarea>
-      </div>
-      <button class="button" onclick="postMessage()">Publicar</button>
-    </div>
-  </div>
-  <div class="card">
-    <h2>Mensajes</h2>
-    <div class="posts" id="posts"></div>
-  </div>
 </div>
+</main>
+
+<footer>
+  <svg class="swoosh" viewBox="0 0 1440 130" preserveAspectRatio="none" aria-hidden="true">
+    <path class="p1" vector-effect="non-scaling-stroke" d="M-20 98 C 380 98, 560 30, 900 38 S 1300 92, 1460 84"/>
+    <path class="p2" vector-effect="non-scaling-stroke" d="M-20 70 C 380 70, 560 2, 900 10 S 1300 64, 1460 56"/>
+    <path class="p3" vector-effect="non-scaling-stroke" d="M-20 126 C 380 126, 560 58, 900 66 S 1300 120, 1460 112"/>
+  </svg>
+  <div class="wrap foot">
+    <span class="eob crt-txt">FIN DE LA EMISIÓN</span>
+    <span>© 2026 Static Forge · Core · <a href="/">staticforge.dpdns.org</a></span>
+  </div>
+</footer>
+
+<script src="/assets/sf.js"></script>
 <script>
-const USERS_KEY='fnaf_forum_users';
-const POSTS_KEY='fnaf_forum_posts';
-const CURRENT_KEY='fnaf_forum_current';
-function getUsers(){return JSON.parse(localStorage.getItem(USERS_KEY)||'[]');}
-function getPosts(){return JSON.parse(localStorage.getItem(POSTS_KEY)||'[]');}
-function saveUsers(users){localStorage.setItem(USERS_KEY,JSON.stringify(users));}
-function savePosts(posts){localStorage.setItem(POSTS_KEY,JSON.stringify(posts));}
-function currentUser(){return localStorage.getItem(CURRENT_KEY)||'';}
-function setCurrent(user){localStorage.setItem(CURRENT_KEY,user);}
-function clearCurrent(){localStorage.removeItem(CURRENT_KEY);}
-function loginUser(){const user=document.getElementById('username').value.trim();const pass=document.getElementById('password').value;const status=document.getElementById('auth-status');
- if(!user||!pass){status.textContent='Usuario y contraseña son obligatorios.';return;}
- const users=getUsers();const found=users.find(u=>u.user===user&&u.pass===pass);
- if(!found){status.textContent='Usuario no encontrado o contraseña incorrecta.';return;}
- setCurrent(user); status.textContent='Bienvenido '+user+'!'; updateAuth();}
-function registerUser(){const user=document.getElementById('username').value.trim();const pass=document.getElementById('password').value;const status=document.getElementById('auth-status');
- if(!user||!pass){status.textContent='Usuario y contraseña son obligatorios.';return;}
- const users=getUsers();if(users.find(u=>u.user===user)){status.textContent='Ese usuario ya existe.';return;}
- users.push({user,pass});saveUsers(users);setCurrent(user);status.textContent='Cuenta creada. Bienvenido '+user+'!';updateAuth();}
-function logoutUser(){clearCurrent();updateAuth();}
-function updateAuth(){const user=currentUser();document.getElementById('auth-panel').classList.toggle('hidden',!!user);document.getElementById('logged-panel').classList.toggle('hidden',!user);
- const msg=document.getElementById('logged-msg'); if(user){msg.textContent='Sesión activa: '+user;} renderPosts();}
-function postMessage(){const user=currentUser();const text=document.getElementById('post-text').value.trim();if(!user){alert('Debes iniciar sesión primero.');return;} if(!text){alert('Escribe un mensaje antes de publicar.');return;} const posts=getPosts();posts.unshift({user,text,date:new Date().toLocaleString()});savePosts(posts);document.getElementById('post-text').value='';renderPosts();}
-function renderPosts(){const postsEl=document.getElementById('posts');const posts=getPosts();if(!posts.length){postsEl.innerHTML='<div class="status-bar">Todavía no hay mensajes. Sé el primero en escribir.</div>';return;} postsEl.innerHTML=posts.map(p=>`<div class="post"><div class="post-header"><span>${p.user}</span><span>${p.date}</span></div><div class="post-body">${escapeHtml(p.text)}</div></div>`).join('');}
-function escapeHtml(str){return str.replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));}
-window.addEventListener('DOMContentLoaded',()=>{updateAuth();});
+(function(){
+'use strict';
+/* Mismas claves que la versión anterior, para no perder cuentas ni mensajes. */
+var USERS_KEY='fnaf_forum_users',POSTS_KEY='fnaf_forum_posts',CURRENT_KEY='fnaf_forum_current';
+var USER_RE=/^[A-Za-z0-9_-]{3,24}$/;
+var $=function(id){return document.getElementById(id)};
+var storageOk=true;
+function read(k,fb){try{var v=localStorage.getItem(k);return v===null?fb:JSON.parse(v)}catch(e){storageOk=false;return fb}}
+function write(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){storageOk=false;return false}}
+function getCurrent(){try{return localStorage.getItem(CURRENT_KEY)||''}catch(e){storageOk=false;return ''}}
+function setCurrent(u){try{u?localStorage.setItem(CURRENT_KEY,u):localStorage.removeItem(CURRENT_KEY)}catch(e){storageOk=false}}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function say(el,msg,kind){el.textContent=msg;el.className='status'+(kind?' '+kind:'')}
+
+/* Contraseñas: PBKDF2-SHA256 con sal aleatoria por cuenta. */
+function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2)}).join('')}
+function unhex(h){var a=new Uint8Array(h.length/2);for(var i=0;i<a.length;i++)a[i]=parseInt(h.substr(i*2,2),16);return a}
+function derive(pass,saltHex){
+  var enc=new TextEncoder();
+  return crypto.subtle.importKey('raw',enc.encode(pass),'PBKDF2',false,['deriveBits']).then(function(key){
+    return crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:unhex(saltHex),iterations:150000},key,256);
+  }).then(hex);
+}
+function newSalt(){var a=new Uint8Array(16);crypto.getRandomValues(a);return hex(a)}
+var cryptoOk=!!(window.crypto&&crypto.subtle&&window.TextEncoder);
+
+var authForm=$('authForm'),authStatus=$('authStatus'),busy=false;
+authForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(busy) return;
+  var act=(e.submitter&&e.submitter.dataset.act)||'login';
+  var user=$('username').value.trim(),pass=$('password').value;
+  if(!cryptoOk){say(authStatus,'Este navegador no puede cifrar la contraseña aquí. Prueba con uno actualizado.','err');return}
+  if(!USER_RE.test(user)){say(authStatus,'El usuario debe tener de 3 a 24 letras, números, guion o guion bajo.','err');$('username').focus();return}
+  if(pass.length<6){say(authStatus,'La contraseña necesita al menos 6 caracteres.','err');$('password').focus();return}
+  var users=read(USERS_KEY,[]); if(!Array.isArray(users)) users=[];
+  var found=users.filter(function(u){return u&&u.user===user})[0];
+  busy=true; say(authStatus,act==='login'?'Comprobando…':'Creando la cuenta…');
+  var done=function(){busy=false};
+  if(act==='register'){
+    if(found){say(authStatus,'Ese usuario ya existe. Elige otro o entra con él.','err');done();return}
+    var salt=newSalt();
+    derive(pass,salt).then(function(h){
+      users.push({user:user,salt:salt,hash:h});
+      if(!write(USERS_KEY,users)){say(authStatus,'No se pudo guardar la cuenta: el navegador bloquea el almacenamiento.','err');return}
+      setCurrent(user); $('password').value=''; say(authStatus,'Cuenta creada. Ya puedes publicar.','ok'); sync();
+    }).catch(function(){say(authStatus,'No se pudo cifrar la contraseña.','err')}).then(done);
+    return;
+  }
+  if(!found){say(authStatus,'Usuario o contraseña incorrectos.','err');done();return}
+  var check;
+  if(found.hash&&found.salt){check=derive(pass,found.salt).then(function(h){return h===found.hash})}
+  else{
+    /* Cuenta antigua con contraseña en texto plano: se migra al entrar. */
+    check=Promise.resolve(found.pass===pass).then(function(ok){
+      if(!ok) return false;
+      var salt=newSalt();
+      return derive(pass,salt).then(function(h){found.salt=salt;found.hash=h;delete found.pass;write(USERS_KEY,users);return true});
+    });
+  }
+  check.then(function(ok){
+    if(!ok){say(authStatus,'Usuario o contraseña incorrectos.','err');return}
+    setCurrent(user); $('password').value=''; say(authStatus,'Hola, '+user+'.','ok'); sync();
+  }).catch(function(){say(authStatus,'No se pudo comprobar la contraseña.','err')}).then(done);
+});
+
+$('logoutBtn').addEventListener('click',function(){setCurrent('');say(authStatus,'Sesión cerrada.');sync();$('username').focus()});
+
+var postStatus=$('postStatus');
+$('postForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var user=getCurrent(),text=$('postText').value.trim();
+  if(!user){say(postStatus,'Entra con tu cuenta antes de publicar.','err');$('username').focus();return}
+  if(!text){say(postStatus,'Escribe algo antes de publicar.','err');$('postText').focus();return}
+  var posts=read(POSTS_KEY,[]); if(!Array.isArray(posts)) posts=[];
+  posts.unshift({user:user,text:text.slice(0,2000),date:new Date().toLocaleString('es-ES')});
+  if(!write(POSTS_KEY,posts)){say(postStatus,'No se pudo guardar el mensaje: el navegador bloquea el almacenamiento.','err');return}
+  $('postText').value=''; say(postStatus,'Publicado.','ok'); render();
+});
+
+function render(){
+  var posts=read(POSTS_KEY,[]); if(!Array.isArray(posts)) posts=[];
+  $('postCount').textContent=posts.length===1?'1 MENSAJE':posts.length+' MENSAJES';
+  var el=$('posts');
+  if(!posts.length){el.innerHTML='<li class="empty"><b>SIN SEÑAL</b>Todavía no hay mensajes en este navegador.</li>';return}
+  el.innerHTML=posts.map(function(p){
+    return '<li class="post"><div class="post-h"><b>'+esc(p&&p.user||'anónimo')+'</b><span>'+esc(p&&p.date||'')+'</span></div><div class="post-b">'+esc(p&&p.text||'')+'</div></li>';
+  }).join('');
+}
+function sync(){
+  var user=getCurrent();
+  authForm.classList.toggle('hidden',!!user);
+  $('loggedPanel').classList.toggle('hidden',!user);
+  $('whoName').textContent=user;
+  $('postBtn').disabled=!user;
+  if(!user) say(postStatus,'Entra con tu cuenta para publicar.');
+  else if(postStatus.textContent==='Entra con tu cuenta para publicar.') say(postStatus,'');
+  render();
+  if(!storageOk) say(authStatus,'El navegador bloquea el almacenamiento local: el foro no puede guardar nada aquí.','err');
+}
+sync();
+})();
 </script>
 </body>
 </html>
