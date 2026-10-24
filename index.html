@@ -1,767 +1,729 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="night" data-crt="on">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Core · Static Forge</title>
-<meta name="description" content="Developer · Artist · Content Creator. Game dev, open source apps, analog horror projects and digital art.">
-<meta property="og:title" content="Core · Static Forge">
-<meta property="og:description" content="Developer · Artist · Content Creator. Game dev, open source, art &amp; illustration.">
+<title>Static Forge · Core</title>
+<meta name="description" content="Static Forge: software libre, juegos de terror analógico y arte digital, hechos a mano por Core.">
+<meta property="og:title" content="Static Forge · Core">
+<meta property="og:description" content="Software libre, juegos de terror analógico y arte digital, hechos a mano.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://staticforge.dpdns.org">
 <meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#14100C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..900,100&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
+<script>
+/* Aplica tema, CRT e idioma guardados antes de pintar, para evitar el parpadeo. */
+(function(){
+  var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+  var t=g('sf-theme');
+  if(!t){try{t=matchMedia('(prefers-color-scheme: light)').matches?'paper':'night'}catch(e){t='night'}}
+  d.setAttribute('data-theme',t==='paper'?'paper':'night');
+  d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');
+  var l=g('sf-lang'); if(l==='en'||l==='ca'||l==='es') d.setAttribute('lang',l);
+})();
+</script>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-
+/* ── Tokens (ver DESIGN.md) ────────────────────────────────────────────── */
 :root{
-  --bg:#0c0c0c;
-  --card:#111111;
-  --card2:#181818;
-  --rule:#252525;
-  --rule2:#383838;
-  --ink:#d8d8d8;
-  --ink-dim:#666666;
-  --ink-bright:#f2f2f2;
-  --bebas:'Bebas Neue',Impact,sans-serif;
-  --oswald:'Oswald','Arial Narrow',sans-serif;
-  --mono:'JetBrains Mono',monospace;
-  --exo:'Exo 2',sans-serif;
+  --bg:#14100C; --surface:#1D1813; --surface2:#262019; --line:#3A3027;
+  --ink:#F3E6CF; --muted:#A89A80;
+  --s1:#E79D56; --s2:#B25781; --s3:#4C9DB0;
+  --phosphor:#FFB000; --glow:rgba(255,176,0,.45);
+  --case1:#2E261E; --case2:#1A1510; --case-label:rgba(243,230,207,.38);
+  --scan:rgba(0,0,0,.22); --vig:rgba(0,0,0,.55);
+  --glass:rgba(20,16,12,.72);
+  --fd:'Fraunces',Georgia,serif; --fb:'DM Sans',system-ui,sans-serif; --fc:'VT323',ui-monospace,monospace;
+  --r:18px; --r-sm:10px;
+  color-scheme:dark;
+}
+[data-theme="paper"]{
+  --bg:#FBF1E3; --surface:#FFF8EE; --surface2:#F4E6D2; --line:#E2D2BC;
+  --ink:#2B2420; --muted:#6B5D50;
+  --s3:#305166;
+  --phosphor:#A4520F; --glow:transparent;
+  --case1:#E6D8C3; --case2:#C9B89F; --case-label:rgba(43,36,32,.45);
+  --scan:rgba(90,60,30,.07); --vig:rgba(90,60,30,.16);
+  --glass:rgba(251,241,227,.78);
+  color-scheme:light;
 }
 
-body{background:var(--bg);color:var(--ink);font-family:var(--exo);font-size:15px;line-height:1.7;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-img{max-width:100%;height:auto;display:block}
-::selection{background:rgba(220,220,220,.18)}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--rule2)}
+/* ── Base ──────────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  background:var(--bg);color:var(--ink);
+  font:400 16.5px/1.7 var(--fb);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  transition:background-color .4s,color .4s;
+}
+a{color:inherit}
+img{max-width:100%;display:block}
+::selection{background:var(--phosphor);color:var(--bg)}
+:focus-visible{outline:2px solid var(--phosphor);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative}
+.skip{position:absolute;left:12px;top:-60px;z-index:400;background:var(--phosphor);color:var(--bg);padding:10px 16px;border-radius:var(--r-sm);font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+.crt-txt{font-family:var(--fc);letter-spacing:.04em;color:var(--phosphor);text-shadow:0 0 10px var(--glow)}
 
-/* ── TOPBAR ─────────────────────────────────────────────────────────── */
-.topbar{
-  position:sticky;top:0;z-index:200;height:56px;
-  background:rgba(10,10,10,.96);
-  border-bottom:1px solid var(--rule);
-  backdrop-filter:blur(16px);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 1.5rem;
-}
-.tb-brand{display:flex;align-items:center}
-.tb-logo-svg{
-  display:block;height:40px;width:auto;
-  color:var(--ink-dim);opacity:.7;
-  transition:opacity .2s,color .2s;
-}
-.tb-brand:hover .tb-logo-svg{opacity:1;color:var(--ink-bright)}
+/* ── Capa CRT global: scanlines + viñeta, desactivable ─────────────────── */
+.fx{position:fixed;inset:0;pointer-events:none;z-index:300}
+.fx.scan{background:repeating-linear-gradient(to bottom,var(--scan) 0 1px,transparent 1px 3px)}
+.fx.vig{background:radial-gradient(ellipse at center,transparent 58%,var(--vig) 100%)}
+[data-crt="off"] .fx{display:none}
+[data-crt="off"]{--glow:transparent}
 
-.tb-nav{display:flex;gap:1.8rem;list-style:none;overflow:hidden}
-.tb-nav a{
-  font-family:var(--oswald);font-size:.75rem;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;
-  color:var(--ink-dim);transition:color .15s;white-space:nowrap;
-}
-.tb-nav a:hover{color:var(--ink-bright)}
+/* ── Franjas (motivo de identidad) ─────────────────────────────────────── */
+.stripes{display:inline-grid;gap:3px;width:26px;flex:none}
+.stripes i{display:block;height:4px;border-radius:9px;background:var(--s1)}
+.stripes i:nth-child(2){background:var(--s2)}
+.stripes i:nth-child(3){background:var(--s3)}
+.swoosh{display:block;width:100%;height:clamp(70px,10vw,130px)}
+.swoosh path{fill:none;stroke-width:16;stroke-linecap:round}
+.swoosh .p1{stroke:var(--s1)} .swoosh .p2{stroke:var(--s2)} .swoosh .p3{stroke:var(--s3)}
 
-.hamburger{
-  display:none;background:none;border:1px solid var(--rule2);
-  color:var(--ink-dim);font-family:var(--mono);font-size:.75rem;
-  cursor:pointer;padding:5px 10px;transition:all .15s;flex-shrink:0;
+/* ── Navegación (único elemento con cristal) ───────────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:200;
+  background:var(--glass);border-bottom:1px solid var(--line);
+  backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);
 }
-.hamburger:hover{border-color:var(--ink);color:var(--ink-bright)}
+.nav-in{display:flex;align-items:center;gap:20px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto;min-height:44px}
+.brand-name{font:700 1.18rem/1 var(--fd);font-variation-settings:"SOFT" 100;letter-spacing:-.01em}
+.links{display:flex;gap:4px;list-style:none}
+.links a{display:block;padding:11px 12px;font-weight:500;font-size:.95rem;text-decoration:none;color:var(--muted);border-radius:var(--r-sm);transition:color .2s,background .2s}
+.links a:hover{color:var(--ink);background:var(--surface2)}
+.ctrls{display:flex;align-items:center;gap:6px}
+.seg{display:flex;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden}
+.seg button,.tbtn,.menu-btn{
+  font:400 1.15rem/1 var(--fc);letter-spacing:.06em;color:var(--muted);
+  background:transparent;border:0;cursor:pointer;min-width:44px;min-height:44px;padding:0 10px;
+  transition:color .2s,background .2s;
+}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button:hover,.tbtn:hover,.menu-btn:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{color:var(--bg);background:var(--phosphor);text-shadow:none}
+.tbtn{border:1px solid var(--line);border-radius:var(--r-sm)}
+.tbtn[aria-pressed="true"]{color:var(--phosphor)}
+.menu-btn{display:none;border:1px solid var(--line);border-radius:var(--r-sm)}
 
-/* ── MOBILE NAV ─────────────────────────────────────────────────────── */
-.mob-nav{
-  display:none;flex-direction:column;
-  position:fixed;top:56px;left:0;right:0;
-  background:rgba(10,10,10,.99);
-  border-bottom:1px solid var(--rule);
-  z-index:190;
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:88px 0 64px}
+.osd{display:flex;align-items:center;gap:10px;font-size:1.35rem;margin-bottom:22px}
+.rec{width:10px;height:10px;border-radius:50%;background:#E5484D;box-shadow:0 0 8px rgba(229,72,77,.7);animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:.15}}
+h1{
+  font-family:var(--fd);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;
+  font-size:clamp(3.3rem,9.5vw,6.6rem);line-height:.9;letter-spacing:-.03em;
 }
-.mob-nav.open{display:flex}
-.mob-nav a{
-  font-family:var(--oswald);font-size:.85rem;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--ink-dim);padding:.85rem 1.5rem;
-  border-bottom:1px solid var(--rule);transition:all .15s;
-}
-.mob-nav a:hover{color:var(--ink-bright);background:rgba(226,226,226,.04)}
-
-/* ── LAYOUT ─────────────────────────────────────────────────────────── */
-.wrap{max-width:920px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1}
-
-/* ── HERO ───────────────────────────────────────────────────────────── */
-.hero{padding:5rem 0 3.5rem}
-.hero-logo-svg{
-  display:block;width:100%;max-width:460px;height:auto;
-  margin-bottom:1.4rem;
-}
-.hero-name-mobile{display:none}
-.hero-sub{
-  font-size:.95rem;color:var(--ink-dim);
-  margin-bottom:1.4rem;max-width:480px;line-height:1.78;
-}
-.hero-sub strong{color:var(--ink);font-weight:600}
-.hero-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2rem}
-.tag{
-  font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
-  padding:3px 10px;border:1px solid var(--rule2);
-  color:var(--ink-dim);
-}
-.hero-cta{display:flex;gap:8px;flex-wrap:wrap}
-
-/* ── BUTTONS ────────────────────────────────────────────────────────── */
+h1 .forge{display:block;text-shadow:3px 3px 0 var(--s1),6px 6px 0 var(--s2),9px 9px 0 var(--s3)}
+.lead{max-width:40ch;margin:30px 0 34px;font-size:1.15rem;color:var(--muted)}
+.lead strong{color:var(--ink);font-weight:500}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
 .btn{
-  font-family:var(--oswald);font-size:.78rem;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;
-  padding:9px 20px;border:1.5px solid var(--rule2);
-  background:transparent;color:var(--ink-dim);
-  cursor:pointer;transition:all .15s;display:inline-block;
-  white-space:nowrap;
+  display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 24px;
+  font:700 .98rem var(--fb);text-decoration:none;border-radius:var(--r-sm);
+  border:1.5px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer;
+  transition:transform .2s,box-shadow .2s,background .2s,color .2s;
 }
-.btn:hover{border-color:var(--ink);color:var(--ink-bright);background:rgba(226,226,226,.05)}
-.btn.pri{border-color:var(--ink);color:var(--ink-bright)}
-.btn.pri:hover{background:var(--ink-bright);color:#0c0c0c}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--s1)}
+.btn.pri{background:var(--ink);color:var(--bg)}
+.btn.pri:hover{box-shadow:4px 4px 0 var(--s2)}
+.values{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:34px;font-size:1.15rem;color:var(--muted);font-family:var(--fc);letter-spacing:.05em}
+.values span::before{content:"■ ";color:var(--phosphor)}
 
-/* ── SECTION ────────────────────────────────────────────────────────── */
-.sec{padding:3.5rem 0}
-.sec+.sec{border-top:1px solid var(--rule)}
-.sec-header{
-  display:flex;align-items:baseline;gap:14px;
-  margin-bottom:2rem;
-  position:relative;
-  padding-bottom:10px;
+/* La tele: pantalla siempre oscura, en los dos temas */
+.tv{
+  justify-self:center;width:100%;max-width:470px;
+  background:linear-gradient(170deg,var(--case1),var(--case2));
+  border-radius:30px;padding:22px 22px 0;
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.14),inset 0 -8px 18px rgba(0,0,0,.28),0 30px 60px -28px rgba(0,0,0,.7);
 }
-.sec-header::before{
-  content:'';position:absolute;bottom:0;left:0;right:0;
-  border-bottom:1.5px solid var(--ink-bright);
+.screen{
+  position:relative;overflow:hidden;aspect-ratio:4/3;border-radius:24px/28px;background:#0B0806;
+  box-shadow:inset 0 0 0 4px #050403,inset 0 0 60px rgba(0,0,0,.9);
 }
-.sec-header::after{
-  content:'';position:absolute;bottom:-4px;left:0;right:0;
-  border-bottom:.5px solid var(--rule2);
+.screen svg{display:block;width:100%;height:100%}
+.screen::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.32) 0 1px,transparent 1px 3px),
+             radial-gradient(ellipse at 30% 18%,rgba(255,255,255,.09),transparent 46%),
+             radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.65) 100%);
 }
-.sec-num{
-  font-family:var(--mono);font-size:.68rem;
-  color:var(--ink-dim);letter-spacing:.05em;flex-shrink:0;
+.track{
+  position:absolute;left:0;right:0;top:-30%;height:22%;pointer-events:none;mix-blend-mode:screen;
+  background:linear-gradient(transparent,rgba(255,236,200,.07) 45%,rgba(255,236,200,.13) 50%,rgba(255,236,200,.07) 55%,transparent);
+  animation:track 7s linear infinite;
 }
-.sec-title{
-  font-family:var(--bebas);
-  font-size:clamp(1.8rem,4vw,2.2rem);
-  color:var(--ink-bright);letter-spacing:.06em;line-height:1;
-}
-.sec-line{flex:1;min-width:0}
+@keyframes track{to{transform:translateY(600%)}}
+[data-crt="off"] .track{display:none}
+.scr-osd{position:absolute;inset:12px 16px auto;display:flex;justify-content:space-between;font:400 1.3rem/1 var(--fc);color:#FFF3DA;text-shadow:2px 2px 0 #000;z-index:2}
+.tv-foot{display:flex;align-items:center;gap:14px;padding:12px 6px 14px}
+.tv-model{font:700 .68rem/1 var(--fb);letter-spacing:.24em;color:var(--case-label);margin-right:auto}
+.knob{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.35),rgba(0,0,0,.35) 75%),var(--case2);box-shadow:inset 0 0 0 1px rgba(0,0,0,.35)}
+.led{width:8px;height:8px;border-radius:50%;background:var(--phosphor);box-shadow:0 0 8px var(--phosphor)}
 
-/* ── ABOUT CARDS ────────────────────────────────────────────────────── */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.acard{
-  background:var(--card);border:1px solid var(--rule);
-  padding:1.3rem 1.4rem;transition:border-color .2s;
-}
-.acard:hover{border-color:var(--rule2)}
-.acard.full{grid-column:1/-1}
-.acard-label{
-  font-family:var(--oswald);font-size:.7rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:.14em;
-  color:var(--ink-bright);margin-bottom:.75rem;
-  display:flex;align-items:center;gap:10px;
-}
-.acard-label::after{content:'';flex:1;height:.5px;background:var(--rule2)}
-.acard p{color:var(--ink);font-size:.9rem;line-height:1.78}
-.acard p strong{color:var(--ink-bright)}
-.acard p+p{margin-top:.5rem;color:var(--ink-dim);font-size:.87rem}
-.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:.65rem}
-.chip{
-  font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;
-  padding:2px 9px;border:1px solid var(--rule);
-  color:var(--ink-dim);
-}
-.stack-list{display:grid;gap:.48rem;font-size:.86rem}
-.stack-list>div{display:flex;gap:.6rem;min-width:0}
-.stack-list .k{
-  font-family:var(--mono);font-size:.76rem;color:var(--ink-dim);
-  flex-shrink:0;min-width:4.5rem;
-}
-.stack-list .v{color:var(--ink);min-width:0;word-break:break-word;overflow-wrap:break-word}
+/* ── Secciones ─────────────────────────────────────────────────────────── */
+section{padding:96px 0}
+.kicker{display:flex;align-items:center;gap:12px;font-size:1.3rem;margin-bottom:12px}
+h2{font-family:var(--fd);font-weight:800;font-variation-settings:"SOFT" 100,"opsz" 144;font-size:clamp(2.1rem,5vw,3.3rem);line-height:1.02;letter-spacing:-.02em;max-width:18ch}
+.sec-intro{color:var(--muted);max-width:52ch;margin-top:16px}
 
-/* ── PROJECT CARDS ──────────────────────────────────────────────────── */
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.pcard{
-  background:var(--card);border:1px solid var(--rule);
-  padding:1.3rem;display:block;color:inherit;
-  transition:border-color .2s,background .2s;
-  text-align:left;position:relative;overflow:hidden;
+/* Proyecto destacado */
+.feature{
+  display:grid;grid-template-columns:.85fr 1.15fr;margin-top:52px;
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface);
 }
-.pcard::before{
-  content:'';position:absolute;top:0;left:0;right:0;
-  height:1.5px;background:var(--rule2);
-}
-.pcard:hover{background:var(--card2);border-color:var(--rule2)}
-.pcard:hover::before{background:var(--ink)}
-.pstatus{
-  font-family:var(--mono);font-size:.67rem;text-transform:uppercase;
-  letter-spacing:.06em;color:var(--ink-dim);margin-bottom:.55rem;
-  display:flex;align-items:center;gap:6px;
-}
-.pdot{
-  width:5px;height:5px;border-radius:50%;
-  background:var(--ink);flex-shrink:0;
-  animation:pdot-pulse 2.4s ease-in-out infinite;
-}
-@keyframes pdot-pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.pname{
-  font-family:var(--bebas);font-size:1.55rem;
-  color:var(--ink-bright);margin-bottom:.4rem;letter-spacing:.04em;line-height:1;
-}
-.pdesc{font-size:.86rem;color:var(--ink-dim);line-height:1.65;margin-bottom:.85rem}
-.ptags{display:flex;flex-wrap:wrap;gap:4px}
-.ptag{
-  font-family:var(--mono);font-size:.64rem;letter-spacing:.04em;
-  padding:2px 7px;border:1px solid var(--rule);color:var(--ink-dim);
-}
+.feature-art{position:relative;background:#050403;min-height:300px}
+.feature-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:sepia(.35) saturate(1.2) contrast(1.05)}
+.feature-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.3) 0 1px,transparent 1px 3px)}
+.feature-body{padding:36px 36px 32px;display:flex;flex-direction:column}
+.chan{font:400 1.2rem/1 var(--fc);color:var(--phosphor);letter-spacing:.06em}
+.feature h3{font:800 clamp(1.8rem,3.4vw,2.4rem)/1.05 var(--fd);font-variation-settings:"SOFT" 100;margin:10px 0 14px;letter-spacing:-.015em}
+.feature p{color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.tag{font-size:.8rem;font-weight:500;padding:3px 10px;border:1px solid var(--line);border-radius:6px;color:var(--muted)}
+.feature .cta{margin-top:auto;padding-top:26px}
 
-/* ── GALLERY ────────────────────────────────────────────────────────── */
-.gfilt{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.2rem}
-.fbtn{
-  font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;
-  padding:4px 12px;border:1px solid var(--rule);
-  color:var(--ink-dim);cursor:pointer;transition:all .15s;background:transparent;
+/* Guía de programación */
+.guide{margin-top:64px;display:grid;gap:56px}
+.group-h{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.group-h h3{font:700 1.35rem/1 var(--fd);font-variation-settings:"SOFT" 100}
+.bar{flex:1;height:2px;background:var(--line)}
+.group-h .dot{width:12px;height:12px;border-radius:3px;flex:none}
+.g-hist .dot{background:var(--s2)} .g-soft .dot{background:var(--s1)} .g-sys .dot{background:var(--s3)}
+.rows{list-style:none}
+.row{
+  display:grid;grid-template-columns:62px minmax(150px,.75fr) 1.6fr auto;gap:8px 22px;align-items:baseline;
+  padding:22px 4px;border-bottom:1px dashed var(--line);transition:background .2s,padding .25s;
 }
-.fbtn.on,.fbtn:hover{border-color:var(--ink);color:var(--ink-bright)}
-.ggrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;min-height:120px}
-.gempty{
-  grid-column:1/-1;border:1px dashed var(--rule2);
-  padding:2.5rem 1rem;text-align:center;
-  font-family:var(--mono);font-size:.8rem;color:var(--ink-dim);
+.row:hover{background:var(--surface);padding-left:12px;padding-right:12px}
+.row .chan{font-size:1.5rem}
+.row h4{font:700 1.2rem/1.2 var(--fd);font-variation-settings:"SOFT" 100}
+.row .st{display:block;font:400 1.05rem/1.3 var(--fc);letter-spacing:.05em;color:var(--muted);margin-top:4px}
+.row p{color:var(--muted);font-size:.97rem}
+.acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.lnk{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:var(--r-sm);font-weight:500;font-size:.9rem;text-decoration:none;white-space:nowrap;transition:border-color .2s,color .2s}
+.lnk:hover{border-color:var(--phosphor);color:var(--phosphor)}
+.soon{display:inline-flex;align-items:center;min-height:44px;font:400 1.1rem var(--fc);letter-spacing:.05em;color:var(--muted);white-space:nowrap}
+
+/* Taller: bloque editorial + ficha técnica */
+.workshop{display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:start}
+.bio{font:500 clamp(1.4rem,2.6vw,1.85rem)/1.42 var(--fd);font-variation-settings:"SOFT" 100,"opsz" 48;letter-spacing:-.01em;margin-top:26px}
+.bio em{font-style:normal;color:var(--phosphor)}
+.bio-sub{color:var(--muted);margin-top:22px;max-width:46ch}
+.spec{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+.spec-h{display:flex;justify-content:space-between;padding:12px 18px;background:var(--surface2);border-bottom:1px solid var(--line);font-size:1.2rem}
+.spec dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;padding:20px 18px 22px}
+.spec dt{font:400 1.1rem/1.4 var(--fc);letter-spacing:.06em;color:var(--phosphor)}
+.spec dd{font-size:.94rem;line-height:1.55}
+
+/* Galería */
+.gfilt{display:flex;flex-wrap:wrap;gap:6px;margin:34px 0 20px}
+.fbtn{min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:var(--r-sm);background:transparent;color:var(--muted);font:500 .92rem var(--fb);cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.fbtn:hover{color:var(--ink);border-color:var(--ink)}
+.fbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;min-height:160px}
+.gitem{position:relative;aspect-ratio:1;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:var(--surface2);cursor:zoom-in;padding:0;display:block;width:100%}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gitem:hover img{transform:scale(1.04)}
+.gname{position:absolute;left:0;right:0;bottom:0;padding:8px 10px;font:400 1.05rem/1.2 var(--fc);letter-spacing:.04em;color:#FFF3DA;background:linear-gradient(transparent,rgba(0,0,0,.78));text-align:left}
+.gitem.broken{cursor:default;display:grid;place-items:center}
+.gitem.broken::before{content:attr(data-err);font:400 1.1rem var(--fc);color:var(--muted);padding:0 16px;text-align:center}
+.gempty{grid-column:1/-1;display:grid;place-items:center;text-align:center;padding:48px 16px;border:1px dashed var(--line);border-radius:var(--r);color:var(--muted)}
+.gempty b{display:block;font:400 1.5rem var(--fc);color:var(--phosphor);letter-spacing:.05em;margin-bottom:4px}
+.lb{margin:auto;border:0;background:transparent;max-width:min(92vw,1100px);padding:0;color:#FFF3DA}
+.lb::backdrop{background:rgba(8,6,4,.92)}
+.lb img{max-height:78vh;width:auto;margin:0 auto;border-radius:var(--r-sm)}
+.lb-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:12px;font:400 1.25rem var(--fc);letter-spacing:.05em}
+.lb-close{min-height:44px;padding:0 16px;border:1px solid rgba(255,243,218,.4);border-radius:var(--r-sm);background:transparent;color:#FFF3DA;font:400 1.2rem var(--fc);cursor:pointer}
+.lb-close:hover{border-color:#FFF3DA}
+
+/* Señal abierta */
+.signal{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;padding:44px 40px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
+.signal h2{font-size:clamp(1.8rem,4vw,2.5rem)}
+.signal p{color:var(--muted);margin-top:8px;max-width:44ch}
+
+/* Pie */
+footer{padding:0 0 40px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:12px 24px;flex-wrap:wrap;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.eob{font-size:1.35rem}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--phosphor)}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:44px;padding:56px 0 40px}
+  .tv{max-width:420px}
+  .feature{grid-template-columns:1fr}
+  .workshop{grid-template-columns:1fr;gap:40px}
+  .row{grid-template-columns:52px 1fr;gap:6px 16px}
+  .row p,.row .acts{grid-column:2}
+  .acts{justify-content:flex-start}
 }
-.gempty b{color:var(--ink)}
-.gitem{
-  aspect-ratio:1;overflow:hidden;border:1px solid var(--rule);
-  background:var(--card);cursor:pointer;transition:border-color .18s;position:relative;
+@media (max-width:760px){
+  .menu-btn{display:block}
+  .links{
+    display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--bg);border-bottom:1px solid var(--line);padding:8px 16px 14px;
+  }
+  .links.open{display:flex}
+  .links a{padding:13px 8px;font-size:1.05rem}
 }
-.gitem:hover{border-color:var(--rule2)}
-.gitem img{width:100%;height:100%;object-fit:cover;display:block}
-.gitem .gname{
-  position:absolute;bottom:0;left:0;right:0;
-  font-family:var(--mono);font-size:.64rem;
-  background:rgba(10,10,10,.9);color:var(--ink-dim);
-  padding:4px 6px;opacity:0;transition:opacity .18s;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .nav-in{gap:10px}
+  .brand-name{display:none}
+  .seg button,.tbtn,.menu-btn{padding:0 8px;font-size:1.05rem}
+  section{padding:72px 0}
+  .feature-body{padding:26px 22px 24px}
+  .signal{padding:32px 22px}
+  .ggrid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .spec dl{grid-template-columns:1fr;gap:2px}
+  .spec dd{margin-bottom:10px}
 }
-.gitem:hover .gname{opacity:1}
-.gupload-row{margin-top:.8rem;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
-.gcount{font-family:var(--mono);font-size:.74rem;color:var(--ink-dim)}
-
-/* ── LANG BAR ───────────────────────────────────────────────────────── */
-.lang-bar{position:fixed;bottom:1rem;right:1rem;z-index:300;display:flex;gap:4px}
-.lang-btn{
-  font-family:var(--mono);font-size:.65rem;letter-spacing:.06em;
-  padding:4px 9px;border:1px solid var(--rule2);
-  background:var(--card);color:var(--ink-dim);cursor:pointer;transition:all .18s;
+/* Muy estrecho: la barra pasa a dos filas (marca + menú arriba, idioma y tema abajo) */
+@media (max-width:360px){
+  html{scroll-padding-top:128px}
+  .nav-in{flex-wrap:wrap;height:auto;padding-top:8px;padding-bottom:8px;row-gap:6px}
+  .ctrls{display:contents}
+  .brand{flex:1 1 calc(100% - 90px);order:1}
+  .brand-name{display:inline}
+  .menu-btn{order:2}
+  .seg{order:3}
+  .tbtn{order:4}
+  .seg button{min-width:40px}
 }
-.lang-btn.active,.lang-btn:hover{border-color:var(--ink);color:var(--ink-bright)}
-
-/* ── FOOTER ─────────────────────────────────────────────────────────── */
-footer{
-  padding:1.5rem 0;border-top:1px solid var(--rule);text-align:center;
-  font-family:var(--oswald);font-size:.75rem;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);
-}
-footer a{color:var(--ink-dim);transition:color .15s}
-footer a:hover{color:var(--ink-bright)}
-
-/* ── LIGHTBOX ───────────────────────────────────────────────────────── */
-.lb{
-  display:none;position:fixed;inset:0;z-index:500;
-  background:rgba(0,0,0,.94);
-  align-items:center;justify-content:center;
-  flex-direction:column;gap:.9rem;padding:2rem;
-}
-.lb.open{display:flex}
-.lb img{max-width:90vw;max-height:78vh;border:1px solid var(--rule2)}
-.lb-name{font-family:var(--mono);font-size:.75rem;color:var(--ink-dim)}
-.lb-close{
-  position:absolute;top:1rem;right:1.4rem;
-  font-family:var(--mono);font-size:.8rem;color:var(--ink-dim);
-  cursor:pointer;background:none;border:none;transition:color .15s;
-}
-.lb-close:hover{color:var(--ink-bright)}
-
-/* ── WIP MODAL ──────────────────────────────────────────────────────── */
-.wip-backdrop{
-  position:fixed;inset:0;z-index:500;
-  background:rgba(0,0,0,.72);
-  display:grid;place-items:center;
-  opacity:0;pointer-events:none;transition:opacity .2s;
-}
-.wip-backdrop.show{opacity:1;pointer-events:auto}
-.wip-box{
-  background:var(--card2);border:1px solid var(--rule2);
-  padding:2rem 2.5rem;text-align:center;
-  transform:translateY(8px);transition:transform .22s;
-  max-width:300px;width:calc(100% - 3rem);
-}
-.wip-backdrop.show .wip-box{transform:none}
-.wip-icon{font-size:1.5rem;margin-bottom:.7rem;opacity:.5}
-.wip-title{
-  font-family:var(--bebas);font-size:1.4rem;
-  color:var(--ink-bright);letter-spacing:.06em;margin-bottom:.4rem;
-}
-.wip-sub{font-size:.82rem;color:var(--ink-dim)}
-.wip-close{
-  margin-top:1rem;font-family:var(--mono);font-size:.74rem;
-  color:var(--ink-dim);cursor:pointer;display:inline-block;transition:color .15s;
-}
-.wip-close:hover{color:var(--ink-bright)}
-
-/* ── SECTION DIVIDER ────────────────────────────────────────────────── */
-.sec-divider{
-  height:70px;
-  background:linear-gradient(to bottom,#0c0c0c 0%,#0e0a07 100%);
-  display:flex;align-items:center;justify-content:center;
-  padding:0 1.5rem;
-}
-.sec-divider svg{width:100%;max-width:920px;height:auto;display:block}
-
-/* ── WARM ZONE (projects + gallery) ────────────────────────────────── */
-.retro-zone{
-  background:#0e0a07;
-  --bg:#0e0a07;--card:#141008;--card2:#1c160a;
-  --rule:#2e2416;--rule2:#4a3618;
-  --ink:#d4c090;--ink-dim:#7a5e30;--ink-bright:#f5e6b0;
-}
-.retro-zone .pcard:hover::before{background:var(--ink-bright)}
-.retro-zone .fbtn.on,.retro-zone .fbtn:hover{border-color:var(--ink-bright);color:var(--ink-bright)}
-.retro-zone .btn{color:var(--ink-dim);border-color:var(--rule2)}
-.retro-zone .btn:hover{color:var(--ink-bright);border-color:var(--ink)}
-.retro-zone .sec+.sec{border-top-color:var(--rule)}
-
-/* ── MOBILE ─────────────────────────────────────────────────────────── */
-@media(max-width:680px){
-  .topbar{padding:0 1rem;height:52px}
-  .tb-logo-svg{height:34px}
-  .tb-nav{display:none}
-  .hamburger{display:block}
-
-  .mob-nav{top:52px}
-  .mob-nav a{padding:.75rem 1rem}
-
-  .wrap{padding:0 1rem}
-
-  .hero{padding:3rem 0 2rem}
-  .hero-logo-svg{max-width:100%;max-height:200px;object-fit:contain}
-  .hero-name-mobile{display:none}
-  .hero-sub{max-width:100%;font-size:.9rem}
-  .hero-tags{gap:5px}
-  .tag{font-size:.65rem;padding:2px 8px}
-  .hero-cta .btn{font-size:.72rem;padding:8px 14px}
-
-  .sec{padding:2.5rem 0}
-  .sec-title{font-size:1.5rem}
-
-  .about-grid{grid-template-columns:1fr}
-  .acard.full{grid-column:1}
-  .stack-list .k{min-width:3.8rem}
-
-  .proj-grid{grid-template-columns:1fr}
-
-  .ggrid{grid-template-columns:repeat(2,1fr)}
-
-  .sec-divider{height:50px}
-
-  .lang-bar{bottom:.75rem;right:.75rem}
-  .lang-btn{padding:3px 7px;font-size:.62rem}
-
-  .wip-box{padding:1.5rem}
-}
-
-@media(max-width:360px){
-  .wrap{padding:0 .75rem}
-  .hero-cta{gap:6px}
-  .btn{padding:7px 12px;font-size:.7rem}
-  .pname{font-size:1.3rem}
-  .sec-title{font-size:1.3rem}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+<div class="fx scan" aria-hidden="true"></div>
+<div class="fx vig" aria-hidden="true"></div>
 
-<header class="topbar">
-  <div class="tb-brand">
-    <svg class="tb-logo-svg" viewBox="0 0 72 42" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Static Forge">
-      <text x="36" y="27" font-family="'Bebas Neue',Impact,sans-serif" font-size="26" letter-spacing="2" text-anchor="middle" fill="currentColor">SF</text>
-      <line x1="4" y1="30" x2="30" y2="30" stroke="currentColor" stroke-width="1.4"/>
-      <line x1="42" y1="30" x2="68" y2="30" stroke="currentColor" stroke-width="1.4"/>
-      <line x1="4" y1="33" x2="30" y2="33" stroke="currentColor" stroke-width="0.5"/>
-      <line x1="42" y1="33" x2="68" y2="33" stroke="currentColor" stroke-width="0.5"/>
-      <polygon points="36,29 41,31.5 36,34 31,31.5" fill="currentColor"/>
-      <text x="36" y="40" font-family="'Oswald','Arial Narrow',sans-serif" font-size="5.5" font-weight="700" letter-spacing="2.5" text-anchor="middle" fill="currentColor">STATIC FORGE</text>
-    </svg>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Static Forge">
+      <span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">Static Forge</span>
+    </a>
+    <ul class="links" id="links">
+      <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="#taller" data-i18n="nav.workshop">Taller</a></li>
+      <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
+      <li><a href="foros.html" data-i18n="nav.forum">Foro</a></li>
+    </ul>
+    <div class="ctrls">
+      <div class="seg" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="ca" aria-pressed="false">CA</button>
+      </div>
+      <button type="button" class="tbtn" id="themeBtn" aria-pressed="false"><span data-i18n="theme.paper">PAPEL</span></button>
+      <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links"><span data-i18n="nav.menu">MENÚ</span></button>
+    </div>
   </div>
-  <nav><ul class="tb-nav">
-    <li><a href="#about" data-es="sobre" data-en="about" data-ca="sobre">sobre</a></li>
-    <li><a href="#projects" data-es="proyectos" data-en="projects" data-ca="projectes">proyectos</a></li>
-    <li><a href="#gallery" data-es="galería" data-en="gallery" data-ca="galeria">galería</a></li>
-    <li><a href="fnaf-as.html">FNAF AS</a></li>
-    <li><a href="donnies.html">Donnies</a></li>
-    <li><a href="linux/">Static Linux</a></li>
-    <li><a href="foros.html" data-es="foro" data-en="forum" data-ca="foro">foro</a></li>
-  </ul></nav>
-  <button class="hamburger" id="hamburger" onclick="toggleMobNav()" aria-label="menu">☰</button>
 </header>
 
-<nav class="mob-nav" id="mob-nav">
-  <a href="#about" onclick="closeMobNav()" data-es="sobre" data-en="about" data-ca="sobre">sobre</a>
-  <a href="#projects" onclick="closeMobNav()" data-es="proyectos" data-en="projects" data-ca="projectes">proyectos</a>
-  <a href="#gallery" onclick="closeMobNav()" data-es="galería" data-en="gallery" data-ca="galeria">galería</a>
-  <a href="fnaf-as.html">FNAF AS</a>
-  <a href="donnies.html">Donnies</a>
-  <a href="linux/">Static Linux</a>
-  <a href="foros.html" data-es="foro" data-en="forum" data-ca="foro">foro</a>
-</nav>
-
-<div class="wrap">
-
-  <section class="hero" id="home">
-    <svg class="hero-logo-svg" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Static Forge">
-      <defs>
-        <pattern id="hero-hp" patternUnits="userSpaceOnUse" x="0" y="0" width="1" height="9">
-          <rect y="0" width="1" height="4.5" fill="#e2e2e2"/>
-        </pattern>
-        <mask id="hero-sfm" maskUnits="userSpaceOnUse">
-          <text x="240" y="216" font-family="'Bebas Neue',Impact,sans-serif" font-size="200" letter-spacing="4" text-anchor="middle" fill="white">SF</text>
-        </mask>
-      </defs>
-      <rect width="480" height="320" fill="url(#hero-hp)" mask="url(#hero-sfm)"/>
-      <text x="240" y="216" font-family="'Bebas Neue',Impact,sans-serif" font-size="200" letter-spacing="4" text-anchor="middle" fill="none" stroke="#e2e2e2" stroke-width="1.2">SF</text>
-      <line x1="28" y1="236" x2="228" y2="236" stroke="#e2e2e2" stroke-width="1.8"/>
-      <line x1="252" y1="236" x2="452" y2="236" stroke="#e2e2e2" stroke-width="1.8"/>
-      <line x1="28" y1="242" x2="228" y2="242" stroke="#e2e2e2" stroke-width="0.6"/>
-      <line x1="252" y1="242" x2="452" y2="242" stroke="#e2e2e2" stroke-width="0.6"/>
-      <polygon points="240,233 248,239 240,245 232,239" fill="#e2e2e2"/>
-      <text x="240" y="280" font-family="'Oswald','Arial Narrow',sans-serif" font-size="16" font-weight="700" letter-spacing="12" text-anchor="middle" fill="#e2e2e2">STATIC FORGE</text>
-    </svg>
-
-    <p class="hero-sub">
-      <strong data-es="Developer · Artist · Content Creator" data-en="Developer · Artist · Content Creator" data-ca="Developer · Artist · Content Creator">Developer · Artist · Content Creator</strong><br>
-      <span data-es="Open source, diseño minimalista y arte digital." data-en="Open source, minimalist design and digital art." data-ca="Open source, disseny minimalista i art digital.">Open source, diseño minimalista y arte digital.</span>
-    </p>
-    <div class="hero-tags">
-      <span class="tag">game dev</span>
-      <span class="tag">open source</span>
-      <span class="tag">art &amp; illustration</span>
-      <span class="tag">content creator</span>
-      <span class="tag">català · español · english</span>
-    </div>
-    <div class="hero-cta">
-      <a href="#projects" class="btn pri" data-es="ver proyectos" data-en="view projects" data-ca="veure projectes">ver proyectos</a>
-      <a href="#gallery" class="btn" data-es="galería" data-en="gallery" data-ca="galeria">galería</a>
-      <a href="donnies.html" class="btn">Donnies →</a>
-      <a href="fnaf-as.html" class="btn">FNAF AS →</a>
-      <a href="linux/" class="btn">Static Linux →</a>
-    </div>
-  </section>
-
-  <section class="sec" id="about">
-    <div class="sec-header">
-      <span class="sec-num">01</span>
-      <h2 class="sec-title" data-es="SOBRE MÍ" data-en="ABOUT ME" data-ca="SOBRE MI">SOBRE MÍ</h2>
-      <div class="sec-line"></div>
-    </div>
-    <div class="about-grid">
-
-      <div class="acard full">
-        <div class="acard-label">Bio</div>
-        <p data-es="¡Hola! Soy Core, un creador de contenido, desarrollador y artista. Me apasionan los proyectos creativos: desde fangames de terror analógico hasta apps open-source para Android."
-           data-en="Hi! I'm Core, a content creator, developer and artist. I'm passionate about creative projects: from analog horror fangames to open-source Android apps."
-           data-ca="Hola! Sóc en Core, un creador de contingut, desenvolupador i artista. M'apassionen els projectes creatius: des de fangames de terror analògic fins a apps open-source per a Android.">
-          ¡Hola! Soy <strong>Core</strong>, un creador de contenido, desarrollador y artista.
-          Me apasionan los proyectos creativos: desde fangames de terror analógico hasta apps open-source para Android.
-        </p>
-        <p data-es="Esta página es mi archivo personal donde catalogo mis trabajos y comparto mi proceso. Hablo català, castellano i english y trabajo con ideas que combinan código, diseño y narrativa."
-           data-en="This is my personal archive where I catalog my work and share my process. I speak català, castellano and english, and work with ideas that combine code, design and narrative."
-           data-ca="Aquesta pàgina és el meu arxiu personal on catalogo els meus treballs i comparteixo el meu procés. Parlo català, castellà i anglès i treballo amb idees que combinen codi, disseny i narrativa.">
-          Esta página es mi archivo personal donde catalogo mis trabajos y comparto mi proceso.
-          Hablo català, castellano i english y trabajo con ideas que combinan código, diseño y narrativa.
-        </p>
+<main id="main">
+<div class="wrap" id="top">
+  <header class="hero">
+    <div>
+      <p class="osd crt-txt"><span class="rec" aria-hidden="true"></span><span data-i18n="hero.osd">CH 01 · EMITIENDO DESDE EL TALLER</span></p>
+      <h1>Static<span class="forge">Forge</span></h1>
+      <p class="lead" data-i18n="hero.lead">Software libre, juegos de terror analógico y arte digital, <strong>hechos a mano por Core</strong>.</p>
+      <div class="cta">
+        <a class="btn pri" href="#proyectos" data-i18n="hero.cta1">Ver los proyectos</a>
+        <a class="btn" href="#galeria" data-i18n="hero.cta2">Abrir la galería</a>
       </div>
-
-      <div class="acard">
-        <div class="acard-label" data-es="Skills" data-en="Skills" data-ca="Skills">Skills</div>
-        <div class="chips">
-          <span class="chip">Game Dev</span><span class="chip">Android Dev</span>
-          <span class="chip">Open Source</span><span class="chip">Art / Illustration</span>
-          <span class="chip">Content Creation</span><span class="chip">Linux</span>
-          <span class="chip">Git / GitHub</span><span class="chip">VS Code</span>
-        </div>
-      </div>
-
-      <div class="acard">
-        <div class="acard-label" data-es="Herramientas" data-en="Tools" data-ca="Eines">Herramientas</div>
-        <p data-es="Principal stack: Kotlin, Jetpack Compose, Godot 4.6, Python, HTML/CSS/JS y VS Code."
-           data-en="Main stack: Kotlin, Jetpack Compose, Godot 4.6, Python, HTML/CSS/JS and VS Code."
-           data-ca="Stack principal: Kotlin, Jetpack Compose, Godot 4.6, Python, HTML/CSS/JS i VS Code.">
-          Principal stack: Kotlin, Jetpack Compose, Godot 4.6, Python, HTML/CSS/JS y VS Code.
-        </p>
-        <div class="chips" style="margin-top:.75rem">
-          <span class="chip">Cinema 4D</span><span class="chip">Blender</span><span class="chip">Krita</span>
-          <span class="chip">Source SDK</span><span class="chip">GameMaker</span><span class="chip">LMMS</span><span class="chip">Audacity</span>
-        </div>
-      </div>
-
-      <div class="acard full">
-        <div class="acard-label">Stack</div>
-        <div class="stack-list">
-          <div><span class="k">OS</span><span class="v">CachyOS · Arch Linux · Windows 11 Pro</span></div>
-          <div><span class="k">WM</span><span class="v">Hyprland · XFCE · KDE · Openbox + Waybar</span></div>
-          <div><span class="k">Editor</span><span class="v">VS Code · Android Studio</span></div>
-          <div><span class="k">Dev</span><span class="v">Kotlin · Python · GDScript · Rust · HTML/CSS/JS</span></div>
-          <div><span class="k">3D/Art</span><span class="v">Cinema 4D · Blender · Krita · Affinity</span></div>
-          <div><span class="k">Audio</span><span class="v">LMMS · Ardour · Audacity</span></div>
-          <div><span class="k">AI</span><span class="v">Claude Code · Ollama · llama.cpp</span></div>
-          <div><span class="k">Game</span><span class="v">Godot 4.6 · Source SDK 2013 · GameMaker</span></div>
-        </div>
-      </div>
-
+      <p class="values"><span data-i18n="v.1">Código abierto</span><span data-i18n="v.2">Sin anuncios</span><span data-i18n="v.3">Sin telemetría</span></p>
     </div>
-  </section>
-</div><!-- /wrap -->
 
-<!-- Ruled divider matching logo aesthetic -->
-<div class="sec-divider">
-  <svg viewBox="0 0 920 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <line x1="0" y1="7" x2="448" y2="7" stroke="#2a2a2a" stroke-width="1.5"/>
-    <line x1="472" y1="7" x2="920" y2="7" stroke="#2a2a2a" stroke-width="1.5"/>
-    <line x1="0" y1="13" x2="448" y2="13" stroke="#1a1a1a" stroke-width="0.5"/>
-    <line x1="472" y1="13" x2="920" y2="13" stroke="#1a1a1a" stroke-width="0.5"/>
-    <polygon points="460,4 468,10 460,16 452,10" fill="#3a3020"/>
-  </svg>
+    <div class="tv" aria-hidden="true">
+      <div class="screen">
+        <div class="scr-osd"><span>▶ PLAY</span><span id="vhs">SP 0:00:00</span></div>
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#160D12"/><stop offset=".7" stop-color="#3B1A2B"/><stop offset="1" stop-color="#5A2638"/>
+            </linearGradient>
+            <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FFC56B"/><stop offset=".55" stop-color="#E79D56"/><stop offset="1" stop-color="#B25781"/>
+            </linearGradient>
+            <mask id="cuts" maskUnits="userSpaceOnUse">
+              <rect width="400" height="300" fill="#fff"/>
+              <rect y="150" width="400" height="3" fill="#000"/>
+              <rect y="164" width="400" height="5" fill="#000"/>
+              <rect y="180" width="400" height="7" fill="#000"/>
+              <rect y="197" width="400" height="9" fill="#000"/>
+            </mask>
+          </defs>
+          <rect width="400" height="300" fill="url(#sky)"/>
+          <circle cx="200" cy="168" r="92" fill="url(#sun)" mask="url(#cuts)"/>
+          <rect y="206" width="400" height="94" fill="#120A0E"/>
+          <path d="M-10 236 C 110 222 250 254 410 232" stroke="#E79D56" stroke-width="9" fill="none"/>
+          <path d="M-10 254 C 110 240 250 272 410 250" stroke="#B25781" stroke-width="9" fill="none"/>
+          <path d="M-10 272 C 110 258 250 290 410 268" stroke="#4C9DB0" stroke-width="9" fill="none"/>
+          <text x="200" y="138" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="900" font-size="64" fill="#160D12" opacity=".9">SF</text>
+        </svg>
+        <div class="track"></div>
+      </div>
+      <div class="tv-foot"><span class="tv-model">SF-2001</span><span class="knob"></span><span class="knob"></span><span class="led"></span></div>
+    </div>
+  </header>
 </div>
 
-<div class="retro-zone">
+<svg class="swoosh" viewBox="0 0 1440 130" preserveAspectRatio="none" aria-hidden="true">
+  <path class="p1" vector-effect="non-scaling-stroke" d="M-20 28 C 380 28, 560 96, 900 88 S 1300 34, 1460 42"/>
+  <path class="p2" vector-effect="non-scaling-stroke" d="M-20 56 C 380 56, 560 124, 900 116 S 1300 62, 1460 70"/>
+  <path class="p3" vector-effect="non-scaling-stroke" d="M-20 84 C 380 84, 560 152, 900 144 S 1300 90, 1460 98"/>
+</svg>
+
 <div class="wrap">
-  <section class="sec" id="projects">
-    <div class="sec-header">
-      <span class="sec-num">02</span>
-      <h2 class="sec-title" data-es="PROYECTOS" data-en="PROJECTS" data-ca="PROJECTES">PROYECTOS</h2>
-      <div class="sec-line"></div>
-    </div>
-    <div class="proj-grid">
+  <section id="proyectos" aria-labelledby="h-proj">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="proj.kicker">GUÍA DE PROGRAMACIÓN</span></p>
+    <h2 id="h-proj" data-i18n="proj.h">Lo que sale del taller</h2>
+    <p class="sec-intro" data-i18n="proj.intro">Juegos, herramientas y sistemas. Cada canal es un proyecto, con su estado real.</p>
 
-      <a class="pcard" href="donnies.html">
-        <div class="pstatus"><span class="pdot"></span><span data-es="en desarrollo · desde 2021" data-en="in development · since 2021" data-ca="en desenvolupament · des de 2021">en desarrollo · desde 2021</span></div>
-        <div class="pname">Donnie Origins</div>
-        <div class="pdesc" data-es="Fangame de FNaF con terror analógico. Source Engine, renders 3D y una historia construida desde cero."
-             data-en="FNaF fangame with analog horror. Source Engine, 3D renders and an original story."
-             data-ca="Fangame de FNaF amb terror analògic. Source Engine, renders 3D i una història construïda des de zero.">
-          Fangame de FNaF con terror analógico. Source Engine, renders 3D y una historia construida desde cero.
+    <article class="feature">
+      <div class="feature-art"><img src="assets/donnies/donnie-suit-head.webp" alt="Render 3D en progreso del endoesqueleto de Donnie" width="286" height="281" loading="lazy"></div>
+      <div class="feature-body">
+        <span class="chan">CH 02 · <span data-i18n="st.devsince">EN DESARROLLO · DESDE 2021</span></span>
+        <h3>Donnie's Origins</h3>
+        <p data-i18n="d.donnies">Fangame de terror analógico inspirado en FNaF, hecho en Source Engine. Un universo propio con dos juegos en el mismo canon: Remastered y The Underground.</p>
+        <div class="tags"><span class="tag">Source SDK 2013</span><span class="tag" data-i18n="t.analog">Terror analógico</span><span class="tag">3D</span></div>
+        <div class="cta">
+          <a class="btn pri" href="donnies.html" data-i18n="a.donnies">Ver Donnie's Origins</a>
+          <a class="btn" href="https://gamejolt.com/games/Donnies2001/885221" target="_blank" rel="noopener">GameJolt ↗</a>
         </div>
-        <div class="ptags"><span class="ptag">FNaF</span><span class="ptag">Source Engine</span><span class="ptag">Terror analógico</span><span class="ptag">ver más →</span></div>
-      </a>
+      </div>
+    </article>
 
-      <div class="pcard" role="button" tabindex="0" onclick="showWip()" onkeydown="if(event.key==='Enter')showWip()" style="cursor:pointer">
-        <div class="pstatus"><span class="pdot"></span><span data-es="en construcción" data-en="in construction" data-ca="en construcció">en construcción</span></div>
-        <div class="pname">LADA</div>
-        <div class="pdesc" data-es="Personajes originales, worldbuilding propio y una trama de ficción construida desde cero."
-             data-en="Original characters, own worldbuilding and a fiction plot built from scratch."
-             data-ca="Personatges originals, worldbuilding propi i una trama de ficció construïda des de zero.">
-          Personajes originales, worldbuilding propio y una trama de ficción construida desde cero.
-        </div>
-        <div class="ptags"><span class="ptag">OC / Original</span><span class="ptag">Ficción</span><span class="ptag">Worldbuilding</span></div>
+    <div class="guide">
+      <div class="g-hist">
+        <div class="group-h"><span class="dot" aria-hidden="true"></span><h3 data-i18n="g.hist">Historias</h3><span class="bar"></span></div>
+        <ul class="rows">
+          <li class="row">
+            <span class="chan">03</span>
+            <div><h4>FNAF AS</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span></div>
+            <p data-i18n="d.fnafas">Five Nights at Freddy's Alternative Stories: antología fan de glitch y terror analógico, con lore propio y renders 3D.</p>
+            <div class="acts"><a class="lnk" href="fnaf-as.html" data-i18n="a.page">Ver la página</a></div>
+          </li>
+          <li class="row">
+            <span class="chan">04</span>
+            <div><h4>LADA</h4><span class="st" data-i18n="st.build">EN CONSTRUCCIÓN</span></div>
+            <p data-i18n="d.lada">Ficción original de largo recorrido, desde 2020: personajes, mundo y trama propios.</p>
+            <div class="acts"><span class="soon" data-i18n="a.soon">Próximamente</span></div>
+          </li>
+        </ul>
       </div>
 
-      <a class="pcard" href="fnaf-as.html">
-        <div class="pstatus"><span class="pdot"></span><span data-es="en desarrollo" data-en="in development" data-ca="en desenvolupament">en desarrollo</span></div>
-        <div class="pname">FNaF AS</div>
-        <div class="pdesc" data-es="Five Nights at Freddy's Alternative Stories: universo alternativo, lore propio y experiencia visual glitch + renders 3D."
-             data-en="FNaF Alternative Stories: alternate universe, original lore and glitch/3D render visual experience."
-             data-ca="Five Nights at Freddy's Alternative Stories: univers alternatiu, lore propi i experiència visual glitch + renders 3D.">
-          Five Nights at Freddy's Alternative Stories: universo alternativo, lore propio y experiencia visual glitch + renders 3D.
-        </div>
-        <div class="ptags"><span class="ptag">FNAF</span><span class="ptag">Fan project</span><span class="ptag">3D</span></div>
-      </a>
-
-      <a class="pcard" href="https://github.com/KCRooty/X-USB" target="_blank">
-        <div class="pstatus"><span class="pdot"></span><span data-es="activo" data-en="active" data-ca="actiu">activo</span></div>
-        <div class="pname">X-USB</div>
-        <div class="pdesc" data-es="App Android open-source tipo Rufus/Ventoy. Gratis, sin anuncios, uso ilimitado. ISO Burner, MultiOS USB UEFI, Partition Wizard y más."
-             data-en="Open-source Android app like Rufus/Ventoy. Free, no ads, unlimited use. ISO Burner, MultiOS USB UEFI, Partition Wizard and more."
-             data-ca="App Android open-source tipus Rufus/Ventoy. Gratis, sense anuncis, ús il·limitat. ISO Burner, MultiOS USB UEFI, Partition Wizard i més.">
-          App Android open-source tipo Rufus/Ventoy. Gratis, sin anuncios, uso ilimitado. ISO Burner, MultiOS USB UEFI, Partition Wizard y más.
-        </div>
-        <div class="ptags"><span class="ptag">Android</span><span class="ptag">Open Source</span><span class="ptag">USB Tools</span><span class="ptag">GitHub ↗</span></div>
-      </a>
-
-      <a class="pcard" href="linux/">
-        <div class="pstatus"><span class="pdot"></span><span data-es="en desarrollo" data-en="in development" data-ca="en desenvolupament">en desarrollo</span></div>
-        <div class="pname">Static Linux</div>
-        <div class="pdesc" data-es="Distro Linux propia de Static Forge. Base Arch, instalador Calamares y escritorio XFCE tematizado."
-             data-en="Static Forge's own Linux distro. Arch base, Calamares installer and a themed XFCE desktop."
-             data-ca="Distro Linux pròpia de Static Forge. Base Arch, instal·lador Calamares i escriptori XFCE tematitzat.">
-          Distro Linux propia de Static Forge. Base Arch, instalador Calamares y escritorio XFCE tematizado.
-        </div>
-        <div class="ptags"><span class="ptag">Arch Linux</span><span class="ptag">Calamares</span><span class="ptag">XFCE</span><span class="ptag">ver más →</span></div>
-      </a>
-
-      <a class="pcard" href="foros.html">
-        <div class="pstatus"><span class="pdot"></span><span data-es="comunitario" data-en="community" data-ca="comunitari">comunitario</span></div>
-        <div class="pname">Foro</div>
-        <div class="pdesc" data-es="Espacio comunitario con sistema de login. Publica mensajes y comparte ideas."
-             data-en="Community space with login system. Post messages and share ideas."
-             data-ca="Espai comunitari amb sistema de login. Publica missatges i comparteix idees.">
-          Espacio comunitario con sistema de login. Publica mensajes y comparte ideas.
-        </div>
-        <div class="ptags"><span class="ptag">Foro</span><span class="ptag">Chat</span><span class="ptag">Login</span></div>
-      </a>
-
-      <div class="pcard" role="button" tabindex="0" onclick="showWip()" onkeydown="if(event.key==='Enter')showWip()" style="cursor:pointer">
-        <div class="pstatus"><span class="pdot"></span><span data-es="en desarrollo" data-en="in development" data-ca="en desenvolupament">en desarrollo</span></div>
-        <div class="pname">Forge OS</div>
-        <div class="pdesc" data-es="Sistema operativo completo desde cero en Rust. Kernel monolítico bare-metal x86_64, userland propio y sin compatibilidad binaria externa."
-             data-en="Full operating system from scratch in Rust. Bare-metal x86_64 monolithic kernel, custom userland and no external binary compatibility."
-             data-ca="Sistema operatiu complet des de zero en Rust. Kernel monolític bare-metal x86_64, userland propi i sense compatibilitat binària externa.">
-          Sistema operativo completo desde cero en Rust. Kernel monolítico bare-metal x86_64, userland propio y sin compatibilidad binaria externa.
-        </div>
-        <div class="ptags"><span class="ptag">Rust</span><span class="ptag">OS Dev</span><span class="ptag">Bare-metal</span><span class="ptag">Static Forge</span></div>
+      <div class="g-soft">
+        <div class="group-h"><span class="dot" aria-hidden="true"></span><h3 data-i18n="g.soft">Software</h3><span class="bar"></span></div>
+        <ul class="rows">
+          <li class="row">
+            <span class="chan">05</span>
+            <div><h4>X-USB</h4><span class="st" data-i18n="st.active">ACTIVO</span></div>
+            <p data-i18n="d.xusb">App Android libre al estilo Rufus y Ventoy: grabar ISOs, USB multiarranque UEFI y particiones desde el móvil. Gratis, sin anuncios. Necesita root.</p>
+            <div class="acts"><a class="lnk" href="https://github.com/KCRooty/X-USB" target="_blank" rel="noopener">GitHub ↗</a></div>
+          </li>
+          <li class="row">
+            <span class="chan">06</span>
+            <div><h4>RCK</h4><span class="st" data-i18n="st.active">ACTIVO</span></div>
+            <p data-i18n="d.rck">Optimizador de Windows 10 y 11 donde cada ajuste se puede deshacer: copia del registro antes de cada cambio y catálogo firmado.</p>
+            <div class="acts"><a class="lnk" href="https://github.com/KCRooty/RCK" target="_blank" rel="noopener">GitHub ↗</a></div>
+          </li>
+          <li class="row">
+            <span class="chan">07</span>
+            <div><h4>KC Downloader</h4><span class="st" data-i18n="st.done">TERMINADO</span></div>
+            <p data-i18n="d.kc">Descargador de escritorio para YouTube, YouTube Music, Spotify y Pinterest, construido sobre yt-dlp y spotdl.</p>
+            <div class="acts"><a class="lnk" href="https://github.com/KCRooty/kc-downloader" target="_blank" rel="noopener">GitHub ↗</a></div>
+          </li>
+          <li class="row">
+            <span class="chan">08</span>
+            <div><h4>WinForge</h4><span class="st" data-i18n="st.test">EN PRUEBAS</span></div>
+            <p data-i18n="d.winforge">Una ISO de Windows 11 limpia, sin bloatware y con identidad propia desde el primer arranque.</p>
+            <div class="acts"><span class="soon" data-i18n="a.unpub">Aún sin publicar</span></div>
+          </li>
+        </ul>
       </div>
 
-      <a class="pcard" href="https://github.com/KCRooty/RCK" target="_blank">
-        <div class="pstatus"><span class="pdot"></span><span data-es="activo" data-en="active" data-ca="actiu">activo</span></div>
-        <div class="pname">RCK</div>
-        <div class="pdesc" data-es="Optimizador y configurador todo-en-uno para Windows 10/11. Debloat, privacidad, rendimiento — reversión completa por tweak, catálogo firmado criptográficamente."
-             data-en="All-in-one optimizer for Windows 10/11. Debloat, privacy, performance — fully reversible per tweak, cryptographically signed catalog."
-             data-ca="Optimitzador i configurador tot-en-un per a Windows 10/11. Debloat, privacitat, rendiment — reversió completa per tweak, catàleg signat criptogràficament.">
-          Optimizador y configurador todo-en-uno para Windows 10/11. Debloat, privacidad, rendimiento — reversión completa por tweak, catálogo firmado criptográficamente.
-        </div>
-        <div class="ptags"><span class="ptag">Tauri 2</span><span class="ptag">Windows</span><span class="ptag">Open Source</span><span class="ptag">GitHub ↗</span></div>
-      </a>
-
+      <div class="g-sys">
+        <div class="group-h"><span class="dot" aria-hidden="true"></span><h3 data-i18n="g.sys">Sistemas</h3><span class="bar"></span></div>
+        <ul class="rows">
+          <li class="row">
+            <span class="chan">09</span>
+            <div><h4>Static Linux</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span></div>
+            <p data-i18n="d.sl">Distro basada en Arch. sl-detect mira tu hardware y elige el escritorio adecuado, de Openbox a Hyprland. La primera ISO ya arranca e instala de principio a fin.</p>
+            <div class="acts"><a class="lnk" href="linux/" data-i18n="a.page">Ver la página</a><a class="lnk" href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener">GitHub ↗</a></div>
+          </li>
+          <li class="row">
+            <span class="chan">10</span>
+            <div><h4>Forge OS</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span></div>
+            <p data-i18n="d.fos">Un sistema operativo completo escrito desde cero en Rust: kernel propio para x86_64 y userland propio (Ember, Bellows, Crucible y Anvil).</p>
+            <div class="acts"><a class="lnk" href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener">GitHub ↗</a></div>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="sec" id="gallery">
-    <div class="sec-header">
-      <span class="sec-num">03</span>
-      <h2 class="sec-title" data-es="GALERÍA" data-en="GALLERY" data-ca="GALERIA">GALERÍA</h2>
-      <div class="sec-line"></div>
-    </div>
-    <div class="gfilt">
-      <button class="fbtn on" onclick="setF(this,'all')" data-es="Todo" data-en="All" data-ca="Tot">Todo</button>
-      <button class="fbtn" onclick="setF(this,'oc')" data-es="OC / Original" data-en="OC / Original" data-ca="OC / Original">OC / Original</button>
-      <button class="fbtn" onclick="setF(this,'fanart')" data-es="Fanart" data-en="Fanart" data-ca="Fanart">Fanart</button>
-      <button class="fbtn" onclick="setF(this,'concept')" data-es="Concept Art" data-en="Concept Art" data-ca="Concept Art">Concept Art</button>
-      <button class="fbtn" onclick="setF(this,'other')" data-es="Otro" data-en="Other" data-ca="Altre">Otro</button>
-    </div>
-    <div class="ggrid" id="ggrid">
-      <div class="gempty"><b>~/gallery</b> · 0 archivos<br><span style="font-size:.72rem;opacity:.6;display:block;margin-top:4px">las imágenes se guardan localmente</span></div>
-    </div>
-    <div class="gupload-row">
-      <input type="file" id="fInput" accept="image/*" multiple style="display:none" onchange="handleUp(event)">
-      <button class="btn" onclick="document.getElementById('fInput').click()"
-              data-es="+ subir dibujo" data-en="+ upload drawing" data-ca="+ pujar dibuix">+ subir dibujo</button>
-      <span class="gcount" id="gcount"></span>
+  <section id="taller" aria-labelledby="h-work">
+    <div class="workshop">
+      <div>
+        <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="w.kicker">EL TALLER</span></p>
+        <h2 id="h-work" data-i18n="w.h">Quién hay detrás</h2>
+        <p class="bio" data-i18n="w.bio">Soy <em>Core</em>. Programo, modelo en 3D, dibujo y escribo. Me tiran los proyectos que mezclan código y narrativa: de un juego de terror en Source Engine a una app para preparar USBs desde el móvil.</p>
+        <p class="bio-sub" data-i18n="w.sub">Todo lo que sale del taller se cataloga aquí. Hablo català, castellano e inglés.</p>
+      </div>
+      <aside class="spec" aria-labelledby="h-spec">
+        <div class="spec-h crt-txt"><span id="h-spec" data-i18n="w.spec">FICHA TÉCNICA</span><span>SF-2001</span></div>
+        <dl>
+          <dt data-i18n="k.os">SISTEMA</dt><dd>Windows 11 Pro · WSL2 Debian · Static Linux</dd>
+          <dt data-i18n="k.code">CÓDIGO</dt><dd>Kotlin · Rust · Python · GDScript · C · HTML/CSS/JS</dd>
+          <dt data-i18n="k.engine">MOTORES</dt><dd>Source SDK 2013 · Godot 4 · GameMaker</dd>
+          <dt data-i18n="k.art">3D Y ARTE</dt><dd>Cinema 4D · Blender · Krita</dd>
+          <dt>AUDIO</dt><dd>FL Studio · LMMS · Ardour · Audacity</dd>
+          <dt data-i18n="k.video">VÍDEO</dt><dd>DaVinci Resolve · Kdenlive</dd>
+          <dt>EDITOR</dt><dd>VS Code · Android Studio</dd>
+          <dt data-i18n="k.ai">IA</dt><dd>Claude Code · Ollama · llama.cpp</dd>
+        </dl>
+      </aside>
     </div>
   </section>
 
-</div><!-- /wrap -->
-</div><!-- /retro-zone -->
+  <section id="galeria" aria-labelledby="h-gal">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="gal.kicker">ARCHIVO DE IMAGEN</span></p>
+    <h2 id="h-gal" data-i18n="gal.h">Galería</h2>
+    <div class="gfilt" role="group" aria-label="Filtro">
+      <button type="button" class="fbtn" data-f="all" aria-pressed="true" data-i18n="f.all">Todo</button>
+      <button type="button" class="fbtn" data-f="oc" aria-pressed="false" data-i18n="f.oc">OC / Original</button>
+      <button type="button" class="fbtn" data-f="fanart" aria-pressed="false">Fanart</button>
+      <button type="button" class="fbtn" data-f="concept" aria-pressed="false">Concept art</button>
+      <button type="button" class="fbtn" data-f="other" aria-pressed="false" data-i18n="f.other">Otro</button>
+    </div>
+    <div class="ggrid" id="ggrid" aria-live="polite"></div>
+  </section>
 
-<div class="wip-backdrop" id="wip-backdrop" onclick="closeWip()">
-  <div class="wip-box" onclick="event.stopPropagation()">
-    <div class="wip-icon">🚧</div>
-    <div class="wip-title">bajo construcción</div>
-    <div class="wip-sub" data-es="este apartado estará disponible próximamente" data-en="this section will be available soon" data-ca="aquest apartat estarà disponible aviat">este apartado estará disponible próximamente</div>
-    <span class="wip-close" onclick="closeWip()">[ cerrar ]</span>
-  </div>
+  <section aria-labelledby="h-sig">
+    <div class="signal">
+      <div>
+        <p class="kicker crt-txt"><span data-i18n="s.kicker">SEÑAL ABIERTA</span></p>
+        <h2 id="h-sig" data-i18n="s.h">¿Ideas, dudas o bugs?</h2>
+        <p data-i18n="s.p">El foro está abierto y todo el código público vive en GitHub.</p>
+      </div>
+      <div class="cta">
+        <a class="btn pri" href="foros.html" data-i18n="s.forum">Entrar al foro</a>
+        <a class="btn" href="https://github.com/KCRooty" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </section>
 </div>
+</main>
 
 <footer>
-  <div class="wrap">Static Forge · <a href="https://github.com/KCRooty">github ↗</a></div>
+  <svg class="swoosh" viewBox="0 0 1440 130" preserveAspectRatio="none" aria-hidden="true">
+    <path class="p1" vector-effect="non-scaling-stroke" d="M-20 98 C 380 98, 560 30, 900 38 S 1300 92, 1460 84"/>
+    <path class="p2" vector-effect="non-scaling-stroke" d="M-20 70 C 380 70, 560 2, 900 10 S 1300 64, 1460 56"/>
+    <path class="p3" vector-effect="non-scaling-stroke" d="M-20 126 C 380 126, 560 58, 900 66 S 1300 120, 1460 112"/>
+  </svg>
+  <div class="wrap foot">
+    <span class="eob crt-txt" data-i18n="f.eob">FIN DE LA EMISIÓN</span>
+    <span>© 2026 Static Forge · Core · <a href="https://github.com/KCRooty" target="_blank" rel="noopener">github.com/KCRooty</a></span>
+  </div>
 </footer>
 
-<div class="lang-bar">
-  <button class="lang-btn active" data-lang="es" onclick="setLang('es')">ES</button>
-  <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" data-lang="ca" onclick="setLang('ca')">CA</button>
-</div>
-
-<div class="lb" id="lb" onclick="closeLb()">
-  <button class="lb-close" onclick="closeLb()">[ ✕ cerrar ]</button>
+<dialog class="lb" id="lb" aria-labelledby="lbName">
   <img id="lbImg" src="" alt="">
-  <div class="lb-name" id="lbName"></div>
-</div>
+  <div class="lb-bar"><span id="lbName"></span><button type="button" class="lb-close" id="lbClose" data-i18n="lb.close">CERRAR [ESC]</button></div>
+</dialog>
 
 <script>
-function showWip(){document.getElementById('wip-backdrop').classList.add('show');}
-function closeWip(){document.getElementById('wip-backdrop').classList.remove('show');}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeWip();closeLb();}});
-function toggleMobNav(){document.getElementById('mob-nav').classList.toggle('open');}
-function closeMobNav(){document.getElementById('mob-nav').classList.remove('open');}
-document.addEventListener('click',e=>{
-  if(!e.target.closest('.mob-nav')&&!e.target.closest('#hamburger')){
-    closeMobNav();
-  }
+(function(){
+'use strict';
+var d=document.documentElement;
+function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+
+/* ── Textos ES / EN / CA ── */
+var T={
+es:{'skip':'Saltar al contenido','nav.projects':'Proyectos','nav.workshop':'Taller','nav.gallery':'Galería','nav.forum':'Foro','nav.menu':'MENÚ',
+'theme.paper':'PAPEL','theme.night':'NOCHE',
+'hero.osd':'CH 01 · EMITIENDO DESDE EL TALLER','hero.lead':'Software libre, juegos de terror analógico y arte digital, <strong>hechos a mano por Core</strong>.',
+'hero.cta1':'Ver los proyectos','hero.cta2':'Abrir la galería','v.1':'Código abierto','v.2':'Sin anuncios','v.3':'Sin telemetría',
+'proj.kicker':'GUÍA DE PROGRAMACIÓN','proj.h':'Lo que sale del taller','proj.intro':'Juegos, herramientas y sistemas. Cada canal es un proyecto, con su estado real.',
+'st.devsince':'EN DESARROLLO · DESDE 2021','st.dev':'EN DESARROLLO','st.build':'EN CONSTRUCCIÓN','st.active':'ACTIVO','st.done':'TERMINADO','st.test':'EN PRUEBAS',
+'d.donnies':'Fangame de terror analógico inspirado en FNaF, hecho en Source Engine. Un universo propio con dos juegos en el mismo canon: Remastered y The Underground.',
+'t.analog':'Terror analógico','a.donnies':"Ver Donnie's Origins",'a.page':'Ver la página','a.soon':'Próximamente','a.unpub':'Aún sin publicar',
+'g.hist':'Historias','g.soft':'Software','g.sys':'Sistemas',
+'d.fnafas':"Five Nights at Freddy's Alternative Stories: antología fan de glitch y terror analógico, con lore propio y renders 3D.",
+'d.lada':'Ficción original de largo recorrido, desde 2020: personajes, mundo y trama propios.',
+'d.xusb':'App Android libre al estilo Rufus y Ventoy: grabar ISOs, USB multiarranque UEFI y particiones desde el móvil. Gratis, sin anuncios. Necesita root.',
+'d.rck':'Optimizador de Windows 10 y 11 donde cada ajuste se puede deshacer: copia del registro antes de cada cambio y catálogo firmado.',
+'d.kc':'Descargador de escritorio para YouTube, YouTube Music, Spotify y Pinterest, construido sobre yt-dlp y spotdl.',
+'d.winforge':'Una ISO de Windows 11 limpia, sin bloatware y con identidad propia desde el primer arranque.',
+'d.sl':'Distro basada en Arch. sl-detect mira tu hardware y elige el escritorio adecuado, de Openbox a Hyprland. La primera ISO ya arranca e instala de principio a fin.',
+'d.fos':'Un sistema operativo completo escrito desde cero en Rust: kernel propio para x86_64 y userland propio (Ember, Bellows, Crucible y Anvil).',
+'w.kicker':'EL TALLER','w.h':'Quién hay detrás',
+'w.bio':'Soy <em>Core</em>. Programo, modelo en 3D, dibujo y escribo. Me tiran los proyectos que mezclan código y narrativa: de un juego de terror en Source Engine a una app para preparar USBs desde el móvil.',
+'w.sub':'Todo lo que sale del taller se cataloga aquí. Hablo català, castellano e inglés.','w.spec':'FICHA TÉCNICA',
+'k.os':'SISTEMA','k.code':'CÓDIGO','k.engine':'MOTORES','k.art':'3D Y ARTE','k.video':'VÍDEO','k.ai':'IA',
+'gal.kicker':'ARCHIVO DE IMAGEN','gal.h':'Galería','f.all':'Todo','f.oc':'OC / Original','f.other':'Otro',
+'gal.empty':'SIN SEÑAL','gal.emptyp':'Todavía no hay imágenes en esta categoría.','gal.err':'NO SE PUDO CARGAR LA IMAGEN','gal.loading':'SINTONIZANDO…',
+'s.kicker':'SEÑAL ABIERTA','s.h':'¿Ideas, dudas o bugs?','s.p':'El foro está abierto y todo el código público vive en GitHub.','s.forum':'Entrar al foro',
+'f.eob':'FIN DE LA EMISIÓN','lb.close':'CERRAR [ESC]'},
+en:{'skip':'Skip to content','nav.projects':'Projects','nav.workshop':'Workshop','nav.gallery':'Gallery','nav.forum':'Forum','nav.menu':'MENU',
+'theme.paper':'PAPER','theme.night':'NIGHT',
+'hero.osd':'CH 01 · BROADCASTING FROM THE WORKSHOP','hero.lead':'Free software, analog horror games and digital art, <strong>handmade by Core</strong>.',
+'hero.cta1':'See the projects','hero.cta2':'Open the gallery','v.1':'Open source','v.2':'No ads','v.3':'No telemetry',
+'proj.kicker':'PROGRAM GUIDE','proj.h':'Out of the workshop','proj.intro':'Games, tools and systems. Every channel is a project, with its real status.',
+'st.devsince':'IN DEVELOPMENT · SINCE 2021','st.dev':'IN DEVELOPMENT','st.build':'UNDER CONSTRUCTION','st.active':'ACTIVE','st.done':'FINISHED','st.test':'TESTING',
+'d.donnies':'An FNaF-inspired analog horror fangame built on Source Engine. Its own universe, with two games in the same canon: Remastered and The Underground.',
+'t.analog':'Analog horror','a.donnies':"See Donnie's Origins",'a.page':'See the page','a.soon':'Coming soon','a.unpub':'Not published yet',
+'g.hist':'Stories','g.soft':'Software','g.sys':'Systems',
+'d.fnafas':"Five Nights at Freddy's Alternative Stories: a fan anthology of glitch and analog horror, with its own lore and 3D renders.",
+'d.lada':'A long-running original fiction, since 2020: its own characters, world and plot.',
+'d.xusb':'A free Android app in the spirit of Rufus and Ventoy: burn ISOs, build UEFI multiboot USBs and manage partitions from your phone. Free, no ads. Requires root.',
+'d.rck':'A Windows 10 and 11 optimizer where every tweak can be undone: a registry backup before each change and a signed catalog.',
+'d.kc':'A desktop downloader for YouTube, YouTube Music, Spotify and Pinterest, built on yt-dlp and spotdl.',
+'d.winforge':'A clean Windows 11 ISO, free of bloatware and with its own identity from the first boot.',
+'d.sl':'An Arch-based distro. sl-detect reads your hardware and picks the right desktop, from Openbox to Hyprland. The first ISO already boots and installs end to end.',
+'d.fos':'A complete operating system written from scratch in Rust: its own x86_64 kernel and its own userland (Ember, Bellows, Crucible and Anvil).',
+'w.kicker':'THE WORKSHOP','w.h':"Who's behind it",
+'w.bio':"I'm <em>Core</em>. I code, model in 3D, draw and write. I'm drawn to projects that mix code and narrative: from a horror game on Source Engine to an app that prepares USB drives from your phone.",
+'w.sub':'Everything that leaves the workshop is catalogued here. I speak Catalan, Spanish and English.','w.spec':'SPEC SHEET',
+'k.os':'SYSTEM','k.code':'CODE','k.engine':'ENGINES','k.art':'3D & ART','k.video':'VIDEO','k.ai':'AI',
+'gal.kicker':'IMAGE ARCHIVE','gal.h':'Gallery','f.all':'All','f.oc':'OC / Original','f.other':'Other',
+'gal.empty':'NO SIGNAL','gal.emptyp':'No images in this category yet.','gal.err':'IMAGE FAILED TO LOAD','gal.loading':'TUNING IN…',
+'s.kicker':'OPEN SIGNAL','s.h':'Ideas, questions or bugs?','s.p':'The forum is open and all the public code lives on GitHub.','s.forum':'Enter the forum',
+'f.eob':'END OF BROADCAST','lb.close':'CLOSE [ESC]'},
+ca:{'skip':'Salta al contingut','nav.projects':'Projectes','nav.workshop':'Taller','nav.gallery':'Galeria','nav.forum':'Fòrum','nav.menu':'MENÚ',
+'theme.paper':'PAPER','theme.night':'NIT',
+'hero.osd':'CH 01 · EMETENT DES DEL TALLER','hero.lead':'Programari lliure, jocs de terror analògic i art digital, <strong>fets a mà per en Core</strong>.',
+'hero.cta1':'Veure els projectes','hero.cta2':'Obrir la galeria','v.1':'Codi obert','v.2':'Sense anuncis','v.3':'Sense telemetria',
+'proj.kicker':'GUIA DE PROGRAMACIÓ','proj.h':'El que surt del taller','proj.intro':'Jocs, eines i sistemes. Cada canal és un projecte, amb el seu estat real.',
+'st.devsince':'EN DESENVOLUPAMENT · DES DE 2021','st.dev':'EN DESENVOLUPAMENT','st.build':'EN CONSTRUCCIÓ','st.active':'ACTIU','st.done':'ACABAT','st.test':'EN PROVES',
+'d.donnies':"Fangame de terror analògic inspirat en FNaF, fet amb Source Engine. Un univers propi amb dos jocs al mateix cànon: Remastered i The Underground.",
+'t.analog':'Terror analògic','a.donnies':"Veure Donnie's Origins",'a.page':'Veure la pàgina','a.soon':'Aviat','a.unpub':'Encara sense publicar',
+'g.hist':'Històries','g.soft':'Programari','g.sys':'Sistemes',
+'d.fnafas':"Five Nights at Freddy's Alternative Stories: antologia fan de glitch i terror analògic, amb lore propi i renders 3D.",
+'d.lada':'Ficció original de llarg recorregut, des del 2020: personatges, món i trama propis.',
+'d.xusb':"App Android lliure a l'estil de Rufus i Ventoy: gravar ISOs, USB multiarrencada UEFI i particions des del mòbil. Gratis, sense anuncis. Necessita root.",
+'d.rck':"Optimitzador de Windows 10 i 11 on cada ajust es pot desfer: còpia del registre abans de cada canvi i catàleg signat.",
+'d.kc':"Descarregador d'escriptori per a YouTube, YouTube Music, Spotify i Pinterest, construït sobre yt-dlp i spotdl.",
+'d.winforge':"Una ISO de Windows 11 neta, sense bloatware i amb identitat pròpia des de la primera arrencada.",
+'d.sl':"Distro basada en Arch. sl-detect mira el teu maquinari i tria l'escriptori adequat, d'Openbox a Hyprland. La primera ISO ja arrenca i s'instal·la de cap a peus.",
+'d.fos':"Un sistema operatiu complet escrit des de zero en Rust: kernel propi per a x86_64 i userland propi (Ember, Bellows, Crucible i Anvil).",
+'w.kicker':'EL TALLER','w.h':'Qui hi ha darrere',
+'w.bio':"Sóc en <em>Core</em>. Programo, modelo en 3D, dibuixo i escric. M'atrauen els projectes que barregen codi i narrativa: d'un joc de terror amb Source Engine a una app per preparar USBs des del mòbil.",
+'w.sub':"Tot el que surt del taller es cataloga aquí. Parlo català, castellà i anglès.",'w.spec':'FITXA TÈCNICA',
+'k.os':'SISTEMA','k.code':'CODI','k.engine':'MOTORS','k.art':'3D I ART','k.video':'VÍDEO','k.ai':'IA',
+'gal.kicker':"ARXIU D'IMATGE",'gal.h':'Galeria','f.all':'Tot','f.oc':'OC / Original','f.other':'Altre',
+'gal.empty':'SENSE SENYAL','gal.emptyp':'Encara no hi ha imatges en aquesta categoria.','gal.err':"NO S'HA POGUT CARREGAR LA IMATGE",'gal.loading':'SINTONITZANT…',
+'s.kicker':'SENYAL OBERT','s.h':'Idees, dubtes o bugs?','s.p':'El fòrum és obert i tot el codi públic viu a GitHub.','s.forum':'Entrar al fòrum',
+'f.eob':"FI DE L'EMISSIÓ",'lb.close':'TANCAR [ESC]'}
+};
+var lang=d.getAttribute('lang')||'es';
+function t(k){return (T[lang]&&T[lang][k])||T.es[k]||k}
+function applyLang(l){
+  lang=T[l]?l:'es'; d.setAttribute('lang',lang);
+  document.querySelectorAll('[data-i18n]').forEach(function(el){el.innerHTML=t(el.getAttribute('data-i18n'))});
+  document.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===lang))});
+  syncTheme(); renderG();
+}
+document.querySelectorAll('[data-lang]').forEach(function(b){
+  b.addEventListener('click',function(){save('sf-lang',b.dataset.lang);applyLang(b.dataset.lang)});
 });
 
-const HARDCODED=[
-  {src:'assets/gallery/clip5_2.png',name:'Render FNAF AS 1',cat:'fanart'},
-  {src:'assets/gallery/clip5.png',  name:'Render FNAF AS 2',cat:'fanart'},
-  {src:'assets/gallery/clip5_1.png',name:'Render FNAF AS 3',cat:'fanart'}
-];
-let imgs=[...HARDCODED];
-let curF='all';
+/* ── Tema noche / papel ── */
+var themeBtn=document.getElementById('themeBtn');
+function syncTheme(){
+  var paper=d.getAttribute('data-theme')==='paper';
+  themeBtn.setAttribute('aria-pressed',String(paper));
+  themeBtn.setAttribute('aria-label',paper?'Tema: papel':'Tema: noche');
+  themeBtn.firstElementChild.innerHTML=t(paper?'theme.night':'theme.paper');
+  var m=document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute('content',paper?'#FBF1E3':'#14100C');
+}
+themeBtn.addEventListener('click',function(){
+  var next=d.getAttribute('data-theme')==='paper'?'night':'paper';
+  d.setAttribute('data-theme',next); save('sf-theme',next); syncTheme();
+});
 
-function loadGallery(){
-  try{const saved=JSON.parse(localStorage.getItem('alfy_gallery')||'[]');imgs=[...HARDCODED,...saved];}
-  catch(e){imgs=[...HARDCODED];}
-}
-function saveGallery(){
-  const uploads=imgs.filter(i=>!HARDCODED.some(h=>h.src===i.src));
-  try{localStorage.setItem('alfy_gallery',JSON.stringify(uploads));}catch(e){}
-}
-function setF(btn,f){
-  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');curF=f;renderG();
-}
-function handleUp(e){
-  Array.from(e.target.files).forEach(file=>{
-    const r=new FileReader();
-    r.onload=ev=>{imgs.push({src:ev.target.result,name:file.name,cat:'other'});saveGallery();renderG();};
-    r.readAsDataURL(file);
-  });
-  e.target.value='';
-}
+/* ── Interruptor CRT ── */
+var crtBtn=document.getElementById('crtBtn');
+function syncCrt(){var on=d.getAttribute('data-crt')!=='off';crtBtn.setAttribute('aria-pressed',String(on));crtBtn.setAttribute('aria-label',on?'Efecto CRT activado':'Efecto CRT desactivado')}
+crtBtn.addEventListener('click',function(){
+  var next=d.getAttribute('data-crt')==='off'?'on':'off';
+  d.setAttribute('data-crt',next); save('sf-crt',next); syncCrt();
+});
+syncCrt();
+
+/* ── Menú móvil ── */
+var menuBtn=document.getElementById('menuBtn'),links=document.getElementById('links');
+function setMenu(open){links.classList.toggle('open',open);menuBtn.setAttribute('aria-expanded',String(open))}
+menuBtn.addEventListener('click',function(){setMenu(!links.classList.contains('open'))});
+links.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&links.classList.contains('open')){setMenu(false);menuBtn.focus()}});
+document.addEventListener('click',function(e){if(!e.target.closest('.nav'))setMenu(false)});
+
+/* ── Contador VHS del hero ── */
+var vhs=document.getElementById('vhs'),t0=Date.now();
+function pad(n){return (n<10?'0':'')+n}
+setInterval(function(){var s=Math.floor((Date.now()-t0)/1000);vhs.textContent='SP '+Math.floor(s/3600)+':'+pad(Math.floor(s/60)%60)+':'+pad(s%60)},1000);
+
+/* ── Galería ── */
+var IMGS=[
+  {src:'assets/gallery/donnie-render.webp',name:"Donnie · Render 3D",cat:'oc'},
+  {src:'assets/gallery/donnie-menu.webp',name:"Donnie's Origins · Menú",cat:'oc'},
+  {src:'assets/gallery/sam-fanart.webp',name:'Sam · Fanart',cat:'fanart'},
+  {src:'assets/gallery/clip5_2.png',name:'FNAF AS · Render 1',cat:'fanart'},
+  {src:'assets/gallery/clip5.png',name:'FNAF AS · Render 2',cat:'fanart'},
+  {src:'assets/gallery/clip5_1.png',name:'FNAF AS · Render 3',cat:'fanart'}
+];
+var cur='all',grid=document.getElementById('ggrid');
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function renderG(){
-  const grid=document.getElementById('ggrid');
-  const cnt=document.getElementById('gcount');
-  const list=curF==='all'?imgs:imgs.filter(i=>i.cat===curF);
-  cnt.textContent=imgs.length>0?`${imgs.length} archivo${imgs.length!==1?'s':''}`:'' ;
-  if(!list.length){
-    grid.innerHTML='<div class="gempty"><b>Galeria vacía</b><br><span style="font-size:.72rem;opacity:.6;display:block;margin-top:4px">No hay imágenes en esta categoría.</span></div>';
-    return;
-  }
-  grid.innerHTML=list.map(img=>`
-    <div class="gitem" onclick="openLb('${img.src.replace(/'/g,"\\'")}','${img.name.replace(/'/g,"\\'")}')">
-      <img src="${img.src}" alt="${img.name}" loading="lazy">
-      <div class="gname">${img.name}</div>
-    </div>`).join('');
-}
-function openLb(src,name){
-  document.getElementById('lbImg').src=src;
-  document.getElementById('lbName').textContent=name;
-  document.getElementById('lb').classList.add('open');
-}
-function closeLb(){document.getElementById('lb').classList.remove('open');}
-function setLang(l){
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  const btn=document.querySelector(`.lang-btn[data-lang="${l}"]`);
-  if(btn)btn.classList.add('active');
-  document.querySelectorAll(`[data-${l}]`).forEach(el=>{
-    const v=el.getAttribute(`data-${l}`);if(v)el.textContent=v;
+  var list=cur==='all'?IMGS:IMGS.filter(function(i){return i.cat===cur});
+  if(!list.length){grid.innerHTML='<div class="gempty"><div><b>'+t('gal.empty')+'</b>'+t('gal.emptyp')+'</div></div>';return}
+  grid.innerHTML=list.map(function(i,n){
+    return '<button type="button" class="gitem" data-i="'+IMGS.indexOf(i)+'" aria-label="'+esc(i.name)+'">'+
+      '<img src="'+esc(i.src)+'" alt="'+esc(i.name)+'" loading="lazy"><span class="gname">'+esc(i.name)+'</span></button>';
+  }).join('');
+  grid.querySelectorAll('img').forEach(function(img){
+    img.addEventListener('error',function(){
+      var b=img.parentNode; b.classList.add('broken'); b.setAttribute('data-err',t('gal.err')); b.disabled=true; img.remove();
+      var n=b.querySelector('.gname'); if(n) n.remove();
+    });
   });
 }
-window.addEventListener('DOMContentLoaded',()=>{loadGallery();renderG();});
+document.querySelectorAll('.fbtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    cur=b.dataset.f;
+    document.querySelectorAll('.fbtn').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+    renderG();
+  });
+});
+
+/* ── Visor (dialog nativo: Escape cierra solo) ── */
+var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbName=document.getElementById('lbName'),opener=null;
+grid.addEventListener('click',function(e){
+  var b=e.target.closest('.gitem'); if(!b||b.disabled) return;
+  var i=IMGS[+b.dataset.i]; opener=b;
+  lbImg.src=i.src; lbImg.alt=i.name; lbName.textContent=i.name;
+  if(lb.showModal) lb.showModal(); else lb.setAttribute('open','');
+});
+document.getElementById('lbClose').addEventListener('click',function(){lb.close()});
+lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
+lb.addEventListener('close',function(){if(opener)opener.focus()});
+
+applyLang(lang);
+})();
 </script>
 </body>
 </html>
