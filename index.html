@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Static Forge · Core</title>
-<meta name="description" content="Static Forge: software libre, juegos de terror analógico y arte digital, hechos a mano por Core.">
+<meta name="description" content="Static Forge: estudio independiente de software libre, juegos de terror analógico y arte digital, fundado por Core y abierto a colaboradores.">
 <meta property="og:title" content="Static Forge · Core">
-<meta property="og:description" content="Software libre, juegos de terror analógico y arte digital, hechos a mano.">
+<meta property="og:description" content="Estudio independiente de software libre, juegos de terror analógico y arte digital. Abierto a colaboradores.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://staticforge.dpdns.org">
 <meta name="twitter:card" content="summary">
@@ -246,6 +246,15 @@ h2{font-family:var(--fd);font-weight:800;font-variation-settings:"SOFT" 100,"ops
 .signal{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;padding:44px 40px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
 .signal h2{font-size:clamp(1.8rem,4vw,2.5rem)}
 .signal p{color:var(--muted);margin-top:8px;max-width:44ch}
+.join{display:grid;grid-template-columns:1fr auto;align-items:end}
+.join>div:first-child p{max-width:56ch}
+.join .cta{flex-direction:column;align-items:stretch}
+.roles{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin-top:20px}
+.roles li{padding:4px 12px;border:1px solid var(--line);border-radius:99px;font-size:.92rem;color:var(--ink);background:var(--bg)}
+.contact{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;margin-top:22px}
+.contact .crt-txt{font-size:1.2rem}
+.mail{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--ink);text-underline-offset:4px;overflow-wrap:anywhere}
+.mail:hover{color:var(--phosphor)}
 
 /* Pie */
 footer{padding:0 0 40px}
@@ -281,6 +290,8 @@ footer{padding:0 0 40px}
   section{padding:72px 0}
   .feature-body{padding:26px 22px 24px}
   .signal{padding:32px 22px}
+  .join{grid-template-columns:1fr}
+  .join .cta{flex-direction:row;flex-wrap:wrap}
   .ggrid{grid-template-columns:repeat(2,1fr);gap:8px}
   .spec dl{grid-template-columns:1fr;gap:2px}
   .spec dd{margin-bottom:10px}
@@ -315,8 +326,9 @@ footer{padding:0 0 40px}
     </a>
     <ul class="links" id="links">
       <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
-      <li><a href="#taller" data-i18n="nav.workshop">Taller</a></li>
+      <li><a href="#taller" data-i18n="nav.workshop">Estudio</a></li>
       <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
+      <li><a href="#unete" data-i18n="nav.join">Únete</a></li>
       <li><a href="foros.html" data-i18n="nav.forum">Foro</a></li>
     </ul>
     <div class="ctrls">
@@ -338,7 +350,7 @@ footer{padding:0 0 40px}
     <div>
       <p class="osd crt-txt"><span class="rec" aria-hidden="true"></span><span data-i18n="hero.osd">CH 01 · EMITIENDO DESDE EL TALLER</span></p>
       <h1>Static<span class="forge">Forge</span></h1>
-      <p class="lead" data-i18n="hero.lead">Software libre, juegos de terror analógico y arte digital, <strong>hechos a mano por Core</strong>.</p>
+      <p class="lead" data-i18n="hero.lead">Software libre, juegos de terror analógico y arte digital. <strong>Un estudio independiente fundado por Core</strong>, abierto a quien quiera sumarse.</p>
       <div class="cta">
         <a class="btn pri" href="#proyectos" data-i18n="hero.cta1">Ver los proyectos</a>
         <a class="btn" href="#galeria" data-i18n="hero.cta2">Abrir la galería</a>
@@ -478,13 +490,13 @@ footer{padding:0 0 40px}
   <section id="taller" aria-labelledby="h-work">
     <div class="workshop">
       <div>
-        <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="w.kicker">EL TALLER</span></p>
-        <h2 id="h-work" data-i18n="w.h">Quién hay detrás</h2>
-        <p class="bio" data-i18n="w.bio">Soy <em>Core</em>. Programo, modelo en 3D, dibujo y escribo. Me tiran los proyectos que mezclan código y narrativa: de un juego de terror en Source Engine a una app para preparar USBs desde el móvil.</p>
-        <p class="bio-sub" data-i18n="w.sub">Todo lo que sale del taller se cataloga aquí. Hablo català, castellano e inglés.</p>
+        <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="w.kicker">EL ESTUDIO</span></p>
+        <h2 id="h-work" data-i18n="w.h">Qué es Static Forge</h2>
+        <p class="bio" data-i18n="w.bio">Static Forge es el estudio detrás de todo lo que ves aquí: juegos, programas, sistemas operativos, arte e historias. Lo fundó <em>Core</em>, y la puerta está abierta.</p>
+        <p class="bio-sub" data-i18n="w.sub">Core programa, modela en 3D, dibuja y escribe, pero el estudio no es cosa de una sola persona: cualquiera con ideas o con un proyecto propio puede sumarse. Se habla català, castellano e inglés.</p>
       </div>
       <aside class="spec" aria-labelledby="h-spec">
-        <div class="spec-h crt-txt"><span id="h-spec" data-i18n="w.spec">FICHA TÉCNICA</span><span>SF-2001</span></div>
+        <div class="spec-h crt-txt"><span id="h-spec" data-i18n="w.spec">FICHA DEL TALLER</span><span>SF-2001</span></div>
         <dl>
           <dt data-i18n="k.os">SISTEMA</dt><dd>Windows 11 Pro · WSL2 Debian · Static Linux</dd>
           <dt data-i18n="k.code">CÓDIGO</dt><dd>Kotlin · Rust · Python · GDScript · C · HTML/CSS/JS</dd>
@@ -512,16 +524,21 @@ footer{padding:0 0 40px}
     <div class="ggrid" id="ggrid" aria-live="polite"></div>
   </section>
 
-  <section aria-labelledby="h-sig">
-    <div class="signal">
+  <section id="unete" aria-labelledby="h-sig">
+    <div class="signal join">
       <div>
-        <p class="kicker crt-txt"><span data-i18n="s.kicker">SEÑAL ABIERTA</span></p>
-        <h2 id="h-sig" data-i18n="s.h">¿Ideas, dudas o bugs?</h2>
-        <p data-i18n="s.p">Abre un issue en el repositorio del proyecto en GitHub. El foro está en beta y, de momento, guarda los mensajes solo en tu navegador.</p>
+        <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="s.kicker">SE BUSCA GENTE</span></p>
+        <h2 id="h-sig" data-i18n="s.h">Únete a Static Forge</h2>
+        <p data-i18n="s.p">Siempre hay sitio para ideas, colaboraciones y gente que quiera formar parte del estudio, venga del ámbito que venga. Tus proyectos también se publican y se distribuyen bajo Static Forge.</p>
+        <ul class="roles">
+          <li data-i18n="r.1">Arte 2D</li><li data-i18n="r.2">Arte 3D</li><li data-i18n="r.3">Producción musical</li><li data-i18n="r.4">Programación</li><li data-i18n="r.5">Desarrollo de juegos y apps</li><li data-i18n="r.6">Doblaje y voz</li><li data-i18n="r.7">Lo que hagas tú</li>
+        </ul>
+        <p class="contact"><span class="crt-txt" data-i18n="s.mailk">CONTACTO</span> <a class="mail" id="mail" href="#unete">alfy181aa (arroba) gmail.com</a></p>
       </div>
       <div class="cta">
-        <a class="btn pri" href="https://github.com/KCRooty" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn" href="foros.html" data-i18n="s.forum">Probar el foro (beta)</a>
+        <a class="btn pri" id="mailBtn" href="#unete" data-i18n="s.write">Escribir al estudio</a>
+        <a class="btn" href="https://github.com/KCRooty" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="lnk" href="foros.html" data-i18n="s.forum">Foro (beta)</a>
       </div>
     </div>
   </section>
@@ -553,9 +570,9 @@ function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 
 /* ── Textos ES / EN / CA ── */
 var T={
-es:{'skip':'Saltar al contenido','nav.projects':'Proyectos','nav.workshop':'Taller','nav.gallery':'Galería','nav.forum':'Foro','nav.menu':'MENÚ',
+es:{'skip':'Saltar al contenido','nav.projects':'Proyectos','nav.workshop':"Estudio",'nav.gallery':'Galería','nav.forum':'Foro','nav.menu':'MENÚ',
 'theme.paper':'PAPEL','theme.night':'NOCHE',
-'hero.osd':'CH 01 · EMITIENDO DESDE EL TALLER','hero.lead':'Software libre, juegos de terror analógico y arte digital, <strong>hechos a mano por Core</strong>.',
+'hero.osd':'CH 01 · EMITIENDO DESDE EL TALLER','hero.lead':"Software libre, juegos de terror analógico y arte digital. <strong>Un estudio independiente fundado por Core</strong>, abierto a quien quiera sumarse.",
 'hero.cta1':'Ver los proyectos','hero.cta2':'Abrir la galería','v.1':'Código abierto','v.2':'Sin anuncios','v.3':'Sin telemetría',
 'proj.kicker':'GUÍA DE PROGRAMACIÓN','proj.h':'Lo que sale del taller','proj.intro':'Juegos, herramientas y sistemas. Cada canal es un proyecto, con su estado real.',
 'st.devsince':'EN DESARROLLO · DESDE 2021','st.dev':'EN DESARROLLO','st.build':'EN CONSTRUCCIÓN','st.active':'ACTIVO','st.done':'TERMINADO','st.test':'EN PRUEBAS',
@@ -570,17 +587,18 @@ es:{'skip':'Saltar al contenido','nav.projects':'Proyectos','nav.workshop':'Tall
 'd.winforge':'Una ISO de Windows 11 limpia, sin bloatware y con identidad propia desde el primer arranque.',
 'd.sl':'Distro basada en Arch. sl-detect mira tu hardware y elige el escritorio adecuado, de Openbox a Hyprland. La primera ISO ya arranca e instala de principio a fin.',
 'd.fos':'Un sistema operativo completo escrito desde cero en Rust: kernel propio para x86_64 y userland propio (Ember, Bellows, Crucible y Anvil).',
-'w.kicker':'EL TALLER','w.h':'Quién hay detrás',
-'w.bio':'Soy <em>Core</em>. Programo, modelo en 3D, dibujo y escribo. Me tiran los proyectos que mezclan código y narrativa: de un juego de terror en Source Engine a una app para preparar USBs desde el móvil.',
-'w.sub':'Todo lo que sale del taller se cataloga aquí. Hablo català, castellano e inglés.','w.spec':'FICHA TÉCNICA',
+'w.kicker':"EL ESTUDIO",'w.h':"Qué es Static Forge",
+'w.bio':"Static Forge es el estudio detrás de todo lo que ves aquí: juegos, programas, sistemas operativos, arte e historias. Lo fundó <em>Core</em>, y la puerta está abierta.",
+'w.sub':"Core programa, modela en 3D, dibuja y escribe, pero el estudio no es cosa de una sola persona: cualquiera con ideas o con un proyecto propio puede sumarse. Se habla català, castellano e inglés.",'w.spec':"FICHA DEL TALLER",
 'k.os':'SISTEMA','k.code':'CÓDIGO','k.engine':'MOTORES','k.art':'3D Y ARTE','k.video':'VÍDEO','k.ai':'IA',
 'gal.kicker':'ARCHIVO DE IMAGEN','gal.h':'Galería','f.all':'Todo','f.oc':'OC / Original','f.other':'Otro',
 'gal.empty':'SIN SEÑAL','gal.emptyp':'Todavía no hay imágenes en esta categoría.','gal.err':'NO SE PUDO CARGAR LA IMAGEN','gal.loading':'SINTONIZANDO…',
-'s.kicker':'SEÑAL ABIERTA','s.h':'¿Ideas, dudas o bugs?','s.p':'Abre un issue en el repositorio del proyecto en GitHub. El foro está en beta y, de momento, guarda los mensajes solo en tu navegador.','s.forum':'Probar el foro (beta)',
-'f.eob':'FIN DE LA EMISIÓN','lb.close':'CERRAR [ESC]'},
-en:{'skip':'Skip to content','nav.projects':'Projects','nav.workshop':'Workshop','nav.gallery':'Gallery','nav.forum':'Forum','nav.menu':'MENU',
+'s.kicker':"SE BUSCA GENTE",'s.h':"Únete a Static Forge",'s.p':"Siempre hay sitio para ideas, colaboraciones y gente que quiera formar parte del estudio, venga del ámbito que venga. Tus proyectos también se publican y se distribuyen bajo Static Forge.",'s.forum':"Foro (beta)",
+'f.eob':'FIN DE LA EMISIÓN','lb.close':'CERRAR [ESC]',
+'nav.join':"Únete",'s.mailk':"CONTACTO",'s.write':"Escribir al estudio",'r.1':"Arte 2D",'r.2':"Arte 3D",'r.3':"Producción musical",'r.4':"Programación",'r.5':"Desarrollo de juegos y apps",'r.6':"Doblaje y voz",'r.7':"Lo que hagas tú"},
+en:{'skip':'Skip to content','nav.projects':'Projects','nav.workshop':"Studio",'nav.gallery':'Gallery','nav.forum':'Forum','nav.menu':'MENU',
 'theme.paper':'PAPER','theme.night':'NIGHT',
-'hero.osd':'CH 01 · BROADCASTING FROM THE WORKSHOP','hero.lead':'Free software, analog horror games and digital art, <strong>handmade by Core</strong>.',
+'hero.osd':'CH 01 · BROADCASTING FROM THE WORKSHOP','hero.lead':"Free software, analog horror games and digital art. <strong>An independent studio founded by Core</strong>, open to anyone who wants to join.",
 'hero.cta1':'See the projects','hero.cta2':'Open the gallery','v.1':'Open source','v.2':'No ads','v.3':'No telemetry',
 'proj.kicker':'PROGRAM GUIDE','proj.h':'Out of the workshop','proj.intro':'Games, tools and systems. Every channel is a project, with its real status.',
 'st.devsince':'IN DEVELOPMENT · SINCE 2021','st.dev':'IN DEVELOPMENT','st.build':'UNDER CONSTRUCTION','st.active':'ACTIVE','st.done':'FINISHED','st.test':'TESTING',
@@ -595,17 +613,18 @@ en:{'skip':'Skip to content','nav.projects':'Projects','nav.workshop':'Workshop'
 'd.winforge':'A clean Windows 11 ISO, free of bloatware and with its own identity from the first boot.',
 'd.sl':'An Arch-based distro. sl-detect reads your hardware and picks the right desktop, from Openbox to Hyprland. The first ISO already boots and installs end to end.',
 'd.fos':'A complete operating system written from scratch in Rust: its own x86_64 kernel and its own userland (Ember, Bellows, Crucible and Anvil).',
-'w.kicker':'THE WORKSHOP','w.h':"Who's behind it",
-'w.bio':"I'm <em>Core</em>. I code, model in 3D, draw and write. I'm drawn to projects that mix code and narrative: from a horror game on Source Engine to an app that prepares USB drives from your phone.",
-'w.sub':'Everything that leaves the workshop is catalogued here. I speak Catalan, Spanish and English.','w.spec':'SPEC SHEET',
+'w.kicker':"THE STUDIO",'w.h':"What Static Forge is",
+'w.bio':"Static Forge is the studio behind everything you see here: games, software, operating systems, art and stories. It was founded by <em>Core</em>, and the door is open.",
+'w.sub':"Core codes, models in 3D, draws and writes, but the studio isn't a one-person thing: anyone with ideas or a project of their own can join. We speak Catalan, Spanish and English.",'w.spec':"WORKSHOP SPECS",
 'k.os':'SYSTEM','k.code':'CODE','k.engine':'ENGINES','k.art':'3D & ART','k.video':'VIDEO','k.ai':'AI',
 'gal.kicker':'IMAGE ARCHIVE','gal.h':'Gallery','f.all':'All','f.oc':'OC / Original','f.other':'Other',
 'gal.empty':'NO SIGNAL','gal.emptyp':'No images in this category yet.','gal.err':'IMAGE FAILED TO LOAD','gal.loading':'TUNING IN…',
-'s.kicker':'OPEN SIGNAL','s.h':'Ideas, questions or bugs?','s.p':'Open an issue in the project repository on GitHub. The forum is in beta and, for now, only stores messages in your browser.','s.forum':'Try the forum (beta)',
-'f.eob':'END OF BROADCAST','lb.close':'CLOSE [ESC]'},
-ca:{'skip':'Salta al contingut','nav.projects':'Projectes','nav.workshop':'Taller','nav.gallery':'Galeria','nav.forum':'Fòrum','nav.menu':'MENÚ',
+'s.kicker':"LOOKING FOR PEOPLE",'s.h':"Join Static Forge",'s.p':"There's always room for ideas, collaborations and people who want to be part of the studio, whatever their field. Your projects get published and distributed under Static Forge too.",'s.forum':"Forum (beta)",
+'f.eob':'END OF BROADCAST','lb.close':'CLOSE [ESC]',
+'nav.join':"Join",'s.mailk':"CONTACT",'s.write':"Write to the studio",'r.1':"2D art",'r.2':"3D art",'r.3':"Music production",'r.4':"Programming",'r.5':"Game and app development",'r.6':"Voice acting",'r.7':"Whatever you do"},
+ca:{'skip':'Salta al contingut','nav.projects':'Projectes','nav.workshop':"Estudi",'nav.gallery':'Galeria','nav.forum':'Fòrum','nav.menu':'MENÚ',
 'theme.paper':'PAPER','theme.night':'NIT',
-'hero.osd':'CH 01 · EMETENT DES DEL TALLER','hero.lead':'Programari lliure, jocs de terror analògic i art digital, <strong>fets a mà per en Core</strong>.',
+'hero.osd':'CH 01 · EMETENT DES DEL TALLER','hero.lead':"Programari lliure, jocs de terror analògic i art digital. <strong>Un estudi independent fundat per en Core</strong>, obert a qui s'hi vulgui sumar.",
 'hero.cta1':'Veure els projectes','hero.cta2':'Obrir la galeria','v.1':'Codi obert','v.2':'Sense anuncis','v.3':'Sense telemetria',
 'proj.kicker':'GUIA DE PROGRAMACIÓ','proj.h':'El que surt del taller','proj.intro':'Jocs, eines i sistemes. Cada canal és un projecte, amb el seu estat real.',
 'st.devsince':'EN DESENVOLUPAMENT · DES DE 2021','st.dev':'EN DESENVOLUPAMENT','st.build':'EN CONSTRUCCIÓ','st.active':'ACTIU','st.done':'ACABAT','st.test':'EN PROVES',
@@ -620,14 +639,15 @@ ca:{'skip':'Salta al contingut','nav.projects':'Projectes','nav.workshop':'Talle
 'd.winforge':"Una ISO de Windows 11 neta, sense bloatware i amb identitat pròpia des de la primera arrencada.",
 'd.sl':"Distro basada en Arch. sl-detect mira el teu maquinari i tria l'escriptori adequat, d'Openbox a Hyprland. La primera ISO ja arrenca i s'instal·la de cap a peus.",
 'd.fos':"Un sistema operatiu complet escrit des de zero en Rust: kernel propi per a x86_64 i userland propi (Ember, Bellows, Crucible i Anvil).",
-'w.kicker':'EL TALLER','w.h':'Qui hi ha darrere',
-'w.bio':"Sóc en <em>Core</em>. Programo, modelo en 3D, dibuixo i escric. M'atrauen els projectes que barregen codi i narrativa: d'un joc de terror amb Source Engine a una app per preparar USBs des del mòbil.",
-'w.sub':"Tot el que surt del taller es cataloga aquí. Parlo català, castellà i anglès.",'w.spec':'FITXA TÈCNICA',
+'w.kicker':"L'ESTUDI",'w.h':"Què és Static Forge",
+'w.bio':"Static Forge és l'estudi darrere de tot el que veus aquí: jocs, programes, sistemes operatius, art i històries. El va fundar en <em>Core</em>, i la porta és oberta.",
+'w.sub':"En Core programa, modela en 3D, dibuixa i escriu, però l'estudi no és cosa d'una sola persona: qualsevol amb idees o amb un projecte propi s'hi pot sumar. Es parla català, castellà i anglès.",'w.spec':"FITXA DEL TALLER",
 'k.os':'SISTEMA','k.code':'CODI','k.engine':'MOTORS','k.art':'3D I ART','k.video':'VÍDEO','k.ai':'IA',
 'gal.kicker':"ARXIU D'IMATGE",'gal.h':'Galeria','f.all':'Tot','f.oc':'OC / Original','f.other':'Altre',
 'gal.empty':'SENSE SENYAL','gal.emptyp':'Encara no hi ha imatges en aquesta categoria.','gal.err':"NO S'HA POGUT CARREGAR LA IMATGE",'gal.loading':'SINTONITZANT…',
-'s.kicker':'SENYAL OBERT','s.h':'Idees, dubtes o bugs?','s.p':'Obre una issue al repositori del projecte a GitHub. El fòrum és en beta i, de moment, només desa els missatges al teu navegador.','s.forum':'Provar el fòrum (beta)',
-'f.eob':"FI DE L'EMISSIÓ",'lb.close':'TANCAR [ESC]'}
+'s.kicker':"ES BUSCA GENT",'s.h':"Uneix-te a Static Forge",'s.p':"Sempre hi ha lloc per a idees, col·laboracions i gent que vulgui formar part de l'estudi, vingui de l'àmbit que vingui. Els teus projectes també es publiquen i es distribueixen sota Static Forge.",'s.forum':"Fòrum (beta)",
+'f.eob':"FI DE L'EMISSIÓ",'lb.close':'TANCAR [ESC]',
+'nav.join':"Uneix-t'hi",'s.mailk':"CONTACTE",'s.write':"Escriure a l'estudi",'r.1':"Art 2D",'r.2':"Art 3D",'r.3':"Producció musical",'r.4':"Programació",'r.5':"Desenvolupament de jocs i apps",'r.6':"Doblatge i veu",'r.7':"El que facis tu"}
 };
 var lang=d.getAttribute('lang')||'es';
 function t(k){return (T[lang]&&T[lang][k])||T.es[k]||k}
@@ -721,6 +741,11 @@ grid.addEventListener('click',function(e){
 document.getElementById('lbClose').addEventListener('click',function(){lb.close()});
 lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
 lb.addEventListener('close',function(){if(opener)opener.focus()});
+
+/* Contacto: de momento Gmail; cambiar a la cuenta de Workspace cuando Google apruebe el registro. */
+var addr=['alfy181aa','gmail.com'].join('@'),href='mailto:'+addr+'?subject='+encodeURIComponent('Static Forge');
+var mail=document.getElementById('mail'); mail.href=href; mail.textContent=addr;
+document.getElementById('mailBtn').href=href;
 
 applyLang(lang);
 })();
