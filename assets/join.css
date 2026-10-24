@@ -43,6 +43,7 @@
 .joinf .jinfo>div{padding:18px 20px;border:1px solid var(--j-line);border-radius:var(--j-r);background:var(--j-panel)}
 .joinf .jinfo h3{margin:0 0 10px;font:400 1.3rem/1.1 var(--j-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--j-acc)}
 .joinf .jinfo ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.joinf .jinfo .jrules{grid-column:1/-1}
 .joinf .jinfo li{font-size:.97rem;line-height:1.5;color:var(--j-ink)}
 @media (max-width:640px){.joinf .jinfo{grid-template-columns:1fr}}
 .joinf .jtrap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}

@@ -125,7 +125,7 @@ var out=document.getElementById('out'), bar=document.getElementById('bar'), coun
 var track='', status='';
 
 var TRACK={sf:'Estudio',linux:'Static Linux',forgeos:'Forge OS'};
-var AGE={'u13':'Menos de 13','13':'13 (con permiso de tutor)','u14':'Menos de 14','14-15':'14 o 15','16-17':'16 o 17','18-24':'18 a 24','25+':'25 o más'};
+var AGE={'u13':'Menos de 13','13':'13','u14':'Menos de 14','14-15':'14 o 15','16-17':'16 o 17','18-24':'18 a 24','25+':'25 o más'};
 var AVAIL={'':'Sin especificar',month:'Unas horas al mes',week:'Unas horas a la semana',lots:'Bastante tiempo',depends:'Depende de la época'};
 var MODE={join:'Unirse a proyectos de SF',own:'Traer un proyecto suyo',both:'Las dos cosas'};
 var PROJ={donnies:"Donnie's Origins",fnafas:'FNAF AS',linux:'Static Linux',forgeos:'Forge OS',winforge:'WinForge',rck:'RCK',kcdl:'KC Downloader',any:'Donde haga falta'};
@@ -175,7 +175,7 @@ function card(a){
   if(a.track==='sf'){rows+=row('Quiere',MODE[d.mode]||d.mode)+row('Proyectos',map(d.projects,PROJ))+row('Su proyecto',d.own?linkify(d.own):'',true)}
   if(a.track==='linux'){rows+=row('Experiencia',EXP[d.exp]||d.exp)+row('Hardware',d.hw)}
   if(a.track==='forgeos'){rows+=row('Rust',RUST[d.rust]||d.rust)+row('Bajo nivel',d.lowlevel)}
-  rows+=row('Áreas',map(d.areas,ar))+row('Por qué',d.why)+row('Tiempo',AVAIL[d.avail||''])+((a.age==='13'||a.age==='u14')?row('Permiso','Declara tener permiso de su madre, padre o tutor'):'');
+  rows+=row('Áreas',map(d.areas,ar))+row('Por qué',d.why)+row('Tiempo',AVAIL[d.avail||''])+(a.age==='u14'?row('Permiso','Declara tener permiso de su madre, padre o tutor'):'');
   var tagCls=a.status==='aceptada'?' ok':a.status==='descartada'?' no':'';
   var stLabel=a.status==='descartada'?'RECHAZADA':a.status.toUpperCase();
   var seen=a.decided?'':'<span class="lbl">ESTADO</span>'+['nueva','vista'].map(function(s){return '<button type="button" class="sbtn" data-st="'+s+'" aria-pressed="'+(a.status===s)+'">'+(s==='nueva'?'Nueva':'Vista')+'</button>'}).join('');
