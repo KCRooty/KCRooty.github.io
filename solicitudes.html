@@ -52,6 +52,8 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
 .dec.armed.yes{background:#2E8B47;border-color:#2E8B47;color:#fff}
 .dec.armed.no{background:#B3261E;border-color:#B3261E;color:#fff}
 .done-note{font-weight:600}
+.role-slot{display:contents}
+.role-slot .done-note{font-weight:500}
 .del{margin-left:auto;border-color:color-mix(in srgb,#E5484D 60%,var(--line))}
 .del.armed{background:#B3261E;border-color:#B3261E;color:#fff}
 .msg{width:100%;margin:6px 0 0;font-size:.95rem;font-weight:600}
@@ -171,6 +173,15 @@ function decBlock(a){
   return '<button type="button" class="sbtn dec yes" data-dec="aceptar">Aceptar y avisar</button>'+
          '<button type="button" class="sbtn dec no" data-dec="rechazar">Rechazar y avisar</button>';
 }
+/* Rol 🤝 Colaborador en Discord: solo en aceptadas. El botón vuelve a intentarlo (lo normal es que la
+   persona entre al servidor después, con el botón del correo de bienvenida). */
+var ROLE_TXT={asignado:'🤝 Rol Colaborador asignado en Discord',no_esta:'Aún no está en el servidor de Discord',sin_usuario:'No dejó usuario de Discord',error:'No se pudo dar el rol de Discord'};
+function roleBlock(status,role,hasDiscord){
+  if(status!=='aceptada') return '';
+  var note=role?'<span class="done-note">· '+ROLE_TXT[role]+'</span>':'';
+  var btn=hasDiscord&&role!=='asignado'?'<button type="button" class="sbtn" data-role>Dar rol en Discord</button>':'';
+  return note+btn;
+}
 function card(a){
   var d=a.data||{}, ar=AREAS[a.track]||{};
   var rows=row('Correo',a.contact?'<a href="mailto:'+esc(a.contact)+'">'+esc(a.contact)+'</a>':'',true)+row('Discord',d.discord)+row('Edad',AGE[a.age]||a.age)+
@@ -182,12 +193,13 @@ function card(a){
   var tagCls=a.status==='aceptada'?' ok':a.status==='descartada'?' no':'';
   var stLabel=a.status==='descartada'?'RECHAZADA':a.status.toUpperCase();
   var seen=a.decided?'':'<span class="lbl">ESTADO</span>'+['nueva','vista'].map(function(s){return '<button type="button" class="sbtn" data-st="'+s+'" aria-pressed="'+(a.status===s)+'">'+(s==='nueva'?'Nueva':'Vista')+'</button>'}).join('');
-  return '<article class="app '+esc(a.status)+'" id="sol-'+a.id+'" data-id="'+a.id+'" aria-labelledby="ap'+a.id+'">'+
+  return '<article class="app '+esc(a.status)+'" id="sol-'+a.id+'" data-id="'+a.id+'"'+(d.discord?' data-dc':'')+' aria-labelledby="ap'+a.id+'">'+
     '<div class="app-h"><h2 id="ap'+a.id+'">'+esc(a.name)+'</h2><span class="tag tr">'+esc(TRACK[a.track]||a.track)+'</span><span class="tag st'+tagCls+'">'+esc(stLabel)+'</span>'+
     '<span class="meta">Llegó el '+date(a.created)+' · se borra el '+date(a.expires)+'</span></div>'+
     '<dl>'+rows+'</dl>'+
     '<div class="acts" role="group" aria-label="Acciones sobre la solicitud de '+esc(a.name)+'">'+seen+
     '<span class="lbl">RESPUESTA</span>'+decBlock(a)+
+    '<span class="role-slot">'+roleBlock(a.status,a.discord_role,!!d.discord)+'</span>'+
     '<button type="button" class="sbtn del" data-del>Borrar</button><p class="msg" role="status"></p></div></article>';
 }
 
@@ -243,7 +255,16 @@ document.getElementById('stSel').addEventListener('change',function(e){status=e.
 out.addEventListener('click',function(e){
   if(e.target.closest('[data-retry]')){load();return}
   var art=e.target.closest('.app'); if(!art) return;
-  var id=art.dataset.id, sb=e.target.closest('[data-st]'), del=e.target.closest('[data-del]'), dec=e.target.closest('[data-dec]');
+  var id=art.dataset.id, sb=e.target.closest('[data-st]'), del=e.target.closest('[data-del]'), dec=e.target.closest('[data-dec]'), rb=e.target.closest('[data-role]');
+  if(rb){
+    rb.disabled=true; say(art,'Buscando a esta persona en el servidor de Discord…','');
+    api('/api/applications/'+id+'/role',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'}).then(function(r){
+      if(!r.ok){rb.disabled=false;say(art,r.d.message||'No se ha podido.','err');return}
+      art.querySelector('.role-slot').innerHTML=roleBlock('aceptada',r.d.role,true);
+      say(art,ROLE_TXT[r.d.role]+'.',r.d.role==='asignado'?'ok':'');
+    }).catch(function(){rb.disabled=false;say(art,'La API no responde.','err')});
+    return;
+  }
   if(dec){
     if(!dec.classList.contains('armed')){arm(dec);say(art,'Pulsa otra vez para confirmar. Se enviará un correo a esta persona.','');return}
     clearTimeout(dec._t);
@@ -258,7 +279,8 @@ out.addEventListener('click',function(e){
       var lbl=art.querySelector('.acts .lbl');if(lbl&&lbl.textContent==='ESTADO')lbl.remove();
       var wrap=document.createElement('span');wrap.className='done-note';wrap.textContent=(yes?'✅ Aceptada':'❌ Rechazada')+' · respuesta enviada el '+date(r.d.decided);
       all[0].parentNode.insertBefore(wrap,all[0]);all.forEach(function(x){x.remove()});
-      say(art,yes?'Hecho: le ha llegado el correo de bienvenida y el mensaje de Discord se ha actualizado.':'Hecho: le ha llegado el correo y el mensaje de Discord se ha actualizado.','ok');
+      art.querySelector('.role-slot').innerHTML=roleBlock(r.d.status,r.d.role,art.hasAttribute('data-dc'));
+      say(art,yes?'Hecho: le ha llegado el correo de bienvenida y el mensaje de Discord se ha actualizado.'+(r.d.role?' '+ROLE_TXT[r.d.role]+'.':''):'Hecho: le ha llegado el correo y el mensaje de Discord se ha actualizado.','ok');
       if(history.replaceState&&/^#decidir/.test(location.hash))history.replaceState(null,'',location.pathname);
     }).catch(function(){all.forEach(function(x){x.disabled=false});disarm(dec);say(art,'La API no responde. No se ha enviado nada.','err')});
     return;
