@@ -235,6 +235,20 @@ h2{font-family:var(--fd);font-weight:800;font-variation-settings:"SOFT" 100,"ops
 .spec dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;padding:20px 18px 22px}
 .spec dt{font:400 1.1rem/1.4 var(--fc);letter-spacing:.06em;color:var(--phosphor)}
 .spec dd{font-size:.94rem;line-height:1.55}
+/* Créditos del equipo: como el rótulo final de una emisión. Grupo en VT323 a la izquierda, nombres en
+   Fraunces y el rol en gris, unidos por una línea de puntos (la guía de canales usa la misma raya). */
+.credits{margin-top:72px;padding-top:40px;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(180px,.55fr) 1.45fr;column-gap:64px;row-gap:28px}
+.credits-h{grid-row:span 2}
+.credits-h .crt-txt{font-size:1.3rem;margin-bottom:8px}
+.credits-h h3{font:700 clamp(1.5rem,2.6vw,1.9rem)/1.15 var(--fd);font-variation-settings:"SOFT" 100}
+.cr-group{display:grid;grid-template-columns:130px 1fr;gap:6px 24px;align-items:baseline}
+.cr-role{font-size:1.15rem;letter-spacing:.08em}
+.cr-list{list-style:none;display:grid;gap:12px}
+.cr-list li{display:flex;align-items:baseline;gap:12px}
+.cr-name{font:700 1.3rem/1.2 var(--fd);font-variation-settings:"SOFT" 100}
+.cr-lead{flex:1;min-width:24px;border-bottom:1px dotted var(--line);transform:translateY(-5px)}
+.cr-what{color:var(--muted);text-align:right}
+.g-mem .dot{background:transparent;border:2px solid var(--muted)}
 
 /* Galería */
 .gfilt{display:flex;flex-wrap:wrap;gap:6px;margin:34px 0 20px}
@@ -290,6 +304,8 @@ footer{padding:0 0 40px}
   .tv{max-width:420px}
   .feature{grid-template-columns:1fr}
   .workshop{grid-template-columns:1fr;gap:40px}
+  .credits{grid-template-columns:1fr;margin-top:56px}
+  .credits-h{grid-row:auto}
   .row{grid-template-columns:52px 1fr;gap:6px 16px}
   .row p,.row .acts{grid-column:2}
   .acts{justify-content:flex-start}
@@ -316,6 +332,7 @@ footer{padding:0 0 40px}
   .ggrid{grid-template-columns:repeat(2,1fr);gap:8px}
   .spec dl{grid-template-columns:1fr;gap:2px}
   .spec dd{margin-bottom:10px}
+  .cr-group{grid-template-columns:1fr;gap:10px}
 }
 /* Muy estrecho: la barra pasa a dos filas (marca + menú arriba, idioma y tema abajo) */
 @media (max-width:360px){
@@ -510,6 +527,18 @@ footer{padding:0 0 40px}
           </li>
         </ul>
       </div>
+
+      <div class="g-mem">
+        <div class="group-h"><span class="dot" aria-hidden="true"></span><h3 data-i18n="g.mem">De los integrantes</h3><span class="bar"></span></div>
+        <ul class="rows">
+          <li class="row">
+            <span class="chan">11</span>
+            <div><h4>Anvil Client</h4><span class="st" data-i18n="st.byalcraft">DE ALCRAFT</span></div>
+            <p data-i18n="d.anvil">Launcher propio para Minecraft Java. Cada instancia guarda sus mods, partidas y opciones, y la lista de instancias y las noticias llegan en directo desde su servidor.</p>
+            <div class="acts"><span class="soon" data-i18n="a.privrepo">Repositorio aún privado</span></div>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -534,6 +563,27 @@ footer{padding:0 0 40px}
           <dt data-i18n="k.ai">IA</dt><dd>Claude Code · Ollama · llama.cpp</dd>
         </dl>
       </aside>
+    </div>
+
+    <div class="credits" id="equipo" aria-labelledby="h-crew">
+      <div class="credits-h">
+        <p class="crt-txt" data-i18n="c.k">CRÉDITOS</p>
+        <h3 id="h-crew" data-i18n="c.h">El equipo</h3>
+      </div>
+      <div class="cr-group">
+        <p class="cr-role crt-txt">OWNER</p>
+        <ul class="cr-list">
+          <li><span class="cr-name">KCRooty (Core)</span></li>
+        </ul>
+      </div>
+      <div class="cr-group">
+        <p class="cr-role crt-txt" data-i18n="c.members">INTEGRANTES</p>
+        <ul class="cr-list">
+          <li><span class="cr-name">Akita</span><span class="cr-lead" aria-hidden="true"></span><span class="cr-what" data-i18n="c.voice">Doblaje de voz</span></li>
+          <li><span class="cr-name">Alcraft</span><span class="cr-lead" aria-hidden="true"></span><span class="cr-what" data-i18n="c.dev">Desarrollo</span></li>
+          <li><span class="cr-name">Octeon</span><span class="cr-lead" aria-hidden="true"></span><span class="cr-what">Tester</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -628,6 +678,9 @@ es:{'skip':'Saltar al contenido','ap.kicker':'SOLICITUD','ap.h':'Rellena la soli
 'gal.empty':'SIN SEÑAL','gal.emptyp':'Todavía no hay imágenes en esta categoría.','gal.err':'NO SE PUDO CARGAR LA IMAGEN','gal.loading':'SINTONIZANDO…',
 's.kicker':"SE BUSCA GENTE",'s.h':"Únete a Static Forge",'s.p':"Siempre hay sitio para ideas, colaboraciones y gente que quiera formar parte del estudio, venga del ámbito que venga. Tus proyectos también se publican y se distribuyen bajo Static Forge.",'s.forum':"Foro",
 'f.eob':'FIN DE LA EMISIÓN','lb.close':'CERRAR [ESC]','lb.prev':'Imagen anterior','lb.next':'Imagen siguiente',
+'c.k':'CRÉDITOS','c.h':'El equipo','c.members':'INTEGRANTES','c.voice':'Doblaje de voz','c.dev':'Desarrollo',
+'g.mem':'De los integrantes','st.byalcraft':'DE ALCRAFT','a.privrepo':'Repositorio aún privado',
+'d.anvil':'Launcher propio para Minecraft Java. Cada instancia guarda sus mods, partidas y opciones, y la lista de instancias y las noticias llegan en directo desde su servidor.',
 'nav.join':"Únete",'s.mailk':"CONTACTO",'s.write':"Rellenar la solicitud",'r.1':"Arte 2D",'r.2':"Arte 3D",'r.3':"Producción musical",'r.4':"Programación",'r.5':"Desarrollo de juegos y apps",'r.6':"Doblaje y voz",'r.7':"Lo que hagas tú"},
 en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the application','ap.p':'Tell us who you are, what you do and what you would like to do in the studio, on its projects or with one of your own. It takes about five minutes. If you are interested in Static Linux or Forge OS specifically, they have their own application on the <a href="linux/#unete">Static Linux</a> and <a href="forge-os/#unete">Forge OS</a> pages (in Spanish).','nav.projects':'Projects','nav.workshop':"Studio",'nav.gallery':'Gallery','nav.forum':'Forum','nav.menu':'MENU',
 'theme.paper':'PAPER','theme.night':'NIGHT',
@@ -654,6 +707,9 @@ en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the appli
 'gal.empty':'NO SIGNAL','gal.emptyp':'No images in this category yet.','gal.err':'IMAGE FAILED TO LOAD','gal.loading':'TUNING IN…',
 's.kicker':"LOOKING FOR PEOPLE",'s.h':"Join Static Forge",'s.p':"There's always room for ideas, collaborations and people who want to be part of the studio, whatever their field. Your projects get published and distributed under Static Forge too.",'s.forum':"Forum",
 'f.eob':'END OF BROADCAST','lb.close':'CLOSE [ESC]','lb.prev':'Previous image','lb.next':'Next image',
+'c.k':'CREDITS','c.h':'The team','c.members':'MEMBERS','c.voice':'Voice acting','c.dev':'Development',
+'g.mem':'By our members','st.byalcraft':'BY ALCRAFT','a.privrepo':'Repository still private',
+'d.anvil':'A custom Minecraft Java launcher. Each instance keeps its own mods, saves and options, and the instance list and news arrive live from its server.',
 'nav.join':"Join",'s.mailk':"CONTACT",'s.write':"Fill in the application",'r.1':"2D art",'r.2':"3D art",'r.3':"Music production",'r.4':"Programming",'r.5':"Game and app development",'r.6':"Voice acting",'r.7':"Whatever you do"},
 ca:{'skip':'Salta al contingut','ap.kicker':'SOL·LICITUD','ap.h':'Omple la sol·licitud','ap.p':'Explica’ns qui ets, què fas i què t’agradaria fer a l’estudi, als seus projectes o amb un de teu. Porta uns cinc minuts. Si t’interessa Static Linux o Forge OS en concret, tenen la seva pròpia sol·licitud a <a href="linux/#unete">Static Linux</a> i a <a href="forge-os/#unete">Forge OS</a> (en castellà).','nav.projects':'Projectes','nav.workshop':"Estudi",'nav.gallery':'Galeria','nav.forum':'Fòrum','nav.menu':'MENÚ',
 'theme.paper':'PAPER','theme.night':'NIT',
@@ -680,6 +736,9 @@ ca:{'skip':'Salta al contingut','ap.kicker':'SOL·LICITUD','ap.h':'Omple la sol�
 'gal.empty':'SENSE SENYAL','gal.emptyp':'Encara no hi ha imatges en aquesta categoria.','gal.err':"NO S'HA POGUT CARREGAR LA IMATGE",'gal.loading':'SINTONITZANT…',
 's.kicker':"ES BUSCA GENT",'s.h':"Uneix-te a Static Forge",'s.p':"Sempre hi ha lloc per a idees, col·laboracions i gent que vulgui formar part de l'estudi, vingui de l'àmbit que vingui. Els teus projectes també es publiquen i es distribueixen sota Static Forge.",'s.forum':"Fòrum",
 'f.eob':"FI DE L'EMISSIÓ",'lb.close':'TANCAR [ESC]','lb.prev':'Imatge anterior','lb.next':'Imatge següent',
+'c.k':'CRÈDITS','c.h':"L'equip",'c.members':'INTEGRANTS','c.voice':'Doblatge de veu','c.dev':'Desenvolupament',
+'g.mem':'Dels integrants','st.byalcraft':"D'ALCRAFT",'a.privrepo':'Repositori encara privat',
+'d.anvil':"Launcher propi per a Minecraft Java. Cada instància guarda els seus mods, partides i opcions, i la llista d'instàncies i les notícies arriben en directe des del seu servidor.",
 'nav.join':"Uneix-t'hi",'s.mailk':"CONTACTE",'s.write':"Omplir la sol·licitud",'r.1':"Art 2D",'r.2':"Art 3D",'r.3':"Producció musical",'r.4':"Programació",'r.5':"Desenvolupament de jocs i apps",'r.6':"Doblatge i veu",'r.7':"El que facis tu"}
 };
 var lang=d.getAttribute('lang')||'es';
