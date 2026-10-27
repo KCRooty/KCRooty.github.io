@@ -251,7 +251,7 @@ h2{font-family:var(--fd);font-weight:800;font-variation-settings:"SOFT" 100,"ops
 .cr-lead{flex:1;min-width:24px;border-bottom:1px dotted var(--line);transform:translateY(-5px)}
 .cr-what{color:var(--muted);text-align:right}
 .g-mem .dot{background:transparent;border:2px solid var(--muted)}
-.row .pj-logo{display:block;width:56px;height:56px;border-radius:var(--r-sm);border:1px solid var(--line);margin-bottom:12px}
+.pj-logo{display:block;width:56px;height:56px;border-radius:var(--r-sm);border:1px solid var(--line);margin-bottom:12px;object-fit:contain;background:var(--surface)}
 .row .st + .st{margin-top:0}
 /* Creadores de contenido: misma composición que los créditos; el canal es un enlace de 44 px */
 .creators{margin-top:56px}
@@ -459,6 +459,7 @@ footer{padding:0 0 40px}
       <div class="feature-art"><img src="assets/donnies/donnie-suit-head.webp" alt="Render 3D en progreso del endoesqueleto de Donnie" width="286" height="281" loading="lazy"></div>
       <div class="feature-body">
         <span class="chan">CH 02 · <span data-i18n="st.devsince">EN DESARROLLO · DESDE 2021</span></span>
+        <img class="pj-logo" src="assets/projects/donnies.webp" alt="" width="56" height="56" loading="lazy">
         <h3>Donnie's Origins</h3>
         <p data-i18n="d.donnies">Fangame de terror analógico inspirado en FNaF, hecho en Source Engine. Un universo propio con dos juegos en el mismo canon: Remastered y The Underground.</p>
         <div class="tags"><span class="tag">Source SDK 2013</span><span class="tag" data-i18n="t.analog">Terror analógico</span><span class="tag">3D</span></div>
@@ -511,13 +512,13 @@ footer{padding:0 0 40px}
           </li>
           <li class="row">
             <span class="chan">08</span>
-            <div><h4>WinForge</h4><span class="st" data-i18n="st.test">EN PRUEBAS</span></div>
+            <div><img class="pj-logo" src="assets/projects/winforge.webp" alt="" width="56" height="56" loading="lazy"><h4>WinForge</h4><span class="st" data-i18n="st.test">EN PRUEBAS</span></div>
             <p data-i18n="d.winforge">Una ISO de Windows 11 limpia, sin bloatware y con identidad propia desde el primer arranque.</p>
             <div class="acts"><span class="soon" data-i18n="a.unpub">Aún sin publicar</span></div>
           </li>
           <li class="row">
             <span class="chan">09</span>
-            <div><h4>Iron3D Studio</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span></div>
+            <div><img class="pj-logo" src="assets/projects/iron3d-studio.webp" alt="" width="56" height="56" loading="lazy"><h4>Iron3D Studio</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span></div>
             <p data-i18n="d.iron3d">Motor 3D propio en C++/Vulkan que recrea el flujo de trabajo de un DCC clásico desde cero: Gestor de Objetos, cámara orbital y pipeline gráfico, sin una línea de código ajena.</p>
             <div class="acts"><span class="soon" data-i18n="a.unpub">Aún sin publicar</span></div>
           </li>
