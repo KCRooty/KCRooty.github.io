@@ -1,0 +1,10 @@
+/* Selector de idioma con bandera (subpáginas). Hereda tipografía y color de la barra donde se pone;
+   cada página puede ajustar --lang-on (borde del idioma activo). */
+.langsw{display:inline-flex;align-items:center;gap:4px}
+.langsw button{display:inline-flex;align-items:center;gap:7px;min-height:44px;min-width:44px;padding:0 10px;
+  border:1px solid transparent;border-radius:8px;background:transparent;color:inherit;font:inherit;letter-spacing:inherit;cursor:pointer}
+.langsw button[aria-pressed="true"]{border-color:var(--lang-on,currentColor)}
+.langsw button:hover{border-color:var(--lang-on,currentColor)}
+.langsw img{height:13px;width:auto;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.35);flex:none}
+/* Bloques complejos (terminales, párrafos con marcado propio): una copia por idioma con data-only. */
+html[lang="es"] [data-only="en"],html[lang="en"] [data-only="es"]{display:none!important}

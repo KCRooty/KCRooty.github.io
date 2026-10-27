@@ -6,14 +6,15 @@
 <link rel="icon" href="/linux/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/linux/apple-touch-icon.png">
 <title>Static Linux · fast. private. yours.</title>
-<meta name="description" content="Static Linux, la distribución de Static Forge basada en Arch: detecta tu hardware, elige el escritorio adecuado y no envía telemetría.">
+<meta name="description" content="Static Linux, la distribución de Static Forge basada en Arch: detecta tu hardware, elige el escritorio adecuado y no envía telemetría." data-en-content="Static Linux, Static Forge's Arch-based distribution: it detects your hardware, picks the right desktop and sends no telemetry.">
 <meta property="og:title" content="Static Linux">
-<meta property="og:description" content="Distro basada en Arch de Static Forge. fast. private. yours.">
+<meta property="og:description" content="Distro basada en Arch de Static Forge. fast. private. yours." data-en-content="Static Forge's Arch-based distro. fast. private. yours.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0B0C10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
 <style>
 /* Identidad propia de Static Linux: Void, Signal Green y Amber. */
 :root{
@@ -45,8 +46,13 @@ code{font:400 .9em var(--fm);color:var(--green);overflow-wrap:anywhere}
 .nav{display:flex;gap:2px;list-style:none}
 .nav a{display:block;padding:10px 12px;border-radius:var(--r-sm);font-size:.94rem;font-weight:500;color:var(--dim);text-decoration:none;transition:color .2s,background .2s}
 .nav a:hover{color:var(--bright);background:var(--panel2)}
-.back{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:var(--r-sm);font-size:.9rem;font-weight:500;color:var(--dim);text-decoration:none;white-space:nowrap}
+.back{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;min-width:44px;padding:0 14px;border:1px solid var(--line);border-radius:var(--r-sm);font-size:.9rem;font-weight:500;color:var(--dim);text-decoration:none;white-space:nowrap}
 .back:hover{color:var(--bright);border-color:var(--dim)}
+/* Selector de idioma (assets/lang.css) en Signal Green */
+.top .langsw{--lang-on:var(--green);font:500 .82rem var(--fm);color:var(--dim)}
+.top .langsw button{border-color:var(--line)}
+.top .langsw button[aria-pressed="true"]{color:var(--green);border-color:var(--green)}
+.top .langsw button:hover{color:var(--bright)}
 
 /* Hero */
 .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;padding:88px 0 72px}
@@ -149,9 +155,14 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
   .card,.steps li{padding:20px 18px}
   .term dl{grid-template-columns:1fr;gap:0}
   .term dd{margin-bottom:6px}
+  .top-in{gap:10px}
+  .top .langsw .lbl{display:none}
+  .back .bk-txt{display:none}
+  .back{padding:0 12px}
 }
 @media (max-width:360px){
   .accents{grid-template-columns:1fr}
+  .mark{font-size:1.08rem}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -162,22 +173,27 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
 #unete .joinf .jdone h3{font:700 1.6rem/1.1 var(--fd);letter-spacing:-.02em}
 .join-intro a{color:var(--green)}
 </style>
-<link rel="stylesheet" href="/assets/join.css?v=20261025a">
+<link rel="stylesheet" href="/assets/join.css?v=20261027a">
+<link rel="stylesheet" href="/assets/lang.css">
 </head>
 <body>
-<a class="skip" href="#main">Saltar al contenido</a>
+<a class="skip" href="#main" data-en="Skip to content">Saltar al contenido</a>
 
 <header class="top">
   <div class="wrap top-in">
-    <a class="mark" href="#main" aria-label="Static Linux, arriba">static<b>linux</b><span class="cur" aria-hidden="true"></span></a>
+    <a class="mark" href="#main" aria-label="Static Linux, arriba" data-en-aria-label="Static Linux, back to top">static<b>linux</b><span class="cur" aria-hidden="true"></span></a>
     <ul class="nav">
-      <li><a href="#que">Qué es</a></li>
-      <li><a href="#herramientas">Herramientas</a></li>
-      <li><a href="#estado">Estado</a></li>
+      <li><a href="#que" data-en="What it is">Qué es</a></li>
+      <li><a href="#herramientas" data-en="Tools">Herramientas</a></li>
+      <li><a href="#estado" data-en="Status">Estado</a></li>
       <li><a href="#wiki">Wiki</a></li>
-      <li><a href="#unete">Únete</a></li>
+      <li><a href="#unete" data-en="Join">Únete</a></li>
     </ul>
-    <a class="back" href="/">← Static Forge</a>
+    <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+      <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+      <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+    </div>
+    <a class="back" href="/" aria-label="Volver a Static Forge" data-en-aria-label="Back to Static Forge">← <span class="bk-txt">Static Forge</span></a>
   </div>
 </header>
 
@@ -187,27 +203,27 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
     <div>
       <p class="prompt"><span>core@forge</span>:~$ sl-ctl info</p>
       <h1>Static Linux<span class="tagline">fast. private. yours.</span></h1>
-      <p class="lead">La distribución de Static Forge. Base Arch, un instalador que <strong>mira tu hardware antes de recomendarte nada</strong> y cero telemetría, siempre.</p>
+      <p class="lead" data-en="Static Forge's distribution. An Arch base, an installer that &lt;strong&gt;looks at your hardware before recommending anything&lt;/strong&gt; and zero telemetry, always.">La distribución de Static Forge. Base Arch, un instalador que <strong>mira tu hardware antes de recomendarte nada</strong> y cero telemetría, siempre.</p>
       <div class="cta">
-        <a class="btn pri" href="#estado">Ver en qué punto está</a>
-        <a class="btn" href="#wiki">Leer la wiki</a>
-        <a class="btn" href="#unete">Únete</a>
+        <a class="btn pri" href="#estado" data-en="See where it stands">Ver en qué punto está</a>
+        <a class="btn" href="#wiki" data-en="Read the wiki">Leer la wiki</a>
+        <a class="btn" href="#unete" data-en="Join">Únete</a>
       </div>
-      <div class="phases" aria-label="Fases del proyecto">
-        <span class="ph ok">fase 1 ✓</span><span class="ph ok">fase 2 ✓</span><span class="ph now">fase 3 · en curso</span>
+      <div class="phases" aria-label="Fases del proyecto" data-en-aria-label="Project phases">
+        <span class="ph ok" data-en="phase 1 ✓">fase 1 ✓</span><span class="ph ok" data-en="phase 2 ✓">fase 2 ✓</span><span class="ph now" data-en="phase 3 · in progress">fase 3 · en curso</span>
       </div>
     </div>
-    <aside class="term" aria-label="Ficha del sistema">
-      <div class="term-h"><span>static-linux</span><span>ficha</span></div>
+    <aside class="term" aria-label="Ficha del sistema" data-en-aria-label="System sheet">
+      <div class="term-h"><span>static-linux</span><span data-en="spec">ficha</span></div>
       <div class="term-b">
         <dl>
           <dt>base</dt><dd>Arch Linux (rolling)</dd>
           <dt>init</dt><dd>systemd</dd>
-          <dt>instalador</dt><dd>Calamares + sl-detect</dd>
-          <dt>escritorio</dt><dd>XFCE temático · Openbox · Hyprland</dd>
-          <dt>arranque</dt><dd>GRUB · UEFI</dd>
+          <dt data-en="installer">instalador</dt><dd>Calamares + sl-detect</dd>
+          <dt data-en="desktop">escritorio</dt><dd data-en="Themed XFCE · Openbox · Hyprland">XFCE temático · Openbox · Hyprland</dd>
+          <dt data-en="boot">arranque</dt><dd>GRUB · UEFI</dd>
           <dt>aur</dt><dd>paru</dd>
-          <dt>telemetría</dt><dd>0</dd>
+          <dt data-en="telemetry">telemetría</dt><dd>0</dd>
         </dl>
         <p class="end">fast. private. yours.</p>
       </div>
@@ -215,129 +231,129 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
   </header>
 
   <section id="que" aria-labelledby="h-que">
-    <p class="label">01 · el proyecto</p>
-    <h2 id="h-que">Qué es Static Linux</h2>
+    <p class="label" data-en="01 · the project">01 · el proyecto</p>
+    <h2 id="h-que" data-en="What Static Linux is">Qué es Static Linux</h2>
     <div class="grid g4">
-      <article class="card"><span class="k">base</span><h3>Arch Linux</h3><p>Rolling release, repos de Arch y AUR (vía <code>paru</code>), sin capas de más entre el sistema y tú.</p></article>
-      <article class="card"><span class="k">escritorio</span><h3>El que tu equipo aguanta</h3><p>Cuatro entornos, de Openbox con 512 MB a Hyprland completo. <code>sl-detect</code> recomienda uno según tu hardware.</p></article>
-      <article class="card"><span class="k">instalador</span><h3>Calamares</h3><p>Instalación gráfica guiada: detecta el hardware, eliges entorno, sabores y privacidad, y listo.</p></article>
-      <article class="card"><span class="k">filosofía</span><h3>Privado por defecto</h3><p>Cero telemetría en todos los perfiles. No es una opción: es la línea base.</p></article>
+      <article class="card"><span class="k">base</span><h3>Arch Linux</h3><p data-en="Rolling release, Arch repos and the AUR (through &lt;code&gt;paru&lt;/code&gt;), with no extra layers between you and the system.">Rolling release, repos de Arch y AUR (vía <code>paru</code>), sin capas de más entre el sistema y tú.</p></article>
+      <article class="card"><span class="k" data-en="desktop">escritorio</span><h3 data-en="The one your machine can handle">El que tu equipo aguanta</h3><p data-en="Four environments, from Openbox on 512 MB to full Hyprland. &lt;code&gt;sl-detect&lt;/code&gt; recommends one based on your hardware.">Cuatro entornos, de Openbox con 512 MB a Hyprland completo. <code>sl-detect</code> recomienda uno según tu hardware.</p></article>
+      <article class="card"><span class="k" data-en="installer">instalador</span><h3>Calamares</h3><p data-en="A guided graphical install: it detects the hardware, you pick the environment, flavors and privacy, and you are done.">Instalación gráfica guiada: detecta el hardware, eliges entorno, sabores y privacidad, y listo.</p></article>
+      <article class="card"><span class="k" data-en="philosophy">filosofía</span><h3 data-en="Private by default">Privado por defecto</h3><p data-en="Zero telemetry in every profile. It is not an option: it is the baseline.">Cero telemetría en todos los perfiles. No es una opción: es la línea base.</p></article>
     </div>
   </section>
 
   <section id="herramientas" aria-labelledby="h-tools">
-    <p class="label">02 · herramientas propias</p>
-    <h2 id="h-tools">Hecho en el taller</h2>
-    <p class="intro">Static Linux no es un tema encima de Arch: trae herramientas propias que se instalan juntas con el paquete <code>staticlinux-base</code>.</p>
+    <p class="label" data-en="02 · our own tools">02 · herramientas propias</p>
+    <h2 id="h-tools" data-en="Made in the workshop">Hecho en el taller</h2>
+    <p class="intro" data-en="Static Linux is not a theme on top of Arch: it ships its own tools, installed together with the &lt;code&gt;staticlinux-base&lt;/code&gt; package.">Static Linux no es un tema encima de Arch: trae herramientas propias que se instalan juntas con el paquete <code>staticlinux-base</code>.</p>
     <div class="grid">
-      <article class="card"><span class="k">sl-detect</span><h3>Detección de hardware</h3><p>Identifica CPU, RAM, disco y GPU (por PCI y, en placas ARM, por device-tree) y recomienda entorno, sistema de archivos y kernel. <strong>38 tests</strong>.</p></article>
-      <article class="card"><span class="k">sl-ctl</span><h3>Control después de instalar</h3><p><code>detect</code>, <code>info</code>, <code>privacy</code> y <code>tweaks</code> ya funcionan. <code>update</code>, <code>snapshot</code>, <code>mirror</code> y <code>flavor</code> están en desarrollo.</p></article>
-      <article class="card"><span class="k">sl-welcome</span><h3>Primer arranque</h3><p>App GTK4/libadwaita que se abre una vez por usuario: apariencia, perfil de privacidad y un catálogo de unas 56 apps extra.</p></article>
-      <article class="card"><span class="k">apply.sh</span><h3>Un acento para todo</h3><p>Eliges un color y se aplica a la vez en fastfetch, GTK, xfwm4, terminal, pantalla de inicio de sesión y fondo de escritorio.</p></article>
+      <article class="card"><span class="k">sl-detect</span><h3 data-en="Hardware detection">Detección de hardware</h3><p data-en="Identifies CPU, RAM, disk and GPU (through PCI and, on ARM boards, through the device tree) and recommends a desktop, file system and kernel. &lt;strong&gt;38 tests&lt;/strong&gt;.">Identifica CPU, RAM, disco y GPU (por PCI y, en placas ARM, por device-tree) y recomienda entorno, sistema de archivos y kernel. <strong>38 tests</strong>.</p></article>
+      <article class="card"><span class="k">sl-ctl</span><h3 data-en="Control after installing">Control después de instalar</h3><p data-en="&lt;code&gt;detect&lt;/code&gt;, &lt;code&gt;info&lt;/code&gt;, &lt;code&gt;privacy&lt;/code&gt; and &lt;code&gt;tweaks&lt;/code&gt; already work. &lt;code&gt;update&lt;/code&gt;, &lt;code&gt;snapshot&lt;/code&gt;, &lt;code&gt;mirror&lt;/code&gt; and &lt;code&gt;flavor&lt;/code&gt; are in development."><code>detect</code>, <code>info</code>, <code>privacy</code> y <code>tweaks</code> ya funcionan. <code>update</code>, <code>snapshot</code>, <code>mirror</code> y <code>flavor</code> están en desarrollo.</p></article>
+      <article class="card"><span class="k">sl-welcome</span><h3 data-en="First boot">Primer arranque</h3><p data-en="A GTK4/libadwaita app that opens once per user: appearance, privacy profile and a catalog of around 56 extra apps.">App GTK4/libadwaita que se abre una vez por usuario: apariencia, perfil de privacidad y un catálogo de unas 56 apps extra.</p></article>
+      <article class="card"><span class="k">apply.sh</span><h3 data-en="One accent for everything">Un acento para todo</h3><p data-en="You pick a color and it is applied at once to fastfetch, GTK, xfwm4, the terminal, the login screen and the wallpaper.">Eliges un color y se aplica a la vez en fastfetch, GTK, xfwm4, terminal, pantalla de inicio de sesión y fondo de escritorio.</p></article>
     </div>
 
-    <h3 style="font:700 1.4rem/1.2 var(--fd);color:var(--bright);margin-top:56px">Los 10 acentos del instalador</h3>
-    <ul class="accents" aria-label="Acentos disponibles">
-      <li class="acc"><span class="sw" style="background:#C0A0F0"></span><span>Morado<small>#C0A0F0</small></span></li>
-      <li class="acc"><span class="sw" style="background:#F2C94C"></span><span>Amarillo<small>#F2C94C</small></span></li>
-      <li class="acc"><span class="sw" style="background:#E85D6B"></span><span>Rojo<small>#E85D6B</small></span></li>
-      <li class="acc"><span class="sw" style="background:#00C8A0"></span><span>Verde<small>#00C8A0</small></span></li>
-      <li class="acc"><span class="sw" style="background:#5AA6F5"></span><span>Azul<small>#5AA6F5</small></span></li>
-      <li class="acc"><span class="sw" style="background:#F48FB1"></span><span>Rosa<small>#F48FB1</small></span></li>
-      <li class="acc"><span class="sw" style="background:#AAB0C0"></span><span>Gris<small>#AAB0C0</small></span></li>
-      <li class="acc"><span class="sw" style="background:#E6E8EE"></span><span>Monocromo<small>#E6E8EE</small></span></li>
-      <li class="acc"><span class="sw" style="background:#FFFFFF;box-shadow:inset 0 0 0 4px #000,0 0 0 1px #FFFF00"></span><span>Alto contraste oscuro<small>#FFFFFF / #000000</small></span></li>
-      <li class="acc"><span class="sw" style="background:#0B0C10;box-shadow:inset 0 0 0 4px #FFFFFF,0 0 0 1px #8000FF"></span><span>Alto contraste claro<small>#0B0C10 / #FFFFFF</small></span></li>
+    <h3 style="font:700 1.4rem/1.2 var(--fd);color:var(--bright);margin-top:56px" data-en="The installer's 10 accents">Los 10 acentos del instalador</h3>
+    <ul class="accents" aria-label="Acentos disponibles" data-en-aria-label="Available accents">
+      <li class="acc"><span class="sw" style="background:#C0A0F0"></span><span><span data-en="Purple">Morado</span><small>#C0A0F0</small></span></li>
+      <li class="acc"><span class="sw" style="background:#F2C94C"></span><span><span data-en="Yellow">Amarillo</span><small>#F2C94C</small></span></li>
+      <li class="acc"><span class="sw" style="background:#E85D6B"></span><span><span data-en="Red">Rojo</span><small>#E85D6B</small></span></li>
+      <li class="acc"><span class="sw" style="background:#00C8A0"></span><span><span data-en="Green">Verde</span><small>#00C8A0</small></span></li>
+      <li class="acc"><span class="sw" style="background:#5AA6F5"></span><span><span data-en="Blue">Azul</span><small>#5AA6F5</small></span></li>
+      <li class="acc"><span class="sw" style="background:#F48FB1"></span><span><span data-en="Pink">Rosa</span><small>#F48FB1</small></span></li>
+      <li class="acc"><span class="sw" style="background:#AAB0C0"></span><span><span data-en="Grey">Gris</span><small>#AAB0C0</small></span></li>
+      <li class="acc"><span class="sw" style="background:#E6E8EE"></span><span><span data-en="Monochrome">Monocromo</span><small>#E6E8EE</small></span></li>
+      <li class="acc"><span class="sw" style="background:#FFFFFF;box-shadow:inset 0 0 0 4px #000,0 0 0 1px #FFFF00"></span><span><span data-en="High contrast dark">Alto contraste oscuro</span><small>#FFFFFF / #000000</small></span></li>
+      <li class="acc"><span class="sw" style="background:#0B0C10;box-shadow:inset 0 0 0 4px #FFFFFF,0 0 0 1px #8000FF"></span><span><span data-en="High contrast light">Alto contraste claro</span><small>#0B0C10 / #FFFFFF</small></span></li>
     </ul>
   </section>
 
   <section id="estado" aria-labelledby="h-estado">
-    <p class="label">03 · estado</p>
-    <h2 id="h-estado">En qué punto está</h2>
-    <p class="intro">Las fases 1 y 2 están cerradas. La primera ISO se construye, arranca y se instala de principio a fin. Ahora toca la fase 3.</p>
+    <p class="label" data-en="03 · status">03 · estado</p>
+    <h2 id="h-estado" data-en="Where it stands">En qué punto está</h2>
+    <p class="intro" data-en="Phases 1 and 2 are closed. The first ISO builds, boots and installs from start to finish. Phase 3 is next.">Las fases 1 y 2 están cerradas. La primera ISO se construye, arranca y se instala de principio a fin. Ahora toca la fase 3.</p>
     <div class="status">
       <article class="card">
-        <span class="k">hecho</span><h3>Funciona hoy</h3>
+        <span class="k" data-en="done">hecho</span><h3 data-en="Works today">Funciona hoy</h3>
         <ul class="list done">
-          <li><strong>Base instalable</strong> y los cuatro entornos empaquetados.</li>
-          <li><strong>ISO online</strong> probada en QEMU/KVM con UEFI: arranca, Calamares instala (ext4, XFCE y privacidad básica), GRUB, LightDM, XFCE y sl-welcome.</li>
-          <li><strong>Instalada en un SSD</strong> del PC de referencia del taller.</li>
-          <li>Brave Origin preinstalado, la tecla Super abre el menú y vienen los códecs multimedia.</li>
+          <li data-en="&lt;strong&gt;Installable base&lt;/strong&gt; and all four environments packaged."><strong>Base instalable</strong> y los cuatro entornos empaquetados.</li>
+          <li data-en="&lt;strong&gt;Online ISO&lt;/strong&gt; tested in QEMU/KVM with UEFI: it boots, Calamares installs (ext4, XFCE and basic privacy), GRUB, LightDM, XFCE and sl-welcome."><strong>ISO online</strong> probada en QEMU/KVM con UEFI: arranca, Calamares instala (ext4, XFCE y privacidad básica), GRUB, LightDM, XFCE y sl-welcome.</li>
+          <li data-en="&lt;strong&gt;Installed on an SSD&lt;/strong&gt; in the workshop's reference PC."><strong>Instalada en un SSD</strong> del PC de referencia del taller.</li>
+          <li data-en="Brave Origin comes preinstalled, the Super key opens the menu and multimedia codecs are included.">Brave Origin preinstalado, la tecla Super abre el menú y vienen los códecs multimedia.</li>
         </ul>
       </article>
       <article class="card">
-        <span class="k" style="color:var(--amber)">pendiente</span><h3>Lo que falta probar o terminar</h3>
+        <span class="k" style="color:var(--amber)" data-en="pending">pendiente</span><h3 data-en="Still to test or finish">Lo que falta probar o terminar</h3>
         <ul class="list todo">
-          <li>ISO offline que instale sin red (hoy los paquetes van dentro, pero Calamares aún los descarga).</li>
-          <li>Arranque en BIOS antigua, Hyprland y Openbox en una instalación real.</li>
-          <li>Perfiles de privacidad mejorado y máximo, btrfs y cifrado LUKS.</li>
-          <li>Fondo de escritorio del sistema instalado y tema claro de sl-welcome.</li>
+          <li data-en="An offline ISO that installs without a network (the packages are already inside, but Calamares still downloads them).">ISO offline que instale sin red (hoy los paquetes van dentro, pero Calamares aún los descarga).</li>
+          <li data-en="Booting on old BIOS, Hyprland and Openbox on a real install.">Arranque en BIOS antigua, Hyprland y Openbox en una instalación real.</li>
+          <li data-en="Enhanced and maximum privacy profiles, btrfs and LUKS encryption.">Perfiles de privacidad mejorado y máximo, btrfs y cifrado LUKS.</li>
+          <li data-en="The installed system's wallpaper and a light theme for sl-welcome.">Fondo de escritorio del sistema instalado y tema claro de sl-welcome.</li>
         </ul>
       </article>
     </div>
-    <p class="note"><b>Aún no hay descarga pública.</b> El código y la ISO se publicarán cuando la instalación esté lista para usarse fuera del taller. Hasta entonces, esta página es el sitio donde se anuncia.</p>
+    <p class="note" data-en="&lt;b&gt;There is no public download yet.&lt;/b&gt; The code and the ISO will be released once the install is ready to be used outside the workshop. Until then, this page is where it will be announced."><b>Aún no hay descarga pública.</b> El código y la ISO se publicarán cuando la instalación esté lista para usarse fuera del taller. Hasta entonces, esta página es el sitio donde se anuncia.</p>
   </section>
 
   <section id="wiki" aria-labelledby="h-wiki">
-    <p class="label">04 · documentación</p>
+    <p class="label" data-en="04 · documentation">04 · documentación</p>
     <h2 id="h-wiki">Wiki</h2>
-    <p class="intro">Lo esencial de cada pieza, en un sitio.</p>
+    <p class="intro" data-en="The essentials of every piece, in one place.">Lo esencial de cada pieza, en un sitio.</p>
 
-    <div class="tabs" role="tablist" aria-label="Secciones de la wiki">
-      <button class="tab" role="tab" id="t-inst" aria-controls="p-inst" aria-selected="true">Instalación</button>
+    <div class="tabs" role="tablist" aria-label="Secciones de la wiki" data-en-aria-label="Wiki sections">
+      <button class="tab" role="tab" id="t-inst" aria-controls="p-inst" aria-selected="true" data-en="Installation">Instalación</button>
       <button class="tab" role="tab" id="t-hw" aria-controls="p-hw" aria-selected="false" tabindex="-1">Hardware</button>
-      <button class="tab" role="tab" id="t-env" aria-controls="p-env" aria-selected="false" tabindex="-1">Entornos</button>
-      <button class="tab" role="tab" id="t-priv" aria-controls="p-priv" aria-selected="false" tabindex="-1">Privacidad</button>
-      <button class="tab" role="tab" id="t-flav" aria-controls="p-flav" aria-selected="false" tabindex="-1">Sabores</button>
+      <button class="tab" role="tab" id="t-env" aria-controls="p-env" aria-selected="false" tabindex="-1" data-en="Desktops">Entornos</button>
+      <button class="tab" role="tab" id="t-priv" aria-controls="p-priv" aria-selected="false" tabindex="-1" data-en="Privacy">Privacidad</button>
+      <button class="tab" role="tab" id="t-flav" aria-controls="p-flav" aria-selected="false" tabindex="-1" data-en="Flavors">Sabores</button>
       <button class="tab" role="tab" id="t-faq" aria-controls="p-faq" aria-selected="false" tabindex="-1">FAQ</button>
     </div>
 
     <div class="panel" role="tabpanel" id="p-inst" aria-labelledby="t-inst" tabindex="0">
       <ol class="steps">
-        <li><strong>Arranca la ISO</strong>Modo UEFI. La sesión live abre Calamares directamente.</li>
-        <li><strong>sl-detect analiza el equipo</strong>Antes de enseñarte ninguna opción, para que las recomendaciones encajen con tu hardware.</li>
-        <li><strong>Elige entorno, sabores y privacidad</strong>Uno de los cuatro escritorios, los presets que quieras y uno de los tres perfiles.</li>
-        <li><strong>Particiona e instala</strong>EXT4 en HDD o con poca RAM, BTRFS en SSD con 4 GB o más, F2FS en eMMC. Luego GRUB y tu usuario.</li>
+        <li data-en="&lt;strong&gt;Boot the ISO&lt;/strong&gt;UEFI mode. The live session opens Calamares straight away."><strong>Arranca la ISO</strong>Modo UEFI. La sesión live abre Calamares directamente.</li>
+        <li data-en="&lt;strong&gt;sl-detect analyses the machine&lt;/strong&gt;Before showing you any option, so the recommendations fit your hardware."><strong>sl-detect analiza el equipo</strong>Antes de enseñarte ninguna opción, para que las recomendaciones encajen con tu hardware.</li>
+        <li data-en="&lt;strong&gt;Pick a desktop, flavors and privacy&lt;/strong&gt;One of the four desktops, the presets you want and one of the three profiles."><strong>Elige entorno, sabores y privacidad</strong>Uno de los cuatro escritorios, los presets que quieras y uno de los tres perfiles.</li>
+        <li data-en="&lt;strong&gt;Partition and install&lt;/strong&gt;EXT4 on HDDs or low RAM, BTRFS on SSDs with 4 GB or more, F2FS on eMMC. Then GRUB and your user."><strong>Particiona e instala</strong>EXT4 en HDD o con poca RAM, BTRFS en SSD con 4 GB o más, F2FS en eMMC. Luego GRUB y tu usuario.</li>
       </ol>
-      <p class="sub">En el primer arranque se abre <code>sl-welcome</code>. Hoy la instalación necesita conexión a internet (ISO online, unos 1,7 GB). También existe la vía manual con <code>pacstrap</code>, con la que se validó la fase 1.</p>
+      <p class="sub" data-en="On first boot &lt;code&gt;sl-welcome&lt;/code&gt; opens. Today the install needs an internet connection (online ISO, about 1.7 GB). There is also the manual route with &lt;code&gt;pacstrap&lt;/code&gt;, which is how phase 1 was validated.">En el primer arranque se abre <code>sl-welcome</code>. Hoy la instalación necesita conexión a internet (ISO online, unos 1,7 GB). También existe la vía manual con <code>pacstrap</code>, con la que se validó la fase 1.</p>
     </div>
 
     <div class="panel" role="tabpanel" id="p-hw" aria-labelledby="t-hw" tabindex="0" hidden>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Nivel</th><th>RAM</th><th>Disco</th><th>Entorno recomendado</th></tr></thead>
+          <thead><tr><th data-en="Tier">Nivel</th><th>RAM</th><th data-en="Disk">Disco</th><th data-en="Recommended desktop">Entorno recomendado</th></tr></thead>
           <tbody>
-            <tr><td>Mínimo absoluto</td><td>512 MB</td><td>10 GB</td><td>Openbox minimal</td></tr>
-            <tr><td>Mínimo funcional</td><td>1 GB</td><td>15 GB</td><td>XFCE temático</td></tr>
-            <tr><td>Estándar</td><td>2 GB</td><td>20 GB</td><td>XFCE o Hyprland lite</td></tr>
-            <tr><td>Recomendado</td><td>4 GB</td><td>30 GB</td><td>Hyprland + Astal full</td></tr>
+            <tr><td data-en="Absolute minimum">Mínimo absoluto</td><td>512 MB</td><td>10 GB</td><td>Openbox minimal</td></tr>
+            <tr><td data-en="Usable minimum">Mínimo funcional</td><td>1 GB</td><td>15 GB</td><td data-en="Themed XFCE">XFCE temático</td></tr>
+            <tr><td data-en="Standard">Estándar</td><td>2 GB</td><td>20 GB</td><td data-en="XFCE or Hyprland lite">XFCE o Hyprland lite</td></tr>
+            <tr><td data-en="Recommended">Recomendado</td><td>4 GB</td><td>30 GB</td><td>Hyprland + Astal full</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="sub">La fase 1 se validó en un Packard Bell iMedia S2883 (Celeron J1900, 2013, rescatado de la basura): <code>sl-detect</code> recomendó XFCE, EXT4 y linux-lts, porque su GPU Bay Trail no puede con Wayland. Hoy el equipo de referencia es el PC principal del taller. Secure Boot no está soportado.</p>
+      <p class="sub" data-en="Phase 1 was validated on a Packard Bell iMedia S2883 (Celeron J1900, 2013, rescued from the trash): &lt;code&gt;sl-detect&lt;/code&gt; recommended XFCE, EXT4 and linux-lts, because its Bay Trail GPU cannot handle Wayland. Today the reference machine is the workshop's main PC. Secure Boot is not supported.">La fase 1 se validó en un Packard Bell iMedia S2883 (Celeron J1900, 2013, rescatado de la basura): <code>sl-detect</code> recomendó XFCE, EXT4 y linux-lts, porque su GPU Bay Trail no puede con Wayland. Hoy el equipo de referencia es el PC principal del taller. Secure Boot no está soportado.</p>
     </div>
 
     <div class="panel" role="tabpanel" id="p-env" aria-labelledby="t-env" tabindex="0" hidden>
       <div class="grid" style="margin-top:0">
-        <article class="card"><span class="k">≥ 1 GB · Xorg</span><h3>XFCE temático</h3><p>El escritorio por defecto y <strong>el único probado de punta a punta</strong> hasta ahora. También es el que se elige siempre en GPUs Bay Trail.</p></article>
-        <article class="card"><span class="k">≥ 512 MB · Xorg</span><h3>Openbox minimal</h3><p>Sin compositor por defecto, para equipos muy justos.</p></article>
-        <article class="card"><span class="k">≥ 2 GB · Wayland</span><h3>Hyprland + Astal lite</h3><p>Shell propio en Astal/AGS, sin blur ni sombras.</p></article>
-        <article class="card"><span class="k">≥ 4 GB · Wayland</span><h3>Hyprland + Astal full</h3><p>El mismo shell con blur y animaciones completas.</p></article>
+        <article class="card"><span class="k">≥ 1 GB · Xorg</span><h3 data-en="Themed XFCE">XFCE temático</h3><p data-en="The default desktop and &lt;strong&gt;the only one tested end to end&lt;/strong&gt; so far. It is also the one always chosen on Bay Trail GPUs.">El escritorio por defecto y <strong>el único probado de punta a punta</strong> hasta ahora. También es el que se elige siempre en GPUs Bay Trail.</p></article>
+        <article class="card"><span class="k">≥ 512 MB · Xorg</span><h3>Openbox minimal</h3><p data-en="No compositor by default, for very tight machines.">Sin compositor por defecto, para equipos muy justos.</p></article>
+        <article class="card"><span class="k">≥ 2 GB · Wayland</span><h3>Hyprland + Astal lite</h3><p data-en="Our own shell in Astal/AGS, with no blur or shadows.">Shell propio en Astal/AGS, sin blur ni sombras.</p></article>
+        <article class="card"><span class="k">≥ 4 GB · Wayland</span><h3>Hyprland + Astal full</h3><p data-en="The same shell with full blur and animations.">El mismo shell con blur y animaciones completas.</p></article>
       </div>
-      <p class="sub">Regla de diseño: si un entorno pasa de 500 MB de RAM en reposo, es un bug.</p>
+      <p class="sub" data-en="Design rule: if a desktop uses more than 500 MB of RAM at idle, that is a bug.">Regla de diseño: si un entorno pasa de 500 MB de RAM en reposo, es un bug.</p>
     </div>
 
     <div class="panel" role="tabpanel" id="p-priv" aria-labelledby="t-priv" tabindex="0" hidden>
       <div class="grid" style="margin-top:0">
-        <article class="card"><span class="k">linux-zen</span><h3>Básico</h3><p>Valores por defecto seguros, cortafuegos UFW y MAC aleatoria.</p></article>
-        <article class="card"><span class="k">linux-zen</span><h3>Mejorado</h3><p>Lo anterior, más Firejail, AppArmor y USBGuard.</p></article>
-        <article class="card" style="grid-column:1/-1"><span class="k">linux-hardened</span><h3>Máximo</h3><p>Lo anterior, más Tor, kloak y swap cifrado.</p></article>
+        <article class="card"><span class="k">linux-zen</span><h3 data-en="Basic">Básico</h3><p data-en="Safe defaults, UFW firewall and a randomised MAC address.">Valores por defecto seguros, cortafuegos UFW y MAC aleatoria.</p></article>
+        <article class="card"><span class="k">linux-zen</span><h3 data-en="Enhanced">Mejorado</h3><p data-en="All of the above, plus Firejail, AppArmor and USBGuard.">Lo anterior, más Firejail, AppArmor y USBGuard.</p></article>
+        <article class="card" style="grid-column:1/-1"><span class="k">linux-hardened</span><h3 data-en="Maximum">Máximo</h3><p data-en="All of the above, plus Tor, kloak and encrypted swap.">Lo anterior, más Tor, kloak y swap cifrado.</p></article>
       </div>
-      <p class="sub">Los tres perfiles hacen copia de seguridad antes de tocar nada, así que siempre se pueden deshacer. El cifrado de disco con LUKS2 es opcional.</p>
+      <p class="sub" data-en="All three profiles make a backup before touching anything, so they can always be undone. LUKS2 disk encryption is optional.">Los tres perfiles hacen copia de seguridad antes de tocar nada, así que siempre se pueden deshacer. El cifrado de disco con LUKS2 es opcional.</p>
     </div>
 
     <div class="panel" role="tabpanel" id="p-flav" aria-labelledby="t-flav" tabindex="0" hidden>
-      <p class="sub" style="margin:0 0 16px">Presets opcionales encima del entorno base. Daily Driver va siempre incluido.</p>
+      <p class="sub" style="margin:0 0 16px" data-en="Optional presets on top of the base desktop. Daily Driver is always included.">Presets opcionales encima del entorno base. Daily Driver va siempre incluido.</p>
       <ul class="chips">
         <li>Gaming</li><li>Content Creation</li><li>Development</li><li>Cybersecurity</li>
         <li>Office</li><li>Server / Homelab</li><li>Virtual Machines</li><li>Education</li>
@@ -346,18 +362,18 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
 
     <div class="panel" role="tabpanel" id="p-faq" aria-labelledby="t-faq" tabindex="0" hidden>
       <div class="grid" style="margin-top:0">
-        <article class="card"><h3>¿Por qué Arch?</h3><p>Base rodante, AUR para casi todo, y es sobre lo que está construido <code>sl-detect</code>. Decisión cerrada.</p></article>
-        <article class="card"><h3>¿Funciona con Secure Boot?</h3><p>No. GRUB va sin firmar y con Secure Boot activo el sistema puede no arrancar.</p></article>
-        <article class="card"><h3>¿Cero telemetría de verdad?</h3><p>Sí, en los tres perfiles. No depende de ninguna opción.</p></article>
-        <article class="card"><h3>¿Es lo mismo que Forge OS?</h3><p>No. Forge OS es otro proyecto del taller: un sistema operativo escrito desde cero en Rust. Static Linux es una distribución sobre Arch.</p></article>
+        <article class="card"><h3 data-en="Why Arch?">¿Por qué Arch?</h3><p data-en="A rolling base, the AUR for almost everything, and it is what &lt;code&gt;sl-detect&lt;/code&gt; is built on. Decision closed.">Base rodante, AUR para casi todo, y es sobre lo que está construido <code>sl-detect</code>. Decisión cerrada.</p></article>
+        <article class="card"><h3 data-en="Does it work with Secure Boot?">¿Funciona con Secure Boot?</h3><p data-en="No. GRUB is unsigned, and with Secure Boot on the system may not boot.">No. GRUB va sin firmar y con Secure Boot activo el sistema puede no arrancar.</p></article>
+        <article class="card"><h3 data-en="Really zero telemetry?">¿Cero telemetría de verdad?</h3><p data-en="Yes, in all three profiles. It does not depend on any setting.">Sí, en los tres perfiles. No depende de ninguna opción.</p></article>
+        <article class="card"><h3 data-en="Is it the same as Forge OS?">¿Es lo mismo que Forge OS?</h3><p data-en="No. Forge OS is another workshop project: an operating system written from scratch in Rust. Static Linux is a distribution built on Arch.">No. Forge OS es otro proyecto del taller: un sistema operativo escrito desde cero en Rust. Static Linux es una distribución sobre Arch.</p></article>
       </div>
     </div>
   </section>
 
   <section id="unete" aria-labelledby="h-unete">
-    <p class="label">05 · únete</p>
-    <h2 id="h-unete">Únete a Static Linux</h2>
-    <p class="intro join-intro">Static Linux lo hace un taller pequeño y la fase 3 tiene trabajo para varios perfiles: paquetes, el instalador, <code>sl-detect</code>, escritorios, la wiki o, simplemente, probarlo en equipos distintos. Esta solicitud es solo para Static Linux. Para el resto de Static Forge está la <a href="/#solicitud">solicitud general</a>.</p>
+    <p class="label" data-en="05 · join">05 · únete</p>
+    <h2 id="h-unete" data-en="Join Static Linux">Únete a Static Linux</h2>
+    <p class="intro join-intro" data-en="Static Linux is made by a small workshop and phase 3 has work for several profiles: packages, the installer, &lt;code&gt;sl-detect&lt;/code&gt;, desktops, the wiki or simply testing it on different machines. This application is only for Static Linux. For the rest of Static Forge there is the &lt;a href=&quot;/#solicitud&quot;&gt;general application&lt;/a&gt;.">Static Linux lo hace un taller pequeño y la fase 3 tiene trabajo para varios perfiles: paquetes, el instalador, <code>sl-detect</code>, escritorios, la wiki o, simplemente, probarlo en equipos distintos. Esta solicitud es solo para Static Linux. Para el resto de Static Forge está la <a href="/#solicitud">solicitud general</a>.</p>
     <form class="joinf" data-join="linux" novalidate aria-labelledby="h-unete"></form>
   </section>
 </div>
@@ -365,7 +381,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
 
 <footer>
   <div class="wrap foot">
-    <span>Static Linux es un proyecto de <a href="/">Static Forge</a>. Habla con nosotros en <a href="https://discord.gg/bVdwvtnbuH" target="_blank" rel="noopener">Discord</a>.</span>
+    <span data-en="Static Linux is a &lt;a href=&quot;/&quot;&gt;Static Forge&lt;/a&gt; project. Talk to us on &lt;a href=&quot;https://discord.gg/bVdwvtnbuH&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Discord&lt;/a&gt;.">Static Linux es un proyecto de <a href="/">Static Forge</a>. Habla con nosotros en <a href="https://discord.gg/bVdwvtnbuH" target="_blank" rel="noopener">Discord</a>.</span>
     <span style="font-family:var(--fm)">fast. private. yours.</span>
   </div>
 </footer>
@@ -395,6 +411,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
   });
 })();
 </script>
-<script src="/assets/join.js?v=20261025a"></script>
+<script src="/assets/join.js?v=20261027a"></script>
+<script src="/assets/lang.js"></script>
 </body>
 </html>

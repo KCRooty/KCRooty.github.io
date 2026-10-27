@@ -7,18 +7,20 @@
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Forge OS · Static Forge</title>
-<meta name="description" content="Forge OS, el sistema operativo de Static Forge escrito desde cero en Rust: kernel propio para x86_64, userland propio y código abierto con licencia GPL-2.0+.">
+<meta name="description" content="Forge OS, el sistema operativo de Static Forge escrito desde cero en Rust: kernel propio para x86_64, userland propio y código abierto con licencia GPL-2.0+." data-en-content="Forge OS, Static Forge's operating system written from scratch in Rust: its own x86_64 kernel, its own userland, and open source under GPL-2.0+.">
 <meta property="og:title" content="Forge OS · Static Forge">
-<meta property="og:description" content="Un sistema operativo escrito desde cero en Rust. Kernel propio para x86_64, código abierto.">
+<meta property="og:description" content="Un sistema operativo escrito desde cero en Rust. Kernel propio para x86_64, código abierto." data-en-content="An operating system written from scratch in Rust. Its own x86_64 kernel, open source.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#070502">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
-(function(){var v=null;try{v=localStorage.getItem('sf-crt')}catch(e){}document.documentElement.setAttribute('data-crt',v==='off'?'off':'on')})();
+(function(){var g=function(k){try{return localStorage.getItem(k)}catch(e){return null}},d=document.documentElement;
+d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');d.setAttribute('lang',g('sf-lang')==='en'?'en':'es')})();
 </script>
-<link rel="stylesheet" href="/assets/join.css?v=20261025a">
+<link rel="stylesheet" href="/assets/join.css?v=20261027a">
+<link rel="stylesheet" href="/assets/lang.css">
 <style>
 /* Forge OS: un escritorio de Windows 7-10 dentro de un monitor CRT de fósforo ámbar.
    Ventanas con barra de título de cristal (7) y botones planos (10), barra de tareas abajo.
@@ -131,6 +133,11 @@ h1{margin-top:12px;font:400 clamp(4rem,11vw,7rem)/.85 var(--fv);letter-spacing:.
 .tog{min-width:56px;padding:0 14px;border:0;background:none;color:var(--hi);font:600 .85rem/1 var(--fw);letter-spacing:.06em;cursor:pointer}
 .tog:hover{background:rgba(255,176,0,.10)}
 .tog[aria-pressed="false"]{color:var(--dim)}
+/* Idioma en la bandeja: botones planos como el resto de la barra, el activo con borde inferior ámbar */
+.tray .langsw{gap:0;font:600 .82rem/1 var(--fw);letter-spacing:.06em;color:var(--dim);border-right:1px solid var(--line)}
+.tray .langsw button{height:100%;min-height:0;border:0;border-bottom:2px solid transparent;border-radius:0;padding:0 12px}
+.tray .langsw button:hover{background:rgba(255,176,0,.10);color:var(--hi)}
+.tray .langsw button[aria-pressed="true"]{color:var(--hi);border-bottom-color:var(--amb);background:rgba(255,176,0,.10)}
 .clock{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:3px;padding:0 14px;color:var(--hi);font-size:.82rem;line-height:1}
 .clock small{color:var(--dim);font-size:.75rem}
 
@@ -160,6 +167,10 @@ h1{margin-top:12px;font:400 clamp(4rem,11vw,7rem)/.85 var(--fv);letter-spacing:.
   .cta .btn{flex:1 1 100%}
   section{padding:24px 0}
   .start{padding:0 14px}
+  .tray .langsw .lbl{display:none}
+}
+@media (max-width:380px){
+  .clock{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -169,7 +180,7 @@ h1{margin-top:12px;font:400 clamp(4rem,11vw,7rem)/.85 var(--fv);letter-spacing:.
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Saltar al contenido</a>
+<a class="skip" href="#main" data-en="Skip to content">Saltar al contenido</a>
 <div class="fx scan" aria-hidden="true"></div>
 <div class="fx vig" aria-hidden="true"></div>
 <div class="fx flick" aria-hidden="true"></div>
@@ -180,18 +191,18 @@ h1{margin-top:12px;font:400 clamp(4rem,11vw,7rem)/.85 var(--fv);letter-spacing:.
     <article class="win on" aria-labelledby="h-fos">
       <div class="tb" aria-hidden="true"><span class="ic"></span><span class="t">forge_os.exe</span><span class="caps"><span>—</span><span>☐</span><span>✕</span></span></div>
       <div class="wb">
-        <p class="prompt">static forge · <b>sistema operativo</b></p>
+        <p class="prompt" data-en="static forge · &lt;b&gt;operating system&lt;/b&gt;">static forge · <b>sistema operativo</b></p>
         <h1 id="h-fos">Forge OS</h1>
-        <p class="lead">Un sistema operativo escrito desde cero en Rust: <strong>kernel propio para x86_64 y userland propio</strong>. Código abierto, sin telemetría y pensado para ser seguro desde la base.</p>
+        <p class="lead" data-en="An operating system written from scratch in Rust: &lt;strong&gt;its own x86_64 kernel and its own userland&lt;/strong&gt;. Open source, no telemetry and built to be secure from the ground up.">Un sistema operativo escrito desde cero en Rust: <strong>kernel propio para x86_64 y userland propio</strong>. Código abierto, sin telemetría y pensado para ser seguro desde la base.</p>
         <div class="cta">
-          <a class="btn pri" href="#unete">Únete al proyecto</a>
-          <a class="btn" href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener">Código en GitHub ↗</a>
+          <a class="btn pri" href="#unete" data-en="Join the project">Únete al proyecto</a>
+          <a class="btn" href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener" data-en="Code on GitHub ↗">Código en GitHub ↗</a>
         </div>
       </div>
     </article>
-    <aside class="win boot-win" aria-label="Resumen del estado actual, en forma de arranque">
-      <div class="tb" aria-hidden="true"><span class="ic"></span><span class="t">arranque.log · Visor</span><span class="caps"><span>—</span><span>☐</span><span>✕</span></span></div>
-      <pre class="boot"><span style="animation-delay:.15s" class="k">FORGE OS · x86_64 · Rust (no_std)</span>
+    <aside class="win boot-win" aria-label="Resumen del estado actual, en forma de arranque" data-en-aria-label="Summary of the current status, as a boot log">
+      <div class="tb" aria-hidden="true"><span class="ic"></span><span class="t" data-en="boot.log · Viewer">arranque.log · Visor</span><span class="caps"><span>—</span><span>☐</span><span>✕</span></span></div>
+      <pre class="boot" data-only="es"><span style="animation-delay:.15s" class="k">FORGE OS · x86_64 · Rust (no_std)</span>
 <span style="animation-delay:.35s" class="w">resumen del estado actual</span>
 
 <span style="animation-delay:.6s">[ OK ] kernel monolítico propio</span>
@@ -204,32 +215,45 @@ h1{margin-top:12px;font:400 clamp(4rem,11vw,7rem)/.85 var(--fv);letter-spacing:.
 <span style="animation-delay:2.05s" class="w">[ .. ] bellows: la shell</span>
 
 <span style="animation-delay:2.3s" class="k">probado en QEMU · 35+ arranques limpios</span></pre>
-      <div class="status" aria-hidden="true"><span>Línea 14</span><span>UTF-8</span><span>Solo lectura</span></div>
+      <pre class="boot" data-only="en" lang="en"><span style="animation-delay:.15s" class="k">FORGE OS · x86_64 · Rust (no_std)</span>
+<span style="animation-delay:.35s" class="w">current status summary</span>
+
+<span style="animation-delay:.6s">[ OK ] our own monolithic kernel</span>
+<span style="animation-delay:.8s">[ OK ] virtual memory and user mode</span>
+<span style="animation-delay:1s">[ OK ] real preemption and signals</span>
+<span style="animation-delay:1.2s">[ OK ] ember, first process (PID 1)</span>
+<span style="animation-delay:1.4s">[ OK ] rtl8139 network: pings the gateway</span>
+<span style="animation-delay:1.6s">[ OK ] ahci disk, read-only ext2</span>
+<span style="animation-delay:1.85s" class="w">[ .. ] mlibc: porting the libc</span>
+<span style="animation-delay:2.05s" class="w">[ .. ] bellows: the shell</span>
+
+<span style="animation-delay:2.3s" class="k">tested in QEMU · 35+ clean boots</span></pre>
+      <div class="status" aria-hidden="true"><span data-en="Line 14">Línea 14</span><span>UTF-8</span><span data-en="Read only">Solo lectura</span></div>
     </aside>
   </div>
 
   <section id="que" aria-labelledby="h-que">
     <article class="win">
-      <div class="tb" aria-hidden="true"><span class="ic"></span><span class="t">Propiedades del sistema · Forge OS</span><span class="caps"><span>—</span><span>☐</span><span>✕</span></span></div>
+      <div class="tb" aria-hidden="true"><span class="ic"></span><span class="t" data-en="System properties · Forge OS">Propiedades del sistema · Forge OS</span><span class="caps"><span>—</span><span>☐</span><span>✕</span></span></div>
       <div class="wb">
-        <h2 id="h-que">Qué es</h2>
+        <h2 id="h-que" data-en="What it is">Qué es</h2>
         <div class="grid">
           <div class="card">
-            <h3>Lo mejor de Linux, OpenBSD y NT</h3>
-            <p>La interfaz de llamadas al sistema de Linux, la seguridad por defecto de OpenBSD (W^X, superficie mínima) y una capa de abstracción de hardware al estilo de Windows NT, para que el código de cada fabricante quede fuera del núcleo.</p>
+            <h3 data-en="The best of Linux, OpenBSD and NT">Lo mejor de Linux, OpenBSD y NT</h3>
+            <p data-en="Linux's system call interface, OpenBSD's security by default (W^X, minimal attack surface) and a hardware abstraction layer in the style of Windows NT, so each vendor's code stays out of the kernel.">La interfaz de llamadas al sistema de Linux, la seguridad por defecto de OpenBSD (W^X, superficie mínima) y una capa de abstracción de hardware al estilo de Windows NT, para que el código de cada fabricante quede fuera del núcleo.</p>
           </div>
           <div class="card">
-            <h3>Ligero, privado y tuyo</h3>
-            <p>Cero telemetría y ningún servicio de fondo que no hayas pedido. La configuración va en texto plano y el escritorio, la shell y el tema se pueden cambiar.</p>
+            <h3 data-en="Light, private and yours">Ligero, privado y tuyo</h3>
+            <p data-en="Zero telemetry and no background service you did not ask for. Configuration lives in plain text, and the desktop, the shell and the theme can all be swapped.">Cero telemetría y ningún servicio de fondo que no hayas pedido. La configuración va en texto plano y el escritorio, la shell y el tema se pueden cambiar.</p>
           </div>
         </div>
-        <dl class="props" aria-label="Ficha técnica">
-          <dt>Lenguaje</dt><dd>Rust (no_std)</dd>
-          <dt>Arquitectura</dt><dd>x86_64</dd>
-          <dt>Kernel</dt><dd>Monolítico, propio</dd>
+        <dl class="props" aria-label="Ficha técnica" data-en-aria-label="Technical sheet">
+          <dt data-en="Language">Lenguaje</dt><dd>Rust (no_std)</dd>
+          <dt data-en="Architecture">Arquitectura</dt><dd>x86_64</dd>
+          <dt>Kernel</dt><dd data-en="Monolithic, our own">Monolítico, propio</dd>
           <dt>Userland</dt><dd>Ember, Bellows, Crucible, Anvil</dd>
-          <dt>Licencia</dt><dd>GPL-2.0+</dd>
-          <dt>Se prueba en</dt><dd>QEMU</dd>
+          <dt data-en="License">Licencia</dt><dd>GPL-2.0+</dd>
+          <dt data-en="Tested on">Se prueba en</dt><dd>QEMU</dd>
         </dl>
       </div>
     </article>
@@ -237,66 +261,70 @@ h1{margin-top:12px;font:400 clamp(4rem,11vw,7rem)/.85 var(--fv);letter-spacing:.
 
   <section id="estado" aria-labelledby="h-estado">
     <article class="win">
-      <div class="tb" aria-hidden="true"><span class="ic"></span><span class="t">Administrador de tareas · Forge OS</span><span class="caps"><span>—</span><span>☐</span><span>✕</span></span></div>
+      <div class="tb" aria-hidden="true"><span class="ic"></span><span class="t" data-en="Task Manager · Forge OS">Administrador de tareas · Forge OS</span><span class="caps"><span>—</span><span>☐</span><span>✕</span></span></div>
       <div class="wb">
-        <h2 id="h-estado">Estado</h2>
+        <h2 id="h-estado" data-en="Status">Estado</h2>
         <div class="tm-box">
           <table class="tm">
-            <thead><tr><th scope="col">Componente</th><th scope="col">Estado</th></tr></thead>
+            <thead><tr><th scope="col" data-en="Component">Componente</th><th scope="col" data-en="Status">Estado</th></tr></thead>
             <tbody>
-              <tr><td>Arranque en QEMU, probado en más de 35 arranques seguidos desde cero</td><td>[ OK ]</td></tr>
-              <tr><td>Ember como primer proceso del sistema (PID 1)</td><td>[ OK ]</td></tr>
-              <tr><td>Procesos en modo usuario con expropiación real y señales</td><td>[ OK ]</td></tr>
-              <tr><td>Llamadas POSIX básicas: <code>read</code>, <code>write</code>, <code>open</code>, <code>mmap</code> y compañía</td><td>[ OK ]</td></tr>
-              <tr><td>Red con driver RTL8139 (hace ping), disco por AHCI, ext2 de solo lectura y tablas GPT/MBR</td><td>[ OK ]</td></tr>
-              <tr class="wip"><td>Portar mlibc, la libc, para que arranquen programas normales. Ya compila contra Forge OS</td><td>[ .. ]</td></tr>
-              <tr class="wip"><td>Bellows, la shell del sistema</td><td>[ .. ]</td></tr>
+              <tr><td data-en="Boots in QEMU, tested over more than 35 consecutive boots from scratch">Arranque en QEMU, probado en más de 35 arranques seguidos desde cero</td><td>[ OK ]</td></tr>
+              <tr><td data-en="Ember as the system's first process (PID 1)">Ember como primer proceso del sistema (PID 1)</td><td>[ OK ]</td></tr>
+              <tr><td data-en="User mode processes with real preemption and signals">Procesos en modo usuario con expropiación real y señales</td><td>[ OK ]</td></tr>
+              <tr><td data-en="Basic POSIX calls: &lt;code&gt;read&lt;/code&gt;, &lt;code&gt;write&lt;/code&gt;, &lt;code&gt;open&lt;/code&gt;, &lt;code&gt;mmap&lt;/code&gt; and friends">Llamadas POSIX básicas: <code>read</code>, <code>write</code>, <code>open</code>, <code>mmap</code> y compañía</td><td>[ OK ]</td></tr>
+              <tr><td data-en="Networking with an RTL8139 driver (it pings), AHCI disk, read-only ext2 and GPT/MBR tables">Red con driver RTL8139 (hace ping), disco por AHCI, ext2 de solo lectura y tablas GPT/MBR</td><td>[ OK ]</td></tr>
+              <tr class="wip"><td data-en="Porting mlibc, the libc, so regular programs can run. It already builds against Forge OS">Portar mlibc, la libc, para que arranquen programas normales. Ya compila contra Forge OS</td><td>[ .. ]</td></tr>
+              <tr class="wip"><td data-en="Bellows, the system shell">Bellows, la shell del sistema</td><td>[ .. ]</td></tr>
             </tbody>
           </table>
         </div>
       </div>
-      <div class="status" aria-hidden="true"><span>5 funcionando</span><span>2 en curso</span></div>
+      <div class="status" aria-hidden="true"><span data-en="5 working">5 funcionando</span><span data-en="2 in progress">2 en curso</span></div>
     </article>
   </section>
 
   <section id="unete" aria-labelledby="h-unete">
     <article class="win on">
-      <div class="tb" aria-hidden="true"><span class="ic"></span><span class="t">Asistente para unirse a Forge OS</span><span class="caps"><span>—</span><span>☐</span><span>✕</span></span></div>
+      <div class="tb" aria-hidden="true"><span class="ic"></span><span class="t" data-en="Forge OS join wizard">Asistente para unirse a Forge OS</span><span class="caps"><span>—</span><span>☐</span><span>✕</span></span></div>
       <div class="wb">
-        <h2 id="h-unete">Únete</h2>
-        <p class="intro">Forge OS es un proyecto largo y de bajo nivel. Si te gusta Rust, los kernels o depurar cosas raras en QEMU, hay sitio. No hace falta saberlo todo: también hacen falta pruebas y documentación. Esta solicitud es solo para Forge OS. Para el resto de Static Forge está la <a href="/#solicitud">solicitud general</a>.</p>
+        <h2 id="h-unete" data-en="Join">Únete</h2>
+        <p class="intro" data-en="Forge OS is a long, low-level project. If you like Rust, kernels or debugging weird things in QEMU, there is room for you. You do not need to know everything: testing and documentation are needed too. This application is only for Forge OS. For the rest of Static Forge there is the &lt;a href=&quot;/#solicitud&quot;&gt;general application&lt;/a&gt;.">Forge OS es un proyecto largo y de bajo nivel. Si te gusta Rust, los kernels o depurar cosas raras en QEMU, hay sitio. No hace falta saberlo todo: también hacen falta pruebas y documentación. Esta solicitud es solo para Forge OS. Para el resto de Static Forge está la <a href="/#solicitud">solicitud general</a>.</p>
         <form class="joinf" data-join="forgeos" novalidate aria-labelledby="h-unete"></form>
       </div>
     </article>
   </section>
 
-  <p class="status" style="border:0;justify-content:center;margin-top:8px">Forge OS es un proyecto de Static Forge · KCRooty (Core) · GPL-2.0+</p>
+  <p class="status" style="border:0;justify-content:center;margin-top:8px" data-en="Forge OS is a Static Forge project · KCRooty (Core) · GPL-2.0+">Forge OS es un proyecto de Static Forge · KCRooty (Core) · GPL-2.0+</p>
 </div>
 </main>
 
 <div class="menu" id="startMenu" hidden>
   <p class="menu-h">FORGE_OS</p>
   <ul>
-    <li><a href="#que"><span class="ic" aria-hidden="true"></span>Qué es</a></li>
-    <li><a href="#estado"><span class="ic" aria-hidden="true"></span>Estado</a></li>
-    <li><a href="#unete"><span class="ic" aria-hidden="true"></span>Únete al proyecto</a></li>
-    <li><a href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener"><span class="ic" aria-hidden="true"></span>Código en GitHub ↗</a></li>
-    <li><a href="https://discord.gg/bVdwvtnbuH" target="_blank" rel="noopener"><span class="ic" aria-hidden="true"></span>Discord del estudio ↗</a></li>
+    <li><a href="#que"><span class="ic" aria-hidden="true"></span><span data-en="What it is">Qué es</span></a></li>
+    <li><a href="#estado"><span class="ic" aria-hidden="true"></span><span data-en="Status">Estado</span></a></li>
+    <li><a href="#unete"><span class="ic" aria-hidden="true"></span><span data-en="Join the project">Únete al proyecto</span></a></li>
+    <li><a href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener"><span class="ic" aria-hidden="true"></span><span data-en="Code on GitHub ↗">Código en GitHub ↗</span></a></li>
+    <li><a href="https://discord.gg/bVdwvtnbuH" target="_blank" rel="noopener"><span class="ic" aria-hidden="true"></span><span data-en="Studio Discord ↗">Discord del estudio ↗</span></a></li>
     <li class="sep" aria-hidden="true"></li>
-    <li><a href="/"><span class="ic" aria-hidden="true"></span>← Volver a Static Forge</a></li>
-    <li><a href="/foros.html"><span class="ic" aria-hidden="true"></span>Foro</a></li>
+    <li><a href="/"><span class="ic" aria-hidden="true"></span><span data-en="← Back to Static Forge">← Volver a Static Forge</span></a></li>
+    <li><a href="/foros.html"><span class="ic" aria-hidden="true"></span><span data-en="Forum">Foro</span></a></li>
   </ul>
 </div>
 
-<nav class="task" aria-label="Barra de tareas">
-  <button type="button" class="start" id="startBtn" aria-expanded="false" aria-controls="startMenu"><span class="gl" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Inicio</button>
+<nav class="task" aria-label="Barra de tareas" data-en-aria-label="Taskbar">
+  <button type="button" class="start" id="startBtn" aria-expanded="false" aria-controls="startMenu"><span class="gl" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span data-en="Start">Inicio</span></button>
   <ul class="apps">
-    <li><a href="#que" data-spy="que">Qué es</a></li>
-    <li><a href="#estado" data-spy="estado">Estado</a></li>
-    <li><a href="#unete" data-spy="unete">Únete</a></li>
+    <li><a href="#que" data-spy="que" data-en="What it is">Qué es</a></li>
+    <li><a href="#estado" data-spy="estado" data-en="Status">Estado</a></li>
+    <li><a href="#unete" data-spy="unete" data-en="Join">Únete</a></li>
     <li><a href="/">Static Forge</a></li>
   </ul>
   <div class="tray">
+    <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+      <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+      <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+    </div>
     <button type="button" class="tog" id="crtBtn" aria-pressed="true">CRT</button>
     <div class="clock" aria-hidden="true"><span id="clkT">--:--</span><small id="clkD"></small></div>
   </div>
@@ -305,19 +333,21 @@ h1{margin-top:12px;font:400 clamp(4rem,11vw,7rem)/.85 var(--fv);letter-spacing:.
 <script>
 (function(){
   var d=document.documentElement;
+  function en(){return d.getAttribute('lang')==='en'}
   /* Interruptor CRT (clave compartida con el resto de la web) */
   var b=document.getElementById('crtBtn');
-  function sync(){var on=d.getAttribute('data-crt')!=='off';b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',on?'Efecto CRT activado':'Efecto CRT desactivado')}
+  function sync(){var on=d.getAttribute('data-crt')!=='off';b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',on?(en()?'CRT effect on':'Efecto CRT activado'):(en()?'CRT effect off':'Efecto CRT desactivado'))}
   b.addEventListener('click',function(){
     var next=d.getAttribute('data-crt')==='off'?'on':'off';
     d.setAttribute('data-crt',next);try{localStorage.setItem('sf-crt',next)}catch(e){}sync();
   });
   sync();
 
-  /* Reloj de la bandeja */
+  /* Reloj de la bandeja, con el formato del idioma activo */
   var T=document.getElementById('clkT'),D=document.getElementById('clkD');
-  function tick(){var n=new Date();T.textContent=n.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});D.textContent=n.toLocaleDateString('es-ES')}
+  function tick(){var n=new Date(),loc=en()?'en-GB':'es-ES';T.textContent=n.toLocaleTimeString(loc,{hour:'2-digit',minute:'2-digit'});D.textContent=n.toLocaleDateString(loc)}
   tick();setInterval(tick,20000);
+  document.addEventListener('sf:lang',function(){sync();tick()});
 
   /* Menú Inicio: Escape o clic fuera lo cierran y el foco vuelve al botón */
   var sb=document.getElementById('startBtn'),m=document.getElementById('startMenu');
@@ -341,6 +371,7 @@ h1{margin-top:12px;font:400 clamp(4rem,11vw,7rem)/.85 var(--fv);letter-spacing:.
   }
 })();
 </script>
-<script src="/assets/join.js?v=20261025a"></script>
+<script src="/assets/join.js?v=20261027a"></script>
+<script src="/assets/lang.js"></script>
 </body>
 </html>

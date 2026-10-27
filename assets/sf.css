@@ -78,6 +78,10 @@ code{font:400 1.05em var(--fc);letter-spacing:.03em;color:var(--phosphor);word-b
 .tbtn:hover,.menu-btn:hover{color:var(--ink)}
 .tbtn[aria-pressed="true"]{color:var(--phosphor)}
 .menu-btn{display:none}
+.langsw{--lang-on:var(--phosphor);gap:6px}
+.langsw .tbtn{border:1px solid var(--line);color:var(--muted)}
+.langsw .tbtn:hover{color:var(--ink)}
+.langsw .tbtn[aria-pressed="true"]{border-color:var(--phosphor);color:var(--phosphor)}
 
 /* Tipografía y bloques */
 .kicker{display:flex;align-items:center;gap:12px;font-size:1.3rem;margin-bottom:12px}
@@ -159,6 +163,8 @@ footer{padding:0 0 40px}
 @media (max-width:560px){
   .wrap{padding:0 16px}
   .nav-in{gap:10px}
+  .brand-name{display:none}
+  .langsw .lbl{display:none}
   .sec{padding:64px 0}
   .card{padding:22px 20px}
   .note{flex-direction:column;gap:4px}
@@ -166,6 +172,17 @@ footer{padding:0 0 40px}
 @media (max-width:340px){
   .brand-name{display:none}
   .brand{min-width:44px;justify-content:center}
+}
+/* Muy estrecho: la barra pasa a dos filas (marca + menú arriba; idioma, tema y CRT abajo), como en la portada */
+@media (max-width:360px){
+  html{scroll-padding-top:128px}
+  .nav-in{flex-wrap:wrap;height:auto;padding-top:8px;padding-bottom:8px;row-gap:6px}
+  .ctrls{display:contents}
+  .brand{flex:1 1 auto;order:1;justify-content:flex-start}
+  .menu-btn{order:2}
+  .langsw{order:3}
+  #themeBtn{order:4}
+  #crtBtn{order:5}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}

@@ -7,9 +7,9 @@
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>FNAF AS · Static Forge</title>
-<meta name="description" content="Five Nights at Freddy's: Alternative Stories, proyecto fan de Static Forge: historias alternativas, estética glitch y renders 3D.">
+<meta name="description" content="Five Nights at Freddy's: Alternative Stories, proyecto fan de Static Forge: historias alternativas, estética glitch y renders 3D." data-en-content="Five Nights at Freddy's: Alternative Stories, a Static Forge fan project: alternative stories, glitch aesthetics and 3D renders.">
 <meta property="og:title" content="FNAF AS · Static Forge">
-<meta property="og:description" content="Five Nights at Freddy's: Alternative Stories. Historias alternativas, glitch y renders 3D.">
+<meta property="og:description" content="Five Nights at Freddy's: Alternative Stories. Historias alternativas, glitch y renders 3D." data-en-content="Five Nights at Freddy's: Alternative Stories. Alternative stories, glitch and 3D renders.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#14100C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,9 +18,11 @@
 <script>
 (function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
 var t=g('sf-theme');if(!t){try{t=matchMedia('(prefers-color-scheme: light)').matches?'paper':'night'}catch(e){t='night'}}
-d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');})();
+d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');
+d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
 </script>
 <link rel="stylesheet" href="/assets/sf.css">
+<link rel="stylesheet" href="/assets/lang.css">
 <style>
 .h1.fnaf{font-size:clamp(2.5rem,6.6vw,4.6rem)}
 .h1 .sub{display:block;margin-top:14px;font:400 clamp(1.5rem,3.4vw,2.1rem)/1.1 var(--fc);letter-spacing:.06em;color:var(--phosphor);text-shadow:0 0 10px var(--glow)}
@@ -36,23 +38,27 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Saltar al contenido</a>
+<a class="skip" href="#main" data-en="Skip to content">Saltar al contenido</a>
 <div class="fx scan" aria-hidden="true"></div>
 <div class="fx vig" aria-hidden="true"></div>
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="Static Forge, inicio">
+    <a class="brand" href="/" aria-label="Static Forge, inicio" data-en-aria-label="Static Forge, home">
       <span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>
       <span class="brand-name">Static Forge</span>
     </a>
     <ul class="links" id="links">
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/#proyectos">Proyectos</a></li>
+      <li><a href="/" data-en="Home">Inicio</a></li>
+      <li><a href="/#proyectos" data-en="Projects">Proyectos</a></li>
       <li><a href="/fnaf-as.html" aria-current="page">FNAF AS</a></li>
-      <li><a href="/foros.html">Foro</a></li>
+      <li><a href="/foros.html" data-en="Forum">Foro</a></li>
     </ul>
     <div class="ctrls">
+      <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+        <button type="button" class="tbtn" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+        <button type="button" class="tbtn" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+      </div>
       <button type="button" class="tbtn" id="themeBtn" aria-pressed="false">PAPEL</button>
       <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
       <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">MENÚ</button>
@@ -64,12 +70,12 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
 <div class="wrap">
   <header class="hero">
     <div>
-      <p class="osd crt-txt">CH 03 · PROYECTO FAN</p>
+      <p class="osd crt-txt" data-en="CH 03 · FAN PROJECT">CH 03 · PROYECTO FAN</p>
       <h1 class="h1 fnaf">Five Nights at Freddy's<span class="sub">ALTERNATIVE STORIES</span></h1>
-      <p class="lead">Un proyecto narrativo y visual que reimagina los eventos de FNaF desde historias alternativas. <strong>Lore construido desde cero</strong> y una atmósfera de glitch y estática.</p>
+      <p class="lead" data-en="A narrative and visual project that reimagines the events of FNaF through alternative stories. &lt;strong&gt;Lore built from scratch&lt;/strong&gt; and an atmosphere of glitch and static.">Un proyecto narrativo y visual que reimagina los eventos de FNaF desde historias alternativas. <strong>Lore construido desde cero</strong> y una atmósfera de glitch y estática.</p>
       <div class="cta">
-        <a class="btn pri" href="#arte">Ver los renders</a>
-        <a class="btn" href="#historia">Leer la premisa</a>
+        <a class="btn pri" href="#arte" data-en="See the renders">Ver los renders</a>
+        <a class="btn" href="#historia" data-en="Read the premise">Leer la premisa</a>
       </div>
     </div>
     <div class="tv" aria-hidden="true">
@@ -83,54 +89,54 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
   </header>
 
   <section class="sec" aria-labelledby="h-que">
-    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>01 · QUÉ ES</span></p>
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="01 · WHAT IT IS">01 · QUÉ ES</span></p>
     <h2 id="h-que">Alternative Stories</h2>
     <div class="grid2">
       <article class="card">
-        <span class="chan">CONCEPTO</span>
-        <h3>Otras versiones del mismo terror</h3>
-        <p>Un fan project de Five Nights at Freddy's que explora versiones alternativas del terror animatrónico: animatrónicos que actúan como guardianes o como rebeldes, archivos secretos y carreras contrarreloj dentro de una pizzería corrupta.</p>
+        <span class="chan" data-en="CONCEPT">CONCEPTO</span>
+        <h3 data-en="Other versions of the same horror">Otras versiones del mismo terror</h3>
+        <p data-en="A Five Nights at Freddy's fan project that explores alternative versions of animatronic horror: animatronics acting as guardians or as rebels, secret files and races against the clock inside a corrupted pizzeria.">Un fan project de Five Nights at Freddy's que explora versiones alternativas del terror animatrónico: animatrónicos que actúan como guardianes o como rebeldes, archivos secretos y carreras contrarreloj dentro de una pizzería corrupta.</p>
       </article>
       <article class="card">
-        <span class="chan">ESTILO</span>
-        <h3>Un menú de juego corrupto</h3>
-        <p>Glitch, estática y fondos con renders 3D de animatrónicos. Navegar tiene que sentirse como entrar en una versión pirateada del universo original.</p>
+        <span class="chan" data-en="STYLE">ESTILO</span>
+        <h3 data-en="A corrupted game menu">Un menú de juego corrupto</h3>
+        <p data-en="Glitch, static and backgrounds with 3D renders of animatronics. Browsing has to feel like stepping into a bootleg version of the original universe.">Glitch, estática y fondos con renders 3D de animatrónicos. Navegar tiene que sentirse como entrar en una versión pirateada del universo original.</p>
       </article>
     </div>
   </section>
 
   <section class="sec" id="historia" aria-labelledby="h-hist" style="padding-top:0">
-    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>02 · NARRATIVA</span></p>
-    <h2 id="h-hist">Historia</h2>
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="02 · NARRATIVE">02 · NARRATIVA</span></p>
+    <h2 id="h-hist" data-en="Story">Historia</h2>
     <div class="grid2">
       <article class="card">
-        <span class="chan">TRAMA</span>
-        <h3>El archivador olvidado</h3>
-        <p>El protagonista encuentra un archivador olvidado con rutas alternativas del programa Freddy Fazbear. Cada noche desbloquea un capítulo distinto, y sus decisiones cambian cómo se revela el pasado de los animatrónicos.</p>
+        <span class="chan" data-en="PLOT">TRAMA</span>
+        <h3 data-en="The forgotten file cabinet">El archivador olvidado</h3>
+        <p data-en="The protagonist finds a forgotten file cabinet holding alternative routes of the Freddy Fazbear program. Each night unlocks a different chapter, and their choices change how the animatronics' past is revealed.">El protagonista encuentra un archivador olvidado con rutas alternativas del programa Freddy Fazbear. Cada noche desbloquea un capítulo distinto, y sus decisiones cambian cómo se revela el pasado de los animatrónicos.</p>
       </article>
       <article class="card">
-        <span class="chan">FINALES</span>
-        <h3>Ninguna versión es la verdadera</h3>
-        <p>Cambios drásticos en el lore, con finales donde la realidad se distorsiona. No hay una única verdad: cada historia es una versión diferente de los mismos hechos.</p>
+        <span class="chan" data-en="ENDINGS">FINALES</span>
+        <h3 data-en="No version is the true one">Ninguna versión es la verdadera</h3>
+        <p data-en="Drastic changes to the lore, with endings where reality warps. There is no single truth: each story is a different version of the same events.">Cambios drásticos en el lore, con finales donde la realidad se distorsiona. No hay una única verdad: cada historia es una versión diferente de los mismos hechos.</p>
       </article>
     </div>
   </section>
 
   <section class="sec" id="arte" aria-labelledby="h-arte" style="padding-top:0">
     <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>03 · RENDERS</span></p>
-    <h2 id="h-arte">Arte del proyecto</h2>
+    <h2 id="h-arte" data-en="Project art">Arte del proyecto</h2>
     <div class="renders">
-      <figure class="render"><a href="/assets/gallery/clip5_2.png" target="_blank" rel="noopener" aria-label="Abrir el render 1 a tamaño completo"><img src="/assets/gallery/clip5_2.png" alt="Render 3D de FNAF AS, plano 1" loading="lazy"></a><figcaption>RENDER 01</figcaption></figure>
-      <figure class="render"><a href="/assets/gallery/clip5.png" target="_blank" rel="noopener" aria-label="Abrir el render 2 a tamaño completo"><img src="/assets/gallery/clip5.png" alt="Render 3D de FNAF AS, plano 2" loading="lazy"></a><figcaption>RENDER 02</figcaption></figure>
-      <figure class="render"><a href="/assets/gallery/clip5_1.png" target="_blank" rel="noopener" aria-label="Abrir el render 3 a tamaño completo"><img src="/assets/gallery/clip5_1.png" alt="Render 3D de FNAF AS, plano 3" loading="lazy"></a><figcaption>RENDER 03</figcaption></figure>
+      <figure class="render"><a href="/assets/gallery/clip5_2.png" target="_blank" rel="noopener" aria-label="Abrir el render 1 a tamaño completo" data-en-aria-label="Open render 1 at full size"><img src="/assets/gallery/clip5_2.png" alt="Render 3D de FNAF AS, plano 1" data-en-alt="FNAF AS 3D render, shot 1" loading="lazy"></a><figcaption>RENDER 01</figcaption></figure>
+      <figure class="render"><a href="/assets/gallery/clip5.png" target="_blank" rel="noopener" aria-label="Abrir el render 2 a tamaño completo" data-en-aria-label="Open render 2 at full size"><img src="/assets/gallery/clip5.png" alt="Render 3D de FNAF AS, plano 2" data-en-alt="FNAF AS 3D render, shot 2" loading="lazy"></a><figcaption>RENDER 02</figcaption></figure>
+      <figure class="render"><a href="/assets/gallery/clip5_1.png" target="_blank" rel="noopener" aria-label="Abrir el render 3 a tamaño completo" data-en-aria-label="Open render 3 at full size"><img src="/assets/gallery/clip5_1.png" alt="Render 3D de FNAF AS, plano 3" data-en-alt="FNAF AS 3D render, shot 3" loading="lazy"></a><figcaption>RENDER 03</figcaption></figure>
     </div>
   </section>
 
   <section class="sec" aria-labelledby="h-com" style="padding-top:0">
-    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>04 · COMUNIDAD</span></p>
-    <h2 id="h-com">Teorías e ideas</h2>
-    <p class="sec-intro">Si te gusta el universo FNaF, las historias alternativas o el arte 3D, puedes dejar tus teorías en el foro. Solo necesitas un nombre y una contraseña, sin correo.</p>
-    <div class="cta" style="margin-top:26px"><a class="btn pri" href="/foros.html">Ir al foro</a><a class="btn" href="/#proyectos">Ver otros proyectos</a></div>
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="04 · COMMUNITY">04 · COMUNIDAD</span></p>
+    <h2 id="h-com" data-en="Theories and ideas">Teorías e ideas</h2>
+    <p class="sec-intro" data-en="If you like the FNaF universe, alternative stories or 3D art, you can leave your theories on the forum. All you need is a name and a password, no email.">Si te gusta el universo FNaF, las historias alternativas o el arte 3D, puedes dejar tus teorías en el foro. Solo necesitas un nombre y una contraseña, sin correo.</p>
+    <div class="cta" style="margin-top:26px"><a class="btn pri" href="/foros.html" data-en="Go to the forum">Ir al foro</a><a class="btn" href="/#proyectos" data-en="See other projects">Ver otros proyectos</a></div>
   </section>
 </div>
 </main>
@@ -142,14 +148,15 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
     <path class="p3" vector-effect="non-scaling-stroke" d="M-20 126 C 380 126, 560 58, 900 66 S 1300 120, 1460 112"/>
   </svg>
   <div class="wrap">
-    <p class="disclaimer">FNAF AS es un proyecto fan sin ánimo de lucro. Five Nights at Freddy's y sus personajes pertenecen a Scott Cawthon. Static Forge no tiene relación oficial con la saga.</p>
+    <p class="disclaimer" data-en="FNAF AS is a non-profit fan project. Five Nights at Freddy's and its characters belong to Scott Cawthon. Static Forge has no official connection to the series.">FNAF AS es un proyecto fan sin ánimo de lucro. Five Nights at Freddy's y sus personajes pertenecen a Scott Cawthon. Static Forge no tiene relación oficial con la saga.</p>
     <div class="foot">
-      <span class="eob crt-txt">FIN DE LA EMISIÓN</span>
+      <span class="eob crt-txt" data-en="END OF BROADCAST">FIN DE LA EMISIÓN</span>
       <span>© 2026 Static Forge · KCRooty (Core) · <a href="/">staticforge.dpdns.org</a></span>
     </div>
   </div>
 </footer>
 
 <script src="/assets/sf.js"></script>
+<script src="/assets/lang.js"></script>
 </body>
 </html>
