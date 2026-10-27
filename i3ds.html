@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="night" data-crt="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Iron3D Studio · Static Forge</title>
+<meta name="description" content="Iron3D Studio: motor 3D open source de Static Forge en C++/Vulkan, reimplementación clean-room del flujo de trabajo de Cinema 4D R19." data-en-content="Iron3D Studio: Static Forge's open source 3D engine in C++/Vulkan, a clean-room reimplementation of Cinema 4D R19's workflow.">
+<meta property="og:title" content="Iron3D Studio · Static Forge">
+<meta property="og:description" content="DCC 3D open source en C++/Vulkan. Gestor de Objetos, cámara orbital, grafo de escena — código 100% propio." data-en-content="Open source 3D DCC in C++/Vulkan. Object Manager, orbital camera, scene graph — 100% original code.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/assets/projects/iron3d-studio.webp">
+<meta name="theme-color" content="#14100C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..900,100&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
+<script>
+(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+var t=g('sf-theme');if(!t){try{t=matchMedia('(prefers-color-scheme: light)').matches?'paper':'night'}catch(e){t='night'}}
+d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');
+d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
+</script>
+<link rel="stylesheet" href="/assets/sf.css">
+<link rel="stylesheet" href="/assets/lang.css">
+<style>
+:root{--phosphor:#8FC46A;--glow:rgba(143,196,106,.4)}
+:root[data-theme="paper"]{--phosphor:#4C7A32;--glow:transparent}
+.i3-logo{width:150px;height:150px;border-radius:50%;border:1px solid var(--line);display:block;margin:0 auto}
+.stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.stack span{font:400 1.05rem/1 var(--fc);letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 16px;background:var(--surface)}
+.steps{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.steps li{display:flex;align-items:baseline;gap:12px;font:400 1.08rem/1.5 var(--fb)}
+.steps .ok{color:var(--ok);font:400 1.2rem/1 var(--fc)}
+.steps .pend{color:var(--muted);font:400 1.2rem/1 var(--fc)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-en="Skip to content">Saltar al contenido</a>
+<div class="fx scan" aria-hidden="true"></div>
+<div class="fx vig" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Static Forge, inicio" data-en-aria-label="Static Forge, home">
+      <span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-name">Static Forge</span>
+    </a>
+    <ul class="links" id="links">
+      <li><a href="/" data-en="Home">Inicio</a></li>
+      <li><a href="/#proyectos" data-en="Projects">Proyectos</a></li>
+      <li><a href="/i3ds.html" aria-current="page">Iron3D Studio</a></li>
+      <li><a href="/foros.html" data-en="Forum">Foro</a></li>
+    </ul>
+    <div class="ctrls">
+      <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+        <button type="button" class="tbtn" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+        <button type="button" class="tbtn" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+      </div>
+      <button type="button" class="tbtn" id="themeBtn" aria-pressed="false">PAPEL</button>
+      <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">MENÚ</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <p class="osd crt-txt" data-en="CH 09 · OPEN SOURCE 3D ENGINE">CH 09 · MOTOR 3D OPEN SOURCE</p>
+      <h1 class="h1">Iron3D Studio</h1>
+      <p class="lead" data-en="A 3D DCC built from scratch in C++/Vulkan that recreates Cinema 4D R19's workflow — Object Manager, orbital camera, scene graph — &lt;strong&gt;100% original code, clean-room reimplementation&lt;/strong&gt;.">Un DCC 3D construido desde cero en C++/Vulkan que recrea el flujo de trabajo de Cinema 4D R19 — Gestor de Objetos, cámara orbital, grafo de escena — <strong>código 100% propio, reimplementación clean-room</strong>.</p>
+      <div class="cta">
+        <a class="btn pri" href="https://github.com/KCRooty/Iron3D-Studio" target="_blank" rel="noopener" data-en="See the repo">Ver el repositorio</a>
+        <a class="btn" href="#estado" data-en="See progress">Ver el progreso</a>
+      </div>
+    </div>
+    <div><img class="i3-logo" src="/assets/projects/iron3d-studio.webp" alt="Logo de Iron3D Studio" width="150" height="150"></div>
+  </header>
+
+  <section class="sec" aria-labelledby="h-que">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="01 · WHAT IT IS">01 · QUÉ ES</span></p>
+    <h2 id="h-que" data-en="A classic DCC, rebuilt">Un DCC clásico, reconstruido</h2>
+    <div class="grid2">
+      <article class="card">
+        <span class="chan" data-en="ENGINE">MOTOR</span>
+        <h3 data-en="GPU evaluation, not a single core">Evaluación en GPU, no en un solo núcleo</h3>
+        <p data-en="Vulkan 1.3 as the graphics API, VMA for memory management and Dear ImGui over Vulkan for the interface. Windows and Linux with full parity, no exceptions.">Vulkan 1.3 como API gráfica, VMA para la gestión de memoria y Dear ImGui sobre Vulkan para la interfaz. Windows y Linux con paridad total, sin excepciones.</p>
+      </article>
+      <article class="card">
+        <span class="chan" data-en="WORKFLOW">FLUJO DE TRABAJO</span>
+        <h3 data-en="Familiar, if you know C4D">Familiar, si conoces C4D</h3>
+        <p data-en="Orbital camera with Alt+click like Cinema 4D, a real Object Manager with hierarchy and selection, and planned compatibility with .c4d/.lib4d files and R19 plugins (always translated from Python 2 to Python 3).">Cámara orbital con Alt+clic como Cinema 4D, un Gestor de Objetos real con jerarquía y selección, y compatibilidad planeada con archivos .c4d/.lib4d y plugins de R19 (siempre traducidos de Python 2 a Python 3).</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" id="estado" aria-labelledby="h-estado" style="padding-top:0">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="02 · PROGRESS">02 · PROGRESO</span></p>
+    <h2 id="h-estado" data-en="What already runs">Lo que ya funciona</h2>
+    <article class="card">
+      <ul class="steps">
+        <li><span class="ok">✓</span><span data-en="Phase 1 — Vulkan window + Dear ImGui, orbital camera, test geometry">Fase 1 — ventana Vulkan + Dear ImGui, cámara orbital, geometría de prueba</span></li>
+        <li><span class="ok">✓</span><span data-en="Phase 2 — scene graph (hierarchy + TRS) and a real, interactive Object Manager">Fase 2 — grafo de escena (jerarquía + TRS) y Gestor de Objetos interactivo de verdad</span></li>
+        <li><span class="pend">○</span><span data-en="Next — .c4d/.lib4d import via the Melange SDK">Siguiente — importación .c4d/.lib4d vía el SDK Melange</span></li>
+      </ul>
+      <div class="stack">
+        <span>C++20/23</span><span>Vulkan 1.3</span><span>Dear ImGui</span><span>GLM</span><span>VMA</span><span>CMake</span><span>Windows + Linux</span>
+      </div>
+    </article>
+  </section>
+
+  <section class="sec" aria-labelledby="h-clean" style="padding-top:0">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="03 · CLEAN-ROOM">03 · CLEAN-ROOM</span></p>
+    <h2 id="h-clean" data-en="No Maxon code, anywhere">Ni una línea de código de Maxon</h2>
+    <p class="sec-intro" data-en="Iron3D Studio only observes Cinema 4D R19 from the outside — input in, output out — the same model used by Wine, ReactOS or LibreOffice. No Maxon code, shader, preset or asset is ever copied, read or decompiled to write Iron3D's code. The full rules live in the repository's AGENTS.md file.">Iron3D Studio solo observa Cinema 4D R19 desde fuera — entrada y salida, comportamiento — el mismo modelo que usan Wine, ReactOS o LibreOffice. Nunca se copia, lee ni decompila código, shader, preset o asset de Maxon para escribir el código de Iron3D. Las reglas completas viven en el archivo AGENTS.md del repositorio.</p>
+    <div class="cta" style="margin-top:26px">
+      <a class="btn pri" href="https://github.com/KCRooty/Iron3D-Studio" target="_blank" rel="noopener" data-en="See the repo">Ver el repositorio</a>
+      <a class="btn" href="/#proyectos" data-en="See other projects">Ver otros proyectos</a>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <svg class="swoosh" viewBox="0 0 1440 130" preserveAspectRatio="none" aria-hidden="true">
+    <path class="p1" vector-effect="non-scaling-stroke" d="M-20 98 C 380 98, 560 30, 900 38 S 1300 92, 1460 84"/>
+    <path class="p2" vector-effect="non-scaling-stroke" d="M-20 70 C 380 70, 560 2, 900 10 S 1300 64, 1460 56"/>
+    <path class="p3" vector-effect="non-scaling-stroke" d="M-20 126 C 380 126, 560 58, 900 66 S 1300 120, 1460 112"/>
+  </svg>
+  <div class="wrap">
+    <p class="disclaimer" data-en="Iron3D Studio has no official relation to Maxon or Cinema 4D. It is an independent, clean-room reimplementation by Static Forge.">Iron3D Studio no tiene relación oficial con Maxon ni con Cinema 4D. Es una reimplementación independiente y clean-room de Static Forge.</p>
+    <div class="foot">
+      <span class="eob crt-txt" data-en="END OF BROADCAST">FIN DE LA EMISIÓN</span>
+      <span>© 2026 Static Forge · KCRooty (Core) · <a href="/">staticforge.dpdns.org</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/sf.js"></script>
+<script src="/assets/lang.js"></script>
+</body>
+</html>
