@@ -49,7 +49,8 @@ los divisores y en la guía de proyectos, y se repiten en el pie.
 ## Reglas
 
 - Cristal (backdrop-filter) solo en la barra de navegación.
-- El brillo de fósforo solo en el acento y en la pantalla de la tele.
+- El brillo de fósforo solo en el acento y en la pantalla de la tele. **Excepción decidida por KCRooty (2026-10-25):** el cursor.
+- **Cursor:** flecha oscura con contorno de fósforo y halo leve (`assets/cursor/`); sobre lo pulsable, interior ámbar translucido. Sin halo en Papel ni con el CRT apagado. Solo con ratón (`pointer:fine`); con `prefers-contrast: more` se usa el del sistema. Mismo bloque en `index.html` y `assets/sf.css`. Static Linux, Forge OS y Donnies conservan el suyo.
 - Scanlines y viñeta: capa global sutil, desactivable (interruptor CRT, recordado por visitante).
 - Idiomas: ES (por defecto), EN, CA.
 

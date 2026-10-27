@@ -78,6 +78,18 @@ img{max-width:100%;display:block}
 [data-crt="off"] .fx{display:none}
 [data-crt="off"]{--glow:transparent}
 
+/* ── Cursor (pedido por KCRooty, 2026-10-25): flecha oscura con contorno de fósforo y halo leve.
+   Sobre lo que se puede pulsar, el interior se llena de ámbar. El halo se apaga con el interruptor CRT
+   y en Papel, como el resto de brillos. Solo con ratón; con alto contraste manda el cursor del sistema. */
+@media (pointer:fine) and (not (prefers-contrast:more)){
+  [data-theme="night"]{--cur:url(/assets/cursor/arrow-night.svg) 4 3,auto;--cur-link:url(/assets/cursor/link-night.svg) 4 3,pointer}
+  [data-theme="night"][data-crt="off"]{--cur:url(/assets/cursor/arrow-night-flat.svg) 4 3,auto;--cur-link:url(/assets/cursor/link-night-flat.svg) 4 3,pointer}
+  [data-theme="paper"]{--cur:url(/assets/cursor/arrow-paper.svg) 4 3,auto;--cur-link:url(/assets/cursor/link-paper.svg) 4 3,pointer}
+  html{cursor:var(--cur)}
+  html :is(a[href],button:not(:disabled),[role="button"],label,summary,select,input[type="checkbox"],input[type="radio"],input[type="submit"],input[type="button"]){cursor:var(--cur-link)}
+  html :is(input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),textarea,[contenteditable="true"]){cursor:text}
+}
+
 /* ── Franjas (motivo de identidad) ─────────────────────────────────────── */
 .stripes{display:inline-grid;gap:3px;width:26px;flex:none}
 .stripes i{display:block;height:4px;border-radius:9px;background:var(--s1)}
@@ -241,9 +253,15 @@ h2{font-family:var(--fd);font-weight:800;font-variation-settings:"SOFT" 100,"ops
 .lb{margin:auto;border:0;background:transparent;max-width:min(92vw,1100px);padding:0;color:#FFF3DA}
 .lb::backdrop{background:rgba(8,6,4,.92)}
 .lb img{max-height:78vh;width:auto;margin:0 auto;border-radius:var(--r-sm)}
-.lb-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:12px;font:400 1.25rem var(--fc);letter-spacing:.05em}
+.lb-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 16px;margin-top:12px;font:400 1.25rem var(--fc);letter-spacing:.05em}
 .lb-close{min-height:44px;padding:0 16px;border:1px solid rgba(255,243,218,.4);border-radius:var(--r-sm);background:transparent;color:#FFF3DA;font:400 1.2rem var(--fc);cursor:pointer}
 .lb-close:hover{border-color:#FFF3DA}
+/* Flechas del visor (idea de Akita, 2026-10-25): ← → en el teclado, botones y deslizar en el móvil. */
+.lb-nav{display:flex;align-items:center;gap:8px;margin-left:auto}
+.lb-step{min-width:44px;padding:0 12px;font-size:1.5rem;line-height:1}
+.lb-step[hidden],.lb-count[hidden]{display:none}
+.lb-count{min-width:5ch;text-align:center;color:rgba(255,243,218,.82)}
+.lb img{touch-action:pan-y}
 
 /* Señal abierta */
 .signal{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;padding:44px 40px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
@@ -574,7 +592,7 @@ footer{padding:0 0 40px}
 
 <dialog class="lb" id="lb" aria-labelledby="lbName">
   <img id="lbImg" src="" alt="">
-  <div class="lb-bar"><span id="lbName"></span><button type="button" class="lb-close" id="lbClose" data-i18n="lb.close">CERRAR [ESC]</button></div>
+  <div class="lb-bar"><span id="lbName"></span><span class="lb-nav"><button type="button" class="lb-close lb-step" id="lbPrev">&larr;</button><span class="lb-count" id="lbCount" aria-live="polite"></span><button type="button" class="lb-close lb-step" id="lbNext">&rarr;</button><button type="button" class="lb-close" id="lbClose" data-i18n="lb.close" autofocus>CERRAR [ESC]</button></span></div>
 </dialog>
 
 <script>
@@ -609,7 +627,7 @@ es:{'skip':'Saltar al contenido','ap.kicker':'SOLICITUD','ap.h':'Rellena la soli
 'gal.kicker':'ARCHIVO DE IMAGEN','gal.h':'Galería','f.all':'Todo','f.oc':'OC / Original','f.other':'Otro',
 'gal.empty':'SIN SEÑAL','gal.emptyp':'Todavía no hay imágenes en esta categoría.','gal.err':'NO SE PUDO CARGAR LA IMAGEN','gal.loading':'SINTONIZANDO…',
 's.kicker':"SE BUSCA GENTE",'s.h':"Únete a Static Forge",'s.p':"Siempre hay sitio para ideas, colaboraciones y gente que quiera formar parte del estudio, venga del ámbito que venga. Tus proyectos también se publican y se distribuyen bajo Static Forge.",'s.forum':"Foro",
-'f.eob':'FIN DE LA EMISIÓN','lb.close':'CERRAR [ESC]',
+'f.eob':'FIN DE LA EMISIÓN','lb.close':'CERRAR [ESC]','lb.prev':'Imagen anterior','lb.next':'Imagen siguiente',
 'nav.join':"Únete",'s.mailk':"CONTACTO",'s.write':"Rellenar la solicitud",'r.1':"Arte 2D",'r.2':"Arte 3D",'r.3':"Producción musical",'r.4':"Programación",'r.5':"Desarrollo de juegos y apps",'r.6':"Doblaje y voz",'r.7':"Lo que hagas tú"},
 en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the application','ap.p':'Tell us who you are, what you do and what you would like to do in the studio, on its projects or with one of your own. It takes about five minutes. If you are interested in Static Linux or Forge OS specifically, they have their own application on the <a href="linux/#unete">Static Linux</a> and <a href="forge-os/#unete">Forge OS</a> pages (in Spanish).','nav.projects':'Projects','nav.workshop':"Studio",'nav.gallery':'Gallery','nav.forum':'Forum','nav.menu':'MENU',
 'theme.paper':'PAPER','theme.night':'NIGHT',
@@ -635,7 +653,7 @@ en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the appli
 'gal.kicker':'IMAGE ARCHIVE','gal.h':'Gallery','f.all':'All','f.oc':'OC / Original','f.other':'Other',
 'gal.empty':'NO SIGNAL','gal.emptyp':'No images in this category yet.','gal.err':'IMAGE FAILED TO LOAD','gal.loading':'TUNING IN…',
 's.kicker':"LOOKING FOR PEOPLE",'s.h':"Join Static Forge",'s.p':"There's always room for ideas, collaborations and people who want to be part of the studio, whatever their field. Your projects get published and distributed under Static Forge too.",'s.forum':"Forum",
-'f.eob':'END OF BROADCAST','lb.close':'CLOSE [ESC]',
+'f.eob':'END OF BROADCAST','lb.close':'CLOSE [ESC]','lb.prev':'Previous image','lb.next':'Next image',
 'nav.join':"Join",'s.mailk':"CONTACT",'s.write':"Fill in the application",'r.1':"2D art",'r.2':"3D art",'r.3':"Music production",'r.4':"Programming",'r.5':"Game and app development",'r.6':"Voice acting",'r.7':"Whatever you do"},
 ca:{'skip':'Salta al contingut','ap.kicker':'SOL·LICITUD','ap.h':'Omple la sol·licitud','ap.p':'Explica’ns qui ets, què fas i què t’agradaria fer a l’estudi, als seus projectes o amb un de teu. Porta uns cinc minuts. Si t’interessa Static Linux o Forge OS en concret, tenen la seva pròpia sol·licitud a <a href="linux/#unete">Static Linux</a> i a <a href="forge-os/#unete">Forge OS</a> (en castellà).','nav.projects':'Projectes','nav.workshop':"Estudi",'nav.gallery':'Galeria','nav.forum':'Fòrum','nav.menu':'MENÚ',
 'theme.paper':'PAPER','theme.night':'NIT',
@@ -661,7 +679,7 @@ ca:{'skip':'Salta al contingut','ap.kicker':'SOL·LICITUD','ap.h':'Omple la sol�
 'gal.kicker':"ARXIU D'IMATGE",'gal.h':'Galeria','f.all':'Tot','f.oc':'OC / Original','f.other':'Altre',
 'gal.empty':'SENSE SENYAL','gal.emptyp':'Encara no hi ha imatges en aquesta categoria.','gal.err':"NO S'HA POGUT CARREGAR LA IMATGE",'gal.loading':'SINTONITZANT…',
 's.kicker':"ES BUSCA GENT",'s.h':"Uneix-te a Static Forge",'s.p':"Sempre hi ha lloc per a idees, col·laboracions i gent que vulgui formar part de l'estudi, vingui de l'àmbit que vingui. Els teus projectes també es publiquen i es distribueixen sota Static Forge.",'s.forum':"Fòrum",
-'f.eob':"FI DE L'EMISSIÓ",'lb.close':'TANCAR [ESC]',
+'f.eob':"FI DE L'EMISSIÓ",'lb.close':'TANCAR [ESC]','lb.prev':'Imatge anterior','lb.next':'Imatge següent',
 'nav.join':"Uneix-t'hi",'s.mailk':"CONTACTE",'s.write':"Omplir la sol·licitud",'r.1':"Art 2D",'r.2':"Art 3D",'r.3':"Producció musical",'r.4':"Programació",'r.5':"Desenvolupament de jocs i apps",'r.6':"Doblatge i veu",'r.7':"El que facis tu"}
 };
 var lang=d.getAttribute('lang')||'es';
@@ -747,11 +765,36 @@ document.querySelectorAll('.fbtn').forEach(function(b){
 
 /* ── Visor (dialog nativo: Escape cierra solo) ── */
 var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbName=document.getElementById('lbName'),opener=null;
+var lbPrev=document.getElementById('lbPrev'),lbNext=document.getElementById('lbNext'),lbCount=document.getElementById('lbCount'),lbPos=0;
+/* Se navega por lo que se ve en la rejilla: respeta el filtro activo y salta las imágenes rotas. */
+function lbList(){return Array.prototype.map.call(grid.querySelectorAll('.gitem:not(:disabled)'),function(b){return +b.dataset.i})}
+function lbShow(p){
+  var ids=lbList(), n=ids.length; if(!n) return;
+  lbPos=((p%n)+n)%n;
+  var i=IMGS[ids[lbPos]];
+  lbImg.src=i.src; lbImg.alt=i.name; lbName.textContent=i.name;
+  lbCount.textContent=(lbPos+1)+' / '+n;
+  lbPrev.hidden=lbNext.hidden=lbCount.hidden=n<2;
+  lbPrev.setAttribute('aria-label',t('lb.prev')); lbNext.setAttribute('aria-label',t('lb.next'));
+  opener=grid.querySelector('.gitem[data-i="'+ids[lbPos]+'"]')||opener;
+  if(n>1){new Image().src=IMGS[ids[(lbPos+1)%n]].src; new Image().src=IMGS[ids[(lbPos-1+n)%n]].src}
+}
 grid.addEventListener('click',function(e){
   var b=e.target.closest('.gitem'); if(!b||b.disabled) return;
-  var i=IMGS[+b.dataset.i]; opener=b;
-  lbImg.src=i.src; lbImg.alt=i.name; lbName.textContent=i.name;
+  lbShow(lbList().indexOf(+b.dataset.i));
   if(lb.showModal) lb.showModal(); else lb.setAttribute('open','');
+});
+lbPrev.addEventListener('click',function(){lbShow(lbPos-1)});
+lbNext.addEventListener('click',function(){lbShow(lbPos+1)});
+lb.addEventListener('keydown',function(e){
+  if(e.key==='ArrowLeft'){e.preventDefault();lbShow(lbPos-1)}
+  else if(e.key==='ArrowRight'){e.preventDefault();lbShow(lbPos+1)}
+});
+var lbX=null;
+lbImg.addEventListener('touchstart',function(e){lbX=e.touches[0].clientX},{passive:true});
+lbImg.addEventListener('touchend',function(e){
+  if(lbX===null) return; var dx=e.changedTouches[0].clientX-lbX; lbX=null;
+  if(Math.abs(dx)>40) lbShow(lbPos+(dx<0?1:-1));
 });
 document.getElementById('lbClose').addEventListener('click',function(){lb.close()});
 lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});

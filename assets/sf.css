@@ -45,6 +45,16 @@ code{font:400 1.05em var(--fc);letter-spacing:.03em;color:var(--phosphor);word-b
 [data-crt="off"] .fx{display:none}
 [data-crt="off"]{--glow:transparent}
 
+/* Cursor: el mismo bloque que index.html (ver DESIGN.md, «Cursor»). */
+@media (pointer:fine) and (not (prefers-contrast:more)){
+  [data-theme="night"]{--cur:url(/assets/cursor/arrow-night.svg) 4 3,auto;--cur-link:url(/assets/cursor/link-night.svg) 4 3,pointer}
+  [data-theme="night"][data-crt="off"]{--cur:url(/assets/cursor/arrow-night-flat.svg) 4 3,auto;--cur-link:url(/assets/cursor/link-night-flat.svg) 4 3,pointer}
+  [data-theme="paper"]{--cur:url(/assets/cursor/arrow-paper.svg) 4 3,auto;--cur-link:url(/assets/cursor/link-paper.svg) 4 3,pointer}
+  html{cursor:var(--cur)}
+  html :is(a[href],button:not(:disabled),[role="button"],label,summary,select,input[type="checkbox"],input[type="radio"],input[type="submit"],input[type="button"]){cursor:var(--cur-link)}
+  html :is(input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),textarea,[contenteditable="true"]){cursor:text}
+}
+
 /* Franjas */
 .stripes{display:inline-grid;gap:3px;width:26px;flex:none}
 .stripes i{display:block;height:4px;border-radius:9px;background:var(--s1)}
