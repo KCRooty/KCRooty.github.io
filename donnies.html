@@ -151,6 +151,30 @@ footer a:hover{color:var(--gold)}
 .wip-item figcaption{font-family:var(--mono);font-size:.58rem;color:var(--dim);padding:.35rem .5rem;text-align:center;border-top:1px solid var(--border)}
 .wip-item.wide{grid-column:1/-1;background:#000}
 .wip-item.wide img{aspect-ratio:auto;max-height:560px;width:auto;max-width:100%;margin:0 auto;object-fit:contain;filter:none}
+
+.dev-letter{position:relative;background:linear-gradient(165deg,#f2e3ba,#e8d29e 55%,#ddc488);
+  color:#2c1c0a;border-radius:2px;padding:1.9rem 2.1rem 1.7rem;
+  box-shadow:0 18px 44px rgba(0,0,0,.55);transform:rotate(-.35deg);font-family:var(--mono)}
+.dev-letter-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.4rem;
+  font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#7a5420;
+  border-bottom:1px dashed rgba(42,28,10,.35);padding-bottom:.6rem;margin-bottom:1.15rem}
+.dev-entry{padding-left:1rem;border-left:2px solid rgba(42,28,10,.25);margin-bottom:1.15rem}
+.dev-entry:last-of-type{margin-bottom:0}
+.dev-year{display:block;font-weight:700;font-size:.78rem;letter-spacing:.08em;color:#8a3c10;margin-bottom:.25rem}
+.dev-entry p{font-size:.84rem;line-height:1.68;color:#3a2810}
+.dev-entry p+p{margin-top:.55rem}
+.dev-sign{margin-top:1.5rem;text-align:right;font-style:italic;font-size:.82rem;color:#5a3c14;letter-spacing:.03em}
+
+.hist-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:1.4rem}
+.hist-item{background:#111;border:6px solid #f2e9d8;border-bottom-width:20px;border-radius:1px;
+  box-shadow:0 10px 22px rgba(0,0,0,.5);transition:transform .25s}
+.hist-item:nth-child(odd){transform:rotate(-1.6deg)}
+.hist-item:nth-child(even){transform:rotate(1.4deg)}
+.hist-item:hover{transform:rotate(0) scale(1.04);z-index:2}
+.hist-item img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;filter:sepia(.18) contrast(1.04)}
+.hist-item.contain img{object-fit:contain;background:#0a0600;filter:none}
+.hist-item .hist-date{display:block;text-align:center;font-family:var(--mono);font-size:.56rem;
+  color:#2c1c0a;letter-spacing:.06em;margin-top:.25rem;opacity:.85}
 .logo-anim{position:relative;display:inline-block;max-width:580px;width:100%;margin-bottom:.6rem;animation:logo-shake 3.8s ease-in-out infinite}
 .logo-anim img{display:block;width:100%;height:auto;filter:drop-shadow(0 0 22px rgba(232,160,48,.25)) drop-shadow(0 0 60px rgba(232,160,48,.07))}
 .logo-anim .lf2,.logo-anim .lf3{position:absolute;top:0;left:0;width:100%;height:auto;opacity:0}
@@ -166,7 +190,7 @@ footer a:hover{color:var(--gold)}
 .topbar .langsw{--lang-on:var(--gold);font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--dim)}
 .topbar .langsw button[aria-pressed="true"]{color:var(--gold)}
 .topbar .langsw button:hover{color:var(--bright)}
-@media(max-width:720px){.card-grid,.char-grid,.prod-grid,.wip-grid{grid-template-columns:1fr}.logo-anim{max-width:100%}.tb-nav{display:none}}
+@media(max-width:720px){.card-grid,.char-grid,.prod-grid,.wip-grid{grid-template-columns:1fr}.hist-grid{grid-template-columns:repeat(2,1fr)}.logo-anim{max-width:100%}.tb-nav{display:none}}
 </style>
 </head>
 <body>
@@ -390,6 +414,112 @@ footer a:hover{color:var(--gold)}
       </div>
     </div>
     <div class="note" data-en="The project has been in development since 2021. No release date. Follow the progress on &lt;a href=&quot;https://gamejolt.com/games/Donnies2001/885221&quot; target=&quot;_blank&quot; style=&quot;color:var(--gold)&quot;&gt;GameJolt&lt;/a&gt;.">El proyecto lleva en desarrollo desde 2021. Sin fecha de lanzamiento. Sigue el progreso en <a href="https://gamejolt.com/games/Donnies2001/885221" target="_blank" style="color:var(--gold)">GameJolt</a>.</div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-label" data-en="06 · development history">06 · historia de desarrollo</div>
+    <h2 class="sec-title" data-en="Six years, three cancellations, one project that refused to die">Seis años, tres cancelaciones, un proyecto que se negó a morir</h2>
+
+    <div class="dev-letter">
+      <div class="dev-letter-head"><span data-en="Personal file · Static Forge">Archivo personal · Static Forge</span><span>2020 — 2026</span></div>
+
+      <div data-only="es">
+        <div class="dev-entry">
+          <span class="dev-year">2020 · Roblox</span>
+          <p>Todo empezó en Roblox. Para entonces ya conocía FNaF de sobra: gameplays, teorías, animaciones, lo que fuera. Había un juego de morphs y rol llamado <em>Animatronic World</em> que me enganchó especialmente — animatrónicos cuadrados, sí, pero con un sistema de creación de personajes propios sorprendentemente completo: animal, objetos, decoraciones, color, textura, ojos, hasta el gamma. Ahí nació <strong>The Dog</strong>: un perro azul claro virando a naranja, ojos amarillos, corbata amarilla. Le cogí cariño enseguida y empecé a dibujarlo en todas las gamas de FNaF — classic, toy, withered, nightmare.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2020 – 2021 · Cinema 4D</span>
+          <p>Desde 2014 veía animaciones de FNaF hechas en SFM con modelos viejos mezclados con assets de TF2 — algo que sigo mirando hoy. A finales de 2020 descubrí que esas animaciones se hacían con Cinema 4D. Lo pirateé gracias a un tutorial de YouTube y empecé a aprender a animar, al principio con resultados muy cutres, repartido entre un i3 de 5ª generación y un Celeron — tenía dos ordenadores porque mis padres estaban divorciados.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2021 · Nace Donnie, nace ONAD</span>
+          <p>Se me ocurrió llevar mi personaje de Roblox a FNaF de verdad. Lo rebauticé <strong>Donnie</strong> — Dog + Bonnie, mi animatrónico favorito. El primer modelo era literalmente eso: un Bonnie base con texturas de Help Wanted recoloreadas con tonos de Freddy. Más tarde lo rehíce con texturas del FNaF original y mejores colores, aunque seguía siendo, en el fondo, un recolor.</p>
+          <p>De ahí salió la idea del fangame: <strong>One Night at Donnie's</strong> (ONAD). Lo monté en Clickteam Fusion (también pirata), aprendiendo sobre la marcha con tutoriales. Animaciones, más modelos, dibujos — y a finales de 2021, el primer cancelazo: se me formateó el PC y lo perdí todo. Tampoco ayudaba que no le veía futuro ni conseguía mantener el ritmo entre el instituto y el proyecto.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2022 · ONAD Remastered</span>
+          <p>Lo retomé. Remodelé los animatrónicos, mejoré lo que pude y volví a Clickteam, esta vez centrado sobre todo en la historia — llegué a escribir un mini-libro. Pero la historia se repitió: lo tenía todo en un pendrive (el primer AlfyDrive) y volví a cancelarlo.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2023 · Donnie's Origins</span>
+          <p>Cambié el nombre a <strong>Donnie's Origins</strong>. Dibujos, intentos de modelado que nunca terminaban de salir, miraba otros proyectos, y dedicaba tiempo a LADA, que por entonces era un cómic. Nada llegaba a ningún sitio.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2024 · Donnie's Origins Remastered</span>
+          <p>A principios de año me hice una cabeza de cosplay de Donnie y la usé de referencia física para modelarlo en 3D. Modelé a Donnie, a Shadow, a Lany y al resto del reparto, y retomé el proyecto en serio — de vuelta en Clickteam.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2025 · El salto a Source</span>
+          <p>SFM había estado presente desde mi infancia, y en 2023 le había metido muchas horas a Garry's Mod. En 2025 dejé Clickteam del todo: me pasé Half-Life 2 entero, me metí de lleno en TF2, y decidí que el motor del juego sería Source.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2026 · Desarrollo en serio</span>
+          <p>Y aquí sigo. Dos años sin cancelarlo — el récord del proyecto. Nuevos remodelos, motor ya elegido (Source Engine SDK 2013 + Hammer, pipeline Cinema 4D → Blender → Crowbar → .mdl), historia cerrada. Lo que empezó siendo un FNaF clásico y estático se ha convertido en Donnie's Origins tal como está hoy: freeroam, con puzzles.</p>
+        </div>
+      </div>
+
+      <div data-only="en" lang="en">
+        <div class="dev-entry">
+          <span class="dev-year">2020 · Roblox</span>
+          <p>It all started on Roblox. By then I already knew FNaF inside out: gameplays, theories, animations, whatever I could find. There was a morph/roleplay game called <em>Animatronic World</em> that hooked me especially — square animatronics, sure, but with a surprisingly deep custom-character system: animal, props, decorations, color, texture, eyes, even gamma. That's where <strong>The Dog</strong> was born: a light blue animatronic dog shifting into orange, yellow eyes, yellow bowtie. I got attached fast and started drawing him across every FNaF generation — classic, toy, withered, nightmare.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2020 – 2021 · Cinema 4D</span>
+          <p>I'd been watching FNaF animations made in SFM with old models mixed with TF2 assets since 2014 — something I still do today. In late 2020 I found out those animations were made in Cinema 4D. I pirated it off a YouTube tutorial and started learning to animate, badly at first, split between a 5th-gen i3 and a Celeron — I had two computers because my parents were divorced.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2021 · Donnie is born, ONAD is born</span>
+          <p>I got the idea to bring my Roblox character into actual FNaF. I renamed him <strong>Donnie</strong> — Dog + Bonnie, my favorite animatronic. The first model was exactly that: a base Bonnie with Help Wanted textures recolored with Freddy tones. I later redid it with original FNaF textures and better colors, though underneath it was still a recolor.</p>
+          <p>That's where the fangame idea came from: <strong>One Night at Donnie's</strong> (ONAD). I built it in Clickteam Fusion (also pirated), learning as I went from tutorials. Animations, more models, drawings — and at the end of 2021, the first cancellation: my PC got wiped and I lost everything. It didn't help that I couldn't see a future in it or keep up the pace alongside school.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2022 · ONAD Remastered</span>
+          <p>I picked it back up. Remodeled the animatronics, improved what I could, and went back to Clickteam — this time focused mostly on the story, to the point of writing a mini-book. History repeated itself: everything was on a flash drive (the first AlfyDrive), and I canceled it again.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2023 · Donnie's Origins</span>
+          <p>I renamed it <strong>Donnie's Origins</strong>. Drawings, modeling attempts that never quite worked out, looking at other projects, time spent on LADA, which was a comic back then. Nothing went anywhere.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2024 · Donnie's Origins Remastered</span>
+          <p>Early in the year I made a cosplay head of Donnie and used it as a physical reference to model him in 3D. I modeled Donnie, Shadow, Lany and the rest of the cast, and picked the project back up for real — still in Clickteam.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2025 · The jump to Source</span>
+          <p>SFM had been around since my childhood, and in 2023 I'd put serious hours into Garry's Mod. In 2025 I dropped Clickteam entirely: played through Half-Life 2 start to finish, got deep into TF2, and decided the game's engine would be Source.</p>
+        </div>
+        <div class="dev-entry">
+          <span class="dev-year">2026 · Real development</span>
+          <p>And here I still am. Two years without canceling it — a record for this project. New remodels, the engine locked in (Source Engine SDK 2013 + Hammer, Cinema 4D → Blender → Crowbar → .mdl pipeline), the story finished. What started as a static classic FNaF game has become Donnie's Origins as it stands today: freeroam, with puzzles.</p>
+        </div>
+      </div>
+
+      <div class="dev-sign">— Core, Static Forge</div>
+    </div>
+
+    <div class="hist-grid">
+      <figure class="hist-item">
+        <img src="assets/donnies/history-2021-first-model.webp" alt="Primer modelo de Donnie, 2021" data-en-alt="Donnie's first model, 2021" loading="lazy">
+        <figcaption class="hist-date">2021</figcaption>
+      </figure>
+      <figure class="hist-item">
+        <img src="assets/donnies/history-2022-office.webp" alt="Render de la oficina en Clickteam Fusion, 2022" data-en-alt="Office render in Clickteam Fusion, 2022" loading="lazy">
+        <figcaption class="hist-date">2022</figcaption>
+      </figure>
+      <figure class="hist-item contain">
+        <img src="assets/donnies/history-2024-title.webp" alt="Título de Donnie's Origins Remastered, 2024" data-en-alt="Donnie's Origins Remastered title, 2024" loading="lazy">
+        <figcaption class="hist-date">2024</figcaption>
+      </figure>
+      <figure class="hist-item">
+        <img src="assets/donnies/history-2024-scene.webp" alt="Primera escena narrativa en Cinema 4D, 2024" data-en-alt="First narrative scene in Cinema 4D, 2024" loading="lazy">
+        <figcaption class="hist-date">2024</figcaption>
+      </figure>
+      <figure class="hist-item">
+        <img src="assets/donnies/history-2025-sketch.webp" alt="Boceto de Donnie en escala de grises, inicios de 2025" data-en-alt="Donnie sketch in grayscale, early 2025" loading="lazy">
+        <figcaption class="hist-date">2025</figcaption>
+      </figure>
+    </div>
   </section>
 
 </div>
