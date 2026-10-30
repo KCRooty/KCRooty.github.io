@@ -59,6 +59,8 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
 .post.gone .post-b{color:var(--muted);font-style:italic}
 .del{min-height:44px;padding:0 12px;border:1px solid transparent;border-radius:var(--r-sm);background:transparent;color:var(--muted);font:400 1.05rem var(--fc);letter-spacing:.05em;cursor:pointer}
 .del:hover{color:var(--bad);border-color:var(--line)}
+.adminbox{margin:10px 0 0;padding:12px 14px;border:1px solid var(--phosphor);border-radius:var(--r-sm);font-size:.95rem;color:var(--muted)}
+.adminbox a{color:var(--phosphor);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .who{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px;padding:12px 14px;border-radius:var(--r-sm);background:var(--surface2)}
 .who b{font:400 1.3rem/1 var(--fc);letter-spacing:.05em;color:var(--phosphor)}
 .rules{list-style:none;display:grid;gap:8px;margin-top:10px;color:var(--muted);font-size:.95rem}
@@ -145,6 +147,7 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
         </form>
         <div id="loggedPanel" class="hidden">
           <div class="who"><span>Sesión: <b id="whoName"></b></span><button type="button" class="lnk" id="logoutBtn">Salir</button></div>
+          <p class="adminbox hidden" id="adminBox">Administración · <a href="/solicitudes.html">Ver solicitudes<span id="adminNew"></span></a></p>
         </div>
         <p class="status" id="authStatus" role="status" aria-live="polite"></p>
       </section>
@@ -171,7 +174,7 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
   </svg>
   <div class="wrap foot">
     <span class="eob crt-txt">FIN DE LA EMISIÓN</span>
-    <span>© 2026 Static Forge · KCRooty (Core) · <a href="/">staticforge.me</a></span>
+    <span>© 2026 Static Forge · KCRooty (Core) · <a href="/">staticforge.me</a> · <a href="https://www.tiktok.com/@staticforge2" target="_blank" rel="noopener">TikTok</a></span>
   </div>
 </footer>
 
@@ -219,6 +222,13 @@ function stateBox(title,text,retry){
 
 /* ── Sesión ── */
 var authForm=$('authForm'),authStatus=$('authStatus');
+/* Panel de solicitudes: cuantas hay sin ver. Solo para admin. */
+function countApps(){
+  api('GET','/api/applications?status=nueva').then(function(d){
+    var n=(d.applications||[]).length;
+    $('adminNew').textContent=n?' ('+n+' nueva'+(n===1?'':'s')+')':'';
+  }).catch(function(){});
+}
 function setSession(t,u){token=t;me=u;put('sf-forum-token',t);put('sf-forum-user',u?JSON.stringify(u):null);syncAuth()}
 function syncAuth(){
   authForm.classList.toggle('hidden',!!me);
@@ -228,6 +238,9 @@ function syncAuth(){
   $('newBtn').textContent=me?'Nuevo hilo':'Entra para abrir un hilo';
   $('newBtn').disabled=!me;
   if(!me) $('newForm').classList.add('hidden');
+  var admin=!!(me&&me.role==='admin');
+  $('adminBox').classList.toggle('hidden',!admin);
+  if(admin) countApps();
   if(current) renderThreadForms();
 }
 var tsWidget=null,tsKey=null;
