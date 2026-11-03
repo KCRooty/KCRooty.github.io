@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="night" data-crt="on">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,108 +7,202 @@
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>FNAF AS · Static Forge</title>
-<meta name="description" content="Five Nights at Freddy's: Alternative Stories, proyecto fan de Static Forge: historias alternativas, estética glitch y renders 3D." data-en-content="Five Nights at Freddy's: Alternative Stories, a Static Forge fan project: alternative stories, glitch aesthetics and 3D renders.">
+<meta name="description" content="Five Nights at Freddy's: Alternative Stories, proyecto fan de Static Forge: historias alternativas, estética de libro de terror ochentero y renders 3D." data-en-content="Five Nights at Freddy's: Alternative Stories, a Static Forge fan project: alternative stories, 80s horror-book aesthetic and 3D renders.">
 <meta property="og:title" content="FNAF AS · Static Forge">
-<meta property="og:description" content="Five Nights at Freddy's: Alternative Stories. Historias alternativas, glitch y renders 3D." data-en-content="Five Nights at Freddy's: Alternative Stories. Alternative stories, glitch and 3D renders.">
+<meta property="og:description" content="Five Nights at Freddy's: Alternative Stories. Historias alternativas, estética de libro de terror y renders 3D." data-en-content="Five Nights at Freddy's: Alternative Stories. Alternative stories, horror-book aesthetic and 3D renders.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#14100C">
+<meta property="og:url" content="https://staticforge.me/fnaf-as.html">
+<meta name="theme-color" content="#0a0705">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..900,100&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
-<script>
-(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
-var t=g('sf-theme');if(!t){try{t=matchMedia('(prefers-color-scheme: light)').matches?'paper':'night'}catch(e){t='night'}}
-d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');
-d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
-</script>
-<link rel="stylesheet" href="/assets/sf.css">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Special+Elite&family=IM+Fell+English:ital@0;1&family=Nosifer&family=VT323&display=swap" rel="stylesheet">
+<script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
 <link rel="stylesheet" href="/assets/lang.css">
 <style>
-.h1.fnaf{font-size:clamp(2.5rem,6.6vw,4.6rem)}
-.h1 .sub{display:block;margin-top:14px;font:400 clamp(1.5rem,3.4vw,2.1rem)/1.1 var(--fc);letter-spacing:.06em;color:var(--phosphor);text-shadow:0 0 10px var(--glow)}
-.screen img.glitch{filter:saturate(1.15) contrast(1.08)}
-.renders{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px}
-.render{margin:0;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:#050403}
+:root{
+  --bg:#0a0705;--bg2:#130c07;
+  --card:#180f09;--card2:#20150c;
+  --border:#2c1d10;--border2:#4a3118;
+  --text:#c7b48e;--dim:#6e5a3c;--bright:#f2e4c0;
+  --blood:#6e1410;--blood2:#a82a1c;
+  --gold:#c89434;--gold2:#e8c050;
+  --purple:#5a3c72;
+  --mono:'Special Elite',monospace;
+  --book:'IM Fell English',serif;
+  --poster:'Fredoka',sans-serif;
+  --drip:'Nosifer',cursive;
+  --osd:'VT323',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;font-family:var(--mono);color:var(--text);background:var(--bg);overflow-x:hidden;position:relative;font-size:.95rem}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 45% at 50% 0%,rgba(168,42,28,.1),transparent 60%),
+             radial-gradient(ellipse 50% 50% at 90% 90%,rgba(90,60,114,.08),transparent 55%)}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  background-size:170px 170px}
+a{text-decoration:none;color:inherit}
+::selection{background:rgba(168,42,28,.35)}
+
+.checker{height:9px;background:
+  repeating-conic-gradient(#0a0705 0 90deg,#241910 0 180deg) 0 0/16px 16px;
+  opacity:.55;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
+
+.topbar{position:sticky;top:0;z-index:200;min-height:56px;background:rgba(10,7,5,.95);
+  border-bottom:1px solid var(--border);backdrop-filter:blur(14px);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:.5rem 1.3rem;gap:.6rem}
+.tb-title{font-family:var(--poster);font-size:.85rem;font-weight:600;color:var(--dim);letter-spacing:.03em}
+.tb-title span{color:var(--blood2)}
+.tb-nav{display:flex;gap:1.3rem;list-style:none}
+.tb-nav a{color:var(--dim);transition:color .18s;font-size:.78rem;font-family:var(--mono);letter-spacing:.02em}
+.tb-nav a:hover,.tb-nav a[aria-current]{color:var(--gold2)}
+.langsw{display:inline-flex;align-items:center;gap:4px;--lang-on:var(--gold2)}
+.langsw button{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 9px;border:1px solid transparent;border-radius:3px;background:transparent;color:var(--dim);font:inherit;font-size:.68rem;letter-spacing:.06em;cursor:pointer}
+.langsw button[aria-pressed="true"]{border-color:var(--gold2);color:var(--gold2)}
+.langsw img{height:12px;width:auto;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.4);flex:none}
+@media(max-width:720px){.tb-nav{display:none}}
+
+.wrap{max-width:900px;margin:0 auto;padding:0 1.3rem;position:relative;z-index:1}
+
+.hero{padding:3.2rem 0 2.4rem;position:relative;text-align:center}
+.eyebrow{font-family:var(--osd);font-size:.9rem;color:var(--blood2);letter-spacing:.2em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:.6rem}
+.eyebrow::before,.eyebrow::after{content:'◆';font-size:.6rem;color:var(--gold)}
+.poster-title{font-family:var(--poster);font-weight:700;font-size:clamp(2rem,6.4vw,3.6rem);line-height:1.04;
+  color:var(--gold2);letter-spacing:.01em;
+  text-shadow:-2px 0 0 var(--blood),2px 0 0 var(--purple),0 6px 18px rgba(0,0,0,.6)}
+.poster-sub{display:block;margin-top:.5rem;font-family:var(--drip);font-weight:400;
+  font-size:clamp(1.3rem,3.6vw,2.1rem);letter-spacing:.06em;color:var(--blood2);
+  text-shadow:0 0 18px rgba(168,42,28,.5),0 4px 0 rgba(0,0,0,.6)}
+.lead{max-width:600px;margin:1.1rem auto 0;color:var(--text);line-height:1.75;font-size:.92rem}
+.lead strong{color:var(--bright)}
+.cta{display:flex;gap:.8rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:.68rem 1.2rem;border-radius:2px;
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.03em;border:1px solid var(--border2);color:var(--text);transition:.2s}
+.btn:hover{border-color:var(--gold);color:var(--gold2)}
+.btn.pri{background:var(--blood);border-color:var(--blood2);color:var(--bright)}
+.btn.pri:hover{background:var(--blood2)}
+
+.badge{width:108px;height:108px;margin:1.6rem auto 0;opacity:.9;filter:drop-shadow(0 4px 10px rgba(0,0,0,.6))}
+
+.sec{padding:2.8rem 0;border-top:1px solid var(--border)}
+.sec-label{font-family:var(--osd);font-size:1rem;color:var(--gold2);text-transform:uppercase;
+  letter-spacing:.15em;margin-bottom:.4rem;display:flex;align-items:center;gap:.6rem}
+.sec-label::before{content:'▌';color:var(--blood2)}
+.sec-label::after{content:'';flex:1;height:1px;background:rgba(200,148,52,.15)}
+.sec-title{font-family:var(--poster);font-size:1.5rem;font-weight:600;color:var(--bright);margin-bottom:1.1rem}
+
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.card{background:var(--card);border:1px solid var(--border);border-left:2px solid var(--border2);
+  border-radius:3px;padding:1.3rem;transition:border-color .2s}
+.card:hover{border-left-color:var(--blood2)}
+.card h3{font-family:var(--book);font-style:italic;font-size:1.1rem;color:var(--gold2);margin-bottom:.6rem}
+.card .chan{font-family:var(--osd);font-size:.85rem;color:var(--blood2);letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:.4rem}
+.card p{color:var(--text);font-size:.88rem;line-height:1.72}
+@media(max-width:720px){.card-grid{grid-template-columns:1fr}}
+
+.intro-card{background:#000;border:1px solid var(--border2);border-radius:3px;overflow:hidden;position:relative}
+.intro-card video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+.intro-tag{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;
+  padding:.65rem 1rem;font-family:var(--osd);font-size:.95rem;letter-spacing:.08em;color:var(--gold2);
+  background:var(--card2);border-top:1px solid var(--border2)}
+.intro-tag .rec{color:var(--blood2)}
+.intro-note{font-family:var(--mono);font-size:.78rem;color:var(--dim);line-height:1.6;margin-top:.7rem;
+  border-left:2px solid var(--border2);padding:.6rem .9rem;background:var(--card)}
+
+.renders{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+.render{margin:0;border:1px solid var(--border2);border-radius:3px;overflow:hidden;background:#050302}
 .render a{display:block;position:relative;aspect-ratio:16/10}
-.render img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.render img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.12) contrast(1.05);transition:transform .4s}
 .render a:hover img{transform:scale(1.04)}
-.render a::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.28) 0 1px,transparent 1px 3px)}
-.render figcaption{padding:10px 14px;font:400 1.1rem/1.2 var(--fc);letter-spacing:.05em;color:var(--muted);background:var(--surface)}
-@media (max-width:760px){.renders{grid-template-columns:1fr}}
+.render figcaption{padding:.5rem .7rem;font-family:var(--osd);font-size:.85rem;letter-spacing:.06em;color:var(--dim);border-top:1px solid var(--border)}
+@media(max-width:720px){.renders{grid-template-columns:1fr}}
+
+.quote{font-family:var(--book);font-style:italic;font-size:1.1rem;line-height:1.7;color:var(--gold2);
+  border-left:3px solid var(--blood);padding:.9rem 1.2rem;margin-top:1rem;background:var(--card)}
+
+footer{padding:1.4rem 0;text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--dim)}
+footer a{color:var(--dim)}
+footer a:hover{color:var(--gold2)}
+footer .disclaimer{max-width:620px;margin:0 auto .6rem;line-height:1.6;opacity:.85}
 </style>
 </head>
 <body>
-<a class="skip" href="#main" data-en="Skip to content">Saltar al contenido</a>
-<div class="fx scan" aria-hidden="true"></div>
-<div class="fx vig" aria-hidden="true"></div>
 
-<header class="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="Static Forge, inicio" data-en-aria-label="Static Forge, home">
-      <span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span class="brand-name">Static Forge</span>
-    </a>
-    <ul class="links" id="links">
-      <li><a href="/" data-en="Home">Inicio</a></li>
-      <li><a href="/#proyectos" data-en="Projects">Proyectos</a></li>
-      <li><a href="/fnaf-as.html" aria-current="page">FNAF AS</a></li>
-      <li><a href="/foros.html" data-en="Forum">Foro</a></li>
-    </ul>
-    <div class="ctrls">
-      <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
-        <button type="button" class="tbtn" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
-        <button type="button" class="tbtn" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
-      </div>
-      <button type="button" class="tbtn" id="themeBtn" aria-pressed="false">PAPEL</button>
-      <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
-      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">MENÚ</button>
-    </div>
+<header class="topbar">
+  <span class="tb-title">STATIC FORGE <span>· FNAF AS</span></span>
+  <nav><ul class="tb-nav">
+    <li><a href="/">home</a></li>
+    <li><a href="/fnaf-as.html" aria-current="page">FNAF AS</a></li>
+    <li><a href="/donnies.html">Donnie's Origins</a></li>
+    <li><a href="/foros.html" data-en="forum">foro</a></li>
+  </ul></nav>
+  <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+    <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span>ES</span></button>
+    <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span>EN</span></button>
   </div>
 </header>
 
-<main id="main">
+<div class="checker"></div>
+
 <div class="wrap">
-  <header class="hero">
-    <div>
-      <p class="osd crt-txt" data-en="CH 03 · FAN PROJECT">CH 03 · PROYECTO FAN</p>
-      <h1 class="h1 fnaf">Five Nights at Freddy's<span class="sub">ALTERNATIVE STORIES</span></h1>
-      <p class="lead" data-en="A narrative and visual project that reimagines the events of FNaF through alternative stories. &lt;strong&gt;Lore built from scratch&lt;/strong&gt; and an atmosphere of glitch and static.">Un proyecto narrativo y visual que reimagina los eventos de FNaF desde historias alternativas. <strong>Lore construido desde cero</strong> y una atmósfera de glitch y estática.</p>
-      <div class="cta">
-        <a class="btn pri" href="#arte" data-en="See the renders">Ver los renders</a>
-        <a class="btn" href="#historia" data-en="Read the premise">Leer la premisa</a>
-      </div>
+
+  <section class="hero">
+    <p class="eyebrow" data-en="CH 03 · FAN PROJECT">CH 03 · PROYECTO FAN</p>
+    <h1 class="poster-title">FIVE NIGHTS AT FREDDY'S<span class="poster-sub">Alternative Stories</span></h1>
+    <p class="lead" data-en="A found-document project: alternative versions of FNaF's events, told like a forgotten horror paperback. &lt;strong&gt;Lore built from scratch&lt;/strong&gt;, old VHS static and a pizzeria that never really closed.">Un proyecto de archivador y papel viejo: versiones alternativas de los eventos de FNaF, contadas como un libro de terror de bolsillo olvidado. <strong>Lore construido desde cero</strong>, estática de VHS vieja y una pizzería que nunca cerró del todo.</p>
+    <div class="cta">
+      <a class="btn pri" href="#arte" data-en="See the renders">Ver los renders</a>
+      <a class="btn" href="#historia" data-en="Read the premise">Leer la premisa</a>
     </div>
-    <div class="tv" aria-hidden="true">
-      <div class="screen">
-        <img class="glitch" src="/assets/gallery/clip5_2.png" alt="">
-        <div class="track"></div>
-        <div class="scr-osd"><span>▶ PLAY</span><span>CH 03</span></div>
-      </div>
-      <div class="tv-foot"><span class="tv-model">SF-2001</span><span class="led"></span><span class="knob"></span><span class="knob"></span></div>
+    <svg class="badge" viewBox="0 0 200 200" role="img" aria-label="Fazbear Entertainment">
+      <defs><path id="fb-ring" d="M100,24 a76,76 0 1,1 -0.1,0"/></defs>
+      <circle cx="100" cy="100" r="92" fill="none" stroke="#2c1d10" stroke-width="3"/>
+      <circle cx="100" cy="100" r="84" fill="none" stroke="#c89434" stroke-width="2" opacity=".7"/>
+      <circle cx="100" cy="100" r="58" fill="none" stroke="#c89434" stroke-width="1.5" opacity=".5"/>
+      <path d="M72 70 a28 28 0 0 1 56 0" fill="none" stroke="#c89434" stroke-width="2" opacity=".8"/>
+      <circle cx="78" cy="68" r="6" fill="none" stroke="#c89434" stroke-width="2" opacity=".8"/>
+      <circle cx="122" cy="68" r="6" fill="none" stroke="#c89434" stroke-width="2" opacity=".8"/>
+      <text font-family="VT323,monospace" font-size="15" letter-spacing="3" fill="#e8c050">
+        <textPath href="#fb-ring" startOffset="2%">FAZBEAR ENTERTAINMENT · EST. 1983 ·</textPath>
+      </text>
+    </svg>
+  </section>
+
+  <section class="sec" id="intro">
+    <div class="sec-label" data-en="00 · series intro">00 · intro de la serie</div>
+    <h2 class="sec-title" data-en="Every episode opens with this">Cada episodio empieza así</h2>
+    <div class="intro-card">
+      <video controls preload="metadata" poster="assets/fnaf-as/intro-poster.webp" playsinline>
+        <source src="assets/fnaf-as/intro.mp4" type="video/mp4">
+      </video>
+      <div class="intro-tag"><span class="rec">● REC</span><span data-en="FNAF:AS — OPENING TAPE">FNAF:AS — CINTA DE APERTURA</span></div>
     </div>
-  </header>
+    <div class="intro-note" data-en="The same static title card opens every episode of the series — the viewer's first signal that the tape they are about to watch isn't the official one.">La misma cortinilla con estática abre todos los episodios de la serie — la primera señal para quien mira de que la cinta que va a ver no es la oficial.</div>
+  </section>
 
   <section class="sec" aria-labelledby="h-que">
-    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="01 · WHAT IT IS">01 · QUÉ ES</span></p>
-    <h2 id="h-que">Alternative Stories</h2>
-    <div class="grid2">
+    <div class="sec-label" data-en="01 · what it is">01 · qué es</div>
+    <h2 class="sec-title" id="h-que">Alternative Stories</h2>
+    <div class="card-grid">
       <article class="card">
         <span class="chan" data-en="CONCEPT">CONCEPTO</span>
         <h3 data-en="Other versions of the same horror">Otras versiones del mismo terror</h3>
-        <p data-en="A Five Nights at Freddy's fan project that explores alternative versions of animatronic horror: animatronics acting as guardians or as rebels, secret files and races against the clock inside a corrupted pizzeria.">Un fan project de Five Nights at Freddy's que explora versiones alternativas del terror animatrónico: animatrónicos que actúan como guardianes o como rebeldes, archivos secretos y carreras contrarreloj dentro de una pizzería corrupta.</p>
+        <p data-en="A Five Nights at Freddy's fan project exploring alternative versions of animatronic horror: guardians or rebels, secret files, and races against the clock inside a corrupted pizzeria.">Un fan project de Five Nights at Freddy's que explora versiones alternativas del terror animatrónico: animatrónicos que actúan como guardianes o como rebeldes, archivos secretos y carreras contrarreloj dentro de una pizzería corrupta.</p>
       </article>
       <article class="card">
         <span class="chan" data-en="STYLE">ESTILO</span>
-        <h3 data-en="A corrupted game menu">Un menú de juego corrupto</h3>
-        <p data-en="Glitch, static and backgrounds with 3D renders of animatronics. Browsing has to feel like stepping into a bootleg version of the original universe.">Glitch, estática y fondos con renders 3D de animatrónicos. Navegar tiene que sentirse como entrar en una versión pirateada del universo original.</p>
+        <h3 data-en="A paperback found in a drawer">Un libro de bolsillo encontrado en un cajón</h3>
+        <p data-en="Worn paper, dried blood, VHS static and 3D animatronic renders. Browsing it should feel like finding a horror paperback nobody was supposed to print.">Papel desgastado, sangre seca, estática de VHS y renders 3D de animatrónicos. Navegarlo tiene que sentirse como encontrar un libro de terror que nadie debía imprimir.</p>
       </article>
     </div>
   </section>
 
-  <section class="sec" id="historia" aria-labelledby="h-hist" style="padding-top:0">
-    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="02 · NARRATIVE">02 · NARRATIVA</span></p>
-    <h2 id="h-hist" data-en="Story">Historia</h2>
-    <div class="grid2">
+  <section class="sec" id="historia" aria-labelledby="h-hist">
+    <div class="sec-label" data-en="02 · narrative">02 · narrativa</div>
+    <h2 class="sec-title" id="h-hist" data-en="Story">Historia</h2>
+    <div class="card-grid">
       <article class="card">
         <span class="chan" data-en="PLOT">TRAMA</span>
         <h3 data-en="The forgotten file cabinet">El archivador olvidado</h3>
@@ -120,11 +214,12 @@ d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
         <p data-en="Drastic changes to the lore, with endings where reality warps. There is no single truth: each story is a different version of the same events.">Cambios drásticos en el lore, con finales donde la realidad se distorsiona. No hay una única verdad: cada historia es una versión diferente de los mismos hechos.</p>
       </article>
     </div>
+    <p class="quote" data-en="&quot;Every tape in the cabinet says something different happened that night. None of them are lying.&quot;">«Cada cinta del archivador dice que esa noche pasó algo distinto. Ninguna miente.»</p>
   </section>
 
-  <section class="sec" id="arte" aria-labelledby="h-arte" style="padding-top:0">
-    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>03 · RENDERS</span></p>
-    <h2 id="h-arte" data-en="Project art">Arte del proyecto</h2>
+  <section class="sec" id="arte" aria-labelledby="h-arte">
+    <div class="sec-label">03 · RENDERS</div>
+    <h2 class="sec-title" id="h-arte" data-en="Project art">Arte del proyecto</h2>
     <div class="renders">
       <figure class="render"><a href="/assets/gallery/clip5_2.png" target="_blank" rel="noopener" aria-label="Abrir el render 1 a tamaño completo" data-en-aria-label="Open render 1 at full size"><img src="/assets/gallery/clip5_2.png" alt="Render 3D de FNAF AS, plano 1" data-en-alt="FNAF AS 3D render, shot 1" loading="lazy"></a><figcaption>RENDER 01</figcaption></figure>
       <figure class="render"><a href="/assets/gallery/clip5.png" target="_blank" rel="noopener" aria-label="Abrir el render 2 a tamaño completo" data-en-aria-label="Open render 2 at full size"><img src="/assets/gallery/clip5.png" alt="Render 3D de FNAF AS, plano 2" data-en-alt="FNAF AS 3D render, shot 2" loading="lazy"></a><figcaption>RENDER 02</figcaption></figure>
@@ -132,31 +227,23 @@ d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="h-com" style="padding-top:0">
-    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="04 · COMMUNITY">04 · COMUNIDAD</span></p>
-    <h2 id="h-com" data-en="Theories and ideas">Teorías e ideas</h2>
-    <p class="sec-intro" data-en="If you like the FNaF universe, alternative stories or 3D art, you can leave your theories on the forum. All you need is a name and a password, no email.">Si te gusta el universo FNaF, las historias alternativas o el arte 3D, puedes dejar tus teorías en el foro. Solo necesitas un nombre y una contraseña, sin correo.</p>
-    <div class="cta" style="margin-top:26px"><a class="btn pri" href="/foros.html" data-en="Go to the forum">Ir al foro</a><a class="btn" href="/#proyectos" data-en="See other projects">Ver otros proyectos</a></div>
+  <section class="sec" aria-labelledby="h-com">
+    <div class="sec-label" data-en="04 · community">04 · comunidad</div>
+    <h2 class="sec-title" id="h-com" data-en="Theories and ideas">Teorías e ideas</h2>
+    <p class="lead" style="margin:0;text-align:left;max-width:none" data-en="If you like the FNaF universe, alternative stories or 3D art, leave your theories on the forum. All you need is a name and a password, no email.">Si te gusta el universo FNaF, las historias alternativas o el arte 3D, puedes dejar tus teorías en el foro. Solo necesitas un nombre y una contraseña, sin correo.</p>
+    <div class="cta" style="justify-content:flex-start;margin-top:1.2rem"><a class="btn pri" href="/foros.html" data-en="Go to the forum">Ir al foro</a><a class="btn" href="/#proyectos" data-en="See other projects">Ver otros proyectos</a></div>
   </section>
-</div>
-</main>
 
+</div>
+
+<div class="checker"></div>
 <footer>
-  <svg class="swoosh" viewBox="0 0 1440 130" preserveAspectRatio="none" aria-hidden="true">
-    <path class="p1" vector-effect="non-scaling-stroke" d="M-20 98 C 380 98, 560 30, 900 38 S 1300 92, 1460 84"/>
-    <path class="p2" vector-effect="non-scaling-stroke" d="M-20 70 C 380 70, 560 2, 900 10 S 1300 64, 1460 56"/>
-    <path class="p3" vector-effect="non-scaling-stroke" d="M-20 126 C 380 126, 560 58, 900 66 S 1300 120, 1460 112"/>
-  </svg>
   <div class="wrap">
     <p class="disclaimer" data-en="FNAF AS is a non-profit fan project. Five Nights at Freddy's and its characters belong to Scott Cawthon. Static Forge has no official connection to the series.">FNAF AS es un proyecto fan sin ánimo de lucro. Five Nights at Freddy's y sus personajes pertenecen a Scott Cawthon. Static Forge no tiene relación oficial con la saga.</p>
-    <div class="foot">
-      <span class="eob crt-txt" data-en="END OF BROADCAST">FIN DE LA EMISIÓN</span>
-      <span>© 2026 Static Forge · KCRooty (Core) · <a href="/">staticforge.me</a> · <a href="https://www.tiktok.com/@staticforge2" target="_blank" rel="noopener">TikTok</a></span>
-    </div>
+    <span data-en="END OF BROADCAST">FIN DE LA EMISIÓN</span> · © 2026 Static Forge · KCRooty (Core) · <a href="/">staticforge.me</a> · <a href="https://www.tiktok.com/@staticforge2" target="_blank" rel="noopener">TikTok</a>
   </div>
 </footer>
 
-<script src="/assets/sf.js"></script>
 <script src="/assets/lang.js"></script>
 </body>
 </html>
