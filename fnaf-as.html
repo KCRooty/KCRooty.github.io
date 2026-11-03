@@ -157,8 +157,58 @@ img{display:block;max-width:100%;height:auto}
 .dossier .file{font-family:var(--osd);font-size:1rem;letter-spacing:.1em;color:var(--ink2)}
 .dossier h3{font-family:var(--drip);font-weight:400;font-size:clamp(1.5rem,4.4vw,2.3rem);color:#6e1410;margin:.4rem 0 .7rem;letter-spacing:.03em}
 .dossier p{font-size:.92rem;line-height:1.7}
-.stamp{position:absolute;right:18px;top:20px;transform:rotate(9deg);border:4px double var(--red);color:var(--red);
+.stamp{position:absolute;z-index:3;right:18px;top:20px;transform:rotate(9deg);border:4px double var(--red);color:var(--red);
   font-family:var(--osd);font-size:1.35rem;letter-spacing:.14em;padding:1px 12px;opacity:.82;text-transform:uppercase}
+.dossier-in{display:grid;grid-template-columns:1fr minmax(0,300px);gap:1.8rem;align-items:center}
+
+/* foto vieja grapada al expediente */
+.oldphoto{position:relative;z-index:2;margin:2.2rem 0 0;background:#e6dbc2;padding:10px 10px 30px;transform:rotate(3.5deg);
+  box-shadow:0 12px 22px rgba(0,0,0,.55)}
+.oldphoto::before{content:'';position:absolute;z-index:4;top:-10px;left:50%;width:84px;height:22px;transform:translateX(-50%) rotate(-4deg);
+  background:rgba(255,248,214,.6)}
+.oldphoto figcaption{position:absolute;left:12px;bottom:7px;font-size:.72rem;color:var(--ink2)}
+.ph{position:relative;overflow:hidden;aspect-ratio:680/576;background:#000 var(--img) center/cover;filter:sepia(.5) contrast(1.15) brightness(.92) saturate(.85)}
+.ph i{position:absolute;inset:0;pointer-events:none}
+.ph .wear{background:
+  radial-gradient(ellipse at center,transparent 50%,rgba(60,35,10,.55) 100%),
+  repeating-linear-gradient(97deg,transparent 0 37px,rgba(255,240,210,.12) 37px 38px,transparent 38px 90px),
+  linear-gradient(transparent 60%,rgba(240,220,180,.08))}
+.ph .r,.ph .g{background:var(--img) center/cover;mix-blend-mode:screen;opacity:0}
+.ph .r{background-color:#c13cff;background-blend-mode:multiply;animation:gt-r 5.5s steps(1) infinite}
+.ph .g{background-color:#2dff8a;background-blend-mode:multiply;animation:gt-g 5.5s steps(1) infinite}
+
+/* glitch y estática sobre todo el expediente, al estilo Glitchtrap */
+.gt{animation:gt-shake 5.5s steps(1) infinite}
+.gt::after{content:'';position:absolute;inset:0;z-index:5;pointer-events:none;border-radius:inherit;opacity:.14;mix-blend-mode:overlay;
+  background:repeating-linear-gradient(180deg,rgba(0,0,0,.35) 0 1px,transparent 1px 3px),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23s)'/></svg>") 0 0/160px 160px;
+  animation:gt-static .4s steps(4) infinite}
+.gt::before{content:'';position:absolute;inset:0;z-index:5;pointer-events:none;border-radius:inherit;opacity:0;mix-blend-mode:screen;
+  background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='t'><feTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='1'/><feColorMatrix type='saturate' values='0'/></filter><rect width='120' height='120' filter='url(%23t)'/></svg>") 0 0/120px 120px;
+  animation:gt-burst 5.5s steps(1) infinite}
+.gt-band{position:absolute;left:-6px;right:-6px;z-index:6;pointer-events:none;opacity:0;height:14px;
+  -webkit-backdrop-filter:invert(1) hue-rotate(200deg) saturate(3);backdrop-filter:invert(1) hue-rotate(200deg) saturate(3)}
+.gt-band.b1{animation:gt-b1 5.5s steps(1) infinite}
+.gt-band.b2{height:6px;animation:gt-b2 5.5s steps(1) infinite}
+.gt h3{position:relative}
+.gt h3::before,.gt h3::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;opacity:0;pointer-events:none}
+.gt h3::before{color:#b04dff;animation:gt-r 5.5s steps(1) infinite}
+.gt h3::after{color:#2dff8a;animation:gt-g 5.5s steps(1) infinite}
+@keyframes gt-static{to{background-position:0 0,160px 90px}}
+@keyframes gt-shake{0%,85%,95%,100%{transform:none}86%{transform:translate(-4px,0) skewX(-2deg)}88%{transform:translate(5px,1px)}90%{transform:translate(-2px,-1px) skewX(1.5deg)}92%{transform:translate(3px,0)}}
+@keyframes gt-burst{0%,85%,95%,100%{opacity:0}86%{opacity:.45}88%{opacity:.25}90%{opacity:.55}92%{opacity:.2}}
+@keyframes gt-r{0%,85%,95%,100%{opacity:0;transform:none;clip-path:inset(0)}
+  86%{opacity:.85;transform:translate(7px,-1px);clip-path:inset(10% 0 62% 0)}
+  88%{opacity:.85;transform:translate(-6px,1px);clip-path:inset(52% 0 22% 0)}
+  90%{opacity:.75;transform:translate(4px,0);clip-path:inset(28% 0 48% 0)}
+  92%{opacity:.6;transform:translate(-3px,0);clip-path:inset(70% 0 8% 0)}}
+@keyframes gt-g{0%,85%,95%,100%{opacity:0;transform:none;clip-path:inset(0)}
+  86%{opacity:.8;transform:translate(-7px,1px);clip-path:inset(40% 0 35% 0)}
+  88%{opacity:.8;transform:translate(6px,0);clip-path:inset(5% 0 75% 0)}
+  90%{opacity:.7;transform:translate(-4px,-1px);clip-path:inset(62% 0 15% 0)}
+  92%{opacity:.55;transform:translate(3px,0);clip-path:inset(20% 0 60% 0)}}
+@keyframes gt-b1{0%,85%,95%,100%{opacity:0}86%{opacity:1;top:18%;transform:translateX(10px)}88%{opacity:1;top:63%;transform:translateX(-12px)}90%{opacity:1;top:38%;transform:translateX(6px)}92%{opacity:0}}
+@keyframes gt-b2{0%,86%,95%,100%{opacity:0}87%{opacity:1;top:72%}89%{opacity:1;top:9%}91%{opacity:1;top:50%}93%{opacity:0}}
 
 /* vídeo en una tele vieja */
 .tv{position:relative;padding:14px 14px 0;border-radius:14px;
@@ -227,9 +277,12 @@ footer .disclaimer{max-width:640px;margin:0 auto .6rem;line-height:1.6;opacity:.
   .d1{left:-56px}.d2{right:-60px}.d3{right:-14px}.d4{left:-18px}.d5{right:-18px}.d6{left:-6px}
   .sticker{position:static;width:130px;margin:0 0 1rem auto}
   .stamp{position:static;display:inline-block;margin-bottom:.8rem;transform:rotate(-3deg)}
+  .dossier-in{grid-template-columns:1fr;gap:0}
+  .oldphoto{width:100%;max-width:290px;margin:1.4rem auto .4rem;transform:rotate(2deg)}
 }
 @media(max-width:760px){.hero .pz.a{width:54px;bottom:24px}.hero .pz.b{width:36px;top:12px}}
 @media(prefers-reduced-motion:reduce){.hero::before,.eyebrow::before,.neon{animation:none}
+  .gt,.gt::before,.gt::after,.gt-band,.ph .r,.ph .g,.gt h3::before,.gt h3::after{animation:none}
   .sec-label::after{background-image:linear-gradient(rgba(200,148,52,.15),rgba(200,148,52,.15)),url(assets/fnaf-as/pizza-still.webp)}}
 </style>
 </head>
@@ -336,12 +389,22 @@ footer .disclaimer{max-width:640px;margin:0 auto .6rem;line-height:1.6;opacity:.
       <p data-en="&quot;Every tape in the cabinet says something different happened. None of them are lying — and none of them agree.&quot;">«Cada cinta del archivador dice que pasó algo distinto. Ninguna miente — y ninguna coincide con las demás.»</p>
     </div>
 
-    <article class="dossier">
+    <article class="dossier gt">
       <span class="tab">EP. 01</span>
       <span class="stamp" data-en="Coming soon">Próximamente</span>
-      <span class="file" data-en="FILE AS-001">EXPEDIENTE AS-001</span>
-      <h3>Murray's Butcher</h3>
-      <p data-en="The first episode opens the series. For now, just the name.">El primer episodio abre la serie. Por ahora, solo el nombre.</p>
+      <div class="dossier-in">
+        <div>
+          <span class="file" data-en="FILE AS-001">EXPEDIENTE AS-001</span>
+          <h3 data-text="Murray's Butcher">Murray's Butcher</h3>
+          <p data-en="The first episode opens the series. For now, just the name and one photo.">El primer episodio abre la serie. Por ahora, solo el nombre y una foto.</p>
+        </div>
+        <figure class="oldphoto">
+          <div class="ph" style="--img:url(assets/fnaf-as/ep01-render.webp)" role="img" aria-label="Render del episodio 1: un endoesqueleto en la oscuridad" data-en-aria-label="Episode 1 render: an endoskeleton in the dark"><i class="r"></i><i class="g"></i><i class="wear"></i></div>
+          <figcaption data-en="AS-001 · photo 1 of 1">AS-001 · foto 1 de 1</figcaption>
+        </figure>
+      </div>
+      <span class="gt-band b1" aria-hidden="true"></span>
+      <span class="gt-band b2" aria-hidden="true"></span>
     </article>
   </section>
 
