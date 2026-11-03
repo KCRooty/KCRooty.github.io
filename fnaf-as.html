@@ -110,7 +110,18 @@ img{display:block;max-width:100%;height:auto}
 .sec-label{font-family:var(--osd);font-size:1.05rem;color:var(--gold2);text-transform:uppercase;
   letter-spacing:.15em;margin-bottom:.4rem;display:flex;align-items:center;gap:.6rem}
 .sec-label::before{content:'▌';color:var(--blood2)}
-.sec-label::after{content:'';flex:1;height:1px;background:rgba(200,148,52,.15)}
+.sec-label::after{content:'';flex:1;height:22px;
+  background:linear-gradient(rgba(200,148,52,.15),rgba(200,148,52,.15)) left center/calc(100% - 32px) 1px no-repeat,
+             url(assets/fnaf-as/pizza.webp) right center/22px no-repeat}
+
+/* pizzas de FNaF World: decoración, nunca contenido */
+.pz{position:absolute;z-index:2;pointer-events:none;filter:drop-shadow(0 6px 8px rgba(0,0,0,.55))}
+.pz img{width:100%}
+.hero .pz.a{width:74px;left:3%;bottom:20px;transform:rotate(-12deg)}
+.hero .pz.b{width:46px;right:4%;top:22px;opacity:.85}
+.wallbox .pz{width:58px;right:7%;bottom:26px}
+.neonbox .pz{width:88px;right:-22px;bottom:-24px;opacity:.7}
+.neonbox .pz.small{width:40px;right:auto;left:52%;bottom:16px;opacity:.55}
 .sec-title{font-family:var(--poster);font-size:1.6rem;font-weight:600;color:var(--bright);margin-bottom:1.2rem}
 .sec-intro{color:var(--text);line-height:1.75;max-width:640px;margin:-.4rem 0 1.4rem;font-size:.9rem}
 
@@ -221,7 +232,9 @@ footer .disclaimer{max-width:640px;margin:0 auto .6rem;line-height:1.6;opacity:.
   .sticker{position:static;width:130px;margin:0 0 1rem auto}
   .stamp{position:static;display:inline-block;margin-bottom:.8rem;transform:rotate(-3deg)}
 }
-@media(prefers-reduced-motion:reduce){.hero::before,.eyebrow::before,.neon{animation:none}}
+@media(max-width:760px){.hero .pz.a{width:54px;bottom:24px}.hero .pz.b{width:36px;top:12px}.wallbox .pz{width:44px}}
+@media(prefers-reduced-motion:reduce){.hero::before,.eyebrow::before,.neon{animation:none}
+  .sec-label::after{background-image:linear-gradient(rgba(200,148,52,.15),rgba(200,148,52,.15)),url(assets/fnaf-as/pizza-still.webp)}}
 </style>
 </head>
 <body>
@@ -255,6 +268,8 @@ footer .disclaimer{max-width:640px;margin:0 auto .6rem;line-height:1.6;opacity:.
       <img src="assets/fnaf-as/fazbear-logo.webp" alt="Logotipo de Fazbear Entertainment" data-en-alt="Fazbear Entertainment logo" width="520" height="505">
     </div>
   </div>
+  <picture class="pz a" aria-hidden="true"><source srcset="assets/fnaf-as/pizza-still.webp" media="(prefers-reduced-motion: reduce)"><img src="assets/fnaf-as/pizza.webp" alt="" width="220" height="220"></picture>
+  <picture class="pz b" aria-hidden="true"><source srcset="assets/fnaf-as/pizza-still.webp" media="(prefers-reduced-motion: reduce)"><img src="assets/fnaf-as/pizza.webp" alt="" width="220" height="220"></picture>
   <div class="band"></div>
 </section>
 
@@ -334,6 +349,7 @@ footer .disclaimer{max-width:640px;margin:0 auto .6rem;line-height:1.6;opacity:.
         <figure class="poster"><img src="assets/fnaf-as/poster-fredbear.webp" alt="Cartel antiguo de Fredbear's Family Diner" data-en-alt="Old Fredbear's Family Diner poster" loading="lazy" width="520" height="707"></figure>
         <figure class="poster"><img src="assets/fnaf-as/poster-celebrate.webp" alt="Cartel «Celebrate!» con Freddy, Bonnie y Chica" data-en-alt="«Celebrate!» poster with Freddy, Bonnie and Chica" loading="lazy" width="520" height="639"></figure>
       </div>
+      <picture class="pz" aria-hidden="true"><source srcset="assets/fnaf-as/pizza-still.webp" media="(prefers-reduced-motion: reduce)"><img src="assets/fnaf-as/pizza.webp" alt="" width="220" height="220" loading="lazy"></picture>
       <div class="band thin"></div>
     </div>
     <div class="evid">
@@ -358,6 +374,8 @@ footer .disclaimer{max-width:640px;margin:0 auto .6rem;line-height:1.6;opacity:.
     <div class="sec-label" data-en="05 · community">05 · comunidad</div>
     <div class="neonbox">
       <img class="sticker" src="assets/fnaf-as/lets-eat.webp" alt="" width="420" height="420">
+      <picture class="pz" aria-hidden="true"><source srcset="assets/fnaf-as/pizza-still.webp" media="(prefers-reduced-motion: reduce)"><img src="assets/fnaf-as/pizza.webp" alt="" width="220" height="220" loading="lazy"></picture>
+      <picture class="pz small" aria-hidden="true"><source srcset="assets/fnaf-as/pizza-still.webp" media="(prefers-reduced-motion: reduce)"><img src="assets/fnaf-as/pizza.webp" alt="" width="220" height="220" loading="lazy"></picture>
       <h2 class="neon" id="h-com" data-en="Theories and ideas">Teorías e ideas</h2>
       <p data-en="If you like the FNaF universe, alternative stories or 3D art, leave your theories on the forum. All you need is a name and a password, no email.">Si te gusta el universo FNaF, las historias alternativas o el arte 3D, puedes dejar tus teorías en el foro. Solo necesitas un nombre y una contraseña, sin correo.</p>
       <div class="cta"><a class="btn pri" href="/foros.html" data-en="Go to the forum">Ir al foro</a><a class="btn" href="/#proyectos" data-en="See other projects">Ver otros proyectos</a></div>
