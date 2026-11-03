@@ -11,7 +11,7 @@
   var API = (host === '127.0.0.1' || host === 'localhost')
     ? 'http://127.0.0.1:8787'
     : 'https://static-forge-foro.staticforge.workers.dev';
-  var MAIL = ['StaticForge', 'proton.me'].join('@');
+  var MAIL = ['staticforge', 'staticforge.me'].join('@');
 
   /* ── Textos ── */
   var S = {
