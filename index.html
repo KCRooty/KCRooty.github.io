@@ -596,7 +596,7 @@ footer{padding:0 0 40px}
         <ul class="cr-list">
           <li><span class="cr-name">Akita</span><span class="cr-lead" aria-hidden="true"></span><span class="cr-what" data-i18n="c.voice">Doblaje de voz</span></li>
           <li><span class="cr-name">Alcraft</span><span class="cr-lead" aria-hidden="true"></span><span class="cr-what" data-i18n="c.dev">Desarrollo</span></li>
-          <li><span class="cr-name">Octeon</span><span class="cr-lead" aria-hidden="true"></span><span class="cr-what">Tester</span></li>
+          <li><span class="cr-name">Kaxopo</span><span class="cr-lead" aria-hidden="true"></span><span class="cr-what">Tester</span></li>
         </ul>
       </div>
     </div>
@@ -643,7 +643,7 @@ footer{padding:0 0 40px}
         <ul class="roles">
           <li data-i18n="r.1">Arte 2D</li><li data-i18n="r.2">Arte 3D</li><li data-i18n="r.3">Producción musical</li><li data-i18n="r.4">Programación</li><li data-i18n="r.5">Desarrollo de juegos y apps</li><li data-i18n="r.6">Doblaje y voz</li><li data-i18n="r.7">Lo que hagas tú</li>
         </ul>
-        <p class="contact"><span class="crt-txt" data-i18n="s.mailk">CONTACTO</span> <a class="mail" id="mail" href="#unete">StaticForge (arroba) proton.me</a></p>
+        <p class="contact"><span class="crt-txt" data-i18n="s.mailk">CONTACTO</span> <a class="mail" id="mail" href="#unete">staticforge (arroba) staticforge.me</a></p>
       </div>
       <div class="cta">
         <a class="btn pri" id="applyBtn" href="#solicitud" data-i18n="s.write">Rellenar la solicitud</a>
@@ -869,8 +869,8 @@ document.getElementById('lbClose').addEventListener('click',function(){lb.close(
 lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
 lb.addEventListener('close',function(){if(opener)opener.focus()});
 
-/* Contacto del estudio: Proton Mail. */
-var addr=['StaticForge','proton.me'].join('@'),href='mailto:'+addr+'?subject='+encodeURIComponent('Static Forge');
+/* Contacto del estudio: dominio propio, enrutado al correo personal. */
+var addr=['staticforge','staticforge.me'].join('@'),href='mailto:'+addr+'?subject='+encodeURIComponent('Static Forge');
 var mail=document.getElementById('mail'); mail.href=href; mail.textContent=addr;
 /* El botón principal baja hasta el formulario y deja el foco en el primer campo. */
 document.getElementById('applyBtn').addEventListener('click',function(e){
