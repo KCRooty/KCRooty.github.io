@@ -110,9 +110,18 @@ img{display:block;max-width:100%;height:auto}
 .sec-label{font-family:var(--osd);font-size:1.05rem;color:var(--gold2);text-transform:uppercase;
   letter-spacing:.15em;margin-bottom:.4rem;display:flex;align-items:center;gap:.6rem}
 .sec-label::before{content:'▌';color:var(--blood2)}
-.sec-label::after{content:'';flex:1;height:1px;background:rgba(200,148,52,.15)}
+.sec-label::after{content:'';flex:1;height:22px;
+  background:linear-gradient(rgba(200,148,52,.15),rgba(200,148,52,.15)) left center/calc(100% - 32px) 1px no-repeat,
+             url(assets/fnaf-as/pizza.webp) right center/22px no-repeat}
+
+/* pizzas de FNaF World: decoración, nunca contenido */
+.pz{position:absolute;z-index:2;pointer-events:none;filter:drop-shadow(0 6px 8px rgba(0,0,0,.55))}
+.pz img{width:100%}
+.hero .pz.a{width:74px;left:3%;bottom:20px;transform:rotate(-12deg)}
+.hero .pz.b{width:46px;right:4%;top:22px;opacity:.85}
+.neonbox .pz{width:88px;right:-22px;bottom:-24px;opacity:.7}
+.neonbox .pz.small{width:40px;right:auto;left:52%;bottom:16px;opacity:.55}
 .sec-title{font-family:var(--poster);font-size:1.6rem;font-weight:600;color:var(--bright);margin-bottom:1.2rem}
-.sec-intro{color:var(--text);line-height:1.75;max-width:640px;margin:-.4rem 0 1.4rem;font-size:.9rem}
 
 /* papel viejo: semitono, mancha de café, celo y borde rasgado */
 .papers{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;filter:drop-shadow(0 12px 14px rgba(0,0,0,.55))}
@@ -162,25 +171,22 @@ img{display:block;max-width:100%;height:auto}
   font-family:var(--osd);font-size:.95rem;letter-spacing:.12em;padding:2px 10px;box-shadow:0 4px 8px rgba(0,0,0,.5)}
 .note{font-size:.82rem;color:var(--dim);line-height:1.6;margin-top:1rem;border-left:2px solid var(--border2);padding:.6rem .9rem;background:var(--card)}
 
-/* el archivo: carteles en la pared y objetos encontrados */
-.wallbox{position:relative;overflow:hidden;border:1px solid var(--border2);
-  background:linear-gradient(180deg,rgba(10,7,5,.25),rgba(10,7,5,.7)),url(assets/fnaf-as/wall.webp) center/cover}
-.posters{display:grid;grid-template-columns:1fr 1fr;gap:2rem;padding:2.4rem 2.2rem 2.6rem;max-width:720px;margin:0 auto}
-.poster{position:relative;margin:0;background:#efe6d0;padding:9px;box-shadow:0 16px 26px rgba(0,0,0,.65)}
-.poster:nth-child(1){transform:rotate(-2.6deg)}
-.poster:nth-child(2){transform:rotate(2deg);margin-top:1.4rem}
-.poster img{width:100%;filter:sepia(.22) saturate(.85) contrast(.97)}
-.poster::after{content:'';position:absolute;inset:9px;pointer-events:none;
-  background:radial-gradient(rgba(0,0,0,.14) 1px,transparent 1.4px) 0 0/4px 4px,radial-gradient(ellipse at center,transparent 55%,rgba(60,30,10,.35))}
-.poster::before{content:'';position:absolute;z-index:2;top:-10px;left:50%;width:96px;height:24px;transform:translateX(-50%) rotate(2deg);
-  background:rgba(255,248,214,.6);box-shadow:0 1px 3px rgba(0,0,0,.3)}
-.evid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-top:1.4rem}
-.item{margin:0;background:#000;border:1px solid var(--border2);border-radius:3px;overflow:hidden;display:flex;flex-direction:column}
-.item figcaption{flex:1}
-.item img{width:100%;aspect-ratio:1/1;object-fit:contain;padding:12px;filter:sepia(.1)}
-.item img.px{image-rendering:pixelated;padding:22px}
-.item figcaption{background:var(--paper);color:var(--ink);font-size:.72rem;line-height:1.35;padding:.45rem .6rem}
-.item figcaption b{display:block;font-family:var(--osd);font-weight:400;font-size:.9rem;letter-spacing:.1em;color:var(--red)}
+/* fondo de la página: carteles y objetos que quedaron en el local, detrás del contenido */
+.page{position:relative;overflow:hidden;overflow:clip}
+.deco{position:absolute;inset:0;z-index:0;pointer-events:none}
+.deco > *{position:absolute}
+.deco .poster{width:220px;background:#efe6d0;padding:8px;opacity:.3;box-shadow:0 14px 24px rgba(0,0,0,.6)}
+.deco .poster img{width:100%;filter:sepia(.3) saturate(.75)}
+.deco .poster::before{content:'';position:absolute;top:-9px;left:50%;width:80px;height:20px;transform:translateX(-50%) rotate(2deg);background:rgba(255,248,214,.6)}
+.deco .prop{width:120px;opacity:.42;mix-blend-mode:lighten;filter:sepia(.25);
+  -webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}
+.deco .px{image-rendering:pixelated;width:84px}
+.d1{top:5%;left:max(-60px,calc(50% - 720px));transform:rotate(-7deg)}
+.d2{top:33%;right:max(-70px,calc(50% - 730px));transform:rotate(6deg)}
+.d3{top:20%;right:max(-10px,calc(50% - 640px));transform:rotate(-12deg)}
+.d4{top:53%;left:max(-20px,calc(50% - 650px));transform:rotate(8deg)}
+.d5{top:72%;right:max(-20px,calc(50% - 650px));transform:rotate(-6deg)}
+.d6{top:88%;left:max(0px,calc(50% - 620px))}
 
 /* renders como polaroids */
 .renders{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
@@ -214,14 +220,17 @@ footer .disclaimer{max-width:640px;margin:0 auto .6rem;line-height:1.6;opacity:.
   .hero-txt{order:2}.hero-badge{order:1}
   .hero-badge img{max-width:190px}
   .lead{margin-inline:auto}.cta{justify-content:center}
-  .papers,.posters,.renders{grid-template-columns:1fr}
-  .posters{padding:2rem 1.4rem;gap:1.6rem}
-  .poster:nth-child(2){margin-top:0}
-  .evid{grid-template-columns:1fr 1fr}
+  .papers,.renders{grid-template-columns:1fr}
+  .deco .poster{width:130px;opacity:.2}
+  .deco .prop{width:76px;opacity:.3}
+  .deco .px{width:56px}
+  .d1{left:-56px}.d2{right:-60px}.d3{right:-14px}.d4{left:-18px}.d5{right:-18px}.d6{left:-6px}
   .sticker{position:static;width:130px;margin:0 0 1rem auto}
   .stamp{position:static;display:inline-block;margin-bottom:.8rem;transform:rotate(-3deg)}
 }
-@media(prefers-reduced-motion:reduce){.hero::before,.eyebrow::before,.neon{animation:none}}
+@media(max-width:760px){.hero .pz.a{width:54px;bottom:24px}.hero .pz.b{width:36px;top:12px}}
+@media(prefers-reduced-motion:reduce){.hero::before,.eyebrow::before,.neon{animation:none}
+  .sec-label::after{background-image:linear-gradient(rgba(200,148,52,.15),rgba(200,148,52,.15)),url(assets/fnaf-as/pizza-still.webp)}}
 </style>
 </head>
 <body>
@@ -255,9 +264,20 @@ footer .disclaimer{max-width:640px;margin:0 auto .6rem;line-height:1.6;opacity:.
       <img src="assets/fnaf-as/fazbear-logo.webp" alt="Logotipo de Fazbear Entertainment" data-en-alt="Fazbear Entertainment logo" width="520" height="505">
     </div>
   </div>
+  <picture class="pz a" aria-hidden="true"><source srcset="assets/fnaf-as/pizza-still.webp" media="(prefers-reduced-motion: reduce)"><img src="assets/fnaf-as/pizza.webp" alt="" width="220" height="220"></picture>
+  <picture class="pz b" aria-hidden="true"><source srcset="assets/fnaf-as/pizza-still.webp" media="(prefers-reduced-motion: reduce)"><img src="assets/fnaf-as/pizza.webp" alt="" width="220" height="220"></picture>
   <div class="band"></div>
 </section>
 
+<main class="page">
+<div class="deco" aria-hidden="true">
+  <div class="poster d1"><img src="assets/fnaf-as/poster-fredbear.webp" alt="" width="520" height="707" loading="lazy"></div>
+  <img class="prop d3" src="assets/fnaf-as/prop-phone.webp" alt="" loading="lazy">
+  <div class="poster d2"><img src="assets/fnaf-as/poster-celebrate.webp" alt="" width="520" height="639" loading="lazy"></div>
+  <img class="prop d4" src="assets/fnaf-as/prop-plush.webp" alt="" loading="lazy">
+  <img class="prop d5" src="assets/fnaf-as/prop-cupcake.webp" alt="" loading="lazy">
+  <img class="prop px d6" src="assets/fnaf-as/prop-endo.png" alt="" loading="lazy">
+</div>
 <div class="wrap">
 
   <section class="sec" id="intro">
@@ -325,27 +345,8 @@ footer .disclaimer{max-width:640px;margin:0 auto .6rem;line-height:1.6;opacity:.
     </article>
   </section>
 
-  <section class="sec" id="archivo" aria-labelledby="h-arch">
-    <div class="sec-label" data-en="03 · the archive">03 · el archivo</div>
-    <h2 class="sec-title" id="h-arch" data-en="What was left behind">Lo que quedó en el local</h2>
-    <p class="sec-intro" data-en="Posters peeling off the wall, things nobody took home. That's the series' world: everything abandoned, nothing quite switched off.">Carteles despegándose de la pared, objetos que nadie se llevó a casa. Así es el mundo de la serie: todo abandonado, pero nada del todo apagado.</p>
-    <div class="wallbox">
-      <div class="posters">
-        <figure class="poster"><img src="assets/fnaf-as/poster-fredbear.webp" alt="Cartel antiguo de Fredbear's Family Diner" data-en-alt="Old Fredbear's Family Diner poster" loading="lazy" width="520" height="707"></figure>
-        <figure class="poster"><img src="assets/fnaf-as/poster-celebrate.webp" alt="Cartel «Celebrate!» con Freddy, Bonnie y Chica" data-en-alt="«Celebrate!» poster with Freddy, Bonnie and Chica" loading="lazy" width="520" height="639"></figure>
-      </div>
-      <div class="band thin"></div>
-    </div>
-    <div class="evid">
-      <figure class="item"><img src="assets/fnaf-as/prop-phone.webp" alt="Teléfono de la oficina" data-en-alt="Office phone" loading="lazy"><figcaption><b data-en="EVIDENCE 01">EVIDENCIA 01</b><span data-en="Office phone. Still rings.">Teléfono de la oficina. Todavía suena.</span></figcaption></figure>
-      <figure class="item"><img src="assets/fnaf-as/prop-cupcake.webp" alt="Cesta de regalos con lazo rojo" data-en-alt="Gift basket with a red bow" loading="lazy"><figcaption><b data-en="EVIDENCE 02">EVIDENCIA 02</b><span data-en="Gift basket. Nobody picked it up.">Cesta de regalos. Nadie vino a por ella.</span></figcaption></figure>
-      <figure class="item"><img src="assets/fnaf-as/prop-plush.webp" alt="Peluche de Foxy" data-en-alt="Foxy plush" loading="lazy"><figcaption><b data-en="EVIDENCE 03">EVIDENCIA 03</b><span data-en="Foxy plush. One eye missing.">Peluche de Foxy. Le falta un ojo.</span></figcaption></figure>
-      <figure class="item"><img class="px" src="assets/fnaf-as/prop-endo.png" alt="Endoesqueleto en pixel art" data-en-alt="Pixel-art endoskeleton" loading="lazy"><figcaption><b data-en="EVIDENCE 04">EVIDENCIA 04</b><span data-en="Endoskeleton, 8-bit. Shouldn't be here.">Endoesqueleto, 8 bits. No debería estar aquí.</span></figcaption></figure>
-    </div>
-  </section>
-
   <section class="sec" id="arte" aria-labelledby="h-arte">
-    <div class="sec-label">04 · RENDERS</div>
+    <div class="sec-label">03 · RENDERS</div>
     <h2 class="sec-title" id="h-arte" data-en="Project art">Arte del proyecto</h2>
     <div class="renders">
       <figure class="render"><a href="/assets/gallery/clip5_2.png" target="_blank" rel="noopener" aria-label="Abrir el render 1 a tamaño completo" data-en-aria-label="Open render 1 at full size"><img src="/assets/gallery/clip5_2.png" alt="Render 3D de FNAF AS, plano 1" data-en-alt="FNAF AS 3D render, shot 1" loading="lazy"></a><figcaption>RENDER 01</figcaption></figure>
@@ -355,9 +356,11 @@ footer .disclaimer{max-width:640px;margin:0 auto .6rem;line-height:1.6;opacity:.
   </section>
 
   <section class="sec" aria-labelledby="h-com">
-    <div class="sec-label" data-en="05 · community">05 · comunidad</div>
+    <div class="sec-label" data-en="04 · community">04 · comunidad</div>
     <div class="neonbox">
       <img class="sticker" src="assets/fnaf-as/lets-eat.webp" alt="" width="420" height="420">
+      <picture class="pz" aria-hidden="true"><source srcset="assets/fnaf-as/pizza-still.webp" media="(prefers-reduced-motion: reduce)"><img src="assets/fnaf-as/pizza.webp" alt="" width="220" height="220" loading="lazy"></picture>
+      <picture class="pz small" aria-hidden="true"><source srcset="assets/fnaf-as/pizza-still.webp" media="(prefers-reduced-motion: reduce)"><img src="assets/fnaf-as/pizza.webp" alt="" width="220" height="220" loading="lazy"></picture>
       <h2 class="neon" id="h-com" data-en="Theories and ideas">Teorías e ideas</h2>
       <p data-en="If you like the FNaF universe, alternative stories or 3D art, leave your theories on the forum. All you need is a name and a password, no email.">Si te gusta el universo FNaF, las historias alternativas o el arte 3D, puedes dejar tus teorías en el foro. Solo necesitas un nombre y una contraseña, sin correo.</p>
       <div class="cta"><a class="btn pri" href="/foros.html" data-en="Go to the forum">Ir al foro</a><a class="btn" href="/#proyectos" data-en="See other projects">Ver otros proyectos</a></div>
@@ -365,6 +368,7 @@ footer .disclaimer{max-width:640px;margin:0 auto .6rem;line-height:1.6;opacity:.
   </section>
 
 </div>
+</main>
 
 <footer>
   <div class="band thin"></div>
