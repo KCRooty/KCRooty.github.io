@@ -37,6 +37,10 @@ d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
 .steps li{display:flex;align-items:baseline;gap:12px;font:400 1.08rem/1.5 var(--fb)}
 .steps .ok{color:var(--ok);font:400 1.2rem/1 var(--fc)}
 .steps .pend{color:var(--muted);font:400 1.2rem/1 var(--fc)}
+.notes{display:flex;flex-direction:column;gap:16px;margin-top:18px}
+.notes h3{margin-top:8px}
+.notes p{margin-top:8px;line-height:1.6}
+.notes .more{display:inline-block;margin-top:12px}
 </style>
 </head>
 <body>
@@ -111,6 +115,9 @@ d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
         <li><span class="ok">✓</span><span data-en="Phase 4 — installer, with no registration or serial number">Fase 4 — instalador, sin registro ni número de serie</span></li>
         <li><span class="ok">✓</span><span data-en="Phase 5 — lighting and materials: Material Manager, assignment tags and shaded previews">Fase 5 — iluminación y materiales: Gestor de Materiales, etiquetas de asignación y previos sombreados</span></li>
         <li><span class="ok">✓</span><span data-en="Full workspace — menus, toolbars, Object, Attribute, Material and Coordinate managers, Timeline, hand-drawn icons, keyboard shortcuts and multiple selection">Interfaz completa — menús, barras de herramientas, Gestores de Objetos, Atributos, Materiales y Coordenadas, Línea de Tiempo, iconos dibujados a mano, atajos de teclado y selección múltiple</span></li>
+        <li><span class="ok">✓</span><span data-en="Rendering (Vulkan) — PBR materials with metallic/roughness, shadows from the first spotlight and screen-space ambient occlusion (SSAO)">Render (Vulkan) — materiales PBR con metálico/rugosidad, sombras del primer foco y oclusión ambiental en pantalla (SSAO)</span></li>
+        <li><span class="ok">✓</span><span data-en="Gizmo — centred on the selection, view-plane rotation ring, free trackball rotation, and free move/scale when dragging outside the axes">Gizmo — en el centro de la selección, aro de rotación en el plano de vista, rotación libre tipo trackball y mover/escalar libres al arrastrar fuera de los ejes</span></li>
+        <li><span class="ok">✓</span><span data-en="Interface refresh — 222 icons of our own, one per object and tool, and interface presets: Cinema 4D, Blender, Maya, 3ds Max and Source Filmmaker, plus your own">Refresh de la interfaz — 222 iconos propios, uno por objeto y herramienta, y presets de interfaz: Cinema 4D, Blender, Maya, 3ds Max y Source Filmmaker, además de los tuyos</span></li>
         <li><span class="pend">○</span><span data-en="Next — .c4d/.lib4d import via the Cineware SDK">Siguiente — importación .c4d/.lib4d vía el Cineware SDK</span></li>
       </ul>
       <figure class="shot">
@@ -123,8 +130,35 @@ d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
     </article>
   </section>
 
+  <section class="sec" id="notas" aria-labelledby="h-notas" style="padding-top:0">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="03 · DEV NOTES">03 · NOTAS DE DESARROLLO</span></p>
+    <h2 id="h-notas" data-en="What we have been doing">Lo que hemos ido haciendo</h2>
+    <p class="sec-intro" data-en="Each round of work, told plainly: what changed, why, and what is still untested. The long versions live in the repository.">Cada tanda de trabajo contada sin adornos: qué cambia, por qué y qué falta por probar. Las versiones largas están en el repositorio.</p>
+    <div class="notes">
+      <article class="card">
+        <span class="chan crt-txt" data-en="4 NOV 2026">4 NOV 2026</span>
+        <h3 data-en="Every icon gets its own, and five ways to dress the interface">Cada icono, el suyo, y cinco formas de vestir la interfaz</h3>
+        <p data-en="Until now the deformer palette showed the same drawing 29 times. Now there are 222 icons drawn in code, one per object and tool, and the palettes follow R19's order. Preferences › Interface gains a gallery of presets (Cinema 4D, Blender, Maya, 3ds Max and Source Filmmaker) that change colours, panel placement and panel names on the fly, without touching what each panel does. You can tweak any of them and save it as your own. Still untested: using the gallery with the mouse and very small windows.">Hasta ahora la paleta de deformadores enseñaba 29 veces el mismo dibujo. Ahora hay 222 iconos dibujados en código, uno por objeto y herramienta, y las paletas siguen el orden de R19. Preferencias › Interfaz estrena una galería de presets (Cinema 4D, Blender, Maya, 3ds Max y Source Filmmaker) que cambian al momento los colores, la colocación y el nombre de los paneles, sin tocar lo que hace cada uno. Cualquiera se puede ajustar y guardar como propio. Falta probar la galería con el ratón y las ventanas muy pequeñas.</p>
+        <a class="more" href="https://github.com/KCRooty/Iron3D-Studio/blob/master/docs/devlog/2026-11-04-iconos-y-presets.md" target="_blank" rel="noopener" data-en="Read the full note →">Leer la nota completa →</a>
+      </article>
+      <article class="card">
+        <span class="chan crt-txt" data-en="3 NOV 2026">3 NOV 2026</span>
+        <h3 data-en="Ambient occlusion and colours your way">Oclusión ambiental y colores a tu gusto</h3>
+        <p data-en="SSAO in three passes of the Vulkan backend: a cube resting on a plane no longer looks taped on, because corners and contacts darken. It only touches ambient light, never direct light. On top of that, the interface colours became editable from a handful of seed colours; the default theme is still exactly the old one.">SSAO en tres pasadas del backend Vulkan: un cubo apoyado en un plano ya no parece pegado con celo, porque se oscurecen las esquinas y los contactos. Solo toca la luz ambiente, nunca la directa. Además, los colores de la interfaz pasan a ser editables a partir de unas pocas semillas; el tema por defecto sigue siendo exactamente el de antes.</p>
+        <a class="more" href="https://github.com/KCRooty/Iron3D-Studio/blob/master/docs/devlog/2026-11-03-ssao-y-colores.md" target="_blank" rel="noopener" data-en="Read the full note →">Leer la nota completa →</a>
+      </article>
+      <article class="card">
+        <span class="chan crt-txt" data-en="30 OCT 2026">30 OCT 2026</span>
+        <h3 data-en="PBR materials, shadows and multiple selection">Materiales PBR, sombras y selección múltiple</h3>
+        <p data-en="Physically based materials (metallic and roughness), hemisphere ambient light and shadows from the first spotlight. The shadows first failed to show at all: the light volume was 200 times bigger than the scene. On the handling side: multiple selection with the gizmo at its centre, and free rotate, move and scale modes.">Materiales con base física (metálico y rugosidad), luz ambiente de hemisferio y sombras del primer foco. Las sombras al principio no salían: el volumen de la luz era 200 veces más grande que la escena. En el manejo: selección múltiple con el gizmo en el centro y modos libres de rotar, mover y escalar.</p>
+        <a class="more" href="https://github.com/KCRooty/Iron3D-Studio/blob/master/docs/devlog/2026-10-30-pbr-sombras-seleccion.md" target="_blank" rel="noopener" data-en="Read the full note →">Leer la nota completa →</a>
+      </article>
+    </div>
+    <p style="margin-top:18px"><a href="https://github.com/KCRooty/Iron3D-Studio/blob/master/CHANGELOG.md" target="_blank" rel="noopener" data-en="Full list of changes (CHANGELOG) →">Lista completa de cambios (CHANGELOG) →</a></p>
+  </section>
+
   <section class="sec" aria-labelledby="h-clean" style="padding-top:0">
-    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="03 · CLEAN-ROOM">03 · CLEAN-ROOM</span></p>
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="04 · CLEAN-ROOM">04 · CLEAN-ROOM</span></p>
     <h2 id="h-clean" data-en="No Maxon code, anywhere">Ni una línea de código de Maxon</h2>
     <p class="sec-intro" data-en="Iron3D Studio only observes Cinema 4D R19 from the outside — input in, output out — the same model used by Wine, ReactOS or LibreOffice. No Maxon code, shader, preset or asset is ever copied, read or decompiled to write Iron3D's code. The full rules live in the repository's AGENTS.md file.">Iron3D Studio solo observa Cinema 4D R19 desde fuera — entrada y salida, comportamiento — el mismo modelo que usan Wine, ReactOS o LibreOffice. Nunca se copia, lee ni decompila código, shader, preset o asset de Maxon para escribir el código de Iron3D. Las reglas completas viven en el archivo AGENTS.md del repositorio.</p>
     <div class="cta" style="margin-top:26px">
