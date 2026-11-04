@@ -99,7 +99,7 @@ d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
       <article class="card">
         <span class="chan" data-en="WORKFLOW">FLUJO DE TRABAJO</span>
         <h3 data-en="Familiar, if you know C4D">Familiar, si conoces C4D</h3>
-        <p data-en="Orbital camera with Alt+click like Cinema 4D, a real Object Manager with hierarchy and selection, and planned compatibility with .c4d/.lib4d files and R19 plugins (always translated from Python 2 to Python 3).">Cámara orbital con Alt+clic como Cinema 4D, un Gestor de Objetos real con jerarquía y selección, y compatibilidad planeada con archivos .c4d/.lib4d y plugins de R19 (siempre traducidos de Python 2 a Python 3).</p>
+        <p data-en="Orbital camera with Alt+click like Cinema 4D, a real Object Manager with hierarchy and selection, .c4d import (Windows), and planned compatibility with .lib4d files and R19 plugins (always translated from Python 2 to Python 3).">Cámara orbital con Alt+clic como Cinema 4D, un Gestor de Objetos real con jerarquía y selección, importación de .c4d (Windows) y compatibilidad planeada con archivos .lib4d y plugins de R19 (siempre traducidos de Python 2 a Python 3).</p>
       </article>
     </div>
   </section>
@@ -118,7 +118,8 @@ d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
         <li><span class="ok">✓</span><span data-en="Rendering (Vulkan) — PBR materials with metallic/roughness, shadows from the first spotlight and screen-space ambient occlusion (SSAO)">Render (Vulkan) — materiales PBR con metálico/rugosidad, sombras del primer foco y oclusión ambiental en pantalla (SSAO)</span></li>
         <li><span class="ok">✓</span><span data-en="Gizmo — centred on the selection, view-plane rotation ring, free trackball rotation, and free move/scale when dragging outside the axes">Gizmo — en el centro de la selección, aro de rotación en el plano de vista, rotación libre tipo trackball y mover/escalar libres al arrastrar fuera de los ejes</span></li>
         <li><span class="ok">✓</span><span data-en="Interface refresh — 222 icons of our own, one per object and tool, and interface presets: Cinema 4D, Blender, Maya, 3ds Max and Source Filmmaker, plus your own">Refresh de la interfaz — 222 iconos propios, uno por objeto y herramienta, y presets de interfaz: Cinema 4D, Blender, Maya, 3ds Max y Source Filmmaker, además de los tuyos</span></li>
-        <li><span class="pend">○</span><span data-en="Next — .c4d/.lib4d import via the Cineware SDK">Siguiente — importación .c4d/.lib4d vía el Cineware SDK</span></li>
+        <li><span class="ok">✓</span><span data-en=".c4d import (Windows) — hierarchy, meshes, rebuilt primitives and materials, with a report of what did not come through">Importación .c4d (Windows) — jerarquía, mallas, primitivas reconstruidas y materiales, con un informe de lo que no entra</span></li>
+        <li><span class="pend">○</span><span data-en="Next — R19 .lib4d preset libraries">Siguiente — bibliotecas de presets .lib4d de R19</span></li>
       </ul>
       <figure class="shot">
         <img src="/assets/projects/iron3d-ui.webp" alt="Interfaz de Iron3D Studio: menús arriba, barra de herramientas con iconos, visor 3D con un cubo sobre una rejilla, Gestor de Objetos y Configuración del Proyecto a la derecha, Línea de Tiempo y Gestor de Coordenadas abajo." width="1600" height="858" loading="lazy" decoding="async">
@@ -135,6 +136,12 @@ d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
     <h2 id="h-notas" data-en="What we have been doing">Lo que hemos ido haciendo</h2>
     <p class="sec-intro" data-en="Each round of work, told plainly: what changed, why, and what is still untested. The long versions live in the repository.">Cada tanda de trabajo contada sin adornos: qué cambia, por qué y qué falta por probar. Las versiones largas están en el repositorio.</p>
     <div class="notes">
+      <article class="card">
+        <span class="chan crt-txt" data-en="4 NOV 2026">4 NOV 2026</span>
+        <h3 data-en="Iron3D now opens Cinema 4D files">Iron3D ya abre archivos de Cinema 4D</h3>
+        <p data-en="File › Open now takes .c4d, and File › Merge adds one to the open scene. The hierarchy, polygon meshes with their Phong smoothing, primitives rebuilt from their parameters and materials all come through; a report window lists what did not. It uses Maxon's free Cineware SDK only to read the file: the rest is our own code, and the SDK is not in the repository. The biggest test file has 573,368 polygons and loads in 3.6 seconds. Cameras, splines and deformers still arrive as Nulls, there are no UVs or textures yet, and there is no importer on Linux.">Archivo › Abrir ya acepta .c4d, y Archivo › Fusionar lo añade a la escena abierta. Entran la jerarquía, las mallas con su suavizado Phong, las primitivas rehechas con sus parámetros y los materiales, y una ventana avisa de lo que no ha entrado. Usa el Cineware SDK gratuito de Maxon solo para leer el archivo: el resto es código nuestro y el SDK no está en el repositorio. El archivo de prueba más grande tiene 573 368 polígonos y carga en 3,6 segundos. Las cámaras, splines y deformadores todavía entran como Nulos, aún no hay UV ni texturas y en Linux no hay importador.</p>
+        <a class="more" href="https://github.com/KCRooty/Iron3D-Studio/blob/master/docs/devlog/2026-11-04-importar-c4d.md" target="_blank" rel="noopener" data-en="Read the full note →">Leer la nota completa →</a>
+      </article>
       <article class="card">
         <span class="chan crt-txt" data-en="4 NOV 2026">4 NOV 2026</span>
         <h3 data-en="Every icon gets its own, and five ways to dress the interface">Cada icono, el suyo, y cinco formas de vestir la interfaz</h3>
@@ -160,7 +167,7 @@ d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
   <section class="sec" aria-labelledby="h-clean" style="padding-top:0">
     <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-en="04 · CLEAN-ROOM">04 · CLEAN-ROOM</span></p>
     <h2 id="h-clean" data-en="No Maxon code, anywhere">Ni una línea de código de Maxon</h2>
-    <p class="sec-intro" data-en="Iron3D Studio only observes Cinema 4D R19 from the outside — input in, output out — the same model used by Wine, ReactOS or LibreOffice. No Maxon code, shader, preset or asset is ever copied, read or decompiled to write Iron3D's code. The full rules live in the repository's AGENTS.md file.">Iron3D Studio solo observa Cinema 4D R19 desde fuera — entrada y salida, comportamiento — el mismo modelo que usan Wine, ReactOS o LibreOffice. Nunca se copia, lee ni decompila código, shader, preset o asset de Maxon para escribir el código de Iron3D. Las reglas completas viven en el archivo AGENTS.md del repositorio.</p>
+    <p class="sec-intro" data-en="Iron3D Studio only observes Cinema 4D R19 from the outside — input in, output out — the same model used by Wine, ReactOS or LibreOffice. No Maxon code, shader, preset or asset is ever copied, read or decompiled to write Iron3D's code. The only exception is the Cineware SDK, Maxon's free library for reading .c4d files: it is linked unmodified, it is optional, and it is not in the repository. The full rules live in the repository's AGENTS.md file.">Iron3D Studio solo observa Cinema 4D R19 desde fuera — entrada y salida, comportamiento — el mismo modelo que usan Wine, ReactOS o LibreOffice. Nunca se copia, lee ni decompila código, shader, preset o asset de Maxon para escribir el código de Iron3D. La única excepción es el Cineware SDK, la librería gratuita de Maxon para leer archivos .c4d: se enlaza sin modificar, es opcional y no está en el repositorio. Las reglas completas viven en el archivo AGENTS.md del repositorio.</p>
     <div class="cta" style="margin-top:26px">
       <a class="btn pri" href="https://github.com/KCRooty/Iron3D-Studio" target="_blank" rel="noopener" data-en="See the repo">Ver el repositorio</a>
       <a class="btn" href="/#proyectos" data-en="See other projects">Ver otros proyectos</a>
