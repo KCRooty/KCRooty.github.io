@@ -67,6 +67,9 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
 .state b{display:block;font:400 1.6rem/1.2 var(--fc);letter-spacing:.08em;color:var(--phosphor);margin-bottom:8px}
 .state a{color:var(--ink)}
 .state .btn{margin-top:16px}
+.login{max-width:340px;margin:8px auto 0;text-align:left}
+.login .btn{width:100%}
+.login .msg{min-height:1.4em;margin:10px 0 0;color:var(--muted)}
 @media (max-width:600px){.app dl{grid-template-columns:1fr;gap:2px}.app dd{margin-bottom:10px}.meta{margin-left:0;width:100%}.count{margin-left:0;width:100%}.del{margin-left:0}}
 </style>
 </head>
@@ -99,7 +102,7 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
   <section class="sec" aria-labelledby="h-sol" style="padding-bottom:0">
     <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span>ADMINISTRACIÓN</span></p>
     <h1 id="h-sol" class="h1" style="font-size:clamp(2.2rem,5vw,3.4rem)">Solicitudes</h1>
-    <p class="sec-intro">Lo que llega desde los formularios de «Únete». Solo lo ve una cuenta de administración del foro. Al aceptar o rechazar, la persona recibe un correo con la respuesta, en su idioma, y el mensaje de Discord se actualiza. Cada solicitud se borra sola a los 180 días.</p>
+    <p class="sec-intro">Lo que llega desde los formularios de «Únete». Solo lo ve la cuenta del estudio (Core); la API lo comprueba en cada petición. Al aceptar o rechazar, la persona recibe un correo con la respuesta, en su idioma, y el mensaje de Discord se actualiza. Cada solicitud se borra sola a los 180 días.</p>
     <div class="bar" id="bar" hidden>
       <div class="chips" role="group" aria-label="Formulario">
         <button type="button" class="chip" data-track="" aria-pressed="true">Todas</button>
@@ -219,13 +222,14 @@ function focusTarget(){
 function load(){
   if(!token){
     try{sessionStorage.setItem('sf-return',location.pathname+location.hash)}catch(e){}
-    state('SIN SESIÓN','Entra en el <a href="/foros.html">foro</a> con una cuenta de administración. Al entrar volverás aquí.');return;
+    state('SIN SESIÓN','Entra con la cuenta del estudio. Es la misma sesión del <a href="/foros.html">foro</a>.','<form class="login" id="loginForm" novalidate>'+'<div class="field"><label for="lgName">USUARIO</label><input id="lgName" name="name" autocomplete="username" required></div>'+'<div class="field"><label for="lgPass">CONTRASEÑA</label><input id="lgPass" name="pass" type="password" autocomplete="current-password" required></div>'+'<button class="btn pri" type="submit">Entrar</button><p class="msg" role="status"></p></form>');
+    var f=document.getElementById('lgName'); if(f) f.focus(); return;
   }
   state('SINTONIZANDO…','Cargando solicitudes.');
   var q=[]; if(track) q.push('track='+track); if(status) q.push('status='+status);
   api('/api/applications'+(q.length?'?'+q.join('&'):'')).then(function(r){
-    if(r.status===401){try{sessionStorage.setItem('sf-return',location.pathname+location.hash)}catch(e){}state('SIN SESIÓN','La sesión ha caducado. Vuelve a entrar en el <a href="/foros.html">foro</a>; al entrar volverás aquí.');return}
-    if(r.status===403){state('SIN ACCESO','Esta cuenta no es de administración.');return}
+    if(r.status===401){try{sessionStorage.setItem('sf-return',location.pathname+location.hash)}catch(e){}token=null;try{localStorage.removeItem('sf-forum-token')}catch(e){}load();return}
+    if(r.status===403){state('SIN ACCESO','Esta cuenta no puede ver las solicitudes: solo la cuenta del estudio.');return}
     if(!r.ok){throw new Error(r.d.message||'error')}
     bar.hidden=false;
     var list=r.d.applications||[];
@@ -252,6 +256,25 @@ document.querySelectorAll('.chip').forEach(function(b){b.addEventListener('click
 })});
 document.getElementById('stSel').addEventListener('change',function(e){status=e.target.value;load()});
 
+/* Entrar desde el panel: misma sesión y mismas claves que el foro. */
+out.addEventListener('submit',function(e){
+  if(e.target.id!=='loginForm') return;
+  e.preventDefault();
+  var fm=e.target, msg=fm.querySelector('.msg'), btn=fm.querySelector('button');
+  var name=fm.name.value.trim(), pass=fm.pass.value;
+  if(!name||!pass){msg.textContent='Escribe usuario y contraseña.';return}
+  btn.disabled=true; msg.textContent='Comprobando…';
+  fetch(API+'/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,pass:pass})})
+    .then(function(r){return r.json().catch(function(){return {}}).then(function(d){return {ok:r.ok,d:d}})})
+    .then(function(r){
+      btn.disabled=false; fm.pass.value='';
+      if(!r.ok){msg.textContent=r.d.message||'No se ha podido entrar.';return}
+      token=r.d.token;
+      try{localStorage.setItem('sf-forum-token',token);localStorage.setItem('sf-forum-user',JSON.stringify(r.d.user))}catch(e){}
+      if(!r.d.user||!r.d.user.apps){state('SIN ACCESO','Has entrado, pero esta cuenta no puede ver las solicitudes: solo la cuenta del estudio.');return}
+      load();
+    }).catch(function(){btn.disabled=false;msg.textContent='La API no responde.'});
+});
 out.addEventListener('click',function(e){
   if(e.target.closest('[data-retry]')){load();return}
   var art=e.target.closest('.app'); if(!art) return;

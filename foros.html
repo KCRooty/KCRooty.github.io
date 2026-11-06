@@ -222,7 +222,7 @@ function stateBox(title,text,retry){
 
 /* ── Sesión ── */
 var authForm=$('authForm'),authStatus=$('authStatus');
-/* Panel de solicitudes: cuantas hay sin ver. Solo para admin. */
+/* Panel de solicitudes: cuantas hay sin ver. Solo para la cuenta dueña (me.apps). */
 function countApps(){
   api('GET','/api/applications?status=nueva').then(function(d){
     var n=(d.applications||[]).length;
@@ -238,9 +238,10 @@ function syncAuth(){
   $('newBtn').textContent=me?'Nuevo hilo':'Entra para abrir un hilo';
   $('newBtn').disabled=!me;
   if(!me) $('newForm').classList.add('hidden');
-  var admin=!!(me&&me.role==='admin');
-  $('adminBox').classList.toggle('hidden',!admin);
-  if(admin) countApps();
+  var owner=!!(me&&me.apps);
+  $('adminBox').classList.toggle('hidden',!owner);
+  if(owner) countApps();
+  if(window.sfOwnerTab) sfOwnerTab(me);
   if(current) renderThreadForms();
 }
 var tsWidget=null,tsKey=null;
@@ -396,5 +397,6 @@ syncAuth();
 routeTo();
 })();
 </script>
+<script src="/assets/owner-tab.js?v=20261106a" defer></script>
 </body>
 </html>
