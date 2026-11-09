@@ -420,6 +420,65 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
 .gal-paint{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;margin-top:22px;padding:16px 20px;border:1px dashed var(--line);border-radius:var(--r)}
 .gal-paint p{color:var(--muted);margin:0}
 .gal-paint b{font:400 1.3rem var(--fc);letter-spacing:.05em;color:var(--ink);font-weight:400}
+/* ── Botón de sonido ── */
+.tbtn.snd{min-width:40px;display:inline-grid;place-items:center}
+/* ── Videoteca ── */
+#cintas{padding-top:40px}
+.vhs-lead{color:var(--muted);max-width:56ch;margin-top:10px}
+.shelf-wrap{position:relative;margin-top:28px}
+.shelf{display:flex;gap:10px;align-items:flex-end;overflow-x:auto;padding:22px 6px 0;scroll-snap-type:x proximity;scrollbar-width:thin}
+.shelf-board{height:14px;margin-top:-2px;border-radius:3px;background:linear-gradient(180deg,#6b4a2a,#3d2a17);box-shadow:0 10px 18px -8px rgba(0,0,0,.6),inset 0 2px 0 rgba(255,255,255,.12)}
+[data-theme="paper"] .shelf-board{background:linear-gradient(180deg,#b88a5a,#8a6238)}
+.tape{flex:none;scroll-snap-align:start;position:relative;width:62px;height:270px;border:0;border-radius:4px 4px 2px 2px;cursor:pointer;padding:12px 7px 10px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+  background:linear-gradient(90deg,#0d0b09,#22201c 18%,#191714 82%,#0a0908);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),0 6px 10px -6px rgba(0,0,0,.7);transition:transform .25s cubic-bezier(.2,.9,.3,1.3)}
+.tape:hover,.tape:focus-visible{transform:translateY(-16px) rotate(-1.5deg)}
+.tape:focus-visible{outline:2px solid var(--phosphor);outline-offset:3px}
+.tape-lbl{flex:1;width:100%;background:#F3E6CF;border-top:8px solid var(--lbl);border-bottom:8px solid var(--lbl);border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:8px 0;overflow:hidden}
+.tape-lbl b{writing-mode:vertical-rl;transform:rotate(180deg);font:700 .88rem/1 var(--fd);color:#1a1510;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-height:178px}
+.tape-lbl i{font:400 1rem/1 var(--fc);font-style:normal;color:#5a4d3a;writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.06em}
+.tape-brand{margin-top:8px;font:400 .82rem/1 var(--fc);color:rgba(243,230,207,.45);letter-spacing:.08em}
+/* reproductor */
+.vhsp{margin:auto;border:0;padding:0;background:transparent;width:min(94vw,820px);color:#FFF3DA}
+.vhsp::backdrop{background:rgba(6,4,3,.93)}
+.vcr{background:linear-gradient(170deg,#2E261E,#1A1510);border-radius:22px;padding:16px;box-shadow:inset 0 2px 0 rgba(255,255,255,.12),0 30px 60px -20px #000}
+.vscr{position:relative;aspect-ratio:4/3;max-height:62vh;width:100%;border-radius:18px/22px;overflow:hidden;background:#06090f;box-shadow:inset 0 0 0 3px #050403}
+.vscr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:saturate(1.25) contrast(1.08) sepia(.15)}
+.vscr img.wide{object-fit:contain;background:#000}
+.vscr img.fit{object-fit:contain;padding:16%;background:radial-gradient(circle at 50% 45%,#1d1813,#050403 70%)}
+.vscr.playing img{opacity:1;animation:vjit 4s steps(1) infinite}
+@keyframes vjit{0%,100%{transform:none}31%{transform:translateX(1.5px)}32%{transform:translateX(-2px) skewX(.6deg)}33%{transform:none}71%{transform:translateY(1px)}72%{transform:none}}
+.vscr.glitch img{transform:translateX(6px) skewX(4deg);filter:hue-rotate(40deg) saturate(2)}
+.vfx{position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.28) 0 1px,transparent 1px 3px),radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.7));mix-blend-mode:multiply}
+.vfx::after{content:"";position:absolute;inset:0;box-shadow:inset 3px 0 0 rgba(255,0,80,.18),inset -3px 0 0 rgba(0,200,255,.18)}
+.vband{position:absolute;left:0;right:0;height:16%;top:-20%;background:linear-gradient(180deg,transparent,rgba(255,255,255,.14) 40%,rgba(255,255,255,.22) 50%,rgba(255,255,255,.1) 60%,transparent);filter:blur(1px);mix-blend-mode:screen}
+.vscr.playing .vband{animation:vband 5.5s linear infinite}
+@keyframes vband{0%{top:-20%}100%{top:110%}}
+.vosd{position:absolute;inset:14px 18px auto;display:flex;justify-content:space-between;z-index:3;font:400 1.6rem/1 var(--fc);color:#FFF3DA;text-shadow:2px 2px 0 #000;opacity:0}
+.vscr.playing .vosd{opacity:1}
+.vplay{animation:blink 1s steps(2) 3}
+.vrec{position:absolute;left:18px;bottom:14px;z-index:3;font:400 1.5rem/1 var(--fc);color:#FFB000;text-shadow:2px 2px 0 #000;opacity:0;letter-spacing:.06em}
+.vscr.playing .vrec{opacity:1}
+.vload{position:absolute;inset:0;display:none;place-items:center;z-index:3;font:400 2rem/1 var(--fc);color:#FFF3DA;letter-spacing:.1em;background:#0b0806 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.2 -.2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");animation:nz2 .3s steps(3) infinite}
+@keyframes nz2{33%{background-position:-40px 20px}66%{background-position:30px -50px}}
+.vscr.loading .vload{display:grid}
+.vdeck{padding:14px 6px 2px}
+.vtitle{font:400 1.45rem/1.1 var(--fc);letter-spacing:.06em;color:#FFB000}
+.vcap{margin-top:8px;min-height:3em;color:#E9DCC4;font-size:1.02rem;max-width:62ch}
+.vbtns{display:flex;justify-content:center;gap:10px;margin-top:12px}
+.vbtns .tbtn{color:#F3E6CF;border-color:rgba(243,230,207,.3);min-width:46px}
+/* ── Créditos finales ── */
+.roll{position:relative;height:clamp(240px,30vw,360px);overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 22%,#000 78%,transparent)}
+.roll-in{position:absolute;left:0;right:0;top:0;text-align:center;transform:translateY(var(--from,360px))}
+.roll.go .roll-in{animation:roll var(--dur,40s) linear infinite}
+.roll:hover .roll-in,.roll:focus-within .roll-in{animation-play-state:paused}
+@keyframes roll{from{transform:translateY(var(--from,360px))}to{transform:translateY(calc(-100% - 10px))}}
+.rc-k{font:400 1.15rem/1 var(--fc);letter-spacing:.14em;color:var(--phosphor);margin:26px 0 8px}
+.rc-n{font:700 1.4rem/1.25 var(--fd);font-variation-settings:"SOFT" 100;color:var(--ink)}
+.rc-s{font-size:.95rem;color:var(--muted)}
+.rc-big{font:900 clamp(1.8rem,4vw,2.6rem)/1 var(--fd);font-variation-settings:"SOFT" 100,"opsz" 144;color:var(--ink);text-shadow:3px 3px 0 var(--s1),6px 6px 0 var(--s2),9px 9px 0 var(--s3);margin:14px 0 6px}
+.rc-end{font:400 2rem/1 var(--fc);letter-spacing:.2em;color:var(--ink);margin-top:40px}
+@media (prefers-reduced-motion:reduce){.roll{height:auto;-webkit-mask-image:none;mask-image:none}.roll-in{position:static;transform:none}.roll.go .roll-in{animation:none}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
@@ -453,6 +512,7 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
       </div>
       <button type="button" class="tbtn" id="themeBtn" aria-pressed="false"><span data-i18n="theme.paper">PAPEL</span></button>
       <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
+      <button type="button" class="tbtn snd" data-sound aria-pressed="false" aria-label="Sonido desactivado"></button>
       <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links"><span data-i18n="nav.menu">MENÚ</span></button>
     </div>
   </div>
@@ -693,6 +753,13 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
     </div>
   </section>
 
+  <section id="cintas" aria-labelledby="h-vhs">
+    <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="v.kicker">VIDEOTECA</span></p>
+    <h2 id="h-vhs" data-i18n="v.h">Cintas del taller</h2>
+    <p class="vhs-lead" data-i18n="v.p">El devlog del estudio, grabado en cinta. Elige una y métela en el vídeo.</p>
+    <div class="shelf-wrap"><div class="shelf" id="vhsShelf" role="list"></div><div class="shelf-board" aria-hidden="true"></div></div>
+  </section>
+
   <section id="galeria" aria-labelledby="h-gal">
     <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="gal.kicker">ARCHIVO DE IMAGEN</span></p>
     <h2 id="h-gal" data-i18n="gal.h">Galería</h2>
@@ -738,13 +805,35 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
     <path class="p2" vector-effect="non-scaling-stroke" d="M-20 70 C 380 70, 560 2, 900 10 S 1300 64, 1460 56"/>
     <path class="p3" vector-effect="non-scaling-stroke" d="M-20 126 C 380 126, 560 58, 900 66 S 1300 120, 1460 112"/>
   </svg>
-  <div class="deco-space" aria-hidden="true"></div>
+  <div class="roll" id="roll">
+    <div class="roll-in" id="rollIn"></div>
+  </div>
   <div class="wrap foot">
     <span class="eob crt-txt" data-i18n="f.eob">FIN DE LA EMISIÓN</span>
     <span>© 2026 Static Forge · KCRooty (Core) · <a href="https://github.com/KCRooty" target="_blank" rel="noopener">github.com/KCRooty</a> · <a href="https://discord.gg/bVdwvtnbuH" target="_blank" rel="noopener">Discord</a> · <a href="https://www.tiktok.com/@staticforge2" target="_blank" rel="noopener">TikTok</a></span>
   </div>
 </footer>
 
+<dialog class="vhsp" id="vhsPlayer" aria-labelledby="vhsTitle">
+  <div class="vcr">
+    <div class="vscr" id="vhsScr">
+      <img id="vhsImg" alt="">
+      <div class="vfx" aria-hidden="true"><i class="vband"></i></div>
+      <div class="vosd" aria-hidden="true"><span class="vplay">&#9654; PLAY</span><span>SP <span id="vhsClock">0:00:00</span></span></div>
+      <span class="vrec" id="vhsRec" aria-hidden="true"></span>
+      <span class="vload" aria-hidden="true">&#9654;&#9654; LOADING</span>
+    </div>
+    <div class="vdeck">
+      <p class="vtitle" id="vhsTitle"></p>
+      <p class="vcap" id="vhsCap" aria-live="polite"></p>
+      <div class="vbtns">
+        <button type="button" class="tbtn" id="vhsPrev" data-i18n-aria="v.prev" aria-label="Cinta anterior">&#9198;</button>
+        <button type="button" class="tbtn" id="vhsEject" aria-label="Expulsar"><span data-i18n="v.eject">&#9167; EXPULSAR</span></button>
+        <button type="button" class="tbtn" id="vhsNext" data-i18n-aria="v.next" aria-label="Cinta siguiente">&#9197;</button>
+      </div>
+    </div>
+  </div>
+</dialog>
 <dialog class="lb" id="lb" aria-labelledby="lbName">
   <img id="lbImg" src="" alt="">
   <div class="lb-bar"><span id="lbName"></span><span class="lb-nav"><button type="button" class="lb-close lb-step" id="lbPrev">&larr;</button><span class="lb-count" id="lbCount" aria-live="polite"></span><button type="button" class="lb-close lb-step" id="lbNext">&rarr;</button><button type="button" class="lb-close" id="lbClose" data-i18n="lb.close" autofocus>CERRAR [ESC]</button></span></div>
@@ -799,6 +888,8 @@ es:{'skip':'Saltar al contenido','ap.kicker':'SOLICITUD','ap.h':'Rellena la soli
 'd.anvil':'Launcher propio para Minecraft Java. Cada instancia guarda sus mods, partidas y opciones, y la lista de instancias y las noticias llegan en directo desde su servidor.',
 'feat.prev':'Canal anterior','feat.next':'Canal siguiente','feat.label':'Proyectos destacados','t.fan':'Antología fan','t.renders':'Renders 3D','t.fiction':'Ficción original','t.minecraft':'Minecraft Java','lada.soon':'PRÓXIMAMENTE',
 'live.upd':'ACT.','live.stars':'estrellas','f.shot':'Capturas','pi.k':'¿TE ABURRES?','pi.p':'Dibuja algo en Paint It!, el Paint de toda la vida dentro de la web.','pi.a':'Abrir Paint It!',
+'v.kicker':'VIDEOTECA','v.h':'Cintas del taller','v.p':'El devlog del estudio, grabado en cinta. Elige una y métela en el vídeo.','v.eject':'⏏ EXPULSAR','v.prev':'Cinta anterior','v.next':'Cinta siguiente',
+'rc.pre':'UNA PRODUCCIÓN DE','rc.from':'Desde el taller','rc.special':'CON LA COLABORACIÓN ESPECIAL DE','rc.you':'Ti, por sintonizar','rc.note':'Ningún píxel fue rastreado durante esta emisión.','rc.end':'FIN',
 'nav.join':"Únete",'s.mailk':"CONTACTO",'s.write':"Rellenar la solicitud",'r.1':"Arte 2D",'r.2':"Arte 3D",'r.3':"Producción musical",'r.4':"Programación",'r.5':"Desarrollo de juegos y apps",'r.6':"Doblaje y voz",'r.7':"Lo que hagas tú"},
 en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the application','ap.p':'Tell us who you are, what you do and what you would like to do in the studio, on its projects or with one of your own. It takes about five minutes. If you are interested in Static Linux or Forge OS specifically, they have their own application on the <a href="linux/#unete">Static Linux</a> and <a href="forge-os/#unete">Forge OS</a> pages (in Spanish).','nav.projects':'Projects','nav.workshop':"Studio",'nav.gallery':'Gallery','nav.forum':'Forum','nav.menu':'MENU',
 'theme.paper':'PAPER','theme.night':'NIGHT',
@@ -832,6 +923,8 @@ en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the appli
 'd.anvil':'A custom Minecraft Java launcher. Each instance keeps its own mods, saves and options, and the instance list and news arrive live from its server.',
 'feat.prev':'Previous channel','feat.next':'Next channel','feat.label':'Featured projects','t.fan':'Fan anthology','t.renders':'3D renders','t.fiction':'Original fiction','t.minecraft':'Minecraft Java','lada.soon':'COMING SOON',
 'live.upd':'UPD.','live.stars':'stars','f.shot':'Screenshots','pi.k':'BORED?','pi.p':'Draw something in Paint It!, good old Paint right inside the site.','pi.a':'Open Paint It!',
+'v.kicker':'VIDEO LIBRARY','v.h':'Tapes from the workshop','v.p':"The studio's devlog, recorded on tape. Pick one and put it in the VCR.",'v.eject':'⏏ EJECT','v.prev':'Previous tape','v.next':'Next tape',
+'rc.pre':'A PRODUCTION BY','rc.from':'From the workshop','rc.special':'WITH SPECIAL THANKS TO','rc.you':'You, for tuning in','rc.note':'No pixels were tracked during this broadcast.','rc.end':'THE END',
 'nav.join':"Join",'s.mailk':"CONTACT",'s.write':"Fill in the application",'r.1':"2D art",'r.2':"3D art",'r.3':"Music production",'r.4':"Programming",'r.5':"Game and app development",'r.6':"Voice acting",'r.7':"Whatever you do"}
 };
 var lang=d.getAttribute('lang')||'es';
@@ -841,7 +934,9 @@ function applyLang(l){
   lang=T[l]?l:'es'; d.setAttribute('lang',lang);
   document.querySelectorAll('[data-i18n]').forEach(function(el){el.innerHTML=t(el.getAttribute('data-i18n'))});
   document.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===lang))});
-  syncTheme(); renderG(); if(CH) renderFeat(); paintLiveSafe();
+  syncTheme(); renderG(); if(CH) renderFeat(); paintLiveSafe(); if(typeof buildCredits==='function') buildCredits();
+  document.querySelectorAll('[data-i18n-aria]').forEach(function(el){el.setAttribute('aria-label',t(el.getAttribute('data-i18n-aria')))});
+  try{document.dispatchEvent(new CustomEvent('sf:lang',{detail:lang}))}catch(e){}
 }
 document.querySelectorAll('[data-lang]').forEach(function(b){
   b.addEventListener('click',function(){save('sf-lang',b.dataset.lang);applyLang(b.dataset.lang)});
@@ -1006,7 +1101,7 @@ function renderFeat(){
   $('featLive').setAttribute('data-repo',c.repo||''); paintLive();
 }
 function zap(step){
-  fi=(fi+step+CH.length)%CH.length;
+  fi=(fi+step+CH.length)%CH.length; try{window.SFSound&&SFSound.zap()}catch(e){}
   fArt.classList.remove('zap'); void fArt.offsetWidth; fArt.classList.add('zap');
   setTimeout(renderFeat,90);
   var n=CH[(fi+step+CH.length)%CH.length]; if(n.img) new Image().src=n.img;
@@ -1052,6 +1147,27 @@ document.addEventListener('keydown',function(e){
   if(e.key==='0'){var now=Date.now();zeros=(now-zt<900)?zeros+1:1;zt=now;if(zeros>=2) location.href='canal-00/'}else zeros=0;
 });
 
+/* ── Créditos finales: se montan solos con el equipo y los creadores de la sección Estudio ── */
+function buildCredits(){
+  var box=document.getElementById('rollIn'); if(!box) return;
+  var h='<p class="rc-k">'+t('rc.pre')+'</p><p class="rc-big">Static Forge</p><p class="rc-s">'+t('rc.from')+'</p>';
+  document.querySelectorAll('#equipo .cr-group,#creadores .cr-group').forEach(function(g){
+    var role=g.querySelector('.cr-role');
+    g.querySelectorAll('.cr-list li').forEach(function(li){
+      var n=li.querySelector('.cr-name'),w=li.querySelector('.cr-what'),l=li.querySelector('.lnk');
+      h+='<p class="rc-k">'+esc((w?w.textContent:role?role.textContent:'').toUpperCase())+'</p><p class="rc-n">'+esc(n?n.textContent:'')+'</p>'+(l?'<p class="rc-s">'+esc(l.textContent.replace(' ↗',''))+'</p>':'');
+    });
+  });
+  h+='<p class="rc-k">'+t('rc.special')+'</p><p class="rc-n">'+t('rc.you')+'</p><p class="rc-s" style="margin-top:30px">'+t('rc.note')+'</p><p class="rc-end">'+t('rc.end')+'</p>';
+  box.innerHTML=h;
+  var roll=document.getElementById('roll'); roll.style.setProperty('--from',roll.clientHeight+'px');
+  roll.style.setProperty('--dur',Math.max(24,Math.round((box.scrollHeight+roll.clientHeight)/38))+'s');
+}
+(function(){
+  var roll=document.getElementById('roll'); if(!roll) return;
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){roll.classList.toggle('go',e.isIntersecting)})}).observe(roll)}else roll.classList.add('go');
+})();
+
 /* Contacto del estudio: dominio propio, enrutado al correo personal. */
 var addr=['staticforge','staticforge.me'].join('@'),href='mailto:'+addr+'?subject='+encodeURIComponent('Static Forge');
 var mail=document.getElementById('mail'); mail.href=href; mail.textContent=addr;
@@ -1060,5 +1176,7 @@ applyLang(lang);
 })();
 </script>
 <script src="/assets/owner-tab.js?v=20261106a" defer></script>
+<script src="assets/sound.js?v=20261109a"></script>
+<script src="assets/vhs.js?v=20261109a"></script>
 </body>
 </html>

@@ -66,6 +66,7 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
       </div>
       <button type="button" class="tbtn" id="themeBtn" aria-pressed="false">PAPEL</button>
       <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
+      <button type="button" class="tbtn" data-sound aria-pressed="false" aria-label="Sonido desactivado" style="min-width:40px"></button>
       <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">MENÚ</button>
     </div>
   </div>
@@ -117,6 +118,7 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
 
 <script src="/assets/sf.js"></script>
 <script src="/assets/lang.js"></script>
+<script src="/assets/sound.js?v=20261109a"></script>
 <script>
 /* Zapping: busca canales al entrar y propone la página que más se parece a la dirección escrita. */
 (function(){
@@ -144,7 +146,7 @@ function guess(){
   return score<=.4?best:-1;
 }
 function show(i){
-  cur=(i+CH.length)%CH.length;var c=CH[cur];
+  cur=(i+CH.length)%CH.length;var c=CH[cur];try{window.SFSound&&SFSound.zap()}catch(e){}
   scr.classList.remove('tuned');$('chNum').textContent='CH '+c.n;
   setTimeout(function(){img.src=c.img;img.className='chimg'+(c.fit?' fit':'');img.alt=en()?c.en:c.es;$('chName').textContent=en()?c.en:c.es;
     $('zGo').href=c.h;scr.classList.add('tuned')},calm?0:140);
