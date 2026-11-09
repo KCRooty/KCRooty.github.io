@@ -11,8 +11,14 @@
 <meta property="og:title" content="Static Forge · KCRooty (Core)">
 <meta property="og:description" content="Estudio independiente de juegos, programas, sistemas operativos, arte digital e historias. Abierto a colaboradores.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://staticforge.me">
-<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://staticforge.me/">
+<meta property="og:url" content="https://staticforge.me/">
+<meta property="og:site_name" content="Static Forge">
+<meta property="og:image" content="https://staticforge.me/assets/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://staticforge.me/assets/og/home.jpg">
 <meta name="theme-color" content="#14100C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -181,6 +187,8 @@ h1 .forge{display:block;text-shadow:3px 3px 0 var(--s1),6px 6px 0 var(--s2),9px 
 .tv-foot{display:flex;align-items:center;gap:14px;padding:12px 6px 14px}
 .tv-model{font:700 .68rem/1 var(--fb);letter-spacing:.24em;color:var(--case-label);margin-right:auto}
 .knob{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.35),rgba(0,0,0,.35) 75%),var(--case2);box-shadow:inset 0 0 0 1px rgba(0,0,0,.35)}
+.knob-sec{display:block;cursor:var(--cur-link,pointer);transition:transform .4s}
+.knob-sec:hover{transform:rotate(-120deg)}
 .led{width:8px;height:8px;border-radius:50%;background:var(--phosphor);box-shadow:0 0 8px var(--phosphor)}
 
 /* ── Secciones ─────────────────────────────────────────────────────────── */
@@ -253,6 +261,31 @@ h2{font-family:var(--fd);font-weight:800;font-variation-settings:"SOFT" 100,"ops
 .g-mem .dot{background:transparent;border:2px solid var(--muted)}
 .pj-logo{display:block;width:56px;height:56px;border-radius:var(--r-sm);border:1px solid var(--line);margin-bottom:12px;object-fit:contain;background:var(--surface)}
 .row .st + .st{margin-top:0}
+/* Tele de proyectos: cambio de canal (flechas, teclado y deslizar) */
+.feature-art{overflow:hidden}
+.feature-art img.fit{object-fit:contain;padding:18%;filter:none;background:radial-gradient(circle at 50% 45%,#1d1813,#050403 70%)}
+.feature-art .bars{position:absolute;inset:0;display:none;grid-template-columns:repeat(7,1fr)}
+.feature-art .bars i:nth-child(1){background:#C0C0C0}.feature-art .bars i:nth-child(2){background:#C0C000}.feature-art .bars i:nth-child(3){background:#00C0C0}.feature-art .bars i:nth-child(4){background:#00C000}.feature-art .bars i:nth-child(5){background:#C000C0}.feature-art .bars i:nth-child(6){background:#C00000}.feature-art .bars i:nth-child(7){background:#0000C0}
+.feature-art .bars b{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:6px 14px;background:#000;color:#fff;font:400 1.6rem/1 var(--fc);letter-spacing:.12em;white-space:nowrap}
+.feature-art.nosig .bars{display:grid}.feature-art.nosig img{visibility:hidden}
+.zapfx{position:absolute;inset:0;z-index:2;opacity:0;pointer-events:none;background:#0b0806 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.feature-art.zap .zapfx{animation:zap .32s steps(4) both}
+@keyframes zap{0%{opacity:1;background-position:0 0}25%{background-position:-40px 30px}50%{background-position:60px -20px;opacity:1}100%{opacity:0;background-position:-10px 50px}}
+.tune{position:absolute;left:12px;right:12px;bottom:12px;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:10px;pointer-events:none}
+.tune-b{pointer-events:auto;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,243,218,.35);background:rgba(11,8,6,.72);color:#FFF3DA;font:400 2rem/1 var(--fc);cursor:pointer;display:grid;place-items:center;padding-bottom:4px;transition:background .2s,border-color .2s,transform .15s}
+.tune-b:hover{border-color:var(--phosphor);color:var(--phosphor)}
+.tune-b:active{transform:scale(.94)}
+.tune-b:focus-visible{outline:2px solid var(--phosphor);outline-offset:2px}
+.tune-n{font:400 1.35rem/1 var(--fc);letter-spacing:.08em;color:#FFF3DA;text-shadow:2px 2px 0 #000;background:rgba(11,8,6,.6);padding:5px 10px;border-radius:6px}
+.feature .soon{align-self:center;font:400 1.05rem var(--fc);letter-spacing:.05em;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.feature-art.zap .zapfx{animation:none}}
+/* Estado en vivo (assets/data/status.json, generado por una GitHub Action) */
+.live{display:block;font:400 1rem/1.3 var(--fc);letter-spacing:.05em;color:var(--s3);margin-top:3px}
+.live:empty{display:none}
+.feature .live{margin:-6px 0 12px;font-size:1.1rem}
+[data-theme="paper"] .live{color:var(--s3)}
+/* Logos negros (Static Linux): en Noche se perdían contra la superficie oscura. */
+[data-theme="night"] .pj-logo.pj-dark{filter:brightness(1.9) saturate(1.25);border-color:var(--s3);box-shadow:0 0 0 1px rgba(76,157,176,.35),0 0 14px rgba(76,157,176,.28)}
 /* Creadores de contenido: misma composición que los créditos; el canal es un enlace de 44 px */
 .creators{margin-top:56px}
 .creators .cr-list li{align-items:center}
@@ -358,12 +391,7 @@ footer{padding:0 0 40px}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
-.apply{margin-top:56px;max-width:860px}
-.apply h3{font:600 clamp(1.5rem,3vw,1.9rem)/1.15 var(--fd);margin-top:10px}
-.apply>p{color:var(--muted);margin-top:10px;max-width:62ch}
-.apply>p a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 </style>
-<link rel="stylesheet" href="assets/join.css?v=20261027a">
 </head>
 <body>
 <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
@@ -380,7 +408,7 @@ footer{padding:0 0 40px}
       <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
       <li><a href="#taller" data-i18n="nav.workshop">Estudio</a></li>
       <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
-      <li><a href="#unete" data-i18n="nav.join">Únete</a></li>
+      <li><a href="unete.html" data-i18n="nav.join">Únete</a></li>
       <li><a href="foros.html" data-i18n="nav.forum">Foro</a></li>
     </ul>
     <div class="ctrls">
@@ -438,7 +466,7 @@ footer{padding:0 0 40px}
         </svg>
         <div class="track"></div>
       </div>
-      <div class="tv-foot"><span class="tv-model">SF-2001</span><span class="knob"></span><span class="knob"></span><span class="led"></span></div>
+      <div class="tv-foot"><span class="tv-model">SF-2001</span><span class="knob"></span><a class="knob knob-sec" href="canal-00/" tabindex="-1" title="?"></a><span class="led"></span></div>
     </div>
   </header>
 </div>
@@ -455,15 +483,25 @@ footer{padding:0 0 40px}
     <h2 id="h-proj" data-i18n="proj.h">Lo que sale del taller</h2>
     <p class="sec-intro" data-i18n="proj.intro">Juegos, herramientas y sistemas. Cada canal es un proyecto, con su estado real.</p>
 
-    <article class="feature">
-      <div class="feature-art"><img src="assets/donnies/donnie-suit-head.webp" alt="Render 3D en progreso del endoesqueleto de Donnie" width="286" height="281" loading="lazy"></div>
+    <article class="feature" id="feat" aria-roledescription="carrusel" aria-label="Proyectos destacados">
+      <div class="feature-art" id="featArt">
+        <img id="featImg" src="assets/donnies/donnie-suit-head.webp" alt="Render 3D en progreso del endoesqueleto de Donnie" width="286" height="281" loading="lazy">
+        <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b>NO SIGNAL</b></div>
+        <div class="zapfx" aria-hidden="true"></div>
+        <div class="tune">
+          <button type="button" class="tune-b" id="featPrev" aria-label="Canal anterior">&lsaquo;</button>
+          <span class="tune-n" id="featCount" aria-hidden="true">CH 02</span>
+          <button type="button" class="tune-b" id="featNext" aria-label="Canal siguiente">&rsaquo;</button>
+        </div>
+      </div>
       <div class="feature-body">
-        <span class="chan">CH 02 · <span data-i18n="st.devsince">EN DESARROLLO · DESDE 2021</span></span>
-        <img class="pj-logo" src="assets/projects/donnies.webp" alt="" width="56" height="56" loading="lazy">
-        <h3>Donnie's Origins</h3>
-        <p data-i18n="d.donnies">Fangame de terror analógico inspirado en FNaF, hecho en Source Engine. Un universo propio con dos juegos en el mismo canon: Remastered y The Underground.</p>
-        <div class="tags"><span class="tag">Source SDK 2013</span><span class="tag" data-i18n="t.analog">Terror analógico</span><span class="tag">3D</span></div>
-        <div class="cta">
+        <span class="chan" id="featChan">CH 02 · <span data-i18n="st.devsince">EN DESARROLLO · DESDE 2021</span></span>
+        <img class="pj-logo" id="featLogo" src="assets/projects/donnies.webp" alt="" width="56" height="56" loading="lazy">
+        <h3 id="featTitle" aria-live="polite">Donnie's Origins</h3>
+        <span class="live" id="featLive"></span>
+        <p id="featDesc" data-i18n="d.donnies">Fangame de terror analógico inspirado en FNaF, hecho en Source Engine. Un universo propio con dos juegos en el mismo canon: Remastered y The Underground.</p>
+        <div class="tags" id="featTags"><span class="tag">Source SDK 2013</span><span class="tag" data-i18n="t.analog">Terror analógico</span><span class="tag">3D</span></div>
+        <div class="cta" id="featCta">
           <a class="btn pri" href="donnies.html" data-i18n="a.donnies">Ver Donnie's Origins</a>
           <a class="btn" href="https://gamejolt.com/games/Donnies2001/885221" target="_blank" rel="noopener">GameJolt ↗</a>
         </div>
@@ -494,19 +532,19 @@ footer{padding:0 0 40px}
         <ul class="rows">
           <li class="row">
             <span class="chan">05</span>
-            <div><img class="pj-logo" src="assets/projects/xusb.webp" alt="" width="56" height="56" loading="lazy"><h4>X-USB</h4><span class="st" data-i18n="st.active">ACTIVO</span></div>
+            <div><img class="pj-logo" src="assets/projects/xusb.webp" alt="" width="56" height="56" loading="lazy"><h4>X-USB</h4><span class="st" data-i18n="st.active">ACTIVO</span><span class="live" data-repo="xusb"></span></div>
             <p data-i18n="d.xusb">App Android libre al estilo Rufus y Ventoy: grabar ISOs, USB multiarranque UEFI y particiones desde el móvil. Gratis, sin anuncios. Necesita root.</p>
             <div class="acts"><a class="lnk" href="https://github.com/KCRooty/X-USB" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
           <li class="row">
             <span class="chan">06</span>
-            <div><img class="pj-logo" src="assets/projects/rck.webp" alt="" width="56" height="56" loading="lazy"><h4>RCK</h4><span class="st" data-i18n="st.active">ACTIVO</span></div>
+            <div><img class="pj-logo" src="assets/projects/rck.webp" alt="" width="56" height="56" loading="lazy"><h4>RCK</h4><span class="st" data-i18n="st.active">ACTIVO</span><span class="live" data-repo="rck"></span></div>
             <p data-i18n="d.rck">Optimizador de Windows 10 y 11 donde cada ajuste se puede deshacer: copia del registro antes de cada cambio y catálogo firmado.</p>
             <div class="acts"><a class="lnk" href="https://github.com/KCRooty/RCK" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
           <li class="row">
             <span class="chan">07</span>
-            <div><img class="pj-logo" src="assets/projects/kc-downloader.webp" alt="" width="56" height="56" loading="lazy"><h4>KC Downloader</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span></div>
+            <div><img class="pj-logo" src="assets/projects/kc-downloader.webp" alt="" width="56" height="56" loading="lazy"><h4>KC Downloader</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span><span class="live" data-repo="kcdl"></span></div>
             <p data-i18n="d.kc">Descargador de escritorio para YouTube, YouTube Music, Spotify y Pinterest, construido sobre yt-dlp y spotdl. Sin terminar: arranca, pero falla al descargar y todavía no funciona en equipos ajenos de Windows ni de Linux; la idea es que la descarga venga con todo incluido y aún no es así.</p>
             <div class="acts"><a class="lnk" href="https://github.com/KCRooty/kc-downloader" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
@@ -518,7 +556,7 @@ footer{padding:0 0 40px}
           </li>
           <li class="row">
             <span class="chan">09</span>
-            <div><img class="pj-logo" src="assets/projects/iron3d-studio.webp" alt="" width="56" height="56" loading="lazy"><h4>Iron3D Studio</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span></div>
+            <div><img class="pj-logo" src="assets/projects/iron3d-studio.webp" alt="" width="56" height="56" loading="lazy"><h4>Iron3D Studio</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span><span class="live" data-repo="iron3d"></span></div>
             <p data-i18n="d.iron3d">Motor 3D propio en C++/Vulkan que recrea el flujo de trabajo de un DCC clásico desde cero: Gestor de Objetos, cámara orbital y pipeline gráfico, sin una línea de código ajena.</p>
             <div class="acts"><a class="lnk" href="i3ds.html" data-i18n="a.page">Ver la página</a><a class="lnk" href="https://github.com/KCRooty/Iron3D-Studio" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
@@ -530,13 +568,13 @@ footer{padding:0 0 40px}
         <ul class="rows">
           <li class="row">
             <span class="chan">10</span>
-            <div><img class="pj-logo" src="assets/projects/static-linux.webp" alt="" width="56" height="56" loading="lazy"><h4>Static Linux</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span></div>
+            <div><img class="pj-logo pj-dark" src="assets/projects/static-linux.webp" alt="" width="56" height="56" loading="lazy"><h4>Static Linux</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span><span class="live" data-repo="linux"></span></div>
             <p data-i18n="d.sl">Distro basada en Arch. sl-detect mira tu hardware y elige el escritorio adecuado, de Openbox a Hyprland. La primera ISO ya arranca e instala de principio a fin.</p>
             <div class="acts"><a class="lnk" href="linux/" data-i18n="a.page">Ver la página</a></div>
           </li>
           <li class="row">
             <span class="chan">11</span>
-            <div><img class="pj-logo" src="assets/projects/forge-os.webp" alt="" width="56" height="56" loading="lazy"><h4>Forge OS</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span></div>
+            <div><img class="pj-logo" src="assets/projects/forge-os.webp" alt="" width="56" height="56" loading="lazy"><h4>Forge OS</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span><span class="live" data-repo="forgeos"></span></div>
             <p data-i18n="d.fos">Un sistema operativo completo escrito desde cero en Rust: kernel propio para x86_64 y userland propio (Ember, Bellows, Crucible y Anvil).</p>
             <div class="acts"><a class="lnk" href="forge-os/" data-i18n="a.page">Ver la página</a><a class="lnk" href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
@@ -645,18 +683,12 @@ footer{padding:0 0 40px}
         <p class="contact"><span class="crt-txt" data-i18n="s.mailk">CONTACTO</span> <a class="mail" id="mail" href="#unete">staticforge (arroba) staticforge.me</a></p>
       </div>
       <div class="cta">
-        <a class="btn pri" id="applyBtn" href="#solicitud" data-i18n="s.write">Rellenar la solicitud</a>
+        <a class="btn pri" href="unete.html#solicitud" data-i18n="s.write">Rellenar la solicitud</a>
         <a class="btn" href="https://discord.gg/bVdwvtnbuH" target="_blank" rel="noopener">Discord ↗</a>
         <a class="btn" href="https://github.com/KCRooty" target="_blank" rel="noopener">GitHub ↗</a>
         <a class="btn" href="https://www.tiktok.com/@staticforge2" target="_blank" rel="noopener">TikTok ↗</a>
         <a class="lnk" href="foros.html" data-i18n="s.forum">Foro</a>
       </div>
-    </div>
-    <div class="apply" id="solicitud">
-      <p class="kicker crt-txt"><span class="stripes" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="ap.kicker">SOLICITUD</span></p>
-      <h3 data-i18n="ap.h">Rellena la solicitud</h3>
-      <p data-i18n="ap.p">Cuéntanos quién eres, qué haces y qué te gustaría hacer en el estudio, en sus proyectos o con uno tuyo. Lleva unos cinco minutos. Si te interesa Static Linux o Forge OS en concreto, tienen su propia solicitud en <a href="linux/#unete">Static Linux</a> y en <a href="forge-os/#unete">Forge OS</a>.</p>
-      <form class="joinf" data-join="sf" novalidate aria-labelledby="h-sig"></form>
     </div>
   </section>
 </div>
@@ -717,7 +749,8 @@ es:{'skip':'Saltar al contenido','ap.kicker':'SOLICITUD','ap.h':'Rellena la soli
 'g.mem':'De los integrantes','st.byalcraft':'DE ALCRAFT','st.early':'DESARROLLO TEMPRANO',
 'cc.k':'EN ANTENA','cc.h':'Creadores de contenido',
 'd.anvil':'Launcher propio para Minecraft Java. Cada instancia guarda sus mods, partidas y opciones, y la lista de instancias y las noticias llegan en directo desde su servidor.',
-'nav.join':"Únete",'s.mailk':"CONTACTO",'s.write':"Rellenar la solicitud",'r.1':"Arte 2D",'r.2':"Arte 3D",'r.3':"Producción musical",'r.4':"Programación",'r.5':"Desarrollo de juegos y apps",'r.6':"Doblaje y voz",'r.7':"Lo que hagas tú"},
+'feat.prev':'Canal anterior','feat.next':'Canal siguiente','feat.label':'Proyectos destacados','t.fan':'Antología fan','t.renders':'Renders 3D','t.fiction':'Ficción original','t.minecraft':'Minecraft Java','lada.soon':'PRÓXIMAMENTE',
+'live.upd':'ACT.','live.stars':'estrellas','nav.join':"Únete",'s.mailk':"CONTACTO",'s.write':"Rellenar la solicitud",'r.1':"Arte 2D",'r.2':"Arte 3D",'r.3':"Producción musical",'r.4':"Programación",'r.5':"Desarrollo de juegos y apps",'r.6':"Doblaje y voz",'r.7':"Lo que hagas tú"},
 en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the application','ap.p':'Tell us who you are, what you do and what you would like to do in the studio, on its projects or with one of your own. It takes about five minutes. If you are interested in Static Linux or Forge OS specifically, they have their own application on the <a href="linux/#unete">Static Linux</a> and <a href="forge-os/#unete">Forge OS</a> pages (in Spanish).','nav.projects':'Projects','nav.workshop':"Studio",'nav.gallery':'Gallery','nav.forum':'Forum','nav.menu':'MENU',
 'theme.paper':'PAPER','theme.night':'NIGHT',
 'hero.osd':'CH 01 · BROADCASTING FROM THE WORKSHOP','hero.lead':"Games, software, operating systems, digital art and stories. <strong>An independent studio founded by KCRooty (Core)</strong>, open to anyone who wants to join.",
@@ -748,15 +781,17 @@ en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the appli
 'g.mem':'By our members','st.byalcraft':'BY ALCRAFT','st.early':'EARLY DEVELOPMENT',
 'cc.k':'ON AIR','cc.h':'Content creators',
 'd.anvil':'A custom Minecraft Java launcher. Each instance keeps its own mods, saves and options, and the instance list and news arrive live from its server.',
-'nav.join':"Join",'s.mailk':"CONTACT",'s.write':"Fill in the application",'r.1':"2D art",'r.2':"3D art",'r.3':"Music production",'r.4':"Programming",'r.5':"Game and app development",'r.6':"Voice acting",'r.7':"Whatever you do"}
+'feat.prev':'Previous channel','feat.next':'Next channel','feat.label':'Featured projects','t.fan':'Fan anthology','t.renders':'3D renders','t.fiction':'Original fiction','t.minecraft':'Minecraft Java','lada.soon':'COMING SOON',
+'live.upd':'UPD.','live.stars':'stars','nav.join':"Join",'s.mailk':"CONTACT",'s.write':"Fill in the application",'r.1':"2D art",'r.2':"3D art",'r.3':"Music production",'r.4':"Programming",'r.5':"Game and app development",'r.6':"Voice acting",'r.7':"Whatever you do"}
 };
 var lang=d.getAttribute('lang')||'es';
+function paintLiveSafe(){try{paintLive()}catch(e){}}
 function t(k){return (T[lang]&&T[lang][k])||T.es[k]||k}
 function applyLang(l){
   lang=T[l]?l:'es'; d.setAttribute('lang',lang);
   document.querySelectorAll('[data-i18n]').forEach(function(el){el.innerHTML=t(el.getAttribute('data-i18n'))});
   document.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===lang))});
-  syncTheme(); renderG();
+  syncTheme(); renderG(); if(CH) renderFeat(); paintLiveSafe();
 }
 document.querySelectorAll('[data-lang]').forEach(function(b){
   b.addEventListener('click',function(){save('sf-lang',b.dataset.lang);applyLang(b.dataset.lang)});
@@ -868,24 +903,97 @@ document.getElementById('lbClose').addEventListener('click',function(){lb.close(
 lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
 lb.addEventListener('close',function(){if(opener)opener.focus()});
 
+/* ── Tele de proyectos: cambio de canal ──
+   El primer canal (Donnie's) va escrito en el HTML; el resto se pinta aquí. La lista de abajo no se toca. */
+var GH='https://github.com/KCRooty/';
+var CH=[
+  {ch:'02',img:'assets/donnies/donnie-suit-head.webp',alt:'Render 3D en progreso del endoesqueleto de Donnie',logo:'assets/projects/donnies.webp',title:"Donnie's Origins",st:['st.devsince'],d:'d.donnies',tags:['Source SDK 2013',{k:'t.analog'},'3D'],cta:[{h:'donnies.html',k:'a.donnies',pri:1},{h:'https://gamejolt.com/games/Donnies2001/885221',x:'GameJolt ↗',ext:1}]},
+  {ch:'03',img:'assets/fnaf-as/ep01-render.webp',alt:'Render del episodio 1 de FNAF AS',bright:1,logo:'assets/projects/fnaf-as.webp',title:'FNAF AS',st:['st.dev'],d:'d.fnafas',tags:[{k:'t.fan'},{k:'t.renders'},{k:'t.analog'}],cta:[{h:'fnaf-as.html',k:'a.page',pri:1}]},
+  {ch:'04',nosig:1,title:'LADA',st:['st.build'],d:'d.lada',tags:[{k:'t.fiction'}],soon:'a.soon'},
+  {ch:'05',img:'assets/projects/xusb.webp',fit:1,logo:'assets/projects/xusb.webp',title:'X-USB',repo:'xusb',st:['st.active'],d:'d.xusb',tags:['Android','Root','UEFI'],cta:[{h:GH+'X-USB',x:'GitHub ↗',ext:1,pri:1}]},
+  {ch:'06',img:'assets/projects/rck.webp',fit:1,logo:'assets/projects/rck.webp',title:'RCK',repo:'rck',st:['st.active'],d:'d.rck',tags:['Windows 10','Windows 11'],cta:[{h:GH+'RCK',x:'GitHub ↗',ext:1,pri:1}]},
+  {ch:'07',img:'assets/projects/kc-downloader.webp',fit:1,logo:'assets/projects/kc-downloader.webp',title:'KC Downloader',repo:'kcdl',st:['st.dev'],d:'d.kc',tags:['yt-dlp','spotdl'],cta:[{h:GH+'kc-downloader',x:'GitHub ↗',ext:1,pri:1}]},
+  {ch:'08',img:'assets/projects/winforge.webp',fit:1,logo:'assets/projects/winforge.webp',title:'WinForge',st:['st.test'],d:'d.winforge',tags:['Windows 11','ISO'],soon:'a.unpub'},
+  {ch:'09',img:'assets/projects/iron3d-ui.webp',alt:'Interfaz de Iron3D Studio',logo:'assets/projects/iron3d-studio.webp',title:'Iron3D Studio',repo:'iron3d',st:['st.dev'],d:'d.iron3d',tags:['C++','Vulkan','3D'],cta:[{h:'i3ds.html',k:'a.page',pri:1},{h:GH+'Iron3D-Studio',x:'GitHub ↗',ext:1}]},
+  {ch:'10',img:'assets/projects/static-linux.webp',fit:1,logo:'assets/projects/static-linux.webp',dark:1,title:'Static Linux',repo:'linux',st:['st.dev'],d:'d.sl',tags:['Arch','sl-detect'],cta:[{h:'linux/',k:'a.page',pri:1}]},
+  {ch:'11',img:'assets/projects/forge-os.webp',fit:1,logo:'assets/projects/forge-os.webp',title:'Forge OS',repo:'forgeos',st:['st.dev'],d:'d.fos',tags:['Rust','x86_64'],cta:[{h:'forge-os/',k:'a.page',pri:1},{h:GH+'ForgeOS',x:'GitHub ↗',ext:1}]},
+  {ch:'12',img:'assets/projects/anvil-client.webp',fit:1,logo:'assets/projects/anvil-client.webp',title:'Anvil Client',st:['st.early','st.byalcraft'],d:'d.anvil',tags:[{k:'t.minecraft'}],soon:'a.unpub'}
+];
+var fi=0,fArt=document.getElementById('featArt'),fImg=document.getElementById('featImg');
+var $=function(id){return document.getElementById(id)};
+function tagHtml(x){return '<span class="tag">'+(typeof x==='string'?esc(x):t(x.k))+'</span>'}
+function renderFeat(){
+  var c=CH[fi];
+  $('featChan').innerHTML='CH '+c.ch+' · '+c.st.map(t).join(' · ');
+  $('featCount').textContent='CH '+c.ch+' / '+CH[CH.length-1].ch;
+  $('featTitle').textContent=c.title;
+  $('featDesc').innerHTML=t(c.d); $('featDesc').setAttribute('data-i18n',c.d);
+  $('featTags').innerHTML=c.tags.map(tagHtml).join('');
+  $('featCta').innerHTML=c.soon?'<span class="soon">'+t(c.soon)+'</span>':c.cta.map(function(b){
+    return '<a class="btn'+(b.pri?' pri':'')+'" href="'+b.h+'"'+(b.ext?' target="_blank" rel="noopener"':'')+'>'+(b.k?t(b.k):esc(b.x))+'</a>';
+  }).join('');
+  var lg=$('featLogo'); lg.style.display=c.logo?'':'none'; if(c.logo){lg.src=c.logo} lg.classList.toggle('pj-dark',!!c.dark);
+  fArt.classList.toggle('nosig',!!c.nosig);
+  fArt.querySelector('.bars b').textContent=c.nosig?t('lada.soon'):'NO SIGNAL';
+  if(!c.nosig){fImg.src=c.img; fImg.alt=c.alt||c.title; fImg.classList.toggle('fit',!!c.fit); fImg.style.filter=c.bright?'brightness(1.7) contrast(1.05) sepia(.25)':''}
+  $('featPrev').setAttribute('aria-label',t('feat.prev')); $('featNext').setAttribute('aria-label',t('feat.next'));
+  $('feat').setAttribute('aria-label',t('feat.label'));
+  $('featLive').setAttribute('data-repo',c.repo||''); paintLive();
+}
+function zap(step){
+  fi=(fi+step+CH.length)%CH.length;
+  fArt.classList.remove('zap'); void fArt.offsetWidth; fArt.classList.add('zap');
+  setTimeout(renderFeat,90);
+  var n=CH[(fi+step+CH.length)%CH.length]; if(n.img) new Image().src=n.img;
+}
+$('featPrev').addEventListener('click',function(){zap(-1)});
+$('featNext').addEventListener('click',function(){zap(1)});
+$('feat').addEventListener('keydown',function(e){
+  if(e.target.closest('a,input,textarea')) return;
+  if(e.key==='ArrowLeft'){e.preventDefault();zap(-1)} else if(e.key==='ArrowRight'){e.preventDefault();zap(1)}
+});
+var fx=null;
+fArt.addEventListener('touchstart',function(e){fx=e.touches[0].clientX},{passive:true});
+fArt.addEventListener('touchend',function(e){if(fx===null)return;var dx=e.changedTouches[0].clientX-fx;fx=null;if(Math.abs(dx)>40)zap(dx<0?1:-1)});
+
+/* ── Estado en vivo: assets/data/status.json (mismo dominio, sin llamadas a terceros) ── */
+var LIVE=null;
+function ago(iso){
+  var s=(Date.now()-Date.parse(iso))/1000; if(!(s>=0)) return '';
+  var u=[['year',31536000],['month',2592000],['week',604800],['day',86400],['hour',3600],['minute',60]];
+  try{var rtf=new Intl.RelativeTimeFormat(lang,{numeric:'auto'});
+    for(var i=0;i<u.length;i++){if(s>=u[i][1]) return rtf.format(-Math.floor(s/u[i][1]),u[i][0])}
+    return rtf.format(0,'minute');
+  }catch(e){return iso.slice(0,10)}
+}
+function paintLive(){
+  if(!LIVE) return;
+  document.querySelectorAll('.live[data-repo]').forEach(function(el){
+    var p=LIVE[el.getAttribute('data-repo')]; if(!p){el.textContent='';return}
+    var bits=[];
+    if(p.last_commit) bits.push(t('live.upd')+' '+ago(p.last_commit).toUpperCase());
+    if(p.version) bits.push(p.version);
+    if(p.stars) bits.push('★ '+p.stars);
+    el.textContent=bits.join(' · ');
+    el.title=p.stars?p.stars+' '+t('live.stars'):'';
+  });
+}
+try{fetch('assets/data/status.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.projects){LIVE=j.projects;paintLive()}}).catch(function(){})}catch(e){}
+
+/* Canal 00: el segundo botón de la tele o teclear 0 0 fuera de un campo. */
+var zeros=0,zt=0;
+document.addEventListener('keydown',function(e){
+  if(e.target.closest('input,textarea,select,[contenteditable]')||e.ctrlKey||e.metaKey||e.altKey) return;
+  if(e.key==='0'){var now=Date.now();zeros=(now-zt<900)?zeros+1:1;zt=now;if(zeros>=2) location.href='canal-00/'}else zeros=0;
+});
+
 /* Contacto del estudio: dominio propio, enrutado al correo personal. */
 var addr=['staticforge','staticforge.me'].join('@'),href='mailto:'+addr+'?subject='+encodeURIComponent('Static Forge');
 var mail=document.getElementById('mail'); mail.href=href; mail.textContent=addr;
-/* El botón principal baja hasta el formulario y deja el foco en el primer campo. */
-document.getElementById('applyBtn').addEventListener('click',function(e){
-  var box=document.getElementById('solicitud'); if(!box) return;
-  e.preventDefault();
-  var calm=false; try{calm=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(x){}
-  box.scrollIntoView({behavior:calm?'auto':'smooth',block:'start'});
-  if(history.replaceState) history.replaceState(null,'','#solicitud');
-  var first=box.querySelector('input:not([type=hidden]):not([tabindex="-1"]),textarea,select');
-  if(first) setTimeout(function(){first.focus({preventScroll:true})},calm?0:450);
-});
 
 applyLang(lang);
 })();
 </script>
-<script src="assets/join.js?v=20261027a"></script>
 <script src="/assets/owner-tab.js?v=20261106a" defer></script>
 </body>
 </html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="night" data-crt="on">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<title>CH 00 · Sin señal</title>
+<meta name="theme-color" content="#070502">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..900,100&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
+<script>
+(function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
+</script>
+<link rel="stylesheet" href="/assets/sf.css">
+<link rel="stylesheet" href="/assets/lang.css">
+<style>
+/* Canal secreto: siempre de noche, monitor ámbar. */
+:root{--bg:#070502;--surface:#0E0904;--surface2:#160E06;--line:#5C3F0A;--ink:#FFD27A;--muted:#C48A1E;--phosphor:#FFB000;--bad:#FF7A5C;--ok:#9FE08A;color-scheme:dark}
+body{min-height:100vh;display:flex;flex-direction:column;background:var(--bg)}
+.noise{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.07;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");animation:nz .5s steps(3) infinite}
+@keyframes nz{33%{background-position:-50px 30px}66%{background-position:40px -60px}}
+[data-crt="off"] .noise{display:none}
+@media (prefers-reduced-motion:reduce){.noise{animation:none}}
+.top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px;font:400 1.3rem/1 var(--fc);color:var(--muted);letter-spacing:.06em}
+.top a{color:var(--muted);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.top a:hover{color:var(--phosphor)}
+.top .ctl{display:flex;gap:6px;align-items:center}
+main{position:relative;z-index:2;flex:1;display:grid;place-items:center;padding:20px 18px 60px}
+.mon{width:100%;max-width:640px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,#120B04,#0A0603);box-shadow:0 0 0 6px #050302,0 0 80px rgba(255,176,0,.08),inset 0 0 60px rgba(0,0,0,.8);padding:34px 32px 30px}
+.osd{display:flex;justify-content:space-between;font:400 1.4rem/1 var(--fc);color:var(--phosphor);text-shadow:0 0 8px rgba(255,176,0,.5);letter-spacing:.06em;margin-bottom:26px}
+.osd .rec::before{content:"● ";color:var(--bad)}
+h1,h2{font-family:var(--fc);font-weight:400;color:var(--ink);letter-spacing:.04em;text-shadow:0 0 10px rgba(255,210,122,.35);max-width:none}
+h1{font-size:clamp(2.6rem,9vw,4.4rem);line-height:.95}
+h2{font-size:clamp(1.9rem,6vw,2.7rem);line-height:1}
+p{color:var(--muted);margin-top:12px}
+p strong{color:var(--ink);font-weight:500}
+.step[hidden]{display:none}
+.field{margin-top:20px}
+.field label,.lbl{display:block;font:400 1.3rem/1.1 var(--fc);letter-spacing:.05em;color:var(--ink);margin-bottom:6px}
+.field small{display:block;color:var(--muted);font-size:.86rem;margin:-2px 0 6px}
+input[type=text],input[type=email],input[type=password]{width:100%;min-height:52px;padding:0 14px;border:1px solid #8C6214;border-radius:10px;background:#050302;color:var(--ink);font:400 1.5rem var(--fc);letter-spacing:.08em;caret-color:var(--phosphor)}
+input:focus{outline:2px solid var(--phosphor);outline-offset:2px}
+.row{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.btn{border-color:var(--phosphor);color:var(--phosphor);font-family:var(--fc);font-size:1.35rem;letter-spacing:.06em;font-weight:400}
+.btn.pri{background:var(--phosphor);color:#070502}
+.btn:hover{box-shadow:4px 4px 0 #8C6214}
+.msg{min-height:1.6em;margin-top:14px;font:400 1.25rem/1.3 var(--fc);letter-spacing:.04em}
+.msg.bad{color:var(--bad)}.msg.ok{color:var(--ok)}
+.passes{display:flex;gap:10px;align-items:center;margin-top:18px;font:400 1.3rem var(--fc);color:var(--ink)}
+.passes i{width:34px;height:22px;border:1px solid var(--phosphor);border-radius:4px;background:var(--phosphor);box-shadow:0 0 10px rgba(255,176,0,.4)}
+.passes i.used{background:transparent;box-shadow:none;opacity:.45}
+.picks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
+.pick{position:relative}
+.pick input{position:absolute;opacity:0;inset:0}
+.pick span{display:flex;flex-direction:column;gap:2px;min-height:64px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:#050302;cursor:pointer;transition:border-color .15s,background .15s}
+.pick b{font:400 1.35rem/1.1 var(--fc);color:var(--ink);letter-spacing:.04em}
+.pick em{font-style:normal;font-size:.82rem;color:var(--muted)}
+.pick input:checked+span{border-color:var(--phosphor);background:#1A1006;box-shadow:inset 0 0 0 1px var(--phosphor)}
+.pick input:focus-visible+span{outline:2px solid var(--phosphor);outline-offset:2px}
+.chk{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:.92rem;color:var(--muted)}
+.chk input{margin-top:4px;accent-color:var(--phosphor);width:18px;height:18px;flex:none}
+.hp{position:absolute;left:-9999px}
+.ticket{position:relative;margin-top:24px;border:2px dashed var(--phosphor);border-radius:14px;padding:22px 22px 20px;background:repeating-linear-gradient(135deg,#120B04 0 12px,#0E0904 12px 24px)}
+.ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:#0A0603;transform:translateY(-50%)}
+.ticket::before{left:-12px}.ticket::after{right:-12px}
+.ticket .k{font:400 1.1rem var(--fc);letter-spacing:.12em;color:var(--muted)}
+.ticket .p{font:400 2.2rem/1 var(--fc);color:var(--ink);margin:6px 0 4px;text-shadow:0 0 10px rgba(255,210,122,.4)}
+.ticket .s{font:400 1.2rem var(--fc);color:var(--phosphor);letter-spacing:.06em}
+.blink{animation:bl 1s steps(2) infinite}@keyframes bl{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.blink{animation:none}}
+@media (max-width:520px){.mon{padding:26px 18px 22px}.picks{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="fx scan" aria-hidden="true"></div>
+<div class="fx vig" aria-hidden="true"></div>
+<div class="noise" aria-hidden="true"></div>
+<header class="top">
+  <a href="/" data-en="◂ BACK TO CH 01">◂ VOLVER AL CH 01</a>
+  <div class="ctl">
+    <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+      <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+      <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="mon">
+    <div class="osd"><span class="rec">CH 00</span><span id="clock">--:--</span></div>
+
+    <!-- 1 · Contraseña -->
+    <section class="step" id="s1" aria-labelledby="h1">
+      <h1 id="h1" data-en="NO SIGNAL">SIN SEÑAL</h1>
+      <p data-en="This channel doesn't show up on the program guide. If you got here, you know what to type.">Este canal no sale en la guía de programación. Si has llegado hasta aquí, ya sabes qué escribir.</p>
+      <form id="f1" novalidate>
+        <div class="field">
+          <label for="pass" data-en="ACCESS CODE">CÓDIGO DE ACCESO</label>
+          <input type="password" id="pass" autocomplete="off" autocapitalize="off" spellcheck="false" required maxlength="80">
+        </div>
+        <div class="row"><button class="btn pri" type="submit" data-en="TUNE IN ▸">SINTONIZAR ▸</button></div>
+        <p class="msg" id="m1" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- 2 · Enhorabuena + elegir proyecto -->
+    <section class="step" id="s2" hidden aria-labelledby="h2a">
+      <h2 id="h2a" tabindex="-1" data-en="SIGNAL ACQUIRED">SEÑAL CAPTADA<span class="blink">_</span></h2>
+      <p data-en="&lt;strong&gt;Congratulations: you found Static Forge's secret channel.&lt;/strong&gt; As a prize there's a pass for early access to the beta or demo of a project, before anyone else.">
+        <strong>Enhorabuena: has encontrado el canal secreto de Static Forge.</strong> De premio hay un pase de acceso anticipado a la beta o demo de un proyecto, antes que nadie.</p>
+      <div class="passes" id="passes" aria-live="polite"></div>
+      <div id="soldOut" hidden>
+        <p data-en="&lt;strong&gt;But someone got here first:&lt;/strong&gt; there are no passes left. Keep an eye on the channel, new ones may appear.">
+          <strong>Pero alguien llegó antes:</strong> ya no quedan pases. Atento al canal, puede que aparezcan más.</p>
+        <div class="row"><a class="btn" href="/" data-en="BACK TO CH 01">VOLVER AL CH 01</a></div>
+      </div>
+      <form id="f2" novalidate>
+        <p class="lbl" id="pickL" style="margin-top:22px" data-en="1 · CHOOSE ONE PROJECT (JUST ONE)">1 · ELIGE UN PROYECTO (SOLO UNO)</p>
+        <div class="picks" id="picks" role="radiogroup" aria-labelledby="pickL"></div>
+        <p class="lbl" style="margin-top:26px" data-en="2 · WHO ARE YOU">2 · QUIÉN ERES</p>
+        <div class="field">
+          <label for="name" data-en="NAME OR ALIAS">NOMBRE O ALIAS</label>
+          <input type="text" id="name" maxlength="60" autocomplete="nickname" required>
+        </div>
+        <div class="field">
+          <label for="email" data-en="EMAIL">CORREO</label>
+          <small data-en="Core will send you the access here.">Aquí te llegará el acceso.</small>
+          <input type="email" id="email" maxlength="254" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="discord" data-en="DISCORD USERNAME">USUARIO DE DISCORD</label>
+          <small data-en="For example: kcrooty">Por ejemplo: kcrooty</small>
+          <input type="text" id="discord" maxlength="40" autocomplete="off" autocapitalize="off" spellcheck="false" required>
+        </div>
+        <input class="hp" type="text" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="chk"><input type="checkbox" id="consent"><span data-en="I agree that Static Forge stores this data only to give me the pass. Only KCRooty (Core) reads it; to delete it, write to staticforge@staticforge.me.">Acepto que Static Forge guarde estos datos solo para darme el pase. Solo los lee KCRooty (Core); para borrarlos, escribe a staticforge@staticforge.me.</span></label>
+        <div class="row"><button class="btn pri" type="submit" id="claimBtn" data-en="CLAIM MY PASS ▸">RECLAMAR MI PASE ▸</button></div>
+        <p class="msg" id="m2" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- 3 · Pase -->
+    <section class="step" id="s3" hidden aria-labelledby="h3a">
+      <h2 id="h3a" tabindex="-1" data-en="PASS GRANTED">PASE CONCEDIDO</h2>
+      <div class="ticket">
+        <div class="k" data-en="STATIC FORGE · EARLY ACCESS PASS">STATIC FORGE · PASE DE ACCESO ANTICIPADO</div>
+        <div class="p" id="tProj">—</div>
+        <div class="s" id="tKind">—</div>
+        <div class="k" style="margin-top:10px" id="tWho">—</div>
+      </div>
+      <p data-en="Core has been notified. You'll get a confirmation email, and when the build is ready he'll message you by email or Discord. &lt;strong&gt;Keep it quiet.&lt;/strong&gt;">Core ya está avisado. Te llegará un correo de confirmación y, cuando la versión esté lista, te escribirá por correo o por Discord. <strong>Que no se entere nadie.</strong></p>
+      <div class="row"><a class="btn" href="/" data-en="BACK TO CH 01">VOLVER AL CH 01</a></div>
+    </section>
+  </div>
+</main>
+
+<script src="/assets/lang.js"></script>
+<script>
+(function(){
+'use strict';
+var host=location.hostname, local=host==='127.0.0.1'||host==='localhost';
+var API=local?'http://127.0.0.1:8787':'https://static-forge-foro.staticforge.workers.dev';
+var d=document.documentElement, $=function(id){return document.getElementById(id)};
+var L=function(){return d.getAttribute('lang')==='en'?'en':'es'};
+var TX={
+  es:{empty:'Escribe el código.',wrong:'CÓDIGO INCORRECTO. SIN SEÑAL.',net:'No hay conexión con el estudio. Prueba en un rato.',tuning:'SINTONIZANDO…',left:function(n,t){return n+' DE '+t+' PASES LIBRES'},
+      pick:'Elige un proyecto.',already:'Ya has reclamado un pase. Solo se puede uno por persona.',sold_out:'Llegas tarde: ya no quedan pases.',slow_down:'Vas demasiado rápido. Espera un poco.',name:'Escribe tu nombre o alias.',email:'Ese correo no parece válido.',discord:'Escribe tu usuario de Discord.',consent:'Tienes que aceptar el aviso.',sending:'ENVIANDO…',of:'PARA'},
+  en:{empty:'Type the code.',wrong:'WRONG CODE. NO SIGNAL.',net:"Can't reach the studio. Try again later.",tuning:'TUNING IN…',left:function(n,t){return n+' OF '+t+' PASSES LEFT'},
+      pick:'Choose a project.',already:'You already claimed a pass. Only one per person.',sold_out:'Too late: there are no passes left.',slow_down:'Too fast. Wait a bit and try again.',name:'Type your name or alias.',email:"That email doesn't look right.",discord:'Type your Discord username.',consent:'You have to accept the notice.',sending:'SENDING…',of:'FOR'}
+};
+var tx=function(k){return TX[L()][k]};
+var code='', data=null, chosen=null;
+
+/* Reloj del OSD */
+function tick(){var t=new Date();$('clock').textContent=('0'+t.getHours()).slice(-2)+':'+('0'+t.getMinutes()).slice(-2)}
+tick(); setInterval(tick,15000);
+
+function post(path,body){
+  return fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(function(r){return r.json().catch(function(){return {}}).then(function(j){j._status=r.status;return j})});
+}
+function show(id){['s1','s2','s3'].forEach(function(s){$(s).hidden=s!==id}); var h=$(id).querySelector('[tabindex="-1"]'); if(h) h.focus()}
+function msg(el,text,cls){el.textContent=text||'';el.className='msg'+(cls?' '+cls:'')}
+
+function paintPasses(){
+  if(!data) return;
+  var html='',used=data.total-data.left;
+  for(var i=0;i<data.total;i++) html+='<i class="'+(i<used?'used':'')+'"></i>';
+  $('passes').innerHTML=html+'<span>'+tx('left')(data.left,data.total)+'</span>';
+  var out=data.left<=0; $('soldOut').hidden=!out; $('f2').hidden=out;
+}
+function paintPicks(){
+  if(!data) return; var l=L();
+  $('picks').innerHTML=data.projects.map(function(p){
+    var id='pk-'+p.id;
+    return '<label class="pick" for="'+id+'"><input type="radio" name="project" id="'+id+'" value="'+p.id+'"'+(chosen===p.id?' checked':'')+'><span><b>'+esc(p[l])+'</b><em>'+esc(p.kind[l])+'</em></span></label>';
+  }).join('');
+}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+$('picks').addEventListener('change',function(e){if(e.target.name==='project') chosen=e.target.value});
+document.addEventListener('sf:lang',function(){paintPasses();paintPicks();if(ticket) paintTicket()});
+
+/* 1 · Contraseña */
+$('f1').addEventListener('submit',function(e){
+  e.preventDefault(); var v=$('pass').value.trim(), m=$('m1');
+  if(!v){msg(m,tx('empty'),'bad');return}
+  msg(m,tx('tuning'));
+  post('/api/secret/unlock',{pass:v}).then(function(j){
+    if(j.ok){code=v; data=j; paintPasses(); paintPicks(); show('s2'); return}
+    msg(m,j.error==='wrong'?tx('wrong'):(TX[L()][j.error]||j.message||tx('net')),'bad'); $('pass').select();
+  }).catch(function(){msg(m,tx('net'),'bad')});
+});
+
+/* 2 · Reclamar */
+var ticket=null;
+function paintTicket(){
+  var p=data.projects.filter(function(x){return x.id===ticket.project})[0], l=L();
+  $('tProj').textContent=p?p[l]:ticket.project; $('tKind').textContent=p?p.kind[l].toUpperCase():'';
+  $('tWho').textContent=tx('of')+' '+ticket.name.toUpperCase();
+}
+$('f2').addEventListener('submit',function(e){
+  e.preventDefault(); var m=$('m2');
+  var b={pass:code,project:chosen,name:$('name').value.trim(),email:$('email').value.trim(),discord:$('discord').value.trim().replace(/^@/,''),consent:$('consent').checked,website:$('website').value,lang:L()};
+  if(!b.project){msg(m,tx('pick'),'bad');return}
+  if(b.name.length<2){msg(m,tx('name'),'bad');$('name').focus();return}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(b.email)){msg(m,tx('email'),'bad');$('email').focus();return}
+  if(b.discord.length<2){msg(m,tx('discord'),'bad');$('discord').focus();return}
+  if(!b.consent){msg(m,tx('consent'),'bad');return}
+  var btn=$('claimBtn'); btn.disabled=true; msg(m,tx('sending'));
+  post('/api/secret/claim',b).then(function(j){
+    btn.disabled=false;
+    if(j.ok){ticket={project:b.project,name:b.name}; data.left=j.left; paintTicket(); msg(m,''); show('s3'); return}
+    if(j.error==='sold_out'){data.left=0; paintPasses()}
+    msg(m,(TX[L()][j.error])||j.message||tx('net'),'bad');
+  }).catch(function(){btn.disabled=false;msg(m,tx('net'),'bad')});
+});
+})();
+</script>
+</body>
+</html>

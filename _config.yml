@@ -4,3 +4,5 @@ exclude:
   - anti-slop
   - wrangler.toml
   - .assetsignore
+  - PENDIENTES.md
+  - LICENSE-CONTENIDO.md

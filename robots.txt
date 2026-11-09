@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /solicitudes.html
+
+Sitemap: https://staticforge.me/sitemap.xml

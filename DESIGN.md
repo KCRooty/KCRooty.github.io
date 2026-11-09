@@ -65,3 +65,14 @@ Identidad propia, aparte del estilo híbrido y de Static Linux. Petición de KCR
 - Sin logotipos de Microsoft: el botón Inicio lleva una rejilla genérica de 3x3 y la palabra Inicio.
 - Scanlines, viñeta, parpadeo y brillo se apagan con el botón CRT de la bandeja (clave `sf-crt`); parpadeo y animación de arranque respetan reducir movimiento.
 - El bloque de arranque y la tabla de estado resumen el README real del repo; no son salidas literales del sistema.
+
+## Añadidos del 2026-11-09
+
+- **Tele de proyectos** (destacado de `#proyectos`): flechas ‹ › para cambiar de canal entre los proyectos (también
+  con ← → y deslizando en móvil), con un golpe de estática de 0,3 s entre canales (se apaga con reducir movimiento).
+  Los logos se ven enteros (`.fit`); LADA, sin imagen, sale con carta de ajuste de barras de color. La lista de abajo no cambia.
+- **Estado en vivo**: línea en VT323 color franja 3 (`.live`) bajo el estado de cada proyecto con repo público.
+- **`unete.html`**: la solicitud sale de la portada a su propia página (CH 14).
+- **Imágenes para compartir** (`assets/og/`): 1200×630, misma tele y franjas, una por página.
+- **Canal 00**: página oculta con identidad ámbar tipo Forge OS (monocromo de fósforo); se entra por el segundo botón
+  de la tele del hero o tecleando «00» en la portada. Sin enlace visible ni entrada en el sitemap.

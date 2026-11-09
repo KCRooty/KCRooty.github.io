@@ -8,7 +8,8 @@ el panel de GitHub Pages, así que no hay que volver a ponerle el dominio viejo.
 
 | Página | Qué es |
 |---|---|
-| `index.html` | Portada: proyectos, estudio, galería y solicitud de «Únete» |
+| `index.html` | Portada: proyectos (tele con cambio de canal), estudio y galería |
+| `unete.html` | Únete: solicitud para entrar en el estudio |
 | `i3ds.html` | Iron3D Studio |
 | `fnaf-as.html` | FNAF AS |
 | `linux/` | Static Linux |
@@ -19,3 +20,14 @@ el panel de GitHub Pages, así que no hay que volver a ponerle el dominio viejo.
 
 `DESIGN.md` tiene la dirección de diseño; `assets/` los estilos, los scripts y los logos de
 cada proyecto.
+
+## Estado en vivo
+
+`assets/data/status.json` lo genera la Action `.github/workflows/status.yml` cada 6 horas (último commit, versión y
+estrellas de los repos públicos). La web lo lee desde su propio dominio: el visitante no hace peticiones a GitHub.
+
+## Licencia
+
+Código: [MIT](LICENSE). Arte y textos: [CC BY-NC-SA 4.0](LICENSE-CONTENIDO.md), con las excepciones que ahí se indican.
+
+Lo que queda por hacer está en [`PENDIENTES.md`](PENDIENTES.md).
