@@ -76,3 +76,6 @@ Identidad propia, aparte del estilo híbrido y de Static Linux. Petición de KCR
 - **Imágenes para compartir** (`assets/og/`): 1200×630, misma tele y franjas, una por página.
 - **Canal 00**: página oculta con identidad ámbar tipo Forge OS (monocromo de fósforo); se entra por el segundo botón
   de la tele del hero o tecleando «00» en la portada. Sin enlace visible ni entrada en el sitemap.
+- **Encendido**: al entrar en la portada (una vez por sesión) la pantalla hace el fogonazo de tubo CRT; clic o tecla lo saltan; no sale con reducir movimiento ni con el CRT apagado.
+- **Fotos de decoración** (`assets/deco/`, sin metadatos): naturaleza detrás del hero y el setup al final del pie, sin marco, con opacidad baja, sepia suave y degradado (`mask-image`).
+- **Paint It!** (`paint-it/`, CH 15): réplica del Paint clásico con cromo estilo XP; iconos y código propios, sin recursos ni logos de Microsoft.
