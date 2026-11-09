@@ -143,6 +143,10 @@ a{text-decoration:none;color:inherit}
   border:1px solid rgba(232,104,40,.25);border-radius:3px;padding:3px 8px}
 .vhs-tag::before{content:'▶ REC ·';color:var(--red);animation:rec-blink 1.4s step-end infinite}
 
+.classified{position:relative;overflow:hidden}
+.classified .stamp{position:absolute;top:14px;right:-6px;transform:rotate(8deg);font-family:var(--mono);font-weight:700;font-size:.8rem;letter-spacing:.25em;color:#c0392b;border:2px solid #c0392b;padding:.2rem .7rem;opacity:.85}
+.redact{display:flex;flex-direction:column;gap:.45rem;margin:.9rem 0 1rem}
+.redact span{display:block;height:.8rem;background:#050302;border:1px solid var(--border)}
 .note{font-family:var(--mono);font-size:.77rem;color:var(--dim);
   border-left:2px solid var(--border2);padding:.7rem 1rem;margin-top:1rem;
   line-height:1.6;background:var(--card)}
@@ -256,7 +260,7 @@ footer a:hover{color:var(--gold)}
     <div class="card-grid">
       <div class="card">
         <h3 data-en="The game">El juego</h3>
-        <p data-en="First-person survival horror. Source SDK 2013 Singleplayer. Donnie's Dinners Place has been closed for ten years; the animatronics have not. Six nights, nine puzzles, a building that does not want you to leave.">Survival horror en primera persona. Source SDK 2013 Singleplayer. Donnie's Dinners Place lleva diez años cerrado — los animatrónicos, no. Seis noches, nueve puzzles, un edificio que no quiere que salgas.</p>
+        <p data-en="First-person survival horror. Source SDK 2013 Singleplayer. Donnie's Dinners Place has been closed for ten years; the animatronics have not. A building that does not want you to leave.">Survival horror en primera persona. Source SDK 2013 Singleplayer. Donnie's Dinners Place lleva diez años cerrado — los animatrónicos, no. Un edificio que no quiere que salgas.</p>
       </div>
       <div class="card">
         <h3 data-en="The universe">El universo</h3>
@@ -303,8 +307,7 @@ footer a:hover{color:var(--gold)}
   <section class="sec">
     <div class="sec-label" data-en="03 · the game">03 · el juego</div>
     <div class="card">
-      <p data-en="The first night. The place has been closed for ten years. &lt;strong&gt;6 levels, one hour per level.&lt;/strong&gt; Flashlight, doors, cameras. The animatronics &lt;strong&gt;should not be active&lt;/strong&gt;.">La primera noche. El local lleva diez años cerrado. <strong>6 niveles, una hora por nivel.</strong> Linterna, puertas, cámaras. Los animatrónicos <strong>no deberían estar activos</strong>.</p>
-      <p style="margin-top:.8rem;color:var(--dim)" data-en="Nick wakes up in an office chair in the basement. The CRT monitor is off. You press &lt;kbd style=&quot;background:var(--card2);border:1px solid var(--border2);padding:0 5px;border-radius:2px;font-family:var(--mono);font-size:.75em&quot;&gt;E&lt;/kbd&gt; to turn it on.">Nick despierta en una silla de oficina en el subsuelo. El monitor CRT está apagado. Pulsas <kbd style="background:var(--card2);border:1px solid var(--border2);padding:0 5px;border-radius:2px;font-family:var(--mono);font-size:.75em">E</kbd> para encenderlo.</p>
+      <p data-en="The first night. The place has been closed for ten years. The animatronics &lt;strong&gt;should not be active&lt;/strong&gt;.">La primera noche. El local lleva diez años cerrado. Los animatrónicos <strong>no deberían estar activos</strong>.</p>
     </div>
     <div class="card" style="margin-top:1rem;background:#010901;border:2px solid #1e5c1e;overflow-x:auto;position:relative;padding:1rem 1rem .9rem">
       <div aria-hidden="true" style="position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(0,0,0,.18) 3px,rgba(0,0,0,.18) 4px);pointer-events:none;z-index:2"></div>
@@ -348,30 +351,12 @@ footer a:hover{color:var(--gold)}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</pre>
       </div>
     </div>
-    <div class="card" style="margin-top:.8rem">
+    <div class="card classified" style="margin-top:.8rem">
+      <span class="stamp" data-en="CLASSIFIED">CLASIFICADO</span>
       <h3 data-en="Mechanics">Mecánicas</h3>
-      <p data-en="Resource management, black and white cameras with film grain, doors by sector. No «YOU DIED» screen: just static, then a security camera photo. &lt;strong&gt;9 puzzles over 6 nights.&lt;/strong&gt;">Gestión de recursos, cámaras B/N con grain de película, puertas por sector. Sin «YOU DIED» — solo estática, y después una foto de cámara de seguridad. <strong>9 puzzles en 6 noches.</strong></p>
-      <p style="margin-top:.5rem;color:var(--dim)" data-en="QTEs give no warning. No button prompt. Lany gives you &lt;strong style=&quot;color:var(--text)&quot;&gt;3 seconds&lt;/strong&gt;. Donnie, &lt;strong style=&quot;color:var(--text)&quot;&gt;5&lt;/strong&gt;. Shadow, &lt;strong style=&quot;color:var(--text)&quot;&gt;1.5&lt;/strong&gt;.">Los QTEs no avisan. Sin prompt de botón. Lany te da <strong style="color:var(--text)">3 segundos</strong>. Donnie, <strong style="color:var(--text)">5</strong>. Shadow, <strong style="color:var(--text)">1.5</strong>.</p>
+      <p class="redact" aria-hidden="true"><span style="width:62%"></span><span style="width:88%"></span><span style="width:45%"></span><span style="width:74%"></span></p>
+      <p style="color:var(--dim)" data-en="How Donnie's Origins is played stays under lock until launch. You'll find out on the first night.">Cómo se juega Donnie's Origins se queda bajo llave hasta el lanzamiento. Lo descubrirás la primera noche.</p>
     </div>
-    <div class="prod-grid" style="margin-top:.8rem">
-      <div class="prod-item" style="--c:var(--gold)">
-        <div class="prod-dot"></div>
-        <div><h4 data-en="Flashlight">Linterna</h4><p data-en="Limited battery shown on the HUD. The only light source you control directly.">Batería limitada en HUD. Única fuente de luz que controlas directamente.</p></div>
-      </div>
-      <div class="prod-item" style="--c:var(--orange)">
-        <div class="prod-dot" style="--c:var(--orange)"></div>
-        <div><h4 data-en="Taser">Táser</h4><p data-en="3 charges per night. Stuns an animatronic for 8 seconds.">3 cargas por noche. Neutraliza un animatrónico durante 8 segundos.</p></div>
-      </div>
-      <div class="prod-item" style="--c:var(--green)">
-        <div class="prod-dot" style="--c:var(--green)"></div>
-        <div><h4 data-en="Camera tablet">Tablet de cámaras</h4><p data-en="8 cameras, black and white feed. You cannot move while using it.">8 cámaras, imagen B/N. No puedes moverte mientras la usas.</p></div>
-      </div>
-      <div class="prod-item" style="--c:var(--dim)">
-        <div class="prod-dot" style="--c:var(--dim)"></div>
-        <div><h4 data-en="Doors / Generator">Puertas / Generador</h4><p data-en="The doors have their own battery, which drains while they stay shut. The generator powers the lights; on night 4 it fails and has to be restarted in the Boiler Room.">Las puertas tienen batería propia: se drena manteniéndolas cerradas. El generador controla las luces — en N4 falla y hay que reiniciarlo en la Sala de Calderas.</p></div>
-      </div>
-    </div>
-    <div class="note" data-en="Every night comes with a context document: a news report, an audio log, a recording. It is not FNAF with different animatronics; it is another story.">Cada noche tiene documento de contexto: reportaje, audioLog, grabación. No es FNAF con animatrónicos distintos — es otra historia.</div>
   </section>
 
   <section class="sec">
@@ -464,7 +449,7 @@ footer a:hover{color:var(--gold)}
         </div>
         <div class="dev-entry">
           <span class="dev-year">2026 · Desarrollo en serio</span>
-          <p>Y aquí sigo. Dos años sin cancelarlo — el récord del proyecto. Nuevos remodelos, motor ya elegido (Source Engine SDK 2013 + Hammer, pipeline Cinema 4D → Blender → Crowbar → .mdl), historia cerrada. Lo que empezó siendo un FNaF clásico y estático se ha convertido en Donnie's Origins tal como está hoy: freeroam, con puzzles.</p>
+          <p>Y aquí sigo. Dos años sin cancelarlo — el récord del proyecto. Nuevos remodelos, motor ya elegido (Source Engine SDK 2013 + Hammer, pipeline Cinema 4D → Blender → Crowbar → .mdl), historia cerrada. Lo que empezó siendo un FNaF clásico y estático se ha convertido en Donnie's Origins tal como está hoy. El resto, mejor descubrirlo jugando.</p>
         </div>
       </div>
 
@@ -500,7 +485,7 @@ footer a:hover{color:var(--gold)}
         </div>
         <div class="dev-entry">
           <span class="dev-year">2026 · Real development</span>
-          <p>And here I still am. Two years without canceling it — a record for this project. New remodels, the engine locked in (Source Engine SDK 2013 + Hammer, Cinema 4D → Blender → Crowbar → .mdl pipeline), the story finished. What started as a static classic FNaF game has become Donnie's Origins as it stands today: freeroam, with puzzles.</p>
+          <p>And here I still am. Two years without canceling it — a record for this project. New remodels, the engine locked in (Source Engine SDK 2013 + Hammer, Cinema 4D → Blender → Crowbar → .mdl pipeline), the story finished. What started as a static classic FNaF game has become Donnie's Origins as it stands today. The rest is better found out by playing.</p>
         </div>
       </div>
 

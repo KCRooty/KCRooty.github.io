@@ -15,9 +15,10 @@
 <script>
 (function(){var d=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
 var t=g('sf-theme');if(!t){try{t=matchMedia('(prefers-color-scheme: light)').matches?'paper':'night'}catch(e){t='night'}}
-d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');})();
+d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-crt',g('sf-crt')==='off'?'off':'on');d.setAttribute('lang',g('sf-lang')==='en'?'en':'es');})();
 </script>
 <link rel="stylesheet" href="/assets/sf.css">
+<link rel="stylesheet" href="/assets/lang.css">
 <style>
 .nosignal{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center;min-height:calc(100vh - 68px - 120px);padding-top:56px;padding-bottom:56px}
 .snow{animation:snow .35s steps(4) infinite}
@@ -25,6 +26,18 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
 [data-crt="off"] .snow{animation:none}
 .badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;padding:6px 16px;font:400 clamp(1.6rem,4vw,2.2rem)/1 var(--fc);letter-spacing:.08em;color:#FFF3DA;background:#0B0806;border:2px solid #FFF3DA;white-space:nowrap}
 .path{margin-top:10px;color:var(--muted)}
+/* Zapping: la tele busca canales */
+.screen .chimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .12s;filter:sepia(.25) saturate(1.1)}
+.screen .chimg.fit{object-fit:contain;padding:14%;background:radial-gradient(circle at 50% 45%,#1d1813,#050403 70%)}
+.screen.tuned .chimg{opacity:1}.screen.tuned .snow,.screen.tuned .badge{opacity:0}
+.screen .chname{position:absolute;left:14px;bottom:12px;z-index:3;font:400 1.5rem/1 var(--fc);color:#FFF3DA;text-shadow:2px 2px 0 #000;opacity:0}
+.screen.tuned .chname{opacity:1}
+.zapper{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.zapper .tbtn{min-width:46px;font-size:1.3rem}
+.zapper .go{min-width:0}
+.guess{margin-top:18px;padding:12px 16px;border:1px dashed var(--line);border-radius:var(--r);color:var(--muted)}
+.guess a{color:var(--ink);font-weight:700}
+.guess[hidden]{display:none}
 @media (max-width:900px){.nosignal{grid-template-columns:1fr;gap:40px;min-height:0}.nosignal .tv{order:-1}}
 </style>
 </head>
@@ -40,12 +53,17 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
       <span class="brand-name">Static Forge</span>
     </a>
     <ul class="links" id="links">
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/#proyectos">Proyectos</a></li>
-      <li><a href="/fnaf-as.html">FNAF AS</a></li>
-      <li><a href="/foros.html">Foro</a></li>
+      <li><a href="/" data-en="Home">Inicio</a></li>
+      <li><a href="/#proyectos" data-en="Projects">Proyectos</a></li>
+      <li><a href="/paint-it/">Paint It!</a></li>
+      <li><a href="/unete.html" data-en="Join">Únete</a></li>
+      <li><a href="/foros.html" data-en="Forum">Foro</a></li>
     </ul>
     <div class="ctrls">
+      <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+        <button type="button" class="tbtn" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+        <button type="button" class="tbtn" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+      </div>
       <button type="button" class="tbtn" id="themeBtn" aria-pressed="false">PAPEL</button>
       <button type="button" class="tbtn" id="crtBtn" aria-pressed="true">CRT</button>
       <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">MENÚ</button>
@@ -56,39 +74,99 @@ d.setAttribute('data-theme',t==='paper'?'paper':'night');d.setAttribute('data-cr
 <main id="main">
 <div class="wrap nosignal">
   <div>
-    <p class="osd crt-txt">ERROR 404 · CANAL VACÍO</p>
-    <h1 class="h1">Sin<span class="stack">señal</span></h1>
-    <p class="lead">Esta página no existe o se ha movido de canal.</p>
-    <p class="path">Dirección: <code id="path">/</code></p>
+    <p class="osd crt-txt" data-en="ERROR 404 · EMPTY CHANNEL">ERROR 404 · CANAL VACÍO</p>
+    <h1 class="h1" data-en="No&lt;span class=&quot;stack&quot;&gt;signal&lt;/span&gt;">Sin<span class="stack">señal</span></h1>
+    <p class="lead" data-en="This page doesn't exist or has changed channel. Use the remote to find what you were looking for.">Esta página no existe o se ha movido de canal. Usa el mando para encontrar lo que buscabas.</p>
+    <p class="path"><span data-en="Address:">Dirección:</span> <code id="path">/</code></p>
+    <p class="guess" id="guess" hidden></p>
     <div class="cta" style="margin-top:30px">
-      <a class="btn pri" href="/">Volver al inicio</a>
-      <a class="btn" href="/#proyectos">Ver los proyectos</a>
+      <a class="btn pri" href="/" data-en="Back to home">Volver al inicio</a>
+      <a class="btn" href="/#proyectos" data-en="See the projects">Ver los proyectos</a>
     </div>
   </div>
-  <div class="tv" aria-hidden="true">
-    <div class="screen">
-      <svg class="snow" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+  <div>
+  <div class="tv">
+    <div class="screen" id="scr" aria-live="polite">
+      <svg class="snow" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
         <rect x="-40" y="-40" width="480" height="380" filter="url(#n)" opacity=".85"/>
       </svg>
+      <img class="chimg" id="chImg" alt="">
       <div class="track"></div>
-      <div class="scr-osd"><span>CH --</span><span>AV 1</span></div>
-      <span class="badge">SIN SEÑAL</span>
+      <div class="scr-osd" aria-hidden="true"><span id="chNum">CH --</span><span id="chScan">AV 1</span></div>
+      <span class="badge" aria-hidden="true" data-en="NO SIGNAL">SIN SEÑAL</span>
+      <span class="chname" id="chName"></span>
     </div>
-    <div class="tv-foot"><span class="tv-model">SF-2001</span><span class="led"></span><span class="knob"></span><span class="knob"></span></div>
+    <div class="tv-foot" aria-hidden="true"><span class="tv-model">SF-2001</span><span class="led"></span><span class="knob"></span><span class="knob"></span></div>
+  </div>
+  <div class="zapper" role="group" aria-label="Mando" data-en-aria-label="Remote">
+    <button type="button" class="tbtn" id="zPrev" aria-label="Canal anterior" data-en-aria-label="Previous channel">&lsaquo;</button>
+    <a class="btn pri go" id="zGo" href="/" data-en="Watch this channel ▸">Ver este canal ▸</a>
+    <button type="button" class="tbtn" id="zNext" aria-label="Canal siguiente" data-en-aria-label="Next channel">&rsaquo;</button>
+  </div>
   </div>
 </div>
 </main>
 
 <footer>
   <div class="wrap foot">
-    <span class="eob crt-txt">FIN DE LA EMISIÓN</span>
+    <span class="eob crt-txt" data-en="END OF BROADCAST">FIN DE LA EMISIÓN</span>
     <span>© 2026 Static Forge · KCRooty (Core)</span>
   </div>
 </footer>
 
 <script src="/assets/sf.js"></script>
-<script>(function(){var p=location.pathname;try{p=decodeURIComponent(p)}catch(e){}document.getElementById('path').textContent=p.slice(0,120);})();</script>
+<script src="/assets/lang.js"></script>
+<script>
+/* Zapping: busca canales al entrar y propone la página que más se parece a la dirección escrita. */
+(function(){
+var CH=[
+  {n:'01',es:'Inicio',en:'Home',h:'/',img:'/assets/og/home.jpg',k:['inicio','home','index']},
+  {n:'02',es:"Donnie's Origins",en:"Donnie's Origins",h:'/donnies.html',img:'/assets/donnies/donnie-suit-head.webp',k:['donnies','donnie','donnys','origins']},
+  {n:'03',es:'FNAF AS',en:'FNAF AS',h:'/fnaf-as.html',img:'/assets/fnaf-as/ep01-render.webp',k:['fnaf','fnafas','fnaf-as','alternative']},
+  {n:'09',es:'Iron3D Studio',en:'Iron3D Studio',h:'/i3ds.html',img:'/assets/projects/iron3d-ui.webp',k:['i3ds','iron3d','iron','3d']},
+  {n:'10',es:'Static Linux',en:'Static Linux',h:'/linux/',img:'/assets/projects/static-linux.webp',fit:1,k:['linux','static-linux','distro','sl']},
+  {n:'11',es:'Forge OS',en:'Forge OS',h:'/forge-os/',img:'/assets/projects/forge-os.webp',fit:1,k:['forge-os','forgeos','forge','os','kernel']},
+  {n:'13',es:'Foro',en:'Forum',h:'/foros.html',img:'/assets/og/foros.jpg',k:['foro','foros','forum']},
+  {n:'14',es:'Únete',en:'Join',h:'/unete.html',img:'/assets/og/unete.jpg',k:['unete','join','solicitud','apply']},
+  {n:'15',es:'Paint It!',en:'Paint It!',h:'/paint-it/',img:'/assets/og/paint-it.jpg',k:['paint','paint-it','dibujar','draw']}
+];
+var d=document.documentElement,$=function(i){return document.getElementById(i)},scr=$('scr'),img=$('chImg'),cur=-1,timer=null;
+var calm=false;try{calm=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+var en=function(){return d.getAttribute('lang')==='en'};
+var path=location.pathname;try{path=decodeURIComponent(path)}catch(e){}
+$('path').textContent=path.slice(0,120);
+function lev(a,b){var m=[],i,j;for(i=0;i<=a.length;i++){m[i]=[i]}for(j=1;j<=b.length;j++)m[0][j]=j;for(i=1;i<=a.length;i++)for(j=1;j<=b.length;j++)m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return m[a.length][b.length]}
+function guess(){
+  var w=path.toLowerCase().replace(/\.html?$/,'').split(/[\/\-_. ]+/).filter(Boolean);if(!w.length)return -1;
+  var best=-1,score=99;
+  CH.forEach(function(c,i){c.k.forEach(function(k){w.forEach(function(x){var s=lev(x,k)/Math.max(k.length,3);if(x.indexOf(k)>=0||k.indexOf(x)>=0&&x.length>2)s=Math.min(s,.1);if(s<score){score=s;best=i}})})});
+  return score<=.4?best:-1;
+}
+function show(i){
+  cur=(i+CH.length)%CH.length;var c=CH[cur];
+  scr.classList.remove('tuned');$('chNum').textContent='CH '+c.n;
+  setTimeout(function(){img.src=c.img;img.className='chimg'+(c.fit?' fit':'');img.alt=en()?c.en:c.es;$('chName').textContent=en()?c.en:c.es;
+    $('zGo').href=c.h;scr.classList.add('tuned')},calm?0:140);
+}
+$('zPrev').onclick=function(){stop();show(cur-1)};
+$('zNext').onclick=function(){stop();show(cur+1)};
+document.addEventListener('keydown',function(e){if(e.target.closest('input,textarea'))return;if(e.key==='ArrowLeft'){stop();show(cur-1)}else if(e.key==='ArrowRight'){stop();show(cur+1)}});
+document.addEventListener('sf:lang',function(){if(cur>=0){var c=CH[cur];$('chName').textContent=en()?c.en:c.es;img.alt=$('chName').textContent}paintGuess()});
+function stop(){if(timer){clearInterval(timer);timer=null;$('chScan').textContent='AV 1'}}
+var g=guess();
+function paintGuess(){
+  var el=$('guess');if(g<0){el.hidden=true;return}var c=CH[g];el.hidden=false;
+  el.innerHTML=(en()?'Were you looking for ':'¿Buscabas ')+'<a href="'+c.h+'">'+(en()?c.en:c.es)+'</a>?';
+}
+paintGuess();
+/* Búsqueda automática: recorre los canales y se para en el más probable (o en el inicio) */
+if(calm){show(g<0?0:g)}else{
+  var steps=0,target=g<0?0:g,n=CH.length+target;$('chScan').textContent=en()?'SCANNING':'BUSCANDO';
+  setTimeout(function(){timer=setInterval(function(){show(steps);steps++;if(steps>n){stop();show(target)}},260)},900);
+}
+})();
+</script>
 <script src="/assets/owner-tab.js?v=20261106a" defer></script>
 </body>
 </html>
