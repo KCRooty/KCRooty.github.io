@@ -1,4 +1,41 @@
 {
-  "updated": null,
-  "projects": {}
+  "updated": "2026-11-09T13:04:29Z",
+  "projects": {
+    "xusb": {
+      "repo": "KCRooty/X-USB",
+      "last_commit": "2026-10-30T14:52:20Z",
+      "version": "v1.0.0",
+      "stars": 1
+    },
+    "rck": {
+      "repo": "KCRooty/RCK",
+      "last_commit": "2026-10-30T10:41:48Z",
+      "version": null,
+      "stars": 0
+    },
+    "kcdl": {
+      "repo": "KCRooty/kc-downloader",
+      "last_commit": "2026-10-30T15:03:37Z",
+      "version": "v2.4",
+      "stars": 0
+    },
+    "iron3d": {
+      "repo": "KCRooty/Iron3D-Studio",
+      "last_commit": "2026-11-07T00:50:05Z",
+      "version": null,
+      "stars": 0
+    },
+    "linux": {
+      "repo": "KCRooty/static-linux",
+      "last_commit": "2026-10-30T10:31:30Z",
+      "version": null,
+      "stars": 0
+    },
+    "forgeos": {
+      "repo": "KCRooty/ForgeOS",
+      "last_commit": "2026-10-30T10:43:15Z",
+      "version": null,
+      "stars": 0
+    }
+  }
 }
