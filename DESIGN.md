@@ -80,5 +80,3 @@ Identidad propia, aparte del estilo híbrido y de Static Linux. Petición de KCR
 - **Fotos de decoración** (`assets/deco/`, sin metadatos): naturaleza detrás del hero y el setup al final del pie, sin marco, con opacidad baja, sepia suave y degradado (`mask-image`).
 - **Paint It!** (`paint-it/`, CH 15): réplica del Paint clásico con cromo estilo XP; iconos y código propios, sin recursos ni logos de Microsoft.
 - **Sonido** (`assets/sound.js`): zumbido de tubo, clic de canal, estática, meter y expulsar cinta; todo sintetizado con Web Audio, apagado por defecto (botón del altavoz en la barra, se recuerda en `sf-sound`).
-- **Videoteca** (`#cintas`, `assets/vhs.js`): el devlog como estantería de cintas VHS; al meter una se reproduce con tracking, OSD y fecha de cámara. Las cintas se añaden en `CINTAS`, al principio del archivo.
-- **Créditos finales**: suben al final de la portada sobre la foto del setup; se montan solos con el equipo y los creadores de la sección Estudio.
