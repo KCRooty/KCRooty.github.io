@@ -14,6 +14,7 @@ REPOS = {
     "rck": "RCK",
     "kcdl": "kc-downloader",
     "iron3d": "Iron3D-Studio",
+    "cinder": "Cinder-Studio",
     "linux": "static-linux",
     "forgeos": "ForgeOS",
 }

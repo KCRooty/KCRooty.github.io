@@ -90,6 +90,10 @@ a{text-decoration:none;color:inherit}
 .hero-sub{font-size:.95rem;color:var(--dim);max-width:560px;line-height:1.75;margin-bottom:1.5rem}
 .hero-sub strong{color:var(--text)}
 .hero-cta{display:flex;gap:9px;flex-wrap:wrap}
+.hero-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:center}
+.hero-head{width:clamp(150px,22vw,230px);height:auto;transform:rotate(4deg);
+  filter:drop-shadow(0 0 18px rgba(232,160,48,.35)) drop-shadow(0 12px 20px rgba(0,0,0,.6));animation:logo-shake 3.8s ease-in-out infinite}
+@media(max-width:720px){.hero-row{grid-template-columns:1fr;gap:1.2rem}.hero-head{justify-self:center;order:-1}}
 .btn{font-family:var(--exo);font-size:.78rem;font-weight:600;padding:9px 20px;border-radius:5px;
   border:1px solid var(--border2);background:var(--card);color:var(--text);cursor:pointer;
   transition:all .2s;display:inline-block;letter-spacing:.04em}
@@ -242,14 +246,19 @@ footer a:hover{color:var(--gold)}
                                                                                       /\____/
                                                                                       \_/__/</pre>
     </div>
-    <p class="hero-sub" data-en="A FNaF fangame that started in 2021 and has not stopped since. A family pizzeria abandoned since the 90s. Three animatronics that have been there for far too long. And a night that is not going to end the way it should.">
-      Un fangame de FNaF que empezó en 2021 y no ha parado desde entonces.
-      Una pizzería familiar abandonada desde los 90. Tres animatrónicos que llevan ahí demasiado tiempo.
-      Y una noche que no va a terminar como debería.
-    </p>
-    <div class="hero-cta">
-      <a href="https://gamejolt.com/games/Donnies2001/885221" target="_blank" class="btn pri" data-en="See it on GameJolt ↗">Ver en GameJolt ↗</a>
-      <a href="index.html" class="btn" data-en="← Back">← Volver</a>
+    <div class="hero-row">
+      <div>
+        <p class="hero-sub" data-en="A FNaF fangame that started in 2021 and has not stopped since. A family pizzeria abandoned since the 90s. Three animatronics that have been there for far too long. And a night that is not going to end the way it should.">
+          Un fangame de FNaF que empezó en 2021 y no ha parado desde entonces.
+          Una pizzería familiar abandonada desde los 90. Tres animatrónicos que llevan ahí demasiado tiempo.
+          Y una noche que no va a terminar como debería.
+        </p>
+        <div class="hero-cta">
+          <a href="https://gamejolt.com/games/Donnies2001/885221" target="_blank" class="btn pri" data-en="See it on GameJolt ↗">Ver en GameJolt ↗</a>
+          <a href="index.html" class="btn" data-en="← Back">← Volver</a>
+        </div>
+      </div>
+      <img class="hero-head" src="assets/donnies/donnie-head-logo.webp" alt="Cabeza de Donnie, render 3D" data-en-alt="Donnie's head, 3D render" width="320" height="320">
     </div>
   </section>
   <div class="hazard-bar"></div>
