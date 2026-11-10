@@ -90,12 +90,10 @@ a{text-decoration:none;color:inherit}
 .hero-sub{font-size:.95rem;color:var(--dim);max-width:560px;line-height:1.75;margin-bottom:1.5rem}
 .hero-sub strong{color:var(--text)}
 .hero-cta{display:flex;gap:9px;flex-wrap:wrap}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:center}
-.hero-logo{animation:logo-shake 3.8s ease-in-out infinite}
-.hero-logo pre{font-family:var(--mono);font-size:clamp(.38rem,2.3vw,.6rem);line-height:1.2;letter-spacing:0;margin:0;background:transparent;
-  color:var(--gold);text-shadow:0 0 14px rgba(232,160,48,.55),0 0 35px rgba(232,160,48,.2)}
-.hero-logo pre+pre{margin-top:.3rem;padding-left:1.4em}
-@media(max-width:720px){.hero-grid{grid-template-columns:1fr;gap:1.4rem}.hero-logo{order:-1;justify-self:center}}
+.hero-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:center}
+.hero-head{width:clamp(150px,22vw,230px);height:auto;transform:rotate(4deg);
+  filter:drop-shadow(0 0 18px rgba(232,160,48,.35)) drop-shadow(0 12px 20px rgba(0,0,0,.6));animation:logo-shake 3.8s ease-in-out infinite}
+@media(max-width:720px){.hero-row{grid-template-columns:1fr;gap:1.2rem}.hero-head{justify-self:center;order:-1}}
 .btn{font-family:var(--exo);font-size:.78rem;font-weight:600;padding:9px 20px;border-radius:5px;
   border:1px solid var(--border2);background:var(--card);color:var(--text);cursor:pointer;
   transition:all .2s;display:inline-block;letter-spacing:.04em}
@@ -235,38 +233,32 @@ footer a:hover{color:var(--gold)}
 <div class="wrap">
 
   <section class="hero">
-    <div class="hero-grid">
-      <div class="hero-txt">
-      <div class="hero-pre">core@forge · fangame · Source Engine · analog horror</div>
-      <div class="rec-tag"><span class="dot"></span><span data-en="RECORDING · 01/██/2001">GRABANDO · 01/██/2001</span></div>
-      <p class="hero-sub" data-en="A FNaF fangame that started in 2021 and has not stopped since. A family pizzeria abandoned since the 90s. Three animatronics that have been there for far too long. And a night that is not going to end the way it should.">
-        Un fangame de FNaF que empezó en 2021 y no ha parado desde entonces.
-        Una pizzería familiar abandonada desde los 90. Tres animatrónicos que llevan ahí demasiado tiempo.
-        Y una noche que no va a terminar como debería.
-      </p>
-      <div class="hero-cta">
-        <a href="https://gamejolt.com/games/Donnies2001/885221" target="_blank" class="btn pri" data-en="See it on GameJolt ↗">Ver en GameJolt ↗</a>
-        <a href="index.html" class="btn" data-en="← Back">← Volver</a>
+    <div class="hero-pre">core@forge · fangame · Source Engine · analog horror</div>
+    <div class="rec-tag"><span class="dot"></span><span data-en="RECORDING · 01/██/2001">GRABANDO · 01/██/2001</span></div>
+    <div style="margin-bottom:.6rem;overflow-x:auto;text-align:center;animation:logo-shake 3.8s ease-in-out infinite">
+      <pre style="font-family:var(--mono);font-size:clamp(.3rem,.82vw,.54rem);color:var(--gold);line-height:1.2;text-shadow:0 0 14px rgba(232,160,48,.55),0 0 35px rgba(232,160,48,.2);letter-spacing:0;display:inline-block;text-align:left;margin:0;background:transparent">____                                        __               _____
+/\  _`\                           __        /\ \             /\  __`\         __          __
+\ \ \/\ \    ___     ___     ___ /\_\     __\ \/      ____   \ \ \/\ \  _ __ /\_\     __ /\_\    ___     ____
+ \ \ \ \ \  / __`\ /' _ `\ /' _ `\/\ \  /'__`\/      /',__\   \ \ \ \ \/\`'__\/\ \  /'_ `\/\ \ /' _ `\  /',__\
+  \ \ \_\ \/\ \L\ \/\ \/\ \/\ \/\ \ \ \/\  __/      /\__, `\   \ \ \_\ \ \ \/ \ \ \/\ \L\ \ \ \/\ \/\ \/\__, `\
+   \ \____/\ \____/\ \_\ \_\ \_\ \_\ \_\ \____\     \/\____/    \ \_____\ \_\  \ \_\ \____ \ \_\ \_\ \_\/\____/
+    \/___/  \/___/  \/_/\/_/\/_/\/_/\/_/\/____/      \/___/      \/_____/\/_/   \/_/\/___L\ \/_/\/_/\/_/\/___/
+                                                                                      /\____/
+                                                                                      \_/__/</pre>
+    </div>
+    <div class="hero-row">
+      <div>
+        <p class="hero-sub" data-en="A FNaF fangame that started in 2021 and has not stopped since. A family pizzeria abandoned since the 90s. Three animatronics that have been there for far too long. And a night that is not going to end the way it should.">
+          Un fangame de FNaF que empezó en 2021 y no ha parado desde entonces.
+          Una pizzería familiar abandonada desde los 90. Tres animatrónicos que llevan ahí demasiado tiempo.
+          Y una noche que no va a terminar como debería.
+        </p>
+        <div class="hero-cta">
+          <a href="https://gamejolt.com/games/Donnies2001/885221" target="_blank" class="btn pri" data-en="See it on GameJolt ↗">Ver en GameJolt ↗</a>
+          <a href="index.html" class="btn" data-en="← Back">← Volver</a>
+        </div>
       </div>
-      </div>
-      <div class="hero-logo" aria-label="Donnie's Origins" role="img">
-        <pre aria-hidden="true">____                                        __
-/\  _`\                           __        /\ \
-\ \ \/\ \    ___     ___     ___ /\_\     __\ \/      ____
- \ \ \ \ \  / __`\ /' _ `\ /' _ `\/\ \  /'__`\/      /',__\
-  \ \ \_\ \/\ \L\ \/\ \/\ \/\ \/\ \ \ \/\  __/      /\__, `\
-   \ \____/\ \____/\ \_\ \_\ \_\ \_\ \_\ \____\     \/\____/
-    \/___/  \/___/  \/_/\/_/\/_/\/_/\/_/\/____/      \/___/</pre>
-        <pre aria-hidden="true">_____
-/\  __`\         __          __
-\ \ \/\ \  _ __ /\_\     __ /\_\    ___     ____
- \ \ \ \ \/\`'__\/\ \  /'_ `\/\ \ /' _ `\  /',__\
-  \ \ \_\ \ \ \/ \ \ \/\ \L\ \ \ \/\ \/\ \/\__, `\
-   \ \_____\ \_\  \ \_\ \____ \ \_\ \_\ \_\/\____/
-    \/_____/\/_/   \/_/\/___L\ \/_/\/_/\/_/\/___/
-                         /\____/
-                         \_/__/</pre>
-      </div>
+      <img class="hero-head" src="assets/donnies/donnie-head-logo.webp" alt="Cabeza de Donnie, render 3D" data-en-alt="Donnie's head, 3D render" width="320" height="320">
     </div>
   </section>
   <div class="hazard-bar"></div>
