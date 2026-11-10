@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T13:04:29Z",
+  "updated": "2026-11-10T01:33:43Z",
   "projects": {
     "xusb": {
       "repo": "KCRooty/X-USB",
@@ -21,7 +21,7 @@
     },
     "iron3d": {
       "repo": "KCRooty/Iron3D-Studio",
-      "last_commit": "2026-11-07T00:50:05Z",
+      "last_commit": "2026-11-09T18:45:51Z",
       "version": null,
       "stars": 0
     },
