@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11T06:25:29Z",
+  "updated": "2026-11-11T19:37:27Z",
   "projects": {
     "xusb": {
       "repo": "KCRooty/X-USB",
@@ -15,8 +15,8 @@
     },
     "kcdl": {
       "repo": "KCRooty/kc-downloader",
-      "last_commit": "2026-10-30T15:03:37Z",
-      "version": "v2.4",
+      "last_commit": "2026-11-11T19:13:03Z",
+      "version": "v3.0.1",
       "stars": 0
     },
     "iron3d": {
@@ -39,7 +39,7 @@
     },
     "forgeos": {
       "repo": "KCRooty/ForgeOS",
-      "last_commit": "2026-10-30T10:43:15Z",
+      "last_commit": "2026-11-11T10:43:48Z",
       "version": null,
       "stars": 0
     }
