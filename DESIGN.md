@@ -4,6 +4,10 @@ Dirección dada por Rooty el 2026-10-24: "una mezcla de estilos entre CRT, retro
 Referencias de partida: los cuatro prototipos `paleta-demo*.html` (forge, minimal, retro 70s, CRT/VHS). Se toman el
 CRT, el retro 70s y el minimal; el forge/cyberpunk queda fuera (dirección retirada en las guías de diseño del estudio).
 
+**Revisado por Rooty el 2026-11-11** (antislop #7): identidad, paleta y tipografías aprobadas tal cual; dial más
+calmado; la web queda en ES/EN; el brillo de fósforo se mantiene en todos los textos CRT. Lo que cambie aquí manda
+sobre la web.
+
 ## Identidad
 
 Static Forge como **un canal de televisión de madrugada que emite desde un taller**: la calidez de una carátula
@@ -14,11 +18,13 @@ Línea roja: nunca nombre real ni ubicación real en la web (incidente de doxxin
 
 ## Dial
 
-`Dial: ENERGY 2 / RHYTHM 3 / MOTION 2`
+`Dial: ENERGY 1 / RHYTHM 3 / MOTION 1` (antes 2 / 3 / 2; Rooty pidió "más calma" el 2026-11-11)
 
-- ENERGY 2: tiene que tener presencia (título grande, tele en el hero) pero el contenido manda.
+- ENERGY 1: presencia tranquila. El título y la tele del hero se quedan, pero nada nuevo compite por la atención.
 - RHYTHM 3: cada sección tiene composición propia (hero a dos columnas, guía de canales, bloque editorial, rejilla de galería).
-- MOTION 2: movimiento ambiental solo en el hero (banda de tracking en la pantalla, contador VHS) y transiciones de tema. Todo se apaga con `prefers-reduced-motion` y con el interruptor CRT.
+- MOTION 1: lo mínimo que se mueve, y solo dentro de la tele. Todo se apaga con `prefers-reduced-motion` y con el interruptor CRT.
+- La web todavía está montada con el dial anterior: los ajustes para llegar a 1 / 3 / 1 se proponen por separado y
+  los aprueba Rooty viéndolos (el brillo de fósforo no entra: se queda).
 
 ## Paleta (2 neutros + 3 franjas + 1 acento)
 
@@ -49,10 +55,16 @@ los divisores y en la guía de proyectos, y se repiten en el pie.
 ## Reglas
 
 - Cristal (backdrop-filter) solo en la barra de navegación.
-- El brillo de fósforo solo en el acento y en la pantalla de la tele. **Excepción decidida por KCRooty (2026-10-25):** el cursor.
+- El brillo de fósforo va en todos los textos CRT (`.crt-txt`: OSD, kickers, ficha, créditos, contacto, pie) y en la
+  pantalla de la tele. **Decidido por Rooty el 2026-11-11** al ver el antes/después de limitarlo solo al OSD. También
+  lo lleva el cursor (decisión del 2026-10-25).
 - **Cursor:** flecha oscura con contorno de fósforo y halo leve (`assets/cursor/`); sobre lo pulsable, interior ámbar translucido. Sin halo en Papel ni con el CRT apagado. Solo con ratón (`pointer:fine`); con `prefers-contrast: more` se usa el del sistema. Mismo bloque en `index.html` y `assets/sf.css`. Static Linux, Forge OS y Donnies conservan el suyo.
 - Scanlines y viñeta: capa global sutil, desactivable (interruptor CRT, recordado por visitante).
-- Idiomas: ES (por defecto), EN, CA.
+- Idiomas: ES (por defecto) y EN. Sin catalán (decidido por Rooty el 2026-11-11).
+- Estados de proyecto en tipo frase ("En desarrollo", "Activo"); las mayúsculas quedan para kickers y números de canal.
+- El punto REC del hero usa `--s2` y se alinea con la primera línea del OSD.
+- Cada enlace de proyecto dice adónde lleva ("Ver qué funciona ya", "Ver la hoja de ruta"...), nunca "Ver la página".
+- Hero con un solo botón ("Ver los proyectos"); la fila de valores empieza por "Nuestro software:".
 
 ## Forge OS (`forge-os/`): Windows 7-10 dentro de un monitor CRT ámbar
 
