@@ -45,7 +45,7 @@
   --ink:#F3E6CF; --muted:#A89A80;
   --s1:#E79D56; --s2:#B25781; --s3:#4C9DB0;
   --phosphor:#FFB000; --glow:rgba(255,176,0,.45);
-  --case1:#2E261E; --case2:#1A1510; --case-label:rgba(243,230,207,.38);
+  --case1:#2E261E; --case2:#1A1510; --case-label:rgba(243,230,207,.55);
   --scan:rgba(0,0,0,.22); --vig:rgba(0,0,0,.55);
   --glass:rgba(20,16,12,.72);
   --fd:'Fraunces',Georgia,serif; --fb:'DM Sans',system-ui,sans-serif; --fc:'VT323',ui-monospace,monospace;
@@ -57,7 +57,7 @@
   --ink:#2B2420; --muted:#6B5D50;
   --s3:#305166;
   --phosphor:#A4520F; --glow:transparent;
-  --case1:#E6D8C3; --case2:#C9B89F; --case-label:rgba(43,36,32,.45);
+  --case1:#E6D8C3; --case2:#C9B89F; --case-label:rgba(43,36,32,.76);
   --scan:rgba(90,60,30,.07); --vig:rgba(90,60,30,.16);
   --glass:rgba(251,241,227,.78);
   color-scheme:light;
@@ -139,8 +139,8 @@ img{max-width:100%;display:block}
 
 /* ── Hero ──────────────────────────────────────────────────────────────── */
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:88px 0 64px}
-.osd{display:flex;align-items:center;gap:10px;font-size:1.35rem;margin-bottom:22px}
-.rec{width:10px;height:10px;border-radius:50%;background:#E5484D;box-shadow:0 0 8px rgba(229,72,77,.7);animation:blink 1.2s steps(2) infinite}
+.osd{display:flex;align-items:flex-start;gap:10px;font-size:1.35rem;line-height:1.2;margin-bottom:22px}
+.rec{flex:none;width:10px;height:10px;margin-top:calc(.6em - 5px);border-radius:50%;background:var(--s2);box-shadow:0 0 8px color-mix(in srgb,var(--s2) 70%,transparent);animation:blink 1.2s steps(2) infinite}
 @keyframes blink{50%{opacity:.15}}
 h1{
   font-family:var(--fd);font-weight:900;font-variation-settings:"SOFT" 100,"opsz" 144;
@@ -161,6 +161,7 @@ h1 .forge{display:block;text-shadow:3px 3px 0 var(--s1),6px 6px 0 var(--s2),9px 
 .btn.pri:hover{box-shadow:4px 4px 0 var(--s2)}
 .values{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:34px;font-size:1.15rem;color:var(--muted);font-family:var(--fc);letter-spacing:.05em}
 .values span::before{content:"■ ";color:var(--phosphor)}
+.values span:first-child{color:var(--ink)} .values span:first-child::before{content:none}
 
 /* La tele: pantalla siempre oscura, en los dos temas */
 .tv{
@@ -210,7 +211,7 @@ h2{font-family:var(--fd);font-weight:800;font-variation-settings:"SOFT" 100,"ops
 .feature-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:sepia(.35) saturate(1.2) contrast(1.05)}
 .feature-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.3) 0 1px,transparent 1px 3px)}
 .feature-body{padding:36px 36px 32px;display:flex;flex-direction:column}
-.chan{font:400 1.2rem/1 var(--fc);color:var(--phosphor);letter-spacing:.06em}
+.chan{font:400 1.2rem/1 var(--fc);color:var(--phosphor);letter-spacing:.06em;text-transform:uppercase}
 .feature h3{font:800 clamp(1.8rem,3.4vw,2.4rem)/1.05 var(--fd);font-variation-settings:"SOFT" 100;margin:10px 0 14px;letter-spacing:-.015em}
 .feature p{color:var(--muted)}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
@@ -470,9 +471,8 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
       <p class="lead" data-i18n="hero.lead">Juegos, programas, sistemas operativos, arte digital e historias. <strong>Un estudio independiente fundado por KCRooty (Core)</strong>, abierto a quien quiera sumarse.</p>
       <div class="cta">
         <a class="btn pri" href="#proyectos" data-i18n="hero.cta1">Ver los proyectos</a>
-        <a class="btn" href="#galeria" data-i18n="hero.cta2">Abrir la galería</a>
       </div>
-      <p class="values"><span data-i18n="v.1">Código abierto</span><span data-i18n="v.2">Sin anuncios</span><span data-i18n="v.3">Sin telemetría</span></p>
+      <p class="values"><span data-i18n="v.0">Nuestro software:</span><span data-i18n="v.1">Código abierto</span><span data-i18n="v.2">Sin anuncios</span><span data-i18n="v.3">Sin telemetría</span></p>
     </div>
 
     <div class="tv" aria-hidden="true">
@@ -533,7 +533,7 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
         </div>
       </div>
       <div class="feature-body">
-        <span class="chan" id="featChan">CH 02 · <span data-i18n="st.devsince">EN DESARROLLO · DESDE 2021</span></span>
+        <span class="chan" id="featChan">CH 02 · <span data-i18n="st.devsince">En desarrollo · desde 2021</span></span>
         <img class="pj-logo" id="featLogo" src="assets/projects/donnies.webp" alt="" width="56" height="56" loading="lazy">
         <h3 id="featTitle" aria-live="polite">Donnie's Origins</h3>
         <span class="live" id="featLive"></span>
@@ -552,13 +552,13 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
         <ul class="rows">
           <li class="row">
             <span class="chan">03</span>
-            <div><img class="pj-logo" src="assets/projects/fnaf-as.webp" alt="" width="56" height="56" loading="lazy"><h4>FNAF AS</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span></div>
+            <div><img class="pj-logo" src="assets/projects/fnaf-as.webp" alt="" width="56" height="56" loading="lazy"><h4>FNAF AS</h4><span class="st" data-i18n="st.dev">En desarrollo</span></div>
             <p data-i18n="d.fnafas">Five Nights at Freddy's Alternative Stories: antología fan de glitch y terror analógico, con lore propio y renders 3D.</p>
-            <div class="acts"><a class="lnk" href="fnaf-as.html" data-i18n="a.page">Ver la página</a></div>
+            <div class="acts"><a class="lnk" href="fnaf-as.html" data-i18n="a.fnafas">Leer sobre FNAF AS</a></div>
           </li>
           <li class="row">
             <span class="chan">04</span>
-            <div><h4>LADA</h4><span class="st" data-i18n="st.build">EN CONSTRUCCIÓN</span></div>
+            <div><h4>LADA</h4><span class="st" data-i18n="st.build">En construcción</span></div>
             <p data-i18n="d.lada">Ficción original de largo recorrido, desde 2020: personajes, mundo y trama propios.</p>
             <div class="acts"><span class="soon" data-i18n="a.soon">Próximamente</span></div>
           </li>
@@ -570,37 +570,37 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
         <ul class="rows">
           <li class="row">
             <span class="chan">05</span>
-            <div><img class="pj-logo" src="assets/projects/xusb.webp" alt="" width="56" height="56" loading="lazy"><h4>X-USB</h4><span class="st" data-i18n="st.active">ACTIVO</span><span class="live" data-repo="xusb"></span></div>
+            <div><img class="pj-logo" src="assets/projects/xusb.webp" alt="" width="56" height="56" loading="lazy"><h4>X-USB</h4><span class="st" data-i18n="st.active">Activo</span><span class="live" data-repo="xusb"></span></div>
             <p data-i18n="d.xusb">App Android libre al estilo Rufus y Ventoy: grabar ISOs, USB multiarranque UEFI y particiones desde el móvil. Gratis, sin anuncios. Necesita root.</p>
             <div class="acts"><a class="lnk" href="https://github.com/KCRooty/X-USB" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
           <li class="row">
             <span class="chan">06</span>
-            <div><img class="pj-logo" src="assets/projects/rck.webp" alt="" width="56" height="56" loading="lazy"><h4>RCK</h4><span class="st" data-i18n="st.active">ACTIVO</span><span class="live" data-repo="rck"></span></div>
+            <div><img class="pj-logo" src="assets/projects/rck.webp" alt="" width="56" height="56" loading="lazy"><h4>RCK</h4><span class="st" data-i18n="st.active">Activo</span><span class="live" data-repo="rck"></span></div>
             <p data-i18n="d.rck">Optimizador de Windows 10 y 11 donde cada ajuste se puede deshacer: copia del registro antes de cada cambio y catálogo firmado.</p>
             <div class="acts"><a class="lnk" href="https://github.com/KCRooty/RCK" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
           <li class="row">
             <span class="chan">07</span>
-            <div><img class="pj-logo" src="assets/projects/kc-downloader.webp" alt="" width="56" height="56" loading="lazy"><h4>KC Downloader</h4><span class="st" data-i18n="st.active">ACTIVO</span><span class="live" data-repo="kcdl"></span></div>
+            <div><img class="pj-logo" src="assets/projects/kc-downloader.webp" alt="" width="56" height="56" loading="lazy"><h4>KC Downloader</h4><span class="st" data-i18n="st.active">Activo</span><span class="live" data-repo="kcdl"></span></div>
             <p data-i18n="d.kc">Descargador de escritorio para YouTube, YouTube Music, Spotify y Pinterest. La v3 es una reescritura completa: interfaz nueva con tema claro u oscuro, ajustes a tu gusto y descargas que funcionan en cualquier Windows o Linux sin instalar nada, porque yt-dlp, FFmpeg y Deno vienen dentro y la app los actualiza sola.</p>
             <div class="acts"><a class="lnk" href="https://github.com/KCRooty/kc-downloader/releases/latest" target="_blank" rel="noopener" data-i18n="a.dl">Descargar v3.0.0 ↗</a> <a class="lnk" href="https://github.com/KCRooty/kc-downloader" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
           <li class="row">
             <span class="chan">08</span>
-            <div><img class="pj-logo" src="assets/projects/winforge.webp" alt="" width="56" height="56" loading="lazy"><h4>WinForge</h4><span class="st" data-i18n="st.test">EN PRUEBAS</span></div>
+            <div><img class="pj-logo" src="assets/projects/winforge.webp" alt="" width="56" height="56" loading="lazy"><h4>WinForge</h4><span class="st" data-i18n="st.test">En pruebas</span></div>
             <p data-i18n="d.winforge">Una ISO de Windows 11 limpia, sin bloatware y con identidad propia desde el primer arranque.</p>
             <div class="acts"><span class="soon" data-i18n="a.unpub">Aún sin publicar</span></div>
           </li>
           <li class="row">
             <span class="chan">09</span>
-            <div><img class="pj-logo" src="assets/projects/iron3d-studio.webp" alt="" width="56" height="56" loading="lazy"><h4>Iron3D Studio</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span><span class="live" data-repo="iron3d"></span></div>
+            <div><img class="pj-logo" src="assets/projects/iron3d-studio.webp" alt="" width="56" height="56" loading="lazy"><h4>Iron3D Studio</h4><span class="st" data-i18n="st.dev">En desarrollo</span><span class="live" data-repo="iron3d"></span></div>
             <p data-i18n="d.iron3d">Motor 3D propio en C++/Vulkan que recrea el flujo de trabajo de un DCC clásico desde cero: Gestor de Objetos, cámara orbital y pipeline gráfico, sin una línea de código ajena.</p>
-            <div class="acts"><a class="lnk" href="i3ds.html" data-i18n="a.page">Ver la página</a><a class="lnk" href="https://github.com/KCRooty/Iron3D-Studio" target="_blank" rel="noopener">GitHub ↗</a></div>
+            <div class="acts"><a class="lnk" href="i3ds.html" data-i18n="a.i3ds">Ver qué funciona ya</a><a class="lnk" href="https://github.com/KCRooty/Iron3D-Studio" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
           <li class="row">
             <span class="chan">10</span>
-            <div><img class="pj-logo" src="assets/projects/cinder-studio.webp" alt="" width="56" height="56" loading="lazy"><h4>Cinder Studio</h4><span class="st" data-i18n="st.design">EN DISEÑO</span><span class="live" data-repo="cinder"></span></div>
+            <div><img class="pj-logo" src="assets/projects/cinder-studio.webp" alt="" width="56" height="56" loading="lazy"><h4>Cinder Studio</h4><span class="st" data-i18n="st.design">En diseño</span><span class="live" data-repo="cinder"></span></div>
             <p data-i18n="d.cinder">Editor de vídeo propio en Rust con todo el procesado de imagen en GPU, al estilo de DaVinci Resolve: edición, color por nodos, composición, audio y entrega en un solo programa. Sustituye a CoalMix Studio, cancelado.</p>
             <div class="acts"><a class="lnk" href="https://github.com/KCRooty/Cinder-Studio" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
@@ -612,15 +612,15 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
         <ul class="rows">
           <li class="row">
             <span class="chan">11</span>
-            <div><img class="pj-logo pj-dark" src="assets/projects/static-linux.webp" alt="" width="56" height="56" loading="lazy"><h4>Static Linux</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span><span class="live" data-repo="linux"></span></div>
+            <div><img class="pj-logo pj-dark" src="assets/projects/static-linux.webp" alt="" width="56" height="56" loading="lazy"><h4>Static Linux</h4><span class="st" data-i18n="st.dev">En desarrollo</span><span class="live" data-repo="linux"></span></div>
             <p data-i18n="d.sl">Distro basada en Arch. sl-detect mira tu hardware y elige el escritorio adecuado, de Openbox a Hyprland. La primera ISO ya arranca e instala de principio a fin.</p>
-            <div class="acts"><a class="lnk" href="linux/" data-i18n="a.page">Ver la página</a></div>
+            <div class="acts"><a class="lnk" href="linux/" data-i18n="a.sl">Ver la hoja de ruta</a></div>
           </li>
           <li class="row">
             <span class="chan">12</span>
-            <div><img class="pj-logo" src="assets/projects/forge-os.webp" alt="" width="56" height="56" loading="lazy"><h4>Forge OS</h4><span class="st" data-i18n="st.dev">EN DESARROLLO</span><span class="live" data-repo="forgeos"></span></div>
+            <div><img class="pj-logo" src="assets/projects/forge-os.webp" alt="" width="56" height="56" loading="lazy"><h4>Forge OS</h4><span class="st" data-i18n="st.dev">En desarrollo</span><span class="live" data-repo="forgeos"></span></div>
             <p data-i18n="d.fos">Un sistema operativo completo escrito desde cero en Rust: kernel propio para x86_64 y userland propio (Ember, Bellows, Crucible y Anvil).</p>
-            <div class="acts"><a class="lnk" href="forge-os/" data-i18n="a.page">Ver la página</a><a class="lnk" href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener">GitHub ↗</a></div>
+            <div class="acts"><a class="lnk" href="forge-os/" data-i18n="a.fos">Entrar en Forge OS</a><a class="lnk" href="https://github.com/KCRooty/ForgeOS" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
         </ul>
       </div>
@@ -630,7 +630,7 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
         <ul class="rows">
           <li class="row">
             <span class="chan">13</span>
-            <div><img class="pj-logo" src="assets/projects/anvil-client.webp" alt="" width="56" height="56" loading="lazy"><h4>Anvil Client</h4><span class="st" data-i18n="st.early">DESARROLLO TEMPRANO</span><span class="st" data-i18n="st.byalcraft">DE ALCRAFT</span></div>
+            <div><img class="pj-logo" src="assets/projects/anvil-client.webp" alt="" width="56" height="56" loading="lazy"><h4>Anvil Client</h4><span class="st" data-i18n="st.early">Desarrollo temprano</span><span class="st" data-i18n="st.byalcraft">De Alcraft</span></div>
             <p data-i18n="d.anvil">Launcher propio para Minecraft Java. Cada instancia guarda sus mods, partidas y opciones, y la lista de instancias y las noticias llegan en directo desde su servidor.</p>
             <div class="acts"><span class="soon" data-i18n="a.unpub">Aún sin publicar</span></div>
           </li>
@@ -780,11 +780,11 @@ var T={
 es:{'skip':'Saltar al contenido','ap.kicker':'SOLICITUD','ap.h':'Rellena la solicitud','ap.p':'Cuéntanos quién eres, qué haces y qué te gustaría hacer en el estudio, en sus proyectos o con uno tuyo. Lleva unos cinco minutos. Si te interesa Static Linux o Forge OS en concreto, tienen su propia solicitud en <a href="linux/#unete">Static Linux</a> y en <a href="forge-os/#unete">Forge OS</a>.','nav.projects':'Proyectos','nav.workshop':"Estudio",'nav.gallery':'Galería','nav.forum':'Foro','nav.menu':'MENÚ',
 'theme.paper':'PAPEL','theme.night':'NOCHE',
 'hero.osd':'CH 01 · EMITIENDO DESDE EL TALLER','hero.lead':"Juegos, programas, sistemas operativos, arte digital e historias. <strong>Un estudio independiente fundado por KCRooty (Core)</strong>, abierto a quien quiera sumarse.",
-'hero.cta1':'Ver los proyectos','hero.cta2':'Abrir la galería','v.1':'Código abierto','v.2':'Sin anuncios','v.3':'Sin telemetría',
+'hero.cta1':'Ver los proyectos','v.0':'Nuestro software:','v.1':'Código abierto','v.2':'Sin anuncios','v.3':'Sin telemetría',
 'proj.kicker':'GUÍA DE PROGRAMACIÓN','proj.h':'Lo que sale del taller','proj.intro':'Juegos, herramientas y sistemas. Cada canal es un proyecto, con su estado real.',
-'st.devsince':'EN DESARROLLO · DESDE 2021','st.dev':'EN DESARROLLO','st.build':'EN CONSTRUCCIÓN','st.active':'ACTIVO','st.done':'TERMINADO','st.test':'EN PRUEBAS','st.paused':'EN PAUSA','st.design':'EN DISEÑO',
+'st.devsince':'En desarrollo · desde 2021','st.dev':'En desarrollo','st.build':'En construcción','st.active':'Activo','st.done':'Terminado','st.test':'En pruebas','st.paused':'En pausa','st.design':'En diseño',
 'd.donnies':'Fangame de terror analógico inspirado en FNaF, hecho en Source Engine. Un universo y una historia propios, ambientados en los 2000.',
-'t.analog':'Terror analógico','a.donnies':"Ver Donnie's Origins",'a.page':'Ver la página','a.dl':'Descargar v3.0.0 ↗','a.soon':'Próximamente','a.unpub':'Aún sin publicar',
+'t.analog':'Terror analógico','a.donnies':"Ver Donnie's Origins",'a.fnafas':'Leer sobre FNAF AS','a.i3ds':'Ver qué funciona ya','a.sl':'Ver la hoja de ruta','a.fos':'Entrar en Forge OS','a.dl':'Descargar v3.0.0 ↗','a.soon':'Próximamente','a.unpub':'Aún sin publicar',
 'g.hist':'Historias','g.soft':'Software','g.sys':'Sistemas',
 'd.fnafas':"Five Nights at Freddy's Alternative Stories: antología fan de glitch y terror analógico, con lore propio y renders 3D.",
 'd.lada':'Ficción original de largo recorrido, desde 2020: personajes, mundo y trama propios.',
@@ -805,7 +805,7 @@ es:{'skip':'Saltar al contenido','ap.kicker':'SOLICITUD','ap.h':'Rellena la soli
 's.kicker':"SE BUSCA GENTE",'s.h':"Únete a Static Forge",'s.p':"Siempre hay sitio para ideas, colaboraciones y gente que quiera formar parte del estudio, venga del ámbito que venga. Tus proyectos también se publican y se distribuyen bajo Static Forge.",'s.forum':"Foro",
 'f.eob':'FIN DE LA EMISIÓN','lb.close':'CERRAR [ESC]','lb.prev':'Imagen anterior','lb.next':'Imagen siguiente',
 'c.k':'CRÉDITOS','c.h':'El equipo','c.members':'INTEGRANTES','c.voice':'Doblaje de voz','c.music':'Producción musical e instrumentos','c.dev':'Desarrollo',
-'g.mem':'De los integrantes','st.byalcraft':'DE ALCRAFT','st.early':'DESARROLLO TEMPRANO',
+'g.mem':'De los integrantes','st.byalcraft':'De Alcraft','st.early':'Desarrollo temprano',
 'cc.k':'EN ANTENA','cc.h':'Creadores de contenido',
 'd.anvil':'Launcher propio para Minecraft Java. Cada instancia guarda sus mods, partidas y opciones, y la lista de instancias y las noticias llegan en directo desde su servidor.',
 'feat.prev':'Canal anterior','feat.next':'Canal siguiente','feat.label':'Proyectos destacados','t.fan':'Antología fan','t.renders':'Renders 3D','t.fiction':'Ficción original','t.minecraft':'Minecraft Java','lada.soon':'PRÓXIMAMENTE',
@@ -814,11 +814,11 @@ es:{'skip':'Saltar al contenido','ap.kicker':'SOLICITUD','ap.h':'Rellena la soli
 en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the application','ap.p':'Tell us who you are, what you do and what you would like to do in the studio, on its projects or with one of your own. It takes about five minutes. If you are interested in Static Linux or Forge OS specifically, they have their own application on the <a href="linux/#unete">Static Linux</a> and <a href="forge-os/#unete">Forge OS</a> pages (in Spanish).','nav.projects':'Projects','nav.workshop':"Studio",'nav.gallery':'Gallery','nav.forum':'Forum','nav.menu':'MENU',
 'theme.paper':'PAPER','theme.night':'NIGHT',
 'hero.osd':'CH 01 · BROADCASTING FROM THE WORKSHOP','hero.lead':"Games, software, operating systems, digital art and stories. <strong>An independent studio founded by KCRooty (Core)</strong>, open to anyone who wants to join.",
-'hero.cta1':'See the projects','hero.cta2':'Open the gallery','v.1':'Open source','v.2':'No ads','v.3':'No telemetry',
+'hero.cta1':'See the projects','v.0':'Our software:','v.1':'Open source','v.2':'No ads','v.3':'No telemetry',
 'proj.kicker':'PROGRAM GUIDE','proj.h':'Out of the workshop','proj.intro':'Games, tools and systems. Every channel is a project, with its real status.',
-'st.devsince':'IN DEVELOPMENT · SINCE 2021','st.dev':'IN DEVELOPMENT','st.build':'UNDER CONSTRUCTION','st.active':'ACTIVE','st.done':'FINISHED','st.test':'TESTING','st.paused':'PAUSED','st.design':'IN DESIGN',
+'st.devsince':'In development · since 2021','st.dev':'In development','st.build':'Under construction','st.active':'Active','st.done':'Finished','st.test':'Testing','st.paused':'Paused','st.design':'In design',
 'd.donnies':'An FNaF-inspired analog horror fangame built on Source Engine. Its own universe and story, set in the 2000s.',
-'t.analog':'Analog horror','a.donnies':"See Donnie's Origins",'a.page':'See the page','a.dl':'Download v3.0.0 ↗','a.soon':'Coming soon','a.unpub':'Not published yet',
+'t.analog':'Analog horror','a.donnies':"See Donnie's Origins",'a.fnafas':'Read about FNAF AS','a.i3ds':'See what already runs','a.sl':'See the roadmap','a.fos':'Enter Forge OS','a.dl':'Download v3.0.0 ↗','a.soon':'Coming soon','a.unpub':'Not published yet',
 'g.hist':'Stories','g.soft':'Software','g.sys':'Systems',
 'd.fnafas':"Five Nights at Freddy's Alternative Stories: a fan anthology of glitch and analog horror, with its own lore and 3D renders.",
 'd.lada':'A long-running original fiction, since 2020: its own characters, world and plot.',
@@ -839,7 +839,7 @@ en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the appli
 's.kicker':"LOOKING FOR PEOPLE",'s.h':"Join Static Forge",'s.p':"There's always room for ideas, collaborations and people who want to be part of the studio, whatever their field. Your projects get published and distributed under Static Forge too.",'s.forum':"Forum",
 'f.eob':'END OF BROADCAST','lb.close':'CLOSE [ESC]','lb.prev':'Previous image','lb.next':'Next image',
 'c.k':'CREDITS','c.h':'The team','c.members':'MEMBERS','c.voice':'Voice acting','c.music':'Music production and instruments','c.dev':'Development',
-'g.mem':'By our members','st.byalcraft':'BY ALCRAFT','st.early':'EARLY DEVELOPMENT',
+'g.mem':'By our members','st.byalcraft':'By Alcraft','st.early':'Early development',
 'cc.k':'ON AIR','cc.h':'Content creators',
 'd.anvil':'A custom Minecraft Java launcher. Each instance keeps its own mods, saves and options, and the instance list and news arrive live from its server.',
 'feat.prev':'Previous channel','feat.next':'Next channel','feat.label':'Featured projects','t.fan':'Fan anthology','t.renders':'3D renders','t.fiction':'Original fiction','t.minecraft':'Minecraft Java','lada.soon':'COMING SOON',
@@ -987,16 +987,16 @@ lb.addEventListener('close',function(){if(opener)opener.focus()});
 var GH='https://github.com/KCRooty/';
 var CH=[
   {ch:'02',img:'assets/donnies/donnie-suit-head.webp',alt:'Render 3D en progreso del endoesqueleto de Donnie',logo:'assets/projects/donnies.webp',title:"Donnie's Origins",st:['st.devsince'],d:'d.donnies',tags:['Source SDK 2013',{k:'t.analog'},'3D'],cta:[{h:'donnies.html',k:'a.donnies',pri:1},{h:'https://gamejolt.com/games/Donnies2001/885221',x:'GameJolt ↗',ext:1}]},
-  {ch:'03',img:'assets/fnaf-as/ep01-render.webp',alt:'Render del episodio 1 de FNAF AS',bright:1,logo:'assets/projects/fnaf-as.webp',title:'FNAF AS',st:['st.dev'],d:'d.fnafas',tags:[{k:'t.fan'},{k:'t.renders'},{k:'t.analog'}],cta:[{h:'fnaf-as.html',k:'a.page',pri:1}]},
+  {ch:'03',img:'assets/fnaf-as/ep01-render.webp',alt:'Render del episodio 1 de FNAF AS',bright:1,logo:'assets/projects/fnaf-as.webp',title:'FNAF AS',st:['st.dev'],d:'d.fnafas',tags:[{k:'t.fan'},{k:'t.renders'},{k:'t.analog'}],cta:[{h:'fnaf-as.html',k:'a.fnafas',pri:1}]},
   {ch:'04',nosig:1,title:'LADA',st:['st.build'],d:'d.lada',tags:[{k:'t.fiction'}],soon:'a.soon'},
   {ch:'05',img:'assets/projects/xusb.webp',fit:1,logo:'assets/projects/xusb.webp',title:'X-USB',repo:'xusb',st:['st.active'],d:'d.xusb',tags:['Android','Root','UEFI'],cta:[{h:GH+'X-USB',x:'GitHub ↗',ext:1,pri:1}]},
   {ch:'06',img:'assets/projects/rck.webp',fit:1,logo:'assets/projects/rck.webp',title:'RCK',repo:'rck',st:['st.active'],d:'d.rck',tags:['Windows 10','Windows 11'],cta:[{h:GH+'RCK',x:'GitHub ↗',ext:1,pri:1}]},
   {ch:'07',img:'assets/projects/kc-downloader.webp',fit:1,logo:'assets/projects/kc-downloader.webp',title:'KC Downloader',repo:'kcdl',st:['st.active'],d:'d.kc',tags:['v3.0.0','yt-dlp','Qt'],cta:[{h:GH+'kc-downloader/releases/latest',k:'a.dl',ext:1,pri:1},{h:GH+'kc-downloader',x:'GitHub ↗',ext:1}]},
   {ch:'08',img:'assets/projects/winforge.webp',fit:1,logo:'assets/projects/winforge.webp',title:'WinForge',st:['st.test'],d:'d.winforge',tags:['Windows 11','ISO'],soon:'a.unpub'},
-  {ch:'09',img:'assets/projects/iron3d-ui.webp',alt:'Interfaz de Iron3D Studio',logo:'assets/projects/iron3d-studio.webp',title:'Iron3D Studio',repo:'iron3d',st:['st.dev'],d:'d.iron3d',tags:['C++','Vulkan','3D'],cta:[{h:'i3ds.html',k:'a.page',pri:1},{h:GH+'Iron3D-Studio',x:'GitHub ↗',ext:1}]},
+  {ch:'09',img:'assets/projects/iron3d-ui.webp',alt:'Interfaz de Iron3D Studio',logo:'assets/projects/iron3d-studio.webp',title:'Iron3D Studio',repo:'iron3d',st:['st.dev'],d:'d.iron3d',tags:['C++','Vulkan','3D'],cta:[{h:'i3ds.html',k:'a.i3ds',pri:1},{h:GH+'Iron3D-Studio',x:'GitHub ↗',ext:1}]},
   {ch:'10',img:'assets/projects/cinder-studio-card.webp',fit:1,alt:'Logo de Cinder Studio',logo:'assets/projects/cinder-studio.webp',title:'Cinder Studio',repo:'cinder',st:['st.design'],d:'d.cinder',tags:['Rust','GPU',{k:'t.video'}],cta:[{h:GH+'Cinder-Studio',x:'GitHub ↗',ext:1,pri:1}]},
-  {ch:'11',img:'assets/projects/static-linux.webp',fit:1,logo:'assets/projects/static-linux.webp',dark:1,title:'Static Linux',repo:'linux',st:['st.dev'],d:'d.sl',tags:['Arch','sl-detect'],cta:[{h:'linux/',k:'a.page',pri:1}]},
-  {ch:'12',img:'assets/projects/forge-os.webp',fit:1,logo:'assets/projects/forge-os.webp',title:'Forge OS',repo:'forgeos',st:['st.dev'],d:'d.fos',tags:['Rust','x86_64'],cta:[{h:'forge-os/',k:'a.page',pri:1},{h:GH+'ForgeOS',x:'GitHub ↗',ext:1}]},
+  {ch:'11',img:'assets/projects/static-linux.webp',fit:1,logo:'assets/projects/static-linux.webp',dark:1,title:'Static Linux',repo:'linux',st:['st.dev'],d:'d.sl',tags:['Arch','sl-detect'],cta:[{h:'linux/',k:'a.sl',pri:1}]},
+  {ch:'12',img:'assets/projects/forge-os.webp',fit:1,logo:'assets/projects/forge-os.webp',title:'Forge OS',repo:'forgeos',st:['st.dev'],d:'d.fos',tags:['Rust','x86_64'],cta:[{h:'forge-os/',k:'a.fos',pri:1},{h:GH+'ForgeOS',x:'GitHub ↗',ext:1}]},
   {ch:'13',img:'assets/projects/anvil-client.webp',fit:1,logo:'assets/projects/anvil-client.webp',title:'Anvil Client',st:['st.early','st.byalcraft'],d:'d.anvil',tags:[{k:'t.minecraft'}],soon:'a.unpub'}
 ];
 var fi=0,fArt=document.getElementById('featArt'),fImg=document.getElementById('featImg');
