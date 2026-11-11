@@ -23,8 +23,9 @@ Línea roja: nunca nombre real ni ubicación real en la web (incidente de doxxin
 - ENERGY 1: presencia tranquila. El título y la tele del hero se quedan, pero nada nuevo compite por la atención.
 - RHYTHM 3: cada sección tiene composición propia (hero a dos columnas, guía de canales, bloque editorial, rejilla de galería).
 - MOTION 1: lo mínimo que se mueve, y solo dentro de la tele. Todo se apaga con `prefers-reduced-motion` y con el interruptor CRT.
-- La web todavía está montada con el dial anterior: los ajustes para llegar a 1 / 3 / 1 se proponen por separado y
-  los aprueba Rooty viéndolos (el brillo de fósforo no entra: se queda).
+- **Lo que ya se mueve se queda (Rooty, 2026-11-11: "así contrasta"):** fogonazo de encendido, parpadeo del REC,
+  banda de tracking de la tele y estática entre canales. La calma del dial vale para lo nuevo: nada añadido debe
+  sumar movimiento ni efectos fuera de la tele.
 
 ## Paleta (2 neutros + 3 franjas + 1 acento)
 
