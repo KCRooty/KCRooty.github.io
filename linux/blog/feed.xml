@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Static Linux · notas de desarrollo</title>
+  <link>https://staticforge.me/linux/blog/</link>
+  <description>Versiones, novedades y arreglos de Static Linux, la distribución de Static Forge.</description>
+  <language>es</language>
+  <item>
+    <title>Temas, estilos y el código, abierto</title>
+    <link>https://staticforge.me/linux/blog/2026-11-temas-estilos-codigo-abierto/</link>
+    <guid>https://staticforge.me/linux/blog/2026-11-temas-estilos-codigo-abierto/</guid>
+    <pubDate>Thu, 12 Nov 2026 12:00:00 +0000</pubDate>
+    <description>Ocho temas que son fondo más paleta, tres formas de escritorio (minimal, aero y ventanas), una página de tema en el instalador y el repositorio público con su wiki.</description>
+  </item>
+  <item>
+    <title>Instalador pulido, KDE Plasma y Hyprland 0.56</title>
+    <link>https://staticforge.me/linux/blog/2026-10-instalador-pulido-kde-hyprland/</link>
+    <guid>https://staticforge.me/linux/blog/2026-10-instalador-pulido-kde-hyprland/</guid>
+    <pubDate>Fri, 23 Oct 2026 12:00:00 +0000</pubDate>
+    <description>Una ronda grande tras la primera instalación real: el instalador en español y a pantalla completa, KDE Plasma como entorno, Hyprland al día y los fallos de la primera vez corregidos.</description>
+  </item>
+  <item>
+    <title>La primera ISO que instala de principio a fin</title>
+    <link>https://staticforge.me/linux/blog/2026-10-primera-iso-que-instala/</link>
+    <guid>https://staticforge.me/linux/blog/2026-10-primera-iso-que-instala/</guid>
+    <pubDate>Sun, 11 Oct 2026 12:00:00 +0000</pubDate>
+    <description>1,7 GB, arranque UEFI, instalación completa en QEMU/KVM y un sistema que arranca con su escritorio, su pantalla de inicio y su bienvenida.</description>
+  </item>
+  <item>
+    <title>Bienvenida, instalador y más entornos</title>
+    <link>https://staticforge.me/linux/blog/2026-09-bienvenida-instalador-entornos/</link>
+    <guid>https://staticforge.me/linux/blog/2026-09-bienvenida-instalador-entornos/</guid>
+    <pubDate>Mon, 21 Sep 2026 12:00:00 +0000</pubDate>
+    <description>Llegan sl-welcome, la secuencia completa del instalador Calamares, Openbox e Hyprland, el paquete base y la wiki.</description>
+  </item>
+  <item>
+    <title>Arranca Static Linux</title>
+    <link>https://staticforge.me/linux/blog/2026-09-arranca-static-linux/</link>
+    <guid>https://staticforge.me/linux/blog/2026-09-arranca-static-linux/</guid>
+    <pubDate>Thu, 10 Sep 2026 12:00:00 +0000</pubDate>
+    <description>Primer paso de la distribución de Static Forge: base Arch, detección de hardware y un XFCE con tema propio.</description>
+  </item>
+</channel>
+</rss>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/linux/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/linux/apple-touch-icon.png">
+<title data-en="Themes, styles and the code, in the open · Static Linux">Temas, estilos y el código, abierto · Static Linux</title>
+<meta name="description" content="Ocho temas que son fondo más paleta, tres formas de escritorio (minimal, aero y ventanas), una página de tema en el instalador y el repositorio público con su wiki." data-en-content="Eight themes that are wallpaper plus palette, three desktop shapes (minimal, aero and ventanas), a theme page in the installer and the public repository with its wiki.">
+<link rel="canonical" href="https://staticforge.me/linux/blog/2026-11-temas-estilos-codigo-abierto/">
+<meta property="og:title" content="Temas, estilos y el código, abierto · Static Linux">
+<meta property="og:description" content="Ocho temas que son fondo más paleta, tres formas de escritorio (minimal, aero y ventanas), una página de tema en el instalador y el repositorio público con su wiki.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://staticforge.me/linux/blog/2026-11-temas-estilos-codigo-abierto/">
+<meta property="og:site_name" content="Static Forge">
+<meta property="og:image" content="https://staticforge.me/assets/og/linux.jpg">
+<meta name="theme-color" content="#0B0C10">
+<link rel="alternate" type="application/rss+xml" title="Static Linux · notas de desarrollo" href="/linux/blog/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
+<link rel="stylesheet" href="/linux/sl.css?v=20261112a">
+<link rel="stylesheet" href="/assets/lang.css">
+</head>
+<body>
+<a class="skip" href="/linux/" data-en="Skip to content">Saltar al contenido</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="mark" href="/linux/" aria-label="Static Linux, arriba" data-en-aria-label="Static Linux, back to top">static<b>linux</b><span class="cur" aria-hidden="true"></span></a>
+    <ul class="nav">
+      <li><a href="/linux/#que" data-en="What it is">Qué es</a></li>
+      <li><a href="/linux/#herramientas" data-en="Tools">Herramientas</a></li>
+      <li><a href="/linux/#temas" data-en="Themes">Temas</a></li>
+      <li><a href="/linux/#estado" data-en="Status">Estado</a></li>
+      <li><a href="/linux/#wiki">Wiki</a></li>
+      <li><a href="/linux/blog/">Blog</a></li>
+      <li><a href="/linux/#unete" data-en="Join">Únete</a></li>
+    </ul>
+    <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+      <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+      <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+    </div>
+    <a class="back" href="/" aria-label="Volver a Static Forge" data-en-aria-label="Back to Static Forge">← <span class="bk-txt">Static Forge</span></a>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+<article class="post">
+  <p class="crumb"><a href="/linux/blog/" data-en="← Development notes">← Notas de desarrollo</a></p>
+  <p class="post-meta"><time datetime="2026-11-12" data-en="November 12, 2026">12 de noviembre de 2026</time> · <span data-en="release">versión</span> <span class="tag">temas</span> <span class="tag">estilos</span> <span class="tag">instalador</span> <span class="tag">código</span></p>
+  <h1 data-en="Themes, styles and the code, in the open">Temas, estilos y el código, abierto</h1>
+  <p class="post-sub" data-en="Eight themes that are wallpaper plus palette, three desktop shapes (minimal, aero and ventanas), a theme page in the installer and the public repository with its wiki.">Ocho temas que son fondo más paleta, tres formas de escritorio (minimal, aero y ventanas), una página de tema en el instalador y el repositorio público con su wiki.</p>
+  <div class="post-body" data-only="es">
+<h2>Lo nuevo</h2>
+<h3>Temas: un fondo y su paleta</h3>
+<p>Los diez acentos de antes se quedan cortos. Ahora un tema es un fondo de pantalla y la paleta que sale de él: acento, superficies, texto, bordes de ventana, carpetas y terminal. Hay ocho: Ámbar, Bosque, Medianoche, Brasa, Niebla, Violeta, Aero y Ventanas.</p>
+<figure class="shot"><img src="/linux/img/temas/ambar.webp" alt="Escritorio con el tema Ámbar" loading="lazy" width="1280" height="720"></figure>
+<p>Todo lo genera <code>sl-theme</code> a partir de un <code>theme.conf</code> de unas pocas líneas: GTK 3 y 4, el tema de ventanas de xfwm4 (dibujado píxel a píxel con antialias), xsettings, la terminal y el panel.</p>
+
+<h3>Tres estilos de escritorio</h3>
+<p>Además del color, cada tema elige una forma:</p>
+<ul>
+<li><strong>minimal</strong>: barra fina arriba, esquinas suaves, nada que sobre. El de siempre.</li>
+<li><strong>aero</strong>: cristal brillante, botones en cápsula y barra de tareas abajo con reloj y fecha. Homenaje a la estética de finales de los 2000, dibujado desde cero.</li>
+<li><strong>ventanas</strong>: barra alta abajo con las apps centradas, botones de ventana anchos y planos, oscuro y azul. Para quien viene de Windows y no quiere aprender otro escritorio el primer día.</li>
+</ul>
+<div class="gal g2">
+<figure class="shot"><img src="/linux/img/temas/aero.webp" alt="Tema Aero" loading="lazy" width="1280" height="720"><figcaption>Aero</figcaption></figure>
+<figure class="shot"><img src="/linux/img/temas/ventanas.webp" alt="Tema Ventanas" loading="lazy" width="1280" height="720"><figcaption>Ventanas</figcaption></figure>
+</div>
+<p>Al cambiar de estilo el panel se reconstruye en caliente, sin cerrar sesión.</p>
+
+<h3>Dónde se elige</h3>
+<ul>
+<li><strong>Instalador</strong>: página <em>Tema</em> con capturas reales de los ocho. Lo que eliges es lo que arranca.</li>
+<li><strong>Bienvenida</strong> (sl-welcome): la pestaña Apariencia es ahora un selector de temas.</li>
+<li><strong>Terminal</strong>: <code>sl-ctl theme</code> lista y aplica (<code>sl-ctl theme aero</code>).</li>
+</ul>
+
+<h3>Apps de Static Forge</h3>
+<p>El catálogo de la bienvenida estrena una sección <em>Static Forge</em> con el software del estudio. Empieza con KC Downloader 3.0.1, el más maduro; irán llegando más.</p>
+
+<h3>El código, abierto</h3>
+<p>El repositorio <a href="https://github.com/KCRooty/static-linux">KCRooty/static-linux</a> ya tiene todo el código, con la historia completa. La wiki se publica sola en <a href="https://staticforge.me/static-linux/">staticforge.me/static-linux</a>.</p>
+
+<h2>Arreglos</h2>
+<ul>
+<li>DNS cifrado: dnscrypt-proxy estaba instalado, pero las consultas no pasaban por él. Ahora todas lo hacen desde el primer arranque.</li>
+<li>Copias de seguridad de <code>sl-theme</code>: si lo ejecutaba root primero, el usuario ya no podía cambiar de tema. Ahora las copias son del usuario.</li>
+</ul>
+
+<h2>Problemas conocidos</h2>
+<ul>
+<li>Los temas solo cubren XFCE de momento. KDE, Hyprland y Openbox vienen después.</li>
+<li>Las apps que ya estaban abiertas cambian de aspecto al reabrirlas.</li>
+<li>La sesión en vivo de la ISO todavía no tiene escritorio: arranca directa al instalador.</li>
+<li>El fondo de Violeta es provisional.</li>
+<li>Aún no hay ISO pública para descargar. Se compila desde el repositorio.</li>
+</ul>
+
+<h2>Lo siguiente</h2>
+<p>Llevar los temas a KDE, Hyprland y Openbox; que la pantalla de inicio de sesión, Plymouth y GRUB sigan el tema; sesión en vivo con escritorio; y "tu fondo": que el sistema saque la paleta de cualquier imagen que elijas.</p>
+  </div>
+  <div class="post-body" data-only="en" lang="en">
+<h2>What's new</h2>
+<h3>Themes: a wallpaper and its palette</h3>
+<p>The old ten accents were not enough. A theme is now a wallpaper and the palette that comes out of it: accent, surfaces, text, window borders, folders and terminal. There are eight: Ámbar, Bosque, Medianoche, Brasa, Niebla, Violeta, Aero and Ventanas.</p>
+<figure class="shot"><img src="/linux/img/temas/ambar.webp" alt="Desktop with the Ámbar theme" loading="lazy" width="1280" height="720"></figure>
+<p><code>sl-theme</code> generates everything from a few-line <code>theme.conf</code>: GTK 3 and 4, the xfwm4 window theme (drawn pixel by pixel with antialiasing), xsettings, the terminal and the panel.</p>
+
+<h3>Three desktop styles</h3>
+<p>Besides colour, each theme picks a shape:</p>
+<ul>
+<li><strong>minimal</strong>: thin top bar, soft corners, nothing extra. The usual one.</li>
+<li><strong>aero</strong>: glossy glass, capsule buttons and a bottom taskbar with time and date. A nod to late-2000s looks, drawn from scratch.</li>
+<li><strong>ventanas</strong>: tall bottom bar with centred apps, wide flat window buttons, dark and blue. For people coming from Windows who don't want to learn a new desktop on day one.</li>
+</ul>
+<div class="gal g2">
+<figure class="shot"><img src="/linux/img/temas/aero.webp" alt="Aero theme" loading="lazy" width="1280" height="720"><figcaption>Aero</figcaption></figure>
+<figure class="shot"><img src="/linux/img/temas/ventanas.webp" alt="Ventanas theme" loading="lazy" width="1280" height="720"><figcaption>Ventanas</figcaption></figure>
+</div>
+<p>Switching style rebuilds the panel live, no logout needed.</p>
+
+<h3>Where to pick it</h3>
+<ul>
+<li><strong>Installer</strong>: a <em>Theme</em> page with real screenshots of all eight. What you pick is what boots.</li>
+<li><strong>Welcome</strong> (sl-welcome): the Appearance tab is now a theme picker.</li>
+<li><strong>Terminal</strong>: <code>sl-ctl theme</code> lists and applies (<code>sl-ctl theme aero</code>).</li>
+</ul>
+
+<h3>Static Forge apps</h3>
+<p>The welcome app catalog gets a <em>Static Forge</em> section with the studio's software. It starts with KC Downloader 3.0.1, the most mature one; more will follow.</p>
+
+<h3>The code, in the open</h3>
+<p>The <a href="https://github.com/KCRooty/static-linux">KCRooty/static-linux</a> repository now holds all the code, with full history. The wiki publishes itself at <a href="https://staticforge.me/static-linux/">staticforge.me/static-linux</a>.</p>
+
+<h2>Fixes</h2>
+<ul>
+<li>Encrypted DNS: dnscrypt-proxy was installed, but queries did not go through it. Now they all do from the first boot.</li>
+<li><code>sl-theme</code> backups: if root ran it first, the user could no longer switch themes. Backups now belong to the user.</li>
+</ul>
+
+<h2>Known issues</h2>
+<ul>
+<li>Themes only cover XFCE for now. KDE, Hyprland and Openbox come next.</li>
+<li>Apps that were already open change look when reopened.</li>
+<li>The ISO live session has no desktop yet: it boots straight into the installer.</li>
+<li>The Violeta wallpaper is provisional.</li>
+<li>No public ISO to download yet. It builds from the repository.</li>
+</ul>
+
+<h2>What's next</h2>
+<p>Bring themes to KDE, Hyprland and Openbox; make the login screen, Plymouth and GRUB follow the theme; a live session with a desktop; and "your wallpaper": the system pulls the palette from any image you choose.</p>
+  </div>
+  <p class="post-sign">KCRooty (Core) · Static Forge</p>
+  <p class="crumb"><a href="/linux/blog/" data-en="← All notes">← Todas las notas</a></p>
+</article>
+</div>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span data-en="Static Linux is a &lt;a href=&quot;/&quot;&gt;Static Forge&lt;/a&gt; project. Talk to us on &lt;a href=&quot;https://discord.gg/bVdwvtnbuH&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Discord&lt;/a&gt; or watch us on &lt;a href=&quot;https://www.tiktok.com/@staticforge2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;TikTok&lt;/a&gt;.">Static Linux es un proyecto de <a href="/">Static Forge</a>. Habla con nosotros en <a href="https://discord.gg/bVdwvtnbuH" target="_blank" rel="noopener">Discord</a> o míranos en <a href="https://www.tiktok.com/@staticforge2" target="_blank" rel="noopener">TikTok</a>.</span>
+    <span><a href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener">GitHub</a> · <a id="slmail" href="/#solicitud"></a></span>
+    <span style="font-family:var(--fm)">fast. private. yours.</span>
+  </div>
+</footer>
+<script>/* correo del estudio, montado aquí para no dejarlo en claro en el HTML */
+(function(){var a=['staticforge','staticforge.me'].join('@'),m=document.getElementById('slmail');m.href='mailto:'+a+'?subject='+encodeURIComponent('Static Linux');m.textContent=a})();
+</script>
+<script src="/assets/lang.js"></script>
+</body>
+</html>
