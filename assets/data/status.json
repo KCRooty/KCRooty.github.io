@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12T07:13:21Z",
+  "updated": "2026-11-12T15:50:38Z",
   "projects": {
     "xusb": {
       "repo": "KCRooty/X-USB",
@@ -15,7 +15,7 @@
     },
     "kcdl": {
       "repo": "KCRooty/kc-downloader",
-      "last_commit": "2026-11-11T19:13:03Z",
+      "last_commit": "2026-11-12T14:59:35Z",
       "version": "v3.0.1",
       "stars": 0
     },
@@ -27,19 +27,25 @@
     },
     "cinder": {
       "repo": "KCRooty/Cinder-Studio",
-      "last_commit": "2026-11-10T12:22:15Z",
+      "last_commit": "2026-11-12T15:29:42Z",
       "version": null,
       "stars": 0
     },
     "linux": {
       "repo": "KCRooty/static-linux",
-      "last_commit": "2026-10-30T10:31:30Z",
+      "last_commit": "2026-11-12T14:59:49Z",
       "version": null,
       "stars": 0
     },
     "forgeos": {
       "repo": "KCRooty/ForgeOS",
       "last_commit": "2026-11-11T10:43:48Z",
+      "version": null,
+      "stars": 0
+    },
+    "winforge": {
+      "repo": "KCRooty/WinForge",
+      "last_commit": "2026-11-12T15:41:54Z",
       "version": null,
       "stars": 0
     }
