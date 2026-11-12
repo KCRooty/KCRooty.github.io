@@ -17,6 +17,7 @@ REPOS = {
     "cinder": "Cinder-Studio",
     "linux": "static-linux",
     "forgeos": "ForgeOS",
+    "winforge": "WinForge",
 }
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 OUT = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "data", "status.json")
