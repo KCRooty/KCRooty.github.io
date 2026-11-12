@@ -613,8 +613,8 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
           <li class="row">
             <span class="chan">11</span>
             <div><img class="pj-logo pj-dark" src="assets/projects/static-linux.webp" alt="" width="56" height="56" loading="lazy"><h4>Static Linux</h4><span class="st" data-i18n="st.dev">En desarrollo</span><span class="live" data-repo="linux"></span></div>
-            <p data-i18n="d.sl">Distro basada en Arch. sl-detect mira tu hardware y elige el escritorio adecuado, de Openbox a Hyprland. La primera ISO ya arranca e instala de principio a fin.</p>
-            <div class="acts"><a class="lnk" href="linux/" data-i18n="a.sl">Ver la hoja de ruta</a></div>
+            <p data-i18n="d.sl">Distro basada en Arch. sl-detect mira tu hardware y elige el escritorio adecuado, de Openbox a Hyprland y KDE. La ISO ya instala de principio a fin, el código es público y llegan los temas: un fondo y una paleta para todo el sistema.</p>
+            <div class="acts"><a class="lnk" href="linux/" data-i18n="a.sl">Ver la hoja de ruta</a><a class="lnk" href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
           <li class="row">
             <span class="chan">12</span>
@@ -794,7 +794,7 @@ es:{'skip':'Saltar al contenido','ap.kicker':'SOLICITUD','ap.h':'Rellena la soli
 'd.winforge':'Una ISO de Windows 11 limpia, sin bloatware y con identidad propia desde el primer arranque.',
 'd.iron3d':'Motor 3D propio en C++/Vulkan que recrea el flujo de trabajo de un DCC clásico desde cero: Gestor de Objetos, cámara orbital y pipeline gráfico, sin una línea de código ajena.',
 'd.cinder':'Editor de vídeo propio en Rust con todo el procesado de imagen en GPU, al estilo de DaVinci Resolve: edición, color por nodos, composición, audio y entrega en un solo programa. Sustituye a CoalMix Studio, cancelado.','t.video':'Edición de vídeo',
-'d.sl':'Distro basada en Arch. sl-detect mira tu hardware y elige el escritorio adecuado, de Openbox a Hyprland. La primera ISO ya arranca e instala de principio a fin.',
+'d.sl':'Distro basada en Arch. sl-detect mira tu hardware y elige el escritorio adecuado, de Openbox a Hyprland y KDE. La ISO ya instala de principio a fin, el código es público y llegan los temas: un fondo y una paleta para todo el sistema.',
 'd.fos':'Un sistema operativo completo escrito desde cero en Rust: kernel propio para x86_64 y userland propio (Ember, Bellows, Crucible y Anvil).',
 'w.kicker':"EL ESTUDIO",'w.h':"Qué es Static Forge",
 'w.bio':"Static Forge es el estudio detrás de todo lo que ves aquí: juegos, programas, sistemas operativos, arte e historias. Lo fundó <em>KCRooty (Core)</em>, y la puerta está abierta.",
@@ -828,7 +828,7 @@ en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the appli
 'd.winforge':'A clean Windows 11 ISO, free of bloatware and with its own identity from the first boot.',
 'd.iron3d':'A custom C++/Vulkan 3D engine recreating a classic DCC workflow from scratch: Object Manager, orbital camera and graphics pipeline, without a single line of borrowed code.',
 'd.cinder':'Our own video editor in Rust with all image processing on the GPU, in the style of DaVinci Resolve: editing, node-based color, compositing, audio and delivery in one program. Replaces CoalMix Studio, now cancelled.','t.video':'Video editing',
-'d.sl':'An Arch-based distro. sl-detect reads your hardware and picks the right desktop, from Openbox to Hyprland. The first ISO already boots and installs end to end.',
+'d.sl':'An Arch-based distro. sl-detect reads your hardware and picks the right desktop, from Openbox to Hyprland and KDE. The ISO already installs end to end, the code is public and themes are arriving: one wallpaper and one palette for the whole system.',
 'd.fos':'A complete operating system written from scratch in Rust: its own x86_64 kernel and its own userland (Ember, Bellows, Crucible and Anvil).',
 'w.kicker':"THE STUDIO",'w.h':"What Static Forge is",
 'w.bio':"Static Forge is the studio behind everything you see here: games, software, operating systems, art and stories. It was founded by <em>KCRooty (Core)</em>, and the door is open.",
@@ -995,7 +995,7 @@ var CH=[
   {ch:'08',img:'assets/projects/winforge.webp',fit:1,logo:'assets/projects/winforge.webp',title:'WinForge',st:['st.test'],d:'d.winforge',tags:['Windows 11','ISO'],soon:'a.unpub'},
   {ch:'09',img:'assets/projects/iron3d-ui.webp',alt:'Interfaz de Iron3D Studio',logo:'assets/projects/iron3d-studio.webp',title:'Iron3D Studio',repo:'iron3d',st:['st.dev'],d:'d.iron3d',tags:['C++','Vulkan','3D'],cta:[{h:'i3ds.html',k:'a.i3ds',pri:1},{h:GH+'Iron3D-Studio',x:'GitHub ↗',ext:1}]},
   {ch:'10',img:'assets/projects/cinder-studio-card.webp',fit:1,alt:'Logo de Cinder Studio',logo:'assets/projects/cinder-studio.webp',title:'Cinder Studio',repo:'cinder',st:['st.design'],d:'d.cinder',tags:['Rust','GPU',{k:'t.video'}],cta:[{h:GH+'Cinder-Studio',x:'GitHub ↗',ext:1,pri:1}]},
-  {ch:'11',img:'assets/projects/static-linux.webp',fit:1,logo:'assets/projects/static-linux.webp',dark:1,title:'Static Linux',repo:'linux',st:['st.dev'],d:'d.sl',tags:['Arch','sl-detect'],cta:[{h:'linux/',k:'a.sl',pri:1}]},
+  {ch:'11',img:'assets/projects/static-linux.webp',fit:1,logo:'assets/projects/static-linux.webp',dark:1,title:'Static Linux',repo:'linux',st:['st.dev'],d:'d.sl',tags:['Arch','sl-detect'],cta:[{h:'linux/',k:'a.sl',pri:1},{h:GH+'static-linux',x:'GitHub ↗',ext:1}]},
   {ch:'12',img:'assets/projects/forge-os.webp',fit:1,logo:'assets/projects/forge-os.webp',title:'Forge OS',repo:'forgeos',st:['st.dev'],d:'d.fos',tags:['Rust','x86_64'],cta:[{h:'forge-os/',k:'a.fos',pri:1},{h:GH+'ForgeOS',x:'GitHub ↗',ext:1}]},
   {ch:'13',img:'assets/projects/anvil-client.webp',fit:1,logo:'assets/projects/anvil-client.webp',title:'Anvil Client',st:['st.early','st.byalcraft'],d:'d.anvil',tags:[{k:'t.minecraft'}],soon:'a.unpub'}
 ];

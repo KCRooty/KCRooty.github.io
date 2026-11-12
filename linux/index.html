@@ -104,7 +104,7 @@ h2{font:700 clamp(2rem,4.6vw,2.9rem)/1.05 var(--fd);letter-spacing:-.025em;color
 .card p strong{color:var(--text);font-weight:500}
 
 /* Acentos */
-.accents{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:40px;list-style:none}
+.accents{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:40px;list-style:none}
 .acc{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--panel)}
 .sw{width:26px;height:26px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 2px rgba(255,255,255,.12)}
 .acc span{font-size:.92rem;line-height:1.25}
@@ -215,6 +215,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
       <div class="cta">
         <a class="btn pri" href="#estado" data-en="See where it stands">Ver en qué punto está</a>
         <a class="btn" href="#wiki" data-en="Read the wiki">Leer la wiki</a>
+        <a class="btn" href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener" data-en="Code on GitHub ↗">Código en GitHub ↗</a>
         <a class="btn" href="#unete" data-en="Join">Únete</a>
       </div>
       <div class="phases" aria-label="Fases del proyecto" data-en-aria-label="Project phases">
@@ -228,9 +229,10 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
           <dt>base</dt><dd>Arch Linux (rolling)</dd>
           <dt>init</dt><dd>systemd</dd>
           <dt data-en="installer">instalador</dt><dd>Calamares + sl-detect</dd>
-          <dt data-en="desktop">escritorio</dt><dd data-en="Themed XFCE · Openbox · Hyprland">XFCE temático · Openbox · Hyprland</dd>
+          <dt data-en="desktop">escritorio</dt><dd>XFCE · KDE Plasma · Hyprland · Openbox</dd>
           <dt data-en="boot">arranque</dt><dd>GRUB · UEFI</dd>
           <dt>aur</dt><dd>paru</dd>
+          <dt data-en="license">licencia</dt><dd>GPL-3.0</dd>
           <dt data-en="telemetry">telemetría</dt><dd>0</dd>
         </dl>
         <p class="end">fast. private. yours.</p>
@@ -243,8 +245,8 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
     <h2 id="h-que" data-en="What Static Linux is">Qué es Static Linux</h2>
     <div class="grid g4">
       <article class="card"><span class="k">base</span><h3>Arch Linux</h3><p data-en="Rolling release, Arch repos and the AUR (through &lt;code&gt;paru&lt;/code&gt;), with no extra layers between you and the system.">Rolling release, repos de Arch y AUR (vía <code>paru</code>), sin capas de más entre el sistema y tú.</p></article>
-      <article class="card"><span class="k" data-en="desktop">escritorio</span><h3 data-en="The one your machine can handle">El que tu equipo aguanta</h3><p data-en="Four environments, from Openbox on 512 MB to full Hyprland. &lt;code&gt;sl-detect&lt;/code&gt; recommends one based on your hardware.">Cuatro entornos, de Openbox con 512 MB a Hyprland completo. <code>sl-detect</code> recomienda uno según tu hardware.</p></article>
-      <article class="card"><span class="k" data-en="installer">instalador</span><h3>Calamares</h3><p data-en="A guided graphical install: it detects the hardware, you pick the environment, flavors and privacy, and you are done.">Instalación gráfica guiada: detecta el hardware, eliges entorno, sabores y privacidad, y listo.</p></article>
+      <article class="card"><span class="k" data-en="desktop">escritorio</span><h3 data-en="The one your machine can handle">El que tu equipo aguanta</h3><p data-en="Five environments, from Openbox on 512 MB to Hyprland and KDE Plasma. &lt;code&gt;sl-detect&lt;/code&gt; recommends one based on your hardware.">Cinco entornos, de Openbox con 512 MB a Hyprland y KDE Plasma. <code>sl-detect</code> recomienda uno según tu hardware.</p></article>
+      <article class="card"><span class="k" data-en="installer">instalador</span><h3>Calamares</h3><p data-en="A guided graphical install: it detects the hardware, you pick the environment, theme, flavors, apps and privacy, and you are done. It fits any screen, 4K included.">Instalación gráfica guiada y en español: detecta el hardware, eliges entorno, tema, sabores, apps y privacidad, y listo. Se adapta a cualquier pantalla, 4K incluida.</p></article>
       <article class="card"><span class="k" data-en="philosophy">filosofía</span><h3 data-en="Private by default">Privado por defecto</h3><p data-en="Zero telemetry in every profile. It is not an option: it is the baseline.">Cero telemetría en todos los perfiles. No es una opción: es la línea base.</p></article>
     </div>
   </section>
@@ -254,52 +256,53 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
     <h2 id="h-tools" data-en="Made in the workshop">Hecho en el taller</h2>
     <p class="intro" data-en="Static Linux is not a theme on top of Arch: it ships its own tools, installed together with the &lt;code&gt;staticlinux-base&lt;/code&gt; package.">Static Linux no es un tema encima de Arch: trae herramientas propias que se instalan juntas con el paquete <code>staticlinux-base</code>.</p>
     <div class="grid">
-      <article class="card"><span class="k">sl-detect</span><h3 data-en="Hardware detection">Detección de hardware</h3><p data-en="Identifies CPU, RAM, disk and GPU (through PCI and, on ARM boards, through the device tree) and recommends a desktop, file system and kernel. &lt;strong&gt;38 tests&lt;/strong&gt;.">Identifica CPU, RAM, disco y GPU (por PCI y, en placas ARM, por device-tree) y recomienda entorno, sistema de archivos y kernel. <strong>38 tests</strong>.</p></article>
+      <article class="card"><span class="k">sl-detect</span><h3 data-en="Hardware detection">Detección de hardware</h3><p data-en="Identifies CPU, RAM, disk and GPU (through PCI and, on ARM boards, through the device tree) and recommends a desktop, file system and kernel. &lt;strong&gt;41 tests&lt;/strong&gt;.">Identifica CPU, RAM, disco y GPU (por PCI y, en placas ARM, por device-tree) y recomienda entorno, sistema de archivos y kernel. <strong>41 tests</strong>.</p></article>
       <article class="card"><span class="k">sl-ctl</span><h3 data-en="Control after installing">Control después de instalar</h3><p data-en="&lt;code&gt;detect&lt;/code&gt;, &lt;code&gt;info&lt;/code&gt;, &lt;code&gt;privacy&lt;/code&gt; and &lt;code&gt;tweaks&lt;/code&gt; already work. &lt;code&gt;update&lt;/code&gt;, &lt;code&gt;snapshot&lt;/code&gt;, &lt;code&gt;mirror&lt;/code&gt; and &lt;code&gt;flavor&lt;/code&gt; are in development."><code>detect</code>, <code>info</code>, <code>privacy</code> y <code>tweaks</code> ya funcionan. <code>update</code>, <code>snapshot</code>, <code>mirror</code> y <code>flavor</code> están en desarrollo.</p></article>
-      <article class="card"><span class="k">sl-welcome</span><h3 data-en="First boot">Primer arranque</h3><p data-en="A GTK4/libadwaita app that opens once per user: appearance, privacy profile and a catalog of around 56 extra apps.">App GTK4/libadwaita que se abre una vez por usuario: apariencia, perfil de privacidad y un catálogo de unas 56 apps extra.</p></article>
-      <article class="card"><span class="k">apply.sh</span><h3 data-en="One accent for everything">Un acento para todo</h3><p data-en="You pick a color and it is applied at once to fastfetch, GTK, xfwm4, the terminal, the login screen and the wallpaper.">Eliges un color y se aplica a la vez en fastfetch, GTK, xfwm4, terminal, pantalla de inicio de sesión y fondo de escritorio.</p></article>
+      <article class="card"><span class="k">sl-welcome</span><h3 data-en="First boot">Primer arranque</h3><p data-en="A GTK4/libadwaita app that opens once per user: theme, privacy profile and a catalog of around 85 apps in 10 categories.">App GTK4/libadwaita que se abre una vez por usuario: tema, perfil de privacidad y un catálogo de unas 85 apps en 10 categorías.</p></article>
+      <article class="card"><span class="k">sl-theme</span><h3 data-en="One theme for everything">Un tema para todo</h3><p data-en="You pick a theme and it applies the wallpaper, GTK app colors, window borders, the bar, the terminal, fastfetch and the folders at once. Every change backs up what it replaces.">Eliges un tema y se aplica a la vez el fondo, los colores de las apps GTK, los bordes de ventana, la barra, la terminal, fastfetch y las carpetas. Cada cambio deja copia de lo que sustituye.</p></article>
     </div>
 
-    <h3 style="font:700 1.4rem/1.2 var(--fd);color:var(--bright);margin-top:56px" data-en="The installer's 10 accents">Los 10 acentos del instalador</h3>
-    <ul class="accents" aria-label="Acentos disponibles" data-en-aria-label="Available accents">
-      <li class="acc"><span class="sw" style="background:#C0A0F0"></span><span><span data-en="Purple">Morado</span><small>#C0A0F0</small></span></li>
-      <li class="acc"><span class="sw" style="background:#F2C94C"></span><span><span data-en="Yellow">Amarillo</span><small>#F2C94C</small></span></li>
-      <li class="acc"><span class="sw" style="background:#E85D6B"></span><span><span data-en="Red">Rojo</span><small>#E85D6B</small></span></li>
-      <li class="acc"><span class="sw" style="background:#00C8A0"></span><span><span data-en="Green">Verde</span><small>#00C8A0</small></span></li>
-      <li class="acc"><span class="sw" style="background:#5AA6F5"></span><span><span data-en="Blue">Azul</span><small>#5AA6F5</small></span></li>
-      <li class="acc"><span class="sw" style="background:#F48FB1"></span><span><span data-en="Pink">Rosa</span><small>#F48FB1</small></span></li>
-      <li class="acc"><span class="sw" style="background:#AAB0C0"></span><span><span data-en="Grey">Gris</span><small>#AAB0C0</small></span></li>
-      <li class="acc"><span class="sw" style="background:#E6E8EE"></span><span><span data-en="Monochrome">Monocromo</span><small>#E6E8EE</small></span></li>
-      <li class="acc"><span class="sw" style="background:#FFFFFF;box-shadow:inset 0 0 0 4px #000,0 0 0 1px #FFFF00"></span><span><span data-en="High contrast dark">Alto contraste oscuro</span><small>#FFFFFF / #000000</small></span></li>
-      <li class="acc"><span class="sw" style="background:#0B0C10;box-shadow:inset 0 0 0 4px #FFFFFF,0 0 0 1px #8000FF"></span><span><span data-en="High contrast light">Alto contraste claro</span><small>#0B0C10 / #FFFFFF</small></span></li>
+    <h3 style="font:700 1.4rem/1.2 var(--fd);color:var(--bright);margin-top:56px" data-en="Themes: wallpaper + palette">Temas: fondo + paleta</h3>
+    <p class="intro" style="margin-top:12px" data-en="Each theme is a wallpaper and a palette taken from it. The wallpapers are public domain Japanese prints by Hokusai and Hiroshige (Metropolitan Museum Open Access), credited inside the system. Every color passes AA contrast. They work on XFCE today; KDE, Hyprland and Openbox come next.">Cada tema es un fondo y una paleta sacada de él. Los fondos son grabados japoneses de Hokusai y Hiroshige en dominio público (Open Access del Metropolitan Museum), con su crédito dentro del sistema. Todos los colores pasan el contraste AA. Hoy funcionan en XFCE; KDE, Hyprland y Openbox vienen después.</p>
+    <ul class="accents" aria-label="Temas disponibles" data-en-aria-label="Available themes">
+      <li class="acc"><span class="sw" style="background:linear-gradient(135deg,#262321 50%,#E0A84F 50%)"></span><span><span><span data-en="Amber">Ámbar</span> <span data-en="(default)">(por defecto)</span></span><small data-en="Hokusai · Storm below Mount Fuji">Hokusai · Tormenta bajo el Fuji</small></span></li>
+      <li class="acc"><span class="sw" style="background:linear-gradient(135deg,#F1E9D2 50%,#666211 50%)"></span><span><span><span data-en="Paper">Papel</span> <span data-en="(light)">(claro)</span></span><small data-en="Hokusai · Fujimigahara in Owari">Hokusai · Fujimigahara en Owari</small></span></li>
+      <li class="acc"><span class="sw" style="background:linear-gradient(135deg,#2B303B 50%,#88C0D0 50%)"></span><span><span><span data-en="Nordic">Nórdico</span></span><small data-en="Hiroshige · Evening Snow at Kanbara">Hiroshige · Nieve al anochecer en Kanbara</small></span></li>
+      <li class="acc"><span class="sw" style="background:linear-gradient(135deg,#1C211E 50%,#9BC4A0 50%)"></span><span><span><span data-en="Forest">Bosque</span></span><small data-en="Hiroshige · Spring Rain at Tsuchiyama">Hiroshige · Lluvia de primavera en Tsuchiyama</small></span></li>
+      <li class="acc"><span class="sw" style="background:linear-gradient(135deg,#211B20 50%,#F2A7BC 50%)"></span><span><span>Sakura</span><small data-en="Hokusai · Fuji from Gotenyama">Hokusai · El Fuji desde Gotenyama</small></span></li>
+      <li class="acc"><span class="sw" style="background:linear-gradient(135deg,#14121D 50%,#8F86F2 50%)"></span><span><span><span data-en="Violet">Violeta</span></span><small data-en="wallpaper on its way">fondo en camino</small></span></li>
+      <li class="acc"><span class="sw" style="background:conic-gradient(#E0A84F,#88C0D0,#9BC4A0,#F2A7BC,#8F86F2,#E0A84F)"></span><span><span data-en="Your wallpaper">Tu fondo</span><small data-en="colors from your image · soon">colores de tu imagen · pronto</small></span></li>
     </ul>
   </section>
 
   <section id="estado" aria-labelledby="h-estado">
     <p class="label" data-en="03 · status">03 · estado</p>
     <h2 id="h-estado" data-en="Where it stands">En qué punto está</h2>
-    <p class="intro" data-en="Phases 1 and 2 are closed. The first ISO builds, boots and installs from start to finish. Phase 3 is next.">Las fases 1 y 2 están cerradas. La primera ISO se construye, arranca y se instala de principio a fin. Ahora toca la fase 3.</p>
+    <p class="intro" data-en="Phases 1 and 2 are closed. The ISO builds, boots and installs from start to finish, and the code is now public. Phase 3 is next: the new look and testing the other desktops.">Las fases 1 y 2 están cerradas. La ISO se construye, arranca y se instala de principio a fin, y el código ya es público. Ahora toca la fase 3: el aspecto nuevo y probar el resto de escritorios.</p>
     <div class="status">
       <article class="card">
         <span class="k" data-en="done">hecho</span><h3 data-en="Works today">Funciona hoy</h3>
         <ul class="list done">
-          <li data-en="&lt;strong&gt;Installable base&lt;/strong&gt; and all four environments packaged."><strong>Base instalable</strong> y los cuatro entornos empaquetados.</li>
+          <li data-en="&lt;strong&gt;Installable base&lt;/strong&gt; and all five environments packaged, KDE Plasma included."><strong>Base instalable</strong> y los cinco entornos empaquetados, KDE Plasma incluido.</li>
           <li data-en="&lt;strong&gt;Online ISO&lt;/strong&gt; tested in QEMU/KVM with UEFI: it boots, Calamares installs (ext4, XFCE and basic privacy), GRUB, LightDM, XFCE and sl-welcome."><strong>ISO online</strong> probada en QEMU/KVM con UEFI: arranca, Calamares instala (ext4, XFCE y privacidad básica), GRUB, LightDM, XFCE y sl-welcome.</li>
-          <li data-en="&lt;strong&gt;Installed on an SSD&lt;/strong&gt; in the workshop's reference PC."><strong>Instalada en un SSD</strong> del PC de referencia del taller.</li>
+          <li data-en="&lt;strong&gt;New installer:&lt;/strong&gt; style, flavors and app catalog pages, in Spanish and full screen at any resolution."><strong>Instalador nuevo:</strong> páginas de estilo, sabores y catálogo de apps, en español y a pantalla completa en cualquier resolución.</li>
+          <li data-en="&lt;strong&gt;Real encrypted DNS:&lt;/strong&gt; every query goes through dnscrypt-proxy from the first boot."><strong>DNS cifrado de verdad:</strong> todas las consultas pasan por dnscrypt-proxy desde el primer arranque.</li>
+          <li data-en="&lt;strong&gt;Themes&lt;/strong&gt; (wallpaper + palette) working on XFCE: a thin top bar, solid windows and everything in the same colors."><strong>Temas</strong> (fondo + paleta) funcionando en XFCE: barra superior fina, ventanas sólidas y todo con los mismos colores.</li>
           <li data-en="Brave Origin comes preinstalled, the Super key opens the menu and multimedia codecs are included.">Brave Origin preinstalado, la tecla Super abre el menú y vienen los códecs multimedia.</li>
         </ul>
       </article>
       <article class="card">
         <span class="k" style="color:var(--amber)" data-en="pending">pendiente</span><h3 data-en="Still to test or finish">Lo que falta probar o terminar</h3>
         <ul class="list todo">
-          <li data-en="An offline ISO that installs without a network (the packages are already inside, but Calamares still downloads them).">ISO offline que instale sin red (hoy los paquetes van dentro, pero Calamares aún los descarga).</li>
-          <li data-en="Booting on old BIOS, Hyprland and Openbox on a real install.">Arranque en BIOS antigua, Hyprland y Openbox en una instalación real.</li>
+          <li data-en="Themes on KDE, Hyprland and Openbox, and on the login screen, boot and installer too.">Los temas en KDE, Hyprland y Openbox, y también en el inicio de sesión, el arranque y el instalador.</li>
+          <li data-en="A live session with a desktop (today the ISO only opens the installer).">Sesión live con escritorio (hoy la ISO abre solo el instalador).</li>
+          <li data-en="An offline ISO that installs without a network (the packages are inside, but Calamares still downloads them).">ISO offline que instale sin red (los paquetes van dentro, pero Calamares aún los descarga).</li>
+          <li data-en="Booting on old BIOS, and Hyprland, KDE and Openbox on a real install.">Arranque en BIOS antigua, y Hyprland, KDE y Openbox en una instalación real.</li>
           <li data-en="Enhanced and maximum privacy profiles, btrfs and LUKS encryption.">Perfiles de privacidad mejorado y máximo, btrfs y cifrado LUKS.</li>
-          <li data-en="The installed system's wallpaper and a light theme for sl-welcome.">Fondo de escritorio del sistema instalado y tema claro de sl-welcome.</li>
         </ul>
       </article>
     </div>
-    <p class="note" data-en="&lt;b&gt;There is no public download yet.&lt;/b&gt; The code and the ISO will be released once the install is ready to be used outside the workshop. Until then, this page is where it will be announced."><b>Aún no hay descarga pública.</b> El código y la ISO se publicarán cuando la instalación esté lista para usarse fuera del taller. Hasta entonces, esta página es el sitio donde se anuncia.</p>
+    <p class="note" data-en="&lt;b&gt;The code is now public&lt;/b&gt; on &lt;a href=&quot;https://github.com/KCRooty/static-linux&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt; (GPL-3.0). The ISO is not yet: it will be released, signed, once the install is ready to be used outside the workshop, and announced here."><b>El código ya es público</b> en <a href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener">GitHub</a> (GPL-3.0). La ISO todavía no: se publicará firmada cuando la instalación esté lista para usarse fuera del taller, y se anunciará aquí.</p>
   </section>
 
   <section id="wiki" aria-labelledby="h-wiki">
@@ -347,6 +350,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
         <article class="card"><span class="k">≥ 512 MB · Xorg</span><h3>Openbox minimal</h3><p data-en="No compositor by default, for very tight machines.">Sin compositor por defecto, para equipos muy justos.</p></article>
         <article class="card"><span class="k">≥ 2 GB · Wayland</span><h3>Hyprland + Astal lite</h3><p data-en="Our own shell in Astal/AGS, with no blur or shadows.">Shell propio en Astal/AGS, sin blur ni sombras.</p></article>
         <article class="card"><span class="k">≥ 4 GB · Wayland</span><h3>Hyprland + Astal full</h3><p data-en="The same shell with full blur and animations.">El mismo shell con blur y animaciones completas.</p></article>
+        <article class="card" style="grid-column:1/-1"><span class="k">≥ 4 GB · Wayland</span><h3>KDE Plasma</h3><p data-en="A full desktop for those who prefer it. &lt;code&gt;sl-detect&lt;/code&gt; does not recommend it: you pick it by hand in the installer.">Escritorio completo para quien lo prefiera. No lo recomienda <code>sl-detect</code>: se elige a mano en el instalador.</p></article>
       </div>
       <p class="sub" data-en="Design rule: if a desktop uses more than 500 MB of RAM at idle, that is a bug.">Regla de diseño: si un entorno pasa de 500 MB de RAM en reposo, es un bug.</p>
     </div>
@@ -390,9 +394,13 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
 <footer>
   <div class="wrap foot">
     <span data-en="Static Linux is a &lt;a href=&quot;/&quot;&gt;Static Forge&lt;/a&gt; project. Talk to us on &lt;a href=&quot;https://discord.gg/bVdwvtnbuH&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Discord&lt;/a&gt; or watch us on &lt;a href=&quot;https://www.tiktok.com/@staticforge2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;TikTok&lt;/a&gt;.">Static Linux es un proyecto de <a href="/">Static Forge</a>. Habla con nosotros en <a href="https://discord.gg/bVdwvtnbuH" target="_blank" rel="noopener">Discord</a> o míranos en <a href="https://www.tiktok.com/@staticforge2" target="_blank" rel="noopener">TikTok</a>.</span>
+    <span><a href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener">GitHub</a> · <a id="slmail" href="/#solicitud"></a></span>
     <span style="font-family:var(--fm)">fast. private. yours.</span>
   </div>
 </footer>
+<script>/* correo del estudio, montado aquí para no dejarlo en claro en el HTML */
+(function(){var a=['staticforge','staticforge.me'].join('@'),m=document.getElementById('slmail');m.href='mailto:'+a+'?subject='+encodeURIComponent('Static Linux');m.textContent=a})();
+</script>
 
 <script>
 (function(){
