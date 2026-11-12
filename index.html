@@ -602,7 +602,7 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
             <span class="chan">10</span>
             <div><img class="pj-logo" src="assets/projects/cinder-studio.webp" alt="" width="56" height="56" loading="lazy"><h4>Cinder Studio</h4><span class="st" data-i18n="st.design">En diseño</span><span class="live" data-repo="cinder"></span></div>
             <p data-i18n="d.cinder">Editor de vídeo propio en Rust con todo el procesado de imagen en GPU, al estilo de DaVinci Resolve: edición, color por nodos, composición, audio y entrega en un solo programa. Sustituye a CoalMix Studio, cancelado.</p>
-            <div class="acts"><a class="lnk" href="https://github.com/KCRooty/Cinder-Studio" target="_blank" rel="noopener">GitHub ↗</a></div>
+            <div class="acts"><a class="lnk" href="cinder/" data-i18n="a.cinder">Ver la página</a><a class="lnk" href="https://github.com/KCRooty/Cinder-Studio" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
         </ul>
       </div>
@@ -784,7 +784,7 @@ es:{'skip':'Saltar al contenido','ap.kicker':'SOLICITUD','ap.h':'Rellena la soli
 'proj.kicker':'GUÍA DE PROGRAMACIÓN','proj.h':'Lo que sale del taller','proj.intro':'Juegos, herramientas y sistemas. Cada canal es un proyecto, con su estado real.',
 'st.devsince':'En desarrollo · desde 2021','st.dev':'En desarrollo','st.build':'En construcción','st.active':'Activo','st.done':'Terminado','st.test':'En pruebas','st.paused':'En pausa','st.design':'En diseño',
 'd.donnies':'Fangame de terror analógico inspirado en FNaF, hecho en Source Engine. Un universo y una historia propios, ambientados en los 2000.',
-'t.analog':'Terror analógico','a.donnies':"Ver Donnie's Origins",'a.fnafas':'Leer sobre FNAF AS','a.i3ds':'Ver qué funciona ya','a.sl':'Ver la hoja de ruta','a.fos':'Entrar en Forge OS','a.dl':'Descargar v3.0.1 ↗','a.soon':'Próximamente','a.unpub':'Aún sin publicar',
+'t.analog':'Terror analógico','a.donnies':"Ver Donnie's Origins",'a.fnafas':'Leer sobre FNAF AS','a.i3ds':'Ver qué funciona ya','a.sl':'Ver la hoja de ruta','a.cinder':'Ver la página','a.fos':'Entrar en Forge OS','a.dl':'Descargar v3.0.1 ↗','a.soon':'Próximamente','a.unpub':'Aún sin publicar',
 'g.hist':'Historias','g.soft':'Software','g.sys':'Sistemas',
 'd.fnafas':"Five Nights at Freddy's Alternative Stories: antología fan de glitch y terror analógico, con lore propio y renders 3D.",
 'd.lada':'Ficción original de largo recorrido, desde 2020: personajes, mundo y trama propios.',
@@ -818,7 +818,7 @@ en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the appli
 'proj.kicker':'PROGRAM GUIDE','proj.h':'Out of the workshop','proj.intro':'Games, tools and systems. Every channel is a project, with its real status.',
 'st.devsince':'In development · since 2021','st.dev':'In development','st.build':'Under construction','st.active':'Active','st.done':'Finished','st.test':'Testing','st.paused':'Paused','st.design':'In design',
 'd.donnies':'An FNaF-inspired analog horror fangame built on Source Engine. Its own universe and story, set in the 2000s.',
-'t.analog':'Analog horror','a.donnies':"See Donnie's Origins",'a.fnafas':'Read about FNAF AS','a.i3ds':'See what already runs','a.sl':'See the roadmap','a.fos':'Enter Forge OS','a.dl':'Download v3.0.1 ↗','a.soon':'Coming soon','a.unpub':'Not published yet',
+'t.analog':'Analog horror','a.donnies':"See Donnie's Origins",'a.fnafas':'Read about FNAF AS','a.i3ds':'See what already runs','a.sl':'See the roadmap','a.cinder':'See the page','a.fos':'Enter Forge OS','a.dl':'Download v3.0.1 ↗','a.soon':'Coming soon','a.unpub':'Not published yet',
 'g.hist':'Stories','g.soft':'Software','g.sys':'Systems',
 'd.fnafas':"Five Nights at Freddy's Alternative Stories: a fan anthology of glitch and analog horror, with its own lore and 3D renders.",
 'd.lada':'A long-running original fiction, since 2020: its own characters, world and plot.',
@@ -994,7 +994,7 @@ var CH=[
   {ch:'07',img:'assets/projects/kc-downloader.webp',fit:1,logo:'assets/projects/kc-downloader.webp',title:'KC Downloader',repo:'kcdl',st:['st.active'],d:'d.kc',tags:['v3.0.1','yt-dlp','Qt'],cta:[{h:GH+'kc-downloader/releases/latest',k:'a.dl',ext:1,pri:1},{h:GH+'kc-downloader',x:'GitHub ↗',ext:1}]},
   {ch:'08',img:'assets/projects/winforge.webp',fit:1,logo:'assets/projects/winforge.webp',title:'WinForge',st:['st.test'],d:'d.winforge',tags:['Windows 11','ISO'],soon:'a.unpub'},
   {ch:'09',img:'assets/projects/iron3d-ui.webp',alt:'Interfaz de Iron3D Studio',logo:'assets/projects/iron3d-studio.webp',title:'Iron3D Studio',repo:'iron3d',st:['st.dev'],d:'d.iron3d',tags:['C++','Vulkan','3D'],cta:[{h:'i3ds.html',k:'a.i3ds',pri:1},{h:GH+'Iron3D-Studio',x:'GitHub ↗',ext:1}]},
-  {ch:'10',img:'assets/projects/cinder-studio-card.webp',fit:1,alt:'Logo de Cinder Studio',logo:'assets/projects/cinder-studio.webp',title:'Cinder Studio',repo:'cinder',st:['st.design'],d:'d.cinder',tags:['Rust','GPU',{k:'t.video'}],cta:[{h:GH+'Cinder-Studio',x:'GitHub ↗',ext:1,pri:1}]},
+  {ch:'10',img:'assets/projects/cinder-studio-card.webp',fit:1,alt:'Logo de Cinder Studio',logo:'assets/projects/cinder-studio.webp',title:'Cinder Studio',repo:'cinder',st:['st.design'],d:'d.cinder',tags:['Rust','GPU',{k:'t.video'}],cta:[{h:'cinder/',k:'a.cinder',pri:1},{h:GH+'Cinder-Studio',x:'GitHub ↗',ext:1}]},
   {ch:'11',img:'assets/projects/static-linux.webp',fit:1,logo:'assets/projects/static-linux.webp',dark:1,title:'Static Linux',repo:'linux',st:['st.dev'],d:'d.sl',tags:['Arch','sl-detect'],cta:[{h:'linux/',k:'a.sl',pri:1},{h:GH+'static-linux',x:'GitHub ↗',ext:1}]},
   {ch:'12',img:'assets/projects/forge-os.webp',fit:1,logo:'assets/projects/forge-os.webp',title:'Forge OS',repo:'forgeos',st:['st.dev'],d:'d.fos',tags:['Rust','x86_64'],cta:[{h:'forge-os/',k:'a.fos',pri:1},{h:GH+'ForgeOS',x:'GitHub ↗',ext:1}]},
   {ch:'13',img:'assets/projects/anvil-client.webp',fit:1,logo:'assets/projects/anvil-client.webp',title:'Anvil Client',st:['st.early','st.byalcraft'],d:'d.anvil',tags:[{k:'t.minecraft'}],soon:'a.unpub'}

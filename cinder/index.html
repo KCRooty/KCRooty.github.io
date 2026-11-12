@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/cinder/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/cinder/apple-touch-icon.png">
+<title data-en="Cinder Studio · open source video editor">Cinder Studio · editor de vídeo open source</title>
+<meta name="description" content="Cinder Studio: editor de vídeo open source de Static Forge en Rust, con todo el procesado de imagen en GPU. Edición, color, composición, audio y entrega en un solo programa." data-en-content="Cinder Studio: Static Forge's open source video editor in Rust, with all image processing on the GPU. Editing, color, compositing, audio and delivery in one program.">
+<link rel="canonical" href="https://staticforge.me/cinder/">
+<meta property="og:title" content="Cinder Studio · Static Forge">
+<meta property="og:description" content="Editor de vídeo open source en Rust con todo el procesado de imagen en GPU." data-en-content="Open source video editor in Rust with all image processing on the GPU.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://staticforge.me/cinder/">
+<meta property="og:site_name" content="Static Forge">
+<meta property="og:image" content="https://staticforge.me/assets/og/cinder.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://staticforge.me/assets/og/cinder.jpg">
+<meta name="theme-color" content="#14111D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
+<link rel="stylesheet" href="/cinder/cinder.css?v=20261112a">
+<link rel="stylesheet" href="/assets/lang.css">
+</head>
+<body>
+<a class="skip" href="#main" data-en="Skip to content">Ir al contenido</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="mark" href="/cinder/" aria-label="Cinder Studio, inicio" data-en-aria-label="Cinder Studio, home">
+      <img src="/cinder/favicon.png" alt="" width="32" height="32"><span>Cinder Studio</span>
+    </a>
+    <nav class="nav" aria-label="Secciones" data-en-aria-label="Sections">
+      <a href="#funciones" data-en="Features">Funciones</a>
+      <a href="#novedades" data-en="News">Novedades</a>
+      <a href="#hoja-de-ruta" data-en="Roadmap">Hoja de ruta</a>
+      <a href="#participa" data-en="Get involved">Participa</a>
+    </nav>
+    <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+      <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+      <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+    </div>
+    <a class="btn btn-sm" href="https://github.com/KCRooty/Cinder-Studio" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap">
+      <img class="hero-logo" src="/cinder/img/logo.webp" alt="Logo de Cinder Studio: una cámara de cine violeta sobre un cielo estrellado" data-en-alt="Cinder Studio logo: a violet film camera over a starry sky" width="200" height="200">
+      <h1>Cinder Studio</h1>
+      <p class="hero-sub" data-en="An open source video editor: editing, color, compositing, audio and delivery in one program. Written in Rust, with all image processing on the GPU.">Un editor de vídeo open source: edición, color, composición, audio y entrega en un solo programa. Escrito en Rust, con todo el procesado de imagen en GPU.</p>
+      <p class="pill"><span class="dot" aria-hidden="true"></span><span data-en="Phase 1 in progress · it does not open video yet">Fase 1 en curso · todavía no abre vídeo</span></p>
+      <div class="cta">
+        <a class="btn btn-light" href="https://github.com/KCRooty/Cinder-Studio" target="_blank" rel="noopener" data-en="See the code">Ver el código</a>
+        <a class="btn btn-ghost" href="#hoja-de-ruta" data-en="See the roadmap">Ver la hoja de ruta</a>
+      </div>
+      <figure class="hero-shot">
+        <img src="/cinder/img/ventana-color.webp" alt="La ventana de Cinder Studio en la página Color, con la barra de las siete páginas abajo" data-en-alt="The Cinder Studio window on the Color page, with the seven-page bar at the bottom" width="1280" height="800">
+        <figcaption data-en="The window today: the seven pages and their bar are in place, the tools arrive phase by phase.">La ventana hoy: las siete páginas y su barra ya están, las herramientas llegan fase a fase.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band" id="novedades" aria-labelledby="h-nov">
+    <div class="wrap">
+      <h2 id="h-nov" data-en="Latest news">Últimas novedades</h2>
+      <div class="news">
+        <article class="post">
+          <a class="post-img pi-logo" href="https://github.com/KCRooty/Cinder-Studio" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/cinder/img/logo.webp" alt="" width="120" height="120" loading="lazy"></a>
+          <time datetime="2026-11-12" data-en="November 12, 2026">12 de noviembre de 2026</time>
+          <h3 data-en="New logo and its own page">Logo nuevo y página propia</h3>
+          <p data-en="A violet film camera under a starry sky, now on the site, the repo and the app's page.">Una cámara de cine violeta bajo un cielo de estrellas, ya en la web, el repositorio y esta página.</p>
+        </article>
+        <article class="post">
+          <a class="post-img pi-f1" href="https://github.com/KCRooty/Cinder-Studio/blob/main/CHANGELOG.md" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span>Fase 1</span></a>
+          <time datetime="2026-11-10" data-en="November 10, 2026">10 de noviembre de 2026</time>
+          <h3><a href="https://github.com/KCRooty/Cinder-Studio/blob/main/CHANGELOG.md" target="_blank" rel="noopener" data-en="Phase 1: foundations">Fase 1: cimientos</a></h3>
+          <p data-en="Window with the seven pages, project model with undo and redo, .cinder saving and CI on Windows and Linux. 15 tests passing.">Ventana con las siete páginas, modelo de proyecto con deshacer y rehacer, guardado en .cinder y CI en Windows y Linux. 15 tests en verde.</p>
+        </article>
+        <article class="post">
+          <a class="post-img pi-f0" href="https://github.com/KCRooty/Cinder-Studio/blob/main/docs/ROADMAP.md" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><span>Fase 0</span></a>
+          <time datetime="2026-11-10" data-en="November 10, 2026">10 de noviembre de 2026</time>
+          <h3><a href="https://github.com/KCRooty/Cinder-Studio/blob/main/docs/ROADMAP.md" target="_blank" rel="noopener" data-en="Phase 0: the design">Fase 0: el diseño</a></h3>
+          <p data-en="Clean-room rules, the seven pages, the architecture and the roadmap. Cinder Studio replaces CoalMix Studio, now cancelled.">Reglas clean-room, las siete páginas, la arquitectura y la hoja de ruta. Cinder Studio sustituye a CoalMix Studio, cancelado.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="funciones" aria-labelledby="h-fun">
+    <div class="wrap">
+      <h2 id="h-fun" data-en="Powerful tools, from import to delivery">Herramientas potentes, de la importación a la entrega</h2>
+      <p class="intro" data-en="Seven pages in a bar at the bottom, from left to right, all working on the same project and the same timeline. Switching page does not export or copy anything: it is another view of the same material. Each card says in which phase it arrives.">Siete páginas en una barra inferior, de izquierda a derecha, todas trabajando sobre el mismo proyecto y la misma línea de tiempo. Cambiar de página no exporta ni copia nada: es otra vista del mismo material. Cada tarjeta dice en qué fase llega.</p>
+
+      <div class="cards">
+        <article class="card">
+          <div class="art a-media" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M8 18h18l5 6h25v26a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4z"/><path d="M26 34l12 6-12 6z"/></svg></div>
+          <div class="body">
+            <p class="phase" data-en="Phase 2">Fase 2</p>
+            <h3 data-en="Media">Medios</h3>
+            <p data-en="Bring the material in and keep it in order before you start cutting.">Trae el material y ponlo en orden antes de empezar a cortar.</p>
+            <ul>
+              <li data-en="File browser and project bins side by side">Navegador de archivos y bins del proyecto, uno junto a otro</li>
+              <li data-en="Viewer with in and out points and audio waveform">Visor con entrada y salida y forma de onda del audio</li>
+              <li data-en="Editable metadata, search and background proxies">Metadatos editables, búsqueda y proxies en segundo plano</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card alt">
+          <div class="art a-cut" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="18" cy="46" r="7"/><circle cx="46" cy="46" r="7"/><path d="M23 41L46 10M41 41L18 10"/></svg></div>
+          <div class="body">
+            <p class="phase" data-en="Phase 7">Fase 7</p>
+            <h3 data-en="Cut">Corte</h3>
+            <p data-en="For cutting fast, without switching tools.">Para montar rápido, sin cambiar de herramienta.</p>
+            <ul>
+              <li data-en="Dual timeline: the whole edit on top, a zoomed view at the playhead below">Línea de tiempo doble: el montaje entero arriba y una vista ampliada en el cursor abajo</li>
+              <li data-en="Smart insert: the clip goes into the gap nearest the playhead">Inserción inteligente: el clip va al hueco más cercano al cursor</li>
+              <li data-en="Everything done here is the same timeline as Edit">Todo lo que haces aquí es la misma línea de tiempo de Edición</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art a-edit" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="6" y="14" width="22" height="9" rx="2"/><rect x="31" y="14" width="27" height="9" rx="2"/><rect x="6" y="28" width="34" height="9" rx="2"/><rect x="12" y="42" width="40" height="9" rx="2"/><path d="M36 8v50"/></svg></div>
+          <div class="body">
+            <p class="phase" data-en="Phase 2">Fase 2</p>
+            <h3 data-en="Edit">Edición</h3>
+            <p data-en="Full control over the edit, with the shortcuts your hands already know.">Control total del montaje, con los atajos que tus manos ya conocen.</p>
+            <ul>
+              <li data-en="Unlimited video and audio tracks, with lock, mute and solo">Pistas de vídeo y audio ilimitadas, con bloqueo, silencio y solo</li>
+              <li data-en="J/K/L, I/O, selection (A), blade (B), trim (T); ripple, roll, slip and slide">J/K/L, I/O, selección (A), cuchilla (B), recorte (T); ripple, roll, slip y slide</li>
+              <li data-en="Insert, overwrite, replace and append (F9 to F12), transitions and titles">Inserción, sobrescritura, sustitución y añadir al final (F9 a F12), transiciones y títulos</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card alt">
+          <div class="art a-comp" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="6" y="10" width="16" height="12" rx="3"/><rect x="6" y="42" width="16" height="12" rx="3"/><rect x="42" y="26" width="16" height="12" rx="3"/><path d="M22 16c12 0 8 16 20 16M22 48c12 0 8-16 20-16"/></svg></div>
+          <div class="body">
+            <p class="phase" data-en="Phase 6">Fase 6</p>
+            <h3 data-en="Compositing">Composición</h3>
+            <p data-en="Node-based compositing inside each clip, with no separate render.">Composición por nodos dentro de cada clip, sin renderizar aparte.</p>
+            <ul>
+              <li data-en="Node graph with a dual viewer: input and result">Grafo de nodos con visor doble: entrada y resultado</li>
+              <li data-en="Merge, transform, masks, chroma keyer, point and planar tracker">Fusión, transformación, máscaras, keyer de croma, tracker de puntos y planar</li>
+              <li data-en="Blurs and particles; the result goes back to the timeline">Desenfoques y partículas; el resultado vuelve a la línea de tiempo</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art a-color" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="4"/><path d="M32 10v8M32 46v8M10 32h8M46 32h8"/><circle cx="40" cy="25" r="3"/></svg></div>
+          <div class="body">
+            <p class="phase" data-en="Phase 4">Fase 4</p>
+            <h3>Color</h3>
+            <p data-en="Node-based grading in a floating-point pipeline: nothing is clipped to 8 bits until the output.">Corrección por nodos en un pipeline de coma flotante: nada se recorta a 8 bits hasta la salida.</p>
+            <ul>
+              <li data-en="Serial, parallel and layer nodes (Alt+S, Alt+P, Alt+L)">Nodos en serie, paralelo y capa (Alt+S, Alt+P, Alt+L)</li>
+              <li data-en="Lift, gamma, gain and offset wheels, curves, HSL qualifiers and windows">Ruedas lift, gamma, gain y offset, curvas, cualificadores HSL y ventanas</li>
+              <li data-en=".cube LUTs, linear working space with optional ACES, and scopes">LUTs .cube, espacio de trabajo lineal con ACES opcional y scopes</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card alt">
+          <div class="art a-audio" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M14 10v44M32 10v44M50 10v44"/><rect x="9" y="34" width="10" height="7" rx="2"/><rect x="27" y="18" width="10" height="7" rx="2"/><rect x="45" y="40" width="10" height="7" rx="2"/></svg></div>
+          <div class="body">
+            <p class="phase" data-en="Phase 5">Fase 5</p>
+            <h3>Audio</h3>
+            <p data-en="A multitrack mixer that never blocks: the audio callback does not allocate, lock or touch the disk.">Un mezclador multipista que no se traba: el callback de audio no reserva memoria, no bloquea y no toca el disco.</p>
+            <ul>
+              <li data-en="A channel per track, buses and main output">Un canal por pista, buses y salida principal</li>
+              <li data-en="Parametric EQ, gate, compressor and limiter, with automation">EQ paramétrico, puerta, compresor y limitador, con automatización</li>
+              <li data-en="CLAP plugins in a separate process, and LUFS meters">Plugins CLAP en otro proceso y medidores LUFS</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art a-deliver" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 8v32M20 28l12 12 12-12"/><path d="M10 40v10a4 4 0 0 0 4 4h36a4 4 0 0 0 4-4V40"/></svg></div>
+          <div class="body">
+            <p class="phase" data-en="Phase 3 · end of the MVP">Fase 3 · fin del MVP</p>
+            <h3 data-en="Delivery">Entrega</h3>
+            <p data-en="Export and move on. The same project always gives the same file.">Exporta y a otra cosa. El mismo proyecto da siempre el mismo archivo.</p>
+            <ul>
+              <li data-en="Presets for YouTube, TikTok, master and intermediate, plus manual settings">Presets para YouTube, TikTok, máster e intermedio, y ajustes a mano</li>
+              <li data-en="H.264, H.265, AV1, ProRes and DNxHR via FFmpeg, with hardware encoding">H.264, H.265, AV1, ProRes y DNxHR vía FFmpeg, con codificación por hardware</li>
+              <li data-en="Render queue, whole timeline or clip by clip">Cola de render, de la línea de tiempo entera o clip a clip</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="why" aria-labelledby="h-why">
+    <div class="wrap">
+      <h2 id="h-why" data-en="How it is being built">Cómo se está construyendo</h2>
+      <div class="grid3">
+        <div class="tile"><h3 data-en="Any graphics card">Cualquier tarjeta gráfica</h3><p data-en="All image processing runs on the GPU with wgpu: Vulkan, DirectX 12 or Metal, from any vendor.">Todo el procesado de imagen va en GPU con wgpu: Vulkan, DirectX 12 o Metal, de cualquier fabricante.</p></div>
+        <div class="tile"><h3 data-en="No account, works offline">Sin cuenta y sin conexión</h3><p data-en="No activation, no telemetry, no ads, no paywalls. It opens and you work.">Sin activación, sin telemetría, sin anuncios ni muros de pago. Se abre y trabajas.</p></div>
+        <div class="tile"><h3 data-en="Linux on par with Windows">Linux igual que Windows</h3><p data-en="H.264, H.265 and AAC work the same on both through FFmpeg. CI fails if either one stops building.">H.264, H.265 y AAC funcionan igual en los dos vía FFmpeg. La CI falla si uno deja de compilar.</p></div>
+        <div class="tile"><h3 data-en="An open project format">Formato de proyecto abierto</h3><p data-en=".cinder files are versioned JSON, readable by other tools, with atomic saves.">Los .cinder son JSON versionado, legible por otras herramientas, con guardado atómico.</p></div>
+        <div class="tile"><h3 data-en="Plugins that can't take it down">Plugins que no lo tumban</h3><p data-en="Audio plugins run isolated in their own process: if one breaks, the editor keeps going.">Los plugins de audio van aislados en su propio proceso: si uno se rompe, el editor sigue.</p></div>
+        <div class="tile"><h3 data-en="100% original code">Código 100% propio</h3><p data-en="A clean-room reimplementation: the familiar workflow, rebuilt from scratch, with nothing borrowed.">Reimplementación clean-room: el flujo de trabajo de siempre, rehecho desde cero, sin nada ajeno.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="roadmap" id="hoja-de-ruta" aria-labelledby="h-road">
+    <div class="wrap">
+      <h2 id="h-road" data-en="Roadmap">Hoja de ruta</h2>
+      <p class="intro" data-en="Every phase ends with something you can use and test. Dates are set when a phase starts, not before.">Cada fase termina con algo que se puede usar y probar. Las fechas se ponen al empezar cada fase, no antes.</p>
+      <ol class="phases">
+        <li class="done"><b data-en="Phase 0 · Design">Fase 0 · Diseño</b><span data-en="Done. Rules, pages, architecture and the .cinder format.">Hecha. Reglas, páginas, arquitectura y formato .cinder.</span></li>
+        <li class="now"><b data-en="Phase 1 · Foundations">Fase 1 · Cimientos</b><span data-en="In progress. Window, project model and CI are done; next, opening a clip and playing it with synced audio.">En curso. Ventana, modelo de proyecto y CI hechos; falta abrir un clip y reproducirlo con el audio sincronizado.</span></li>
+        <li><b data-en="Phase 2 · Media and Edit">Fase 2 · Medios y Edición</b><span data-en="Import, bins, multitrack timeline and trims.">Importar, bins, línea de tiempo multipista y recortes.</span></li>
+        <li><b data-en="Phase 3 · Delivery">Fase 3 · Entrega</b><span data-en="H.264/H.265 export and render queue. End of the MVP.">Exportar a H.264/H.265 y cola de render. Fin del MVP.</span></li>
+        <li><b data-en="Phase 4 · Color">Fase 4 · Color</b><span data-en="Nodes, wheels, curves, LUTs, qualifiers and scopes.">Nodos, ruedas, curvas, LUTs, cualificadores y scopes.</span></li>
+        <li><b data-en="Phase 5 · Audio">Fase 5 · Audio</b><span data-en="Mixer, buses, EQ and dynamics, CLAP plugins.">Mezclador, buses, EQ y dinámica, plugins CLAP.</span></li>
+        <li><b data-en="Phase 6 · Compositing">Fase 6 · Composición</b><span data-en="Node graph, masks, keyer and tracker.">Grafo de nodos, máscaras, keyer y tracker.</span></li>
+        <li><b data-en="Phase 7 · Cut and performance">Fase 7 · Corte y rendimiento</b><span data-en="The Cut page, proxies and cache for 4K and up.">La página Corte, proxies y caché para 4K y más.</span></li>
+        <li><b data-en="Phase 8 · Interoperability">Fase 8 · Interoperabilidad</b><span data-en="OpenTimelineIO, FCPXML, EDL and OpenFX plugins.">OpenTimelineIO, FCPXML, EDL y plugins OpenFX.</span></li>
+      </ol>
+      <div class="cta">
+        <a class="btn btn-dark" href="https://github.com/KCRooty/Cinder-Studio/blob/main/docs/ROADMAP.md" target="_blank" rel="noopener" data-en="Full roadmap">Hoja de ruta completa</a>
+        <a class="btn btn-dark" href="https://github.com/KCRooty/Cinder-Studio/blob/main/CHANGELOG.md" target="_blank" rel="noopener" data-en="What has been tested">Qué se ha probado</a>
+        <a class="btn btn-dark" href="https://github.com/KCRooty/Cinder-Studio#compilar" target="_blank" rel="noopener" data-en="Build it yourself">Compílalo tú</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-c" id="participa" aria-labelledby="h-com">
+    <div class="wrap narrow">
+      <h2 id="h-com" data-en="Made at Static Forge">Hecho en Static Forge</h2>
+      <p data-en="Cinder Studio is part of Static Forge, the studio of KCRooty (Core), and the door is open: code, testing, icons, presets or ideas. Licensed MIT or Apache-2.0.">Cinder Studio forma parte de Static Forge, el estudio de KCRooty (Core), y la puerta está abierta: código, pruebas, iconos, presets o ideas. Licencia MIT o Apache-2.0.</p>
+      <div class="cta">
+        <a class="btn btn-dark" href="/unete.html#solicitud" data-en="Join">Únete</a>
+        <a class="btn btn-dark" href="/foros.html" data-en="Forum">Foro</a>
+        <a class="btn btn-dark" href="https://github.com/KCRooty/Cinder-Studio/issues" target="_blank" rel="noopener" data-en="Report a problem">Reportar un problema</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-cols">
+      <nav aria-labelledby="f1"><h3 id="f1" data-en="Project">Proyecto</h3>
+        <a href="https://github.com/KCRooty/Cinder-Studio" target="_blank" rel="noopener" data-en="Source code">Código fuente</a>
+        <a href="https://github.com/KCRooty/Cinder-Studio/blob/main/CHANGELOG.md" target="_blank" rel="noopener" data-en="Changelog">Cambios</a>
+        <a href="https://github.com/KCRooty/Cinder-Studio/blob/main/docs/PAGINAS.md" target="_blank" rel="noopener" data-en="The seven pages">Las siete páginas</a>
+        <a href="https://github.com/KCRooty/Cinder-Studio/blob/main/docs/ARQUITECTURA.md" target="_blank" rel="noopener" data-en="Architecture">Arquitectura</a>
+      </nav>
+      <nav aria-labelledby="f2"><h3 id="f2" data-en="Get involved">Participa</h3>
+        <a href="/unete.html#solicitud" data-en="Join the studio">Únete al estudio</a>
+        <a href="/foros.html" data-en="Forum">Foro</a>
+        <a href="https://github.com/KCRooty/Cinder-Studio/issues" target="_blank" rel="noopener" data-en="Bug reports">Reportes de errores</a>
+        <a href="https://github.com/KCRooty/Cinder-Studio/blob/main/AGENTS.md" target="_blank" rel="noopener" data-en="Clean-room rules">Reglas clean-room</a>
+      </nav>
+      <nav aria-labelledby="f3"><h3 id="f3">Static Forge</h3>
+        <a href="/" data-en="Home">Inicio</a>
+        <a href="/#proyectos" data-en="All projects">Todos los proyectos</a>
+        <a href="/i3ds.html">Iron3D Studio</a>
+        <a id="cmail" href="/#solicitud" data-en="Contact">Contacto</a>
+      </nav>
+    </div>
+    <p class="disc" data-en="Cinder Studio has no relation to Blackmagic Design or DaVinci Resolve. It is an independent, clean-room project by Static Forge that follows a similar workflow.">Cinder Studio no tiene relación con Blackmagic Design ni con DaVinci Resolve. Es un proyecto independiente y clean-room de Static Forge que sigue un flujo de trabajo parecido.</p>
+    <p class="copy">© 2026 Static Forge · KCRooty (Core) · <a href="/">staticforge.me</a></p>
+  </div>
+</footer>
+
+<script>/* correo del estudio, montado aquí para no dejarlo en claro en el HTML */
+(function(){var a=['staticforge','staticforge.me'].join('@'),m=document.getElementById('cmail');m.href='mailto:'+a+'?subject='+encodeURIComponent('Cinder Studio');m.removeAttribute('data-en');m.textContent=a})();
+</script>
+<script src="/assets/lang.js"></script>
+</body>
+</html>
