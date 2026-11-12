@@ -228,9 +228,15 @@ h2{font-family:var(--fd);font-weight:800;font-variation-settings:"SOFT" 100,"ops
 .rows{list-style:none}
 .row{
   display:grid;grid-template-columns:62px minmax(150px,.75fr) 1.6fr auto;gap:8px 22px;align-items:baseline;
-  padding:22px 4px;border-bottom:1px dashed var(--line);transition:background .2s,padding .25s;
+  position:relative;isolation:isolate;overflow:hidden;margin-bottom:14px;
+  padding:24px 22px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);transition:border-color .2s;
 }
-.row:hover{background:var(--surface);padding-left:12px;padding-right:12px}
+/* Fondo de cada proyecto (assets/projects/bg/*.svg): a la derecha, fundido hacia el texto */
+.row::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--art) right center/auto 100% no-repeat;transition:transform .5s ease-out;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 71%,#000 90%);mask-image:linear-gradient(90deg,transparent 0,transparent 71%,#000 90%)}
+.row:hover{border-color:var(--muted)}
+.row:hover::before{transform:scale(1.03)}
+.row .lnk,.row .soon{background:var(--bg)}
 .row .chan{font-size:1.5rem}
 .row h4{font:700 1.2rem/1.2 var(--fd);font-variation-settings:"SOFT" 100}
 .row .st{display:block;font:400 1.05rem/1.3 var(--fc);letter-spacing:.05em;color:var(--muted);margin-top:4px}
@@ -353,6 +359,8 @@ footer{padding:0 0 40px}
   .credits{grid-template-columns:1fr;margin-top:56px}
   .credits-h{grid-row:auto}
   .row{grid-template-columns:52px 1fr;gap:6px 16px}
+  .row::before{background-position:right top;background-size:auto 110px;
+    -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.75) 0,transparent 110px);mask-image:linear-gradient(180deg,rgba(0,0,0,.75) 0,transparent 110px)}
   .row p,.row .acts{grid-column:2}
   .acts{justify-content:flex-start}
 }
@@ -550,13 +558,13 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
       <div class="g-hist">
         <div class="group-h"><span class="dot" aria-hidden="true"></span><h3 data-i18n="g.hist">Historias</h3><span class="bar"></span></div>
         <ul class="rows">
-          <li class="row">
+          <li class="row" style="--art:url(/assets/projects/bg/fnaf-as.svg?v=1)">
             <span class="chan">03</span>
             <div><img class="pj-logo" src="assets/projects/fnaf-as.webp" alt="" width="56" height="56" loading="lazy"><h4>FNAF AS</h4><span class="st" data-i18n="st.dev">En desarrollo</span></div>
             <p data-i18n="d.fnafas">Five Nights at Freddy's Alternative Stories: antología fan de glitch y terror analógico, con lore propio y renders 3D.</p>
             <div class="acts"><a class="lnk" href="fnaf-as.html" data-i18n="a.fnafas">Leer sobre FNAF AS</a></div>
           </li>
-          <li class="row">
+          <li class="row" style="--art:url(/assets/projects/bg/lada.svg?v=1)">
             <span class="chan">04</span>
             <div><h4>LADA</h4><span class="st" data-i18n="st.build">En construcción</span></div>
             <p data-i18n="d.lada">Ficción original de largo recorrido, desde 2020: personajes, mundo y trama propios.</p>
@@ -568,37 +576,37 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
       <div class="g-soft">
         <div class="group-h"><span class="dot" aria-hidden="true"></span><h3 data-i18n="g.soft">Software</h3><span class="bar"></span></div>
         <ul class="rows">
-          <li class="row">
+          <li class="row" style="--art:url(/assets/projects/bg/x-usb.svg?v=1)">
             <span class="chan">05</span>
             <div><img class="pj-logo" src="assets/projects/xusb.webp" alt="" width="56" height="56" loading="lazy"><h4>X-USB</h4><span class="st" data-i18n="st.active">Activo</span><span class="live" data-repo="xusb"></span></div>
             <p data-i18n="d.xusb">App Android libre al estilo Rufus y Ventoy: grabar ISOs, USB multiarranque UEFI y particiones desde el móvil. Gratis, sin anuncios. Necesita root.</p>
             <div class="acts"><a class="lnk" href="https://github.com/KCRooty/X-USB" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
-          <li class="row">
+          <li class="row" style="--art:url(/assets/projects/bg/rck.svg?v=1)">
             <span class="chan">06</span>
             <div><img class="pj-logo" src="assets/projects/rck.webp" alt="" width="56" height="56" loading="lazy"><h4>RCK</h4><span class="st" data-i18n="st.active">Activo</span><span class="live" data-repo="rck"></span></div>
             <p data-i18n="d.rck">Optimizador de Windows 10 y 11 donde cada ajuste se puede deshacer: copia del registro antes de cada cambio y catálogo firmado.</p>
             <div class="acts"><a class="lnk" href="https://github.com/KCRooty/RCK" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
-          <li class="row">
+          <li class="row" style="--art:url(/assets/projects/bg/kc-downloader.svg?v=1)">
             <span class="chan">07</span>
             <div><img class="pj-logo" src="assets/projects/kc-downloader.webp" alt="" width="56" height="56" loading="lazy"><h4>KC Downloader</h4><span class="st" data-i18n="st.active">Activo</span><span class="live" data-repo="kcdl"></span></div>
             <p data-i18n="d.kc">Descargador de escritorio para YouTube, YouTube Music, Spotify y Pinterest. La v3 es una reescritura completa: interfaz nueva con tema claro u oscuro, ajustes a tu gusto y descargas que funcionan en cualquier Windows o Linux sin instalar nada, porque yt-dlp, FFmpeg y Deno vienen dentro y la app los actualiza sola.</p>
             <div class="acts"><a class="lnk" href="https://github.com/KCRooty/kc-downloader/releases/latest" target="_blank" rel="noopener" data-i18n="a.dl">Descargar v3.0.1 ↗</a> <a class="lnk" href="https://github.com/KCRooty/kc-downloader" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
-          <li class="row">
+          <li class="row" style="--art:url(/assets/projects/bg/winforge.svg?v=1)">
             <span class="chan">08</span>
             <div><img class="pj-logo" src="assets/projects/winforge.webp" alt="" width="56" height="56" loading="lazy"><h4>WinForge</h4><span class="st" data-i18n="st.test">En pruebas</span></div>
             <p data-i18n="d.winforge">Una ISO de Windows 11 limpia, sin bloatware y con identidad propia desde el primer arranque.</p>
             <div class="acts"><a class="lnk" href="winforge/" data-i18n="a.cinder">Ver la página</a></div>
           </li>
-          <li class="row">
+          <li class="row" style="--art:url(/assets/projects/bg/iron3d.svg?v=1)">
             <span class="chan">09</span>
             <div><img class="pj-logo" src="assets/projects/iron3d-studio.webp" alt="" width="56" height="56" loading="lazy"><h4>Iron3D Studio</h4><span class="st" data-i18n="st.dev">En desarrollo</span><span class="live" data-repo="iron3d"></span></div>
             <p data-i18n="d.iron3d">Motor 3D propio en C++/Vulkan que recrea el flujo de trabajo de un DCC clásico desde cero: Gestor de Objetos, cámara orbital y pipeline gráfico, sin una línea de código ajena.</p>
             <div class="acts"><a class="lnk" href="i3ds.html" data-i18n="a.i3ds">Ver qué funciona ya</a><a class="lnk" href="https://github.com/KCRooty/Iron3D-Studio" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
-          <li class="row">
+          <li class="row" style="--art:url(/assets/projects/bg/cinder.svg?v=1)">
             <span class="chan">10</span>
             <div><img class="pj-logo" src="assets/projects/cinder-studio.webp" alt="" width="56" height="56" loading="lazy"><h4>Cinder Studio</h4><span class="st" data-i18n="st.design">En diseño</span><span class="live" data-repo="cinder"></span></div>
             <p data-i18n="d.cinder">Editor de vídeo propio en Rust con todo el procesado de imagen en GPU, al estilo de DaVinci Resolve: edición, color por nodos, composición, audio y entrega en un solo programa. Sustituye a CoalMix Studio, cancelado.</p>
@@ -610,13 +618,13 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
       <div class="g-sys">
         <div class="group-h"><span class="dot" aria-hidden="true"></span><h3 data-i18n="g.sys">Sistemas</h3><span class="bar"></span></div>
         <ul class="rows">
-          <li class="row">
+          <li class="row" style="--art:url(/assets/projects/bg/static-linux.svg?v=1)">
             <span class="chan">11</span>
             <div><img class="pj-logo pj-dark" src="assets/projects/static-linux.webp" alt="" width="56" height="56" loading="lazy"><h4>Static Linux</h4><span class="st" data-i18n="st.dev">En desarrollo</span><span class="live" data-repo="linux"></span></div>
             <p data-i18n="d.sl">Distro basada en Arch. sl-detect mira tu hardware y elige el escritorio adecuado, de Openbox a Hyprland y KDE. La ISO ya instala de principio a fin, el código es público y llegan los temas: un fondo y una paleta para todo el sistema.</p>
             <div class="acts"><a class="lnk" href="linux/" data-i18n="a.sl">Ver la hoja de ruta</a><a class="lnk" href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener">GitHub ↗</a></div>
           </li>
-          <li class="row">
+          <li class="row" style="--art:url(/assets/projects/bg/forge-os.svg?v=1)">
             <span class="chan">12</span>
             <div><img class="pj-logo" src="assets/projects/forge-os.webp" alt="" width="56" height="56" loading="lazy"><h4>Forge OS</h4><span class="st" data-i18n="st.dev">En desarrollo</span><span class="live" data-repo="forgeos"></span></div>
             <p data-i18n="d.fos">Un sistema operativo completo escrito desde cero en Rust: kernel propio para x86_64 y userland propio (Ember, Bellows, Crucible y Anvil).</p>
@@ -628,7 +636,7 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
       <div class="g-mem">
         <div class="group-h"><span class="dot" aria-hidden="true"></span><h3 data-i18n="g.mem">De los integrantes</h3><span class="bar"></span></div>
         <ul class="rows">
-          <li class="row">
+          <li class="row" style="--art:url(/assets/projects/bg/anvil-client.svg?v=1)">
             <span class="chan">13</span>
             <div><img class="pj-logo" src="assets/projects/anvil-client.webp" alt="" width="56" height="56" loading="lazy"><h4>Anvil Client</h4><span class="st" data-i18n="st.early">Desarrollo temprano</span><span class="st" data-i18n="st.byalcraft">De Alcraft</span></div>
             <p data-i18n="d.anvil">Launcher propio para Minecraft Java. Cada instancia guarda sus mods, partidas y opciones, y la lista de instancias y las noticias llegan en directo desde su servidor.</p>
