@@ -7,11 +7,10 @@
 *{box-sizing:border-box}
 html{color-scheme:light;background:#bfe8ff}
 body{margin:0;min-height:100vh;color:var(--ink);font:400 16px/1.55 var(--fb);-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;background:#8fd6ff}
-.sky{background:
-    radial-gradient(120% 60% at 50% 118%,#3fae2a 0 38%,#7fd34a 52%,transparent 53%),
-    radial-gradient(90% 40% at 10% 112%,#2e9a22 0 50%,transparent 51%),
-    radial-gradient(60% 30% at 80% 0%,rgba(255,255,255,.65),transparent 70%),
-    linear-gradient(180deg,#0f7fd8 0%,#3aa9f0 30%,#8fd6ff 62%,#dff5ff 80%,#bfe8ff 100%)}
+.sky{background:linear-gradient(180deg,#0f7fd8 0%,#3aa9f0 30%,#8fd6ff 62%,#7fd34a 75%,#3fae2a 100%)}
+.sky::after{content:"";position:absolute;inset:-12px;z-index:-1;background:url(/laboratorio/img/fondo-aero.jpg) center 35%/cover no-repeat;filter:blur(2.5px) saturate(1.1)}
+.sky i{z-index:1}
+.sky::before{display:none}
 .sky::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   background:
     radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,255,255,0)) 8% 18%/340px 110px no-repeat,
@@ -52,7 +51,7 @@ a{color:inherit}
   background:linear-gradient(180deg,#5fd0ff 0,#1a9be8 50%,#0a7fd0 51%,#2fb0f5 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 4px 10px -4px rgba(0,90,170,.6);text-shadow:0 1px 1px rgba(0,60,120,.5)}
 h1{font:900 clamp(2.5rem,7vw,4.6rem)/1 var(--fd);letter-spacing:-.02em;margin:0 0 14px;color:#fff;
   text-shadow:0 2px 0 rgba(0,90,170,.35),0 6px 22px rgba(0,70,150,.45)}
-.lead{color:#06325a;max-width:60ch;margin:0;font-size:1.1rem;text-shadow:0 1px 0 rgba(255,255,255,.6)}
+.lead{color:#06325a;max-width:60ch;margin:0;font-size:1.1rem;font-weight:600;text-shadow:0 1px 2px rgba(255,255,255,.95),0 0 14px rgba(255,255,255,.9),0 0 4px rgba(255,255,255,.9)}
 .glass{background:var(--glass);border:1px solid var(--edge);border-radius:var(--r);box-shadow:var(--shadow),inset 0 1px 0 #fff;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 /* Botón aqua */
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 22px;border:1px solid #0a6fb8;border-radius:999px;
