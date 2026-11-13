@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<title data-en="ASCII generator · Static Forge Lab">Generador ASCII · Laboratorio Static Forge</title>
+<meta name="description" content="Convierte imágenes en arte ASCII y escribe rótulos de texto ASCII con 30 fuentes. Copia, descarga en TXT, PNG o HTML. Laboratorio de Static Forge." data-en-content="Turn images into ASCII art and write ASCII text banners in 30 fonts. Copy or download as TXT, PNG or HTML. Static Forge Lab.">
+<link rel="canonical" href="https://staticforge.me/laboratorio/ascii/">
+<meta property="og:title" content="Generador ASCII · Static Forge" data-en-content="ASCII generator · Static Forge">
+<meta property="og:description" content="Convierte imágenes en arte ASCII y escribe rótulos de texto ASCII con 30 fuentes. Copia, descarga en TXT, PNG o HTML. Laboratorio de Static Forge." data-en-content="Turn images into ASCII art and write ASCII text banners in 30 fonts. Copy or download as TXT, PNG or HTML. Static Forge Lab.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://staticforge.me/laboratorio/ascii/">
+<meta property="og:site_name" content="Static Forge">
+<meta property="og:image" content="https://staticforge.me/assets/og/home.jpg">
+<meta name="theme-color" content="#0f7fd8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
+<link rel="stylesheet" href="/laboratorio/lab.css?v=20261113bg">
+<link rel="stylesheet" href="/laboratorio/tools.css?v=20261113a">
+<link rel="stylesheet" href="/assets/lang.css">
+<style>
+
+.tabs{display:flex;justify-content:center;margin:0 auto 16px;width:min(1000px,100%)}
+.grid2{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;align-items:start}
+.ctrls{display:flex;flex-direction:column;gap:14px}
+.term{position:relative;border-radius:16px;background:linear-gradient(180deg,#0c2340,#081a30);border:1px solid #06182c;box-shadow:inset 0 2px 10px rgba(0,0,0,.5),0 1px 0 #fff;overflow:auto;min-height:260px;max-height:72vh}
+.term pre{margin:0;padding:16px;font:12px/1 'JetBrains Mono',ui-monospace,monospace;color:#bfe8ff;white-space:pre;letter-spacing:0}
+.term.light{background:#fff;border-color:#b8d4ea;box-shadow:inset 0 1px 4px rgba(0,60,120,.15)}
+.term.light pre{color:#0b2a4a}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.acts .btn{min-height:40px;padding:0 16px;font-size:.92rem}
+.drop.small{min-height:120px;padding:16px}
+.rv{display:flex;justify-content:space-between;align-items:baseline}
+.rv output{font:800 13px var(--fd);color:var(--ph)}
+.chk{display:flex;align-items:center;gap:8px;font:700 14px var(--fd);color:var(--ink);cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:#0a84d6}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:14px}
+.gal button{display:block;text-align:left;padding:0;border:1px solid #06182c;border-radius:14px;overflow:hidden;background:#0c2340;cursor:pointer}
+.gal button:hover{outline:3px solid #36b4f2}
+.gal button span{display:block;padding:6px 10px;background:linear-gradient(180deg,#fff,#e4f1fb);color:var(--ink);font:800 12px var(--fd)}
+.gal pre{margin:0;padding:10px;font:9px/1 'JetBrains Mono',monospace;color:#bfe8ff;overflow:hidden;max-height:120px}
+[hidden]{display:none!important}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<a class="skip" href="#main" data-en="Skip to content">Ir al contenido</a>
+<nav class="back" aria-label="Navegación" data-en-aria-label="Navigation">
+  <div class="crumb"><a href="/" aria-label="Static Forge">◂<span class="h"> STATIC FORGE</span></a><span>/</span><a href="/laboratorio/" data-en="LAB">LABORATORIO</a><span>/</span><span data-en="ASCII">ASCII</span></div>
+  <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+    <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+    <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+  </div>
+</nav>
+
+<main id="main" class="tool">
+  <div class="tool-head"><p class="kick">EXP-06</p><h1 data-en="ASCII generator">Generador ASCII</h1></div>
+  <div class="tabs"><div class="seg2" role="tablist" aria-label="Modo" data-en-aria-label="Mode">
+    <button type="button" role="tab" id="tab-img" aria-selected="true" aria-controls="p-img" data-en="Image → ASCII">Imagen → ASCII</button>
+    <button type="button" role="tab" id="tab-txt" aria-selected="false" aria-controls="p-txt" data-en="Text → ASCII">Texto → ASCII</button>
+  </div></div>
+
+  <section class="panel grid2" id="p-img" role="tabpanel" aria-labelledby="tab-img">
+    <div class="ctrls">
+      <div class="drop small" id="drop" tabindex="0" role="button" aria-label="Elegir imagen" data-en-aria-label="Choose image">
+        <b data-en="Drop, click or paste an image">Suelta, haz clic o pega una imagen</b><span data-en="It stays on your computer">No sale de tu equipo</span>
+      </div>
+      <input type="file" id="file" accept="image/*" hidden>
+      <label class="field"><span class="rv"><span data-en="Width (characters)">Ancho (caracteres)</span><output id="wOut">100</output></span><input type="range" id="w" min="20" max="240" value="100"></label>
+      <label class="field"><span data-en="Characters">Caracteres</span>
+        <select class="in" id="ramp">
+          <option value=" .:-=+*#%@" data-en="Classic">Clásico</option>
+          <option value=" .'`^,:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$" data-en="Detailed">Detallado</option>
+          <option value=" ░▒▓█" data-en="Blocks">Bloques</option>
+          <option value=" ⠁⠃⠇⡇⣇⣧⣷⣿" data-en="Braille">Braille</option>
+          <option value=" 01" data-en="Binary">Binario</option>
+          <option value="custom" data-en="Custom…">Propio…</option>
+        </select>
+      </label>
+      <label class="field" id="customWrap" hidden><span data-en="Your characters (from empty to full)">Tus caracteres (de vacío a lleno)</span><input class="in mono" id="custom" value=" .oO@"></label>
+      <label class="field"><span class="rv"><span data-en="Brightness">Brillo</span><output id="bOut">0</output></span><input type="range" id="bri" min="-100" max="100" value="0"></label>
+      <label class="field"><span class="rv"><span data-en="Contrast">Contraste</span><output id="cOut">0</output></span><input type="range" id="con" min="-100" max="100" value="0"></label>
+      <label class="chk"><input type="checkbox" id="inv"> <span data-en="Invert">Invertir</span></label>
+      <label class="chk"><input type="checkbox" id="col"> <span data-en="Colour">Color</span></label>
+      <label class="chk"><input type="checkbox" id="lightBg"> <span data-en="Light background">Fondo claro</span></label>
+    </div>
+    <div>
+      <div class="term" id="imgTerm"><pre id="imgOut">  Elige una imagen para empezar.</pre></div>
+      <div class="acts">
+        <button class="btn" id="imgCopy" type="button" data-en="Copy text">Copiar texto</button>
+        <button class="btn ghost" id="imgTxt" type="button" data-en="Download .txt">Descargar .txt</button>
+        <button class="btn ghost" id="imgPng" type="button" data-en="Download PNG">Descargar PNG</button>
+        <button class="btn ghost" id="imgHtml" type="button" data-en="Download HTML">Descargar HTML</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel grid2" id="p-txt" role="tabpanel" aria-labelledby="tab-txt" hidden>
+    <div class="ctrls">
+      <label class="field"><span data-en="Text">Texto</span><input class="in" id="txt" value="Static Forge" maxlength="60"></label>
+      <label class="field"><span data-en="Font">Fuente</span><select class="in" id="font"></select></label>
+      <label class="field"><span data-en="Spacing">Espaciado</span>
+        <select class="in" id="lay"><option value="default" data-en="Normal">Normal</option><option value="fitted" data-en="Tight">Ajustado</option><option value="full" data-en="Wide">Ancho</option></select></label>
+      <label class="field"><span data-en="Wrap as a code comment">Envolver como comentario</span>
+        <select class="in" id="cmt"><option value="" data-en="None">Ninguno</option><option value="//">// (JS, C, Rust)</option><option value="#"># (Python, Bash)</option><option value="block">/* … */</option><option value="--">-- (Lua, SQL)</option></select></label>
+      <button class="btn ghost" id="galBtn" type="button" data-en="See it in every font">Verlo en todas las fuentes</button>
+    </div>
+    <div>
+      <div class="term" id="txtTerm"><pre id="txtOut"></pre></div>
+      <div class="acts">
+        <button class="btn" id="txtCopy" type="button" data-en="Copy text">Copiar texto</button>
+        <button class="btn ghost" id="txtDl" type="button" data-en="Download .txt">Descargar .txt</button>
+      </div>
+      <div class="gal" id="gal"></div>
+    </div>
+  </section>
+  <p class="note" style="width:min(1000px,100%);margin:0 auto" data-only="es">Las fuentes de texto son de <a href="https://github.com/patorjk/figlet.js" target="_blank" rel="noopener">figlet.js</a> (MIT). Todo se genera en tu navegador.</p>
+  <p class="note" style="width:min(1000px,100%);margin:0 auto" data-only="en">Text fonts come from <a href="https://github.com/patorjk/figlet.js" target="_blank" rel="noopener">figlet.js</a> (MIT). Everything is generated in your browser.</p>
+  <div class="toast" id="toast"></div>
+</main>
+
+<footer class="foot">
+  <div class="wrap"><span>STATIC FORGE · LAB · EXP-06</span><a href="/laboratorio/" data-en="◂ BACK TO THE LAB">◂ VOLVER AL LABORATORIO</a></div>
+</footer>
+<script type="module">
+const $=id=>document.getElementById(id);
+const L=()=>document.documentElement.getAttribute('lang')==='en'?'en':'es';
+const T=(es,en)=>L()==='en'?en:es;
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),1600)}
+function save(name,data,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
+async function copy(t){try{await navigator.clipboard.writeText(t);toast(T('Copiado','Copied'))}catch(e){toast(T('No se ha podido copiar','Could not copy'))}}
+/* pestañas */
+document.querySelectorAll('[role=tab]').forEach(t=>t.onclick=()=>{document.querySelectorAll('[role=tab]').forEach(x=>{x.setAttribute('aria-selected',x===t);$(x.getAttribute('aria-controls')).hidden=x!==t});if(t.id==='tab-txt')renderTxt()});
+
+/* ---------- Imagen → ASCII ---------- */
+let img=null,lastTxt='',lastCells=null,lastCols=0;
+const cv=document.createElement('canvas'),cx=cv.getContext('2d',{willReadFrequently:true});
+function ramp(){const v=$('ramp').value;return v==='custom'?($('custom').value||' #'):v}
+function renderImg(){
+  $('wOut').value=$('w').value;$('bOut').value=$('bri').value;$('cOut').value=$('con').value;
+  $('customWrap').hidden=$('ramp').value!=='custom';$('imgTerm').classList.toggle('light',$('lightBg').checked);
+  if(!img)return;
+  const cols=+$('w').value,rows=Math.max(1,Math.round(cols*img.naturalHeight/img.naturalWidth*.5));
+  cv.width=cols;cv.height=rows;cx.drawImage(img,0,0,cols,rows);
+  const d=cx.getImageData(0,0,cols,rows).data,r=[...ramp()],n=r.length-1;
+  const b=+$('bri').value*2.55,c=+$('con').value,f=(259*(c+255))/(255*(259-c));
+  let inv=$('inv').checked;if($('lightBg').checked)inv=!inv;
+  const color=$('col').checked;let txt='',html='';const cells=[];
+  for(let y=0;y<rows;y++){
+    for(let x=0;x<cols;x++){
+      const i=(y*cols+x)*4,a=d[i+3]/255;
+      let l=(.2126*d[i]+.7152*d[i+1]+.0722*d[i+2])*a+(inv?0:0)*(1-a);
+      l=f*(l-128)+128+b;l=Math.max(0,Math.min(255,l))/255;
+      const k=Math.round((inv?1-l:l)*n),ch=r[k];
+      txt+=ch;cells.push([ch,d[i],d[i+1],d[i+2]]);
+      if(color)html+='<span style="color:rgb('+d[i]+','+d[i+1]+','+d[i+2]+')">'+(ch==='<'?'&lt;':ch==='>'?'&gt;':ch==='&'?'&amp;':ch)+'</span>';
+    }
+    txt+='\n';if(color)html+='\n';
+  }
+  lastTxt=txt;lastCells=cells;lastCols=cols;
+  const pre=$('imgOut');if(color)pre.innerHTML=html;else pre.textContent=txt;
+  fit(pre,$('imgTerm'),cols);
+}
+function fit(pre,box,cols){const w=box.clientWidth-32;pre.style.fontSize=Math.max(4,Math.min(16,w/(cols*.6)))+'px';pre.style.lineHeight='1'}
+function loadImg(file){if(!file||!file.type.startsWith('image/'))return;const i=new Image();i.onload=()=>{img=i;renderImg()};i.src=URL.createObjectURL(file)}
+['w','ramp','custom','bri','con','inv','col','lightBg'].forEach(id=>$(id).addEventListener('input',renderImg));
+const drop=$('drop');drop.onclick=()=>$('file').click();drop.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('file').click()}};
+$('file').onchange=e=>loadImg(e.target.files[0]);
+['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>loadImg(e.dataTransfer.files[0]));
+document.addEventListener('paste',e=>{const it=[...((e.clipboardData||{}).items||[])].find(i=>i.type.startsWith('image/'));if(it){document.getElementById('tab-img').click();loadImg(it.getAsFile())}});
+$('imgCopy').onclick=()=>lastTxt&&copy(lastTxt);
+$('imgTxt').onclick=()=>lastTxt&&save('ascii.txt',lastTxt,'text/plain');
+$('imgHtml').onclick=()=>{if(!lastTxt)return;const light=$('lightBg').checked;save('ascii.html','<!doctype html><meta charset="utf-8"><title>ASCII</title><body style="margin:0;background:'+(light?'#fff':'#081a30')+'"><pre style="font:10px/1 monospace;color:'+(light?'#0b2a4a':'#bfe8ff')+';padding:16px">'+$('imgOut').innerHTML+'</pre>','text/html')};
+$('imgPng').onclick=()=>{
+  if(!lastCells)return;const fs=12,cw=fs*.6,rows=lastCells.length/lastCols,c=document.createElement('canvas');
+  c.width=Math.ceil(lastCols*cw)+32;c.height=rows*fs+32;const x=c.getContext('2d'),light=$('lightBg').checked;
+  x.fillStyle=light?'#fff':'#081a30';x.fillRect(0,0,c.width,c.height);x.font=fs+'px "JetBrains Mono", monospace';x.textBaseline='top';
+  lastCells.forEach((p,i)=>{x.fillStyle=$('col').checked?'rgb('+p[1]+','+p[2]+','+p[3]+')':(light?'#0b2a4a':'#bfe8ff');x.fillText(p[0],16+(i%lastCols)*cw,16+Math.floor(i/lastCols)*fs)});
+  c.toBlob(b=>save('ascii.png',b,'image/png'));
+};
+window.addEventListener('resize',()=>{if(img)fit($('imgOut'),$('imgTerm'),lastCols)});
+
+/* ---------- Texto → ASCII ---------- */
+const FONTS=['Standard','Slant','Big','Small','ANSI Shadow','Doom','Block','Banner3','Star Wars','Graffiti','Bloody','3D-ASCII','Larry 3D','Ogre','Shadow','Small Slant','Speed','Isometric1','Electronic','Elite','Epic','Colossal','Sub-Zero','Bulbhead','Rectangles','Calvin S','Delta Corps Priest 1','Georgi16','Small Shadow','Shaded Blocky'];
+const BASE='https://cdn.jsdelivr.net/npm/figlet@1.8.0/fonts/';
+let figlet=null;const loaded={};
+$('font').innerHTML=FONTS.map(f=>'<option>'+f+'</option>').join('');
+try{const s=JSON.parse(localStorage.getItem('sf-ascii-txt')||'{}');if(s.font)$('font').value=s.font;if(s.txt)$('txt').value=s.txt;if(s.cmt!=null)$('cmt').value=s.cmt;if(s.lay)$('lay').value=s.lay}catch(e){}
+async function fig(){if(!figlet){const m=await import('https://cdn.jsdelivr.net/npm/figlet@1.8.0/lib/figlet.js/+esm');figlet=m.default||m}return figlet}
+async function font(name){const f=await fig();if(!loaded[name]){loaded[name]=fetch(BASE+encodeURIComponent(name)+'.flf').then(r=>r.text()).then(d=>f.parseFont(name,d))}await loaded[name];return f}
+function wrapCmt(s){const c=$('cmt').value;if(!c)return s;const lines=s.replace(/\s+$/,'').split('\n');
+  if(c==='block')return '/*\n'+lines.map(l=>' * '+l).join('\n')+'\n */';return lines.map(l=>c+' '+l).join('\n')}
+let seq=0,lastFig='';
+async function renderTxt(){
+  const my=++seq,name=$('font').value,txt=$('txt').value||' ';
+  try{localStorage.setItem('sf-ascii-txt',JSON.stringify({font:name,txt,cmt:$('cmt').value,lay:$('lay').value}))}catch(e){}
+  $('txtOut').textContent=T('Cargando fuente…','Loading font…');
+  try{const f=await font(name);if(my!==seq)return;const out=f.textSync(txt,{font:name,horizontalLayout:$('lay').value});lastFig=wrapCmt(out);$('txtOut').textContent=lastFig;
+    const cols=Math.max(...lastFig.split('\n').map(l=>l.length));fit($('txtOut'),$('txtTerm'),Math.max(cols,40))}
+  catch(e){$('txtOut').textContent=T('No se ha podido cargar la fuente.','Could not load the font.')}
+}
+['txt','font','lay','cmt'].forEach(id=>$(id).addEventListener('input',renderTxt));
+$('txtCopy').onclick=()=>lastFig&&copy(lastFig);
+$('txtDl').onclick=()=>lastFig&&save('banner.txt',lastFig,'text/plain');
+$('galBtn').onclick=async()=>{
+  const g=$('gal'),txt=$('txt').value||'Core';g.innerHTML='';
+  for(const name of FONTS){const b=document.createElement('button');b.type='button';b.innerHTML='<span></span><pre></pre>';b.firstChild.textContent=name;g.appendChild(b);
+    b.onclick=()=>{$('font').value=name;renderTxt();$('txtTerm').scrollIntoView({behavior:'smooth',block:'center'})};
+    font(name).then(f=>{b.lastChild.textContent=f.textSync(txt.slice(0,14),{font:name})}).catch(()=>b.remove())}
+};
+document.addEventListener('sf:lang',()=>{if(!img)$('imgOut').textContent=T('  Elige una imagen para empezar.','  Choose an image to start.')});
+if(L()==='en')$('imgOut').textContent='  Choose an image to start.';
+renderImg();
+</script>
+<script src="/assets/lang.js"></script>
+</body>
+</html>

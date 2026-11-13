@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<title data-en="KC Downloader Web · Static Forge Lab">KC Downloader Web · Laboratorio Static Forge</title>
+<meta name="description" content="La versión web de KC Downloader: descarga vídeo y audio de YouTube, YouTube Music, Pinterest y más desde el navegador, con cola y formatos a elegir. Laboratorio de Static Forge." data-en-content="The web version of KC Downloader: download video and audio from YouTube, YouTube Music, Pinterest and more from the browser, with a queue and selectable formats. Static Forge Lab.">
+<link rel="canonical" href="https://staticforge.me/laboratorio/kc-downloader/">
+<meta property="og:title" content="KC Downloader Web · Static Forge" data-en-content="KC Downloader Web · Static Forge">
+<meta property="og:description" content="La versión web de KC Downloader: descarga vídeo y audio de YouTube, YouTube Music, Pinterest y más desde el navegador, con cola y formatos a elegir. Laboratorio de Static Forge." data-en-content="The web version of KC Downloader: download video and audio from YouTube, YouTube Music, Pinterest and more from the browser, with a queue and selectable formats. Static Forge Lab.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://staticforge.me/laboratorio/kc-downloader/">
+<meta property="og:site_name" content="Static Forge">
+<meta property="og:image" content="https://staticforge.me/assets/og/home.jpg">
+<meta name="theme-color" content="#0f7fd8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
+<link rel="stylesheet" href="/laboratorio/lab.css?v=20261113bg">
+<link rel="stylesheet" href="/laboratorio/tools.css?v=20261113a">
+<link rel="stylesheet" href="/assets/lang.css">
+<style>
+
+.brandrow{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.brandrow img{width:58px;height:58px;border-radius:14px;box-shadow:0 0 0 3px #fff,0 8px 18px -6px rgba(0,40,90,.6)}
+.status{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid #fff;font:800 13px var(--fd);color:var(--muted);box-shadow:0 4px 12px -6px rgba(0,60,130,.4)}
+.status i{width:10px;height:10px;border-radius:50%;background:#9fb3c6;box-shadow:0 0 0 3px rgba(159,179,198,.25)}
+.status.ok i{background:#38ad12;box-shadow:0 0 0 3px rgba(56,173,18,.25),0 0 10px #5fcf2e}
+.status.bad i{background:#e5243b;box-shadow:0 0 0 3px rgba(229,36,59,.2)}
+.status.wait i{animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.3}}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:14px}
+.go{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.queue{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.item{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 14px;border-radius:16px;background:linear-gradient(180deg,#fff,#eef7fd);border:1px solid #cfe3f2;box-shadow:0 6px 14px -10px rgba(0,60,130,.6)}
+.svc{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;font:900 13px var(--fd);box-shadow:inset 0 -4px 8px rgba(0,0,0,.18),inset 0 2px 0 rgba(255,255,255,.4)}
+.item .u{font:700 14px/1.3 var(--fb);color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .s{font:800 12px/1.3 var(--fd);color:var(--muted);margin-top:3px}
+.item.done .s{color:#2a8a14}.item.err .s{color:#c21a2e}
+.item .bar2{height:6px;margin-top:6px;border-radius:9px;background:rgba(0,60,130,.1);overflow:hidden}
+.item .bar2 i{display:block;height:100%;width:40%;border-radius:9px;background:linear-gradient(90deg,#36b4f2,#5fcf2e);animation:ind 1.1s ease-in-out infinite}
+.item .act{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.item .act .btn{min-height:36px;padding:0 14px;font-size:.85rem}
+.pick{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.pick a{position:relative;display:block;aspect-ratio:1;border-radius:12px;overflow:hidden;background:#0c2340 center/cover;border:2px solid #fff;box-shadow:0 4px 10px -4px rgba(0,40,90,.6)}
+.pick a span{position:absolute;left:6px;bottom:6px;padding:2px 8px;border-radius:999px;background:rgba(11,42,74,.75);color:#fff;font:800 11px var(--fd)}
+.empty2{padding:18px;text-align:center;color:var(--dim);font:700 14px var(--fd)}
+.legal{font-size:.85rem;color:var(--muted)}
+#ts{position:fixed;right:12px;bottom:12px;z-index:80}
+@media(max-width:560px){.item{grid-template-columns:38px minmax(0,1fr)}.item .act{grid-column:1/-1;justify-content:flex-start}.svc{width:38px;height:38px}}
+
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<a class="skip" href="#main" data-en="Skip to content">Ir al contenido</a>
+<nav class="back" aria-label="Navegación" data-en-aria-label="Navigation">
+  <div class="crumb"><a href="/" aria-label="Static Forge">◂<span class="h"> STATIC FORGE</span></a><span>/</span><a href="/laboratorio/" data-en="LAB">LABORATORIO</a><span>/</span><span data-en="KC DOWNLOADER">KC DOWNLOADER</span></div>
+  <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+    <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+    <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+  </div>
+</nav>
+
+<main id="main" class="tool">
+  <div class="tool-head"><p class="kick">EXP-05</p><h1 data-en="KC Downloader Web">KC Downloader Web</h1></div>
+  <section class="panel">
+    <div class="row" style="justify-content:space-between;margin-bottom:12px">
+      <div class="brandrow"><img src="/assets/projects/kc-downloader.webp" alt="" width="58" height="58"><div><h2 style="margin:0">KC Downloader Web</h2><span class="legal" data-en="The web version of the desktop app">La versión web de la app de escritorio</span></div></div>
+      <span class="status wait" id="status"><i></i><span id="statusTxt" data-en="Checking server…">Comprobando servidor…</span></span>
+    </div>
+    <label class="field"><span data-en="Links (one per line, or several at once)">Enlaces (uno por línea, o varios a la vez)</span>
+      <textarea class="in" id="urls" rows="4" placeholder="https://www.youtube.com/watch?v=…&#10;https://www.pinterest.com/pin/…" data-en-placeholder="https://www.youtube.com/watch?v=…&#10;https://www.pinterest.com/pin/…"></textarea></label>
+    <div class="opts">
+      <label class="field"><span data-en="Mode">Modo</span><select class="in" id="mode"><option value="auto" data-en="Video">Vídeo</option><option value="audio" data-en="Audio only">Solo audio</option><option value="mute" data-en="Video without sound">Vídeo sin sonido</option></select></label>
+      <label class="field"><span data-en="Video quality">Calidad de vídeo</span><select class="in" id="vq"><option value="max" data-en="Maximum">Máxima</option><option>2160</option><option>1440</option><option selected>1080</option><option>720</option><option>480</option><option>360</option></select></label>
+      <label class="field"><span data-en="YouTube codec">Códec de YouTube</span><select class="in" id="codec"><option value="h264" data-en="H.264 (works everywhere)">H.264 (va en todas partes)</option><option value="vp9">VP9</option><option value="av1">AV1</option></select></label>
+      <label class="field"><span data-en="Audio format">Formato de audio</span><select class="in" id="af"><option>mp3</option><option>opus</option><option>ogg</option><option>wav</option><option value="best" data-en="Best (original)">Mejor (original)</option></select></label>
+      <label class="field"><span data-en="Audio bitrate">Bitrate de audio</span><select class="in" id="ab"><option>320</option><option>256</option><option selected>128</option><option>96</option></select></label>
+    </div>
+    <div class="go">
+      <button class="btn green" id="add" type="button" data-en="Add to queue">Añadir a la cola</button>
+      <button class="btn ghost" id="pasteBtn" type="button" data-en="Paste">Pegar</button>
+      <button class="btn ghost" id="clearDone" type="button" data-en="Clear finished">Limpiar terminados</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 data-en="Queue">Cola</h2>
+    <ul class="queue" id="queue"></ul>
+  </section>
+
+  <section class="panel">
+    <div data-only="es">
+      <p class="legal" style="margin-top:0"><b>Qué funciona aquí:</b> YouTube, YouTube Music, Pinterest y el resto de servicios que admite el servidor. <b>Spotify</b> y el <b>escalado de imágenes</b> solo están en la app de escritorio, que también descarga listas enteras y no depende de ningún servidor.</p>
+      <p class="legal">Descarga solo contenido tuyo, libre o que tengas permiso para guardar, y respeta los derechos de sus autores y las condiciones de cada servicio. El servidor no guarda tus enlaces ni los archivos.</p>
+    </div>
+    <div data-only="en">
+      <p class="legal" style="margin-top:0"><b>What works here:</b> YouTube, YouTube Music, Pinterest and the other services the server supports. <b>Spotify</b> and <b>image upscaling</b> are only in the desktop app, which also downloads whole playlists and doesn't depend on any server.</p>
+      <p class="legal">Only download content that is yours, free, or that you have permission to save, and respect its creators' rights and each service's terms. The server keeps neither your links nor the files.</p>
+    </div>
+    <a class="btn" href="https://github.com/KCRooty/kc-downloader/releases" target="_blank" rel="noopener" data-en="Get the desktop app">Descargar la app de escritorio</a>
+  </section>
+  <div id="ts"></div>
+  <div class="toast" id="toast"></div>
+</main>
+
+<footer class="foot">
+  <div class="wrap"><span>STATIC FORGE · LAB · EXP-05</span><a href="/laboratorio/" data-en="◂ BACK TO THE LAB">◂ VOLVER AL LABORATORIO</a></div>
+</footer>
+<script>
+(function(){
+'use strict';
+/* Dirección del servidor (instancia propia de cobalt). Se configura en servidores/kc-downloader/. */
+var API='https://dl.staticforge.me';
+var $=function(i){return document.getElementById(i)};
+function L(){return document.documentElement.getAttribute('lang')==='en'?'en':'es'}
+function T(es,en){return L()==='en'?en:es}
+function toast(t){var e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove('show')},2000)}
+var SVC=[
+  {k:'ytm',re:/music\.youtube\.com/,n:'YT Music',c:'linear-gradient(180deg,#ff6b6b,#e5243b)',t:'♪'},
+  {k:'yt',re:/(youtube\.com|youtu\.be)/,n:'YouTube',c:'linear-gradient(180deg,#ff5a5a,#d90000)',t:'▶'},
+  {k:'pin',re:/(pinterest\.|pin\.it)/,n:'Pinterest',c:'linear-gradient(180deg,#ff4d6d,#c4001d)',t:'P'},
+  {k:'spot',re:/spotify\.com/,n:'Spotify',c:'linear-gradient(180deg,#5ef08f,#17a34a)',t:'♫'},
+  {k:'tt',re:/tiktok\.com/,n:'TikTok',c:'linear-gradient(180deg,#3a3a3a,#000)',t:'♪'},
+  {k:'x',re:/(twitter\.com|x\.com)/,n:'X',c:'linear-gradient(180deg,#3a3a3a,#000)',t:'X'},
+  {k:'ig',re:/instagram\.com/,n:'Instagram',c:'linear-gradient(135deg,#feda75,#d62976 55%,#4f5bd5)',t:'◎'},
+  {k:'sc',re:/soundcloud\.com/,n:'SoundCloud',c:'linear-gradient(180deg,#ffa24a,#ff5500)',t:'☁'},
+  {k:'other',re:/./,n:'Web',c:'linear-gradient(180deg,#7fd9ff,#0a86d8)',t:'↓'}];
+function svc(u){for(var i=0;i<SVC.length;i++)if(SVC[i].re.test(u))return SVC[i]}
+/* ajustes */
+var OPTS=['mode','vq','codec','af','ab'];
+try{var st=JSON.parse(localStorage.getItem('sf-kcdl')||'{}');OPTS.forEach(function(k){if(st[k])$(k).value=st[k]})}catch(e){}
+OPTS.forEach(function(k){$(k).addEventListener('change',function(){var o={};OPTS.forEach(function(j){o[j]=$(j).value});try{localStorage.setItem('sf-kcdl',JSON.stringify(o))}catch(e){}})});
+/* estado del servidor y Turnstile */
+var info=null,jwt=null,jwtExp=0,tsWidget=null,tsWait=[];
+function setStatus(cls,es,en){var s=$('status');s.className='status '+cls;$('statusTxt').textContent=T(es,en);s._es=es;s._en=en}
+function check(){
+  setStatus('wait','Comprobando servidor…','Checking server…');
+  fetch(API+'/',{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){info=j.cobalt||{};
+    setStatus('ok','Servidor en línea','Server online');
+    if(info.turnstileSitekey)loadTurnstile();
+  }).catch(function(){info=null;setStatus('bad','Servidor fuera de línea','Server offline')});
+}
+function loadTurnstile(){if(window.turnstile||document.getElementById('tsjs'))return;var s=document.createElement('script');s.id='tsjs';s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__tsReady';s.async=true;document.head.appendChild(s)}
+window.__tsReady=function(){tsWidget=turnstile.render('#ts',{sitekey:info.turnstileSitekey,appearance:'interaction-only',size:'flexible',callback:function(tok){var w=tsWait;tsWait=[];w.forEach(function(f){f(tok)})},'error-callback':function(){var w=tsWait;tsWait=[];w.forEach(function(f){f(null)})}})};
+function tsToken(){return new Promise(function(ok){var tok=window.turnstile&&tsWidget!=null?turnstile.getResponse(tsWidget):null;if(tok){ok(tok);return}tsWait.push(ok);if(window.turnstile&&tsWidget!=null)turnstile.reset(tsWidget)})}
+function auth(){
+  if(!info||!info.turnstileSitekey)return Promise.resolve(null);
+  if(jwt&&Date.now()<jwtExp-5000)return Promise.resolve(jwt);
+  return tsToken().then(function(tok){if(!tok)throw new Error('turnstile');
+    return fetch(API+'/session',{method:'POST',headers:{'cf-turnstile-response':tok}}).then(function(r){return r.json()})}).then(function(j){
+      if(window.turnstile&&tsWidget!=null)turnstile.reset(tsWidget);
+      if(!j.token)throw new Error((j.error&&j.error.code)||'session');jwt=j.token;jwtExp=Date.now()+(j.exp||120)*1000;return jwt});
+}
+/* cola */
+var Q=[],running=0,MAX=2,uid=0;
+var ERR={
+  'error.api.link.invalid':['Enlace no válido o servicio no admitido.','Invalid link or unsupported service.'],
+  'error.api.link.unsupported':['Este servicio no está admitido.','This service is not supported.'],
+  'error.api.service.unsupported':['Este servicio no está admitido.','This service is not supported.'],
+  'error.api.service.disabled':['Este servicio está desactivado en el servidor.','This service is disabled on the server.'],
+  'error.api.content.too_long':['El vídeo es demasiado largo para el servidor.','The video is too long for the server.'],
+  'error.api.content.video.unavailable':['El vídeo no está disponible.','The video is not available.'],
+  'error.api.content.video.private':['El vídeo es privado.','The video is private.'],
+  'error.api.content.video.age':['El vídeo tiene restricción de edad.','The video is age-restricted.'],
+  'error.api.content.video.region':['El vídeo no está disponible en la región del servidor.','The video is not available in the server\'s region.'],
+  'error.api.youtube.login':['YouTube pide iniciar sesión para este vídeo.','YouTube asks to sign in for this video.'],
+  'error.api.fetch.fail':['No se ha podido obtener el archivo. Prueba otra vez.','Could not fetch the file. Try again.'],
+  'error.api.fetch.critical':['El servicio ha rechazado la petición.','The service rejected the request.'],
+  'error.api.rate_exceeded':['Demasiadas descargas seguidas. Espera un minuto.','Too many downloads in a row. Wait a minute.'],
+  'error.api.auth.jwt.missing':['Hace falta pasar la verificación anti-bots.','The anti-bot check is required.'],
+  'error.api.auth.jwt.invalid':['La verificación ha caducado. Prueba otra vez.','The check expired. Try again.']};
+function errText(code){var e=ERR[code];return e?T(e[0],e[1]):T('Error: ','Error: ')+(code||'?')}
+function add(){
+  var raw=$('urls').value.match(/https?:\/\/[^\s"'<>]+/g)||[];
+  if(!raw.length){toast(T('Pega al menos un enlace','Paste at least one link'));return}
+  raw.forEach(function(u){Q.push({id:++uid,url:u,s:svc(u),state:'queued',opts:snap()})});$('urls').value='';render();pump();
+}
+function snap(){var o={};OPTS.forEach(function(k){o[k]=$(k).value});return o}
+function pump(){
+  while(running<MAX){var it=Q.find(function(x){return x.state==='queued'});if(!it)break;run(it)}
+}
+function run(it){
+  if(it.s.k==='spot'){it.state='err';it.msg=T('Spotify solo funciona en la app de escritorio.','Spotify only works in the desktop app.');render();return}
+  if(!info){it.state='err';it.msg=T('El servidor está fuera de línea ahora mismo.','The server is offline right now.');render();return}
+  running++;it.state='work';render();
+  var o=it.opts,body={url:it.url,downloadMode:o.mode,videoQuality:o.vq,youtubeVideoCodec:o.codec,audioFormat:o.af,audioBitrate:o.ab,filenameStyle:'pretty'};
+  auth().then(function(tok){var h={'Accept':'application/json','Content-Type':'application/json'};if(tok)h.Authorization='Bearer '+tok;
+    return fetch(API+'/',{method:'POST',headers:h,body:JSON.stringify(body)})}).then(function(r){return r.json()}).then(function(j){
+      if(j.status==='tunnel'||j.status==='redirect'){it.state='done';it.link=j.url;it.file=j.filename;it.kind=j.status;if(j.status==='tunnel')fetchFile(it.link)}
+      else if(j.status==='picker'){it.state='done';it.picker=j.picker||[];it.audio=j.audio}
+      else if(j.status==='local-processing'){it.state='err';it.msg=T('Este enlace necesita procesado local: usa la app de escritorio.','This link needs local processing: use the desktop app.')}
+      else{it.state='err';it.msg=errText(j.error&&j.error.code)}
+    }).catch(function(e){it.state='err';it.msg=e&&e.message==='turnstile'?T('No se ha podido pasar la verificación anti-bots.','Could not pass the anti-bot check.'):T('No se ha podido conectar con el servidor.','Could not reach the server.')})
+    .then(function(){running--;render();pump()});
+}
+/* Los túneles llegan como adjunto: un iframe oculto los descarga sin salir de la página. */
+function fetchFile(url){var f=document.createElement('iframe');f.hidden=true;f.src=url;document.body.appendChild(f);setTimeout(function(){f.remove()},120000)}
+function save(it){if(it.kind==='tunnel'){fetchFile(it.link);return}var a=document.createElement('a');a.href=it.link;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove()}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function render(){
+  var ul=$('queue');
+  if(!Q.length){ul.innerHTML='<li class="empty2">'+T('La cola está vacía. Pega enlaces arriba.','The queue is empty. Paste links above.')+'</li>';return}
+  ul.innerHTML=Q.map(function(it){
+    var st=it.state==='queued'?T('En cola','Queued'):it.state==='work'?T('Procesando…','Processing…'):it.state==='done'?(it.picker?T('Elige qué descargar','Choose what to download'):T('Listo','Ready')+(it.file?' · '+esc(it.file):'')):esc(it.msg||'');
+    var acts='';
+    if(it.state==='done'&&it.link)acts+='<button class="btn" data-a="dl" data-id="'+it.id+'">'+T('Descargar','Download')+'</button>';
+    if(it.state==='err')acts+='<button class="btn ghost" data-a="retry" data-id="'+it.id+'">'+T('Reintentar','Retry')+'</button>';
+    acts+='<button class="btn ghost" data-a="rm" data-id="'+it.id+'" aria-label="'+T('Quitar','Remove')+'">✕</button>';
+    var pick='';if(it.picker){pick='<div class="pick">'+it.picker.map(function(p,i){return '<a href="'+esc(p.url)+'" target="_blank" rel="noopener" style="background-image:url(\''+esc(p.thumb||p.url)+'\')"><span>'+(i+1)+' · '+esc(p.type)+'</span></a>'}).join('')+(it.audio?'<a href="'+esc(it.audio)+'" target="_blank" rel="noopener" style="display:grid;place-items:center;color:#fff;font:900 1.4rem var(--fd)">♪<span>audio</span></a>':'')+'</div>'}
+    return '<li class="item '+(it.state==='done'?'done':it.state==='err'?'err':'')+'"><span class="svc" style="background:'+it.s.c+'" title="'+it.s.n+'">'+it.s.t+'</span><div style="min-width:0"><div class="u">'+esc(it.url)+'</div><div class="s">'+st+'</div>'+(it.state==='work'?'<div class="bar2"><i></i></div>':'')+'</div><div class="act">'+acts+'</div>'+pick+'</li>';
+  }).join('');
+}
+$('queue').addEventListener('click',function(e){var b=e.target.closest('button[data-a]');if(!b)return;var it=Q.find(function(x){return x.id===+b.dataset.id});if(!it)return;
+  if(b.dataset.a==='dl')save(it);else if(b.dataset.a==='retry'){it.state='queued';it.msg='';render();pump()}else{Q=Q.filter(function(x){return x!==it});render()}});
+$('add').onclick=add;
+$('urls').addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();add()}});
+$('pasteBtn').onclick=function(){navigator.clipboard.readText().then(function(t){$('urls').value+=($('urls').value?'\n':'')+t;$('urls').focus()},function(){toast(T('Pega con Ctrl+V','Paste with Ctrl+V'))})};
+$('clearDone').onclick=function(){Q=Q.filter(function(x){return x.state==='queued'||x.state==='work'});render()};
+document.addEventListener('sf:lang',function(){render();var s=$('status');if(s._es)$('statusTxt').textContent=T(s._es,s._en)});
+render();check();
+window.__kcdl={get Q(){return Q},setApi:function(u){API=u;check()}};
+})();
+</script>
+<script src="/assets/lang.js"></script>
+</body>
+</html>
