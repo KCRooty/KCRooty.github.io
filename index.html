@@ -428,6 +428,7 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
 .gitem img.lift{filter:brightness(1.7) contrast(1.05)}
 .gal-paint{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;margin-top:22px;padding:16px 20px;border:1px dashed var(--line);border-radius:var(--r)}
 .gal-paint p{color:var(--muted);margin:0}
+.gal-paint-cta{display:flex;gap:10px;flex-wrap:wrap}
 .gal-paint b{font:400 1.3rem var(--fc);letter-spacing:.05em;color:var(--ink);font-weight:400}
 /* ── Botón de sonido ── */
 .tbtn.snd{min-width:40px;display:inline-grid;place-items:center}
@@ -453,7 +454,7 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
       <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
       <li><a href="#taller" data-i18n="nav.workshop">Estudio</a></li>
       <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
-      <li><a href="paint-it/">Paint It!</a></li>
+      <li><a href="laboratorio/" data-i18n="nav.lab">Laboratorio</a></li>
       <li><a href="unete.html" data-i18n="nav.join">Únete</a></li>
       <li><a href="foros.html" data-i18n="nav.forum">Foro</a></li>
     </ul>
@@ -723,7 +724,7 @@ footer .deco-space{height:clamp(160px,26vw,340px)}
       <button type="button" class="fbtn" data-f="other" aria-pressed="false" data-i18n="f.other">Otro</button>
     </div>
     <div class="ggrid" id="ggrid" aria-live="polite"></div>
-    <div class="gal-paint"><p><b data-i18n="pi.k">¿TE ABURRES?</b> <span data-i18n="pi.p">Dibuja algo en Paint It!, el Paint de toda la vida dentro de la web.</span></p><a class="btn" href="paint-it/" data-i18n="pi.a">Abrir Paint It!</a></div>
+    <div class="gal-paint"><p><b data-i18n="pi.k">¿TE ABURRES?</b> <span data-i18n="pi.p">Dibuja algo en Paint It!, el Paint de toda la vida dentro de la web.</span></p><span class="gal-paint-cta"><a class="btn" href="paint-it/" data-i18n="pi.a">Abrir Paint It!</a> <a class="btn" href="laboratorio/" data-i18n="pi.lab">Ver el Laboratorio</a></span></div>
   </section>
 
   <section id="unete" aria-labelledby="h-sig">
@@ -817,8 +818,8 @@ es:{'skip':'Saltar al contenido','ap.kicker':'SOLICITUD','ap.h':'Rellena la soli
 'cc.k':'EN ANTENA','cc.h':'Creadores de contenido',
 'd.anvil':'Launcher propio para Minecraft Java. Cada instancia guarda sus mods, partidas y opciones, y la lista de instancias y las noticias llegan en directo desde su servidor.',
 'feat.prev':'Canal anterior','feat.next':'Canal siguiente','feat.label':'Proyectos destacados','t.fan':'Antología fan','t.renders':'Renders 3D','t.fiction':'Ficción original','t.minecraft':'Minecraft Java','lada.soon':'PRÓXIMAMENTE',
-'live.upd':'ACT.','live.stars':'estrellas','f.shot':'Capturas','pi.k':'¿TE ABURRES?','pi.p':'Dibuja algo en Paint It!, el Paint de toda la vida dentro de la web.','pi.a':'Abrir Paint It!',
-'nav.join':"Únete",'s.mailk':"CONTACTO",'s.write':"Rellenar la solicitud",'r.1':"Arte 2D",'r.2':"Arte 3D",'r.3':"Producción musical",'r.4':"Programación",'r.5':"Desarrollo de juegos y apps",'r.6':"Doblaje y voz",'r.7':"Lo que hagas tú"},
+'live.upd':'ACT.','live.stars':'estrellas','f.shot':'Capturas','pi.k':'¿TE ABURRES?','pi.p':'Dibuja algo en Paint It!, el Paint de toda la vida dentro de la web.','pi.a':'Abrir Paint It!','pi.lab':'Ver el Laboratorio',
+'nav.join':"Únete",'nav.lab':"Laboratorio",'s.mailk':"CONTACTO",'s.write':"Rellenar la solicitud",'r.1':"Arte 2D",'r.2':"Arte 3D",'r.3':"Producción musical",'r.4':"Programación",'r.5':"Desarrollo de juegos y apps",'r.6':"Doblaje y voz",'r.7':"Lo que hagas tú"},
 en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the application','ap.p':'Tell us who you are, what you do and what you would like to do in the studio, on its projects or with one of your own. It takes about five minutes. If you are interested in Static Linux or Forge OS specifically, they have their own application on the <a href="linux/#unete">Static Linux</a> and <a href="forge-os/#unete">Forge OS</a> pages (in Spanish).','nav.projects':'Projects','nav.workshop':"Studio",'nav.gallery':'Gallery','nav.forum':'Forum','nav.menu':'MENU',
 'theme.paper':'PAPER','theme.night':'NIGHT',
 'hero.osd':'CH 01 · BROADCASTING FROM THE WORKSHOP','hero.lead':"Games, software, operating systems, digital art and stories. <strong>An independent studio founded by KCRooty (Core)</strong>, open to anyone who wants to join.",
@@ -851,8 +852,8 @@ en:{'skip':'Skip to content','ap.kicker':'APPLICATION','ap.h':'Fill in the appli
 'cc.k':'ON AIR','cc.h':'Content creators',
 'd.anvil':'A custom Minecraft Java launcher. Each instance keeps its own mods, saves and options, and the instance list and news arrive live from its server.',
 'feat.prev':'Previous channel','feat.next':'Next channel','feat.label':'Featured projects','t.fan':'Fan anthology','t.renders':'3D renders','t.fiction':'Original fiction','t.minecraft':'Minecraft Java','lada.soon':'COMING SOON',
-'live.upd':'UPD.','live.stars':'stars','f.shot':'Screenshots','pi.k':'BORED?','pi.p':'Draw something in Paint It!, good old Paint right inside the site.','pi.a':'Open Paint It!',
-'nav.join':"Join",'s.mailk':"CONTACT",'s.write':"Fill in the application",'r.1':"2D art",'r.2':"3D art",'r.3':"Music production",'r.4':"Programming",'r.5':"Game and app development",'r.6':"Voice acting",'r.7':"Whatever you do"}
+'live.upd':'UPD.','live.stars':'stars','f.shot':'Screenshots','pi.k':'BORED?','pi.p':'Draw something in Paint It!, good old Paint right inside the site.','pi.a':'Open Paint It!','pi.lab':'See the Lab',
+'nav.join':"Join",'nav.lab':"Lab",'s.mailk':"CONTACT",'s.write':"Fill in the application",'r.1':"2D art",'r.2':"3D art",'r.3':"Music production",'r.4':"Programming",'r.5':"Game and app development",'r.6':"Voice acting",'r.7':"Whatever you do"}
 };
 var lang=d.getAttribute('lang')||'es';
 function paintLiveSafe(){try{paintLive()}catch(e){}}
