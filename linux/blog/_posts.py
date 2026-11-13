@@ -9,6 +9,94 @@ from datetime import date
 
 POSTS = [
     {
+        "slug": "2026-11-idiomas-rendimiento",
+        "date": date(2026, 11, 13),
+        "cat": "version",
+        "tags": ["idiomas", "rendimiento", "temas", "escritorios"],
+        "title": "18 idiomas, rendimiento de serie y los temas en todas partes",
+        "title_en": "18 languages, speed out of the box and themes everywhere",
+        "sub": "Static Linux habla 18 idiomas, viene afinado para ir rápido desde el primer arranque (zram, earlyoom, sched_ext y sl-game) y los nueve temas llegan a los nueve escritorios, al inicio de sesión y al arranque. Con esto se cierra lo visual: ahora toca lo técnico.",
+        "sub_en": "Static Linux speaks 18 languages, comes tuned for speed from the first boot (zram, earlyoom, sched_ext and sl-game) and the nine themes reach all nine desktops, the login screen and the boot. That closes the visual work: now it is the technical side's turn.",
+        "es": """
+<h2>Lo nuevo</h2>
+<h3>18 idiomas</h3>
+<p>Español (el original), inglés, catalán, euskera, gallego, francés, alemán, italiano, portugués, portugués de Brasil, neerlandés, polaco, ruso, ucraniano, turco, japonés, coreano y chino simplificado. Se traduce todo lo que es nuestro: el instalador (páginas, presentación y los pasos que va mostrando), sl-welcome, los ajustes rápidos, la guía de atajos de Hyprland, las capturas, <code>sl-ctl</code>, los nombres de temas y apps, la pantalla de bloqueo y hasta la contraseña del disco al arrancar. Si tu idioma no está, sale en inglés.</p>
+<p>Va con gettext y los textos originales en español dentro del código: para añadir un idioma basta un fichero <code>.po</code>. Esta página también se puede leer en los 18 desde el selector de arriba.</p>
+
+<h3>fast, de serie</h3>
+<p>Siguiendo la guía de gaming de CachyOS, pero pensando también en un Celeron de 2013 con disco duro:</p>
+<ul>
+<li><strong>zram</strong> por fin activo, con los ajustes de memoria que pide (antes estaba instalado y apagado). Con menos de 4 GB de RAM, además, un swapfile de 2 GB por debajo.</li>
+<li><strong>earlyoom</strong> configurado: si se acaba la memoria, cierra lo más grande antes de que el escritorio se congele. Nunca la sesión ni el audio.</li>
+<li>Cada disco con su <strong>planificador</strong> (NVMe, SSD, disco duro) y escritura en bloques pequeños, para que una copia grande no lo frene todo. Red con BBR, journal limitado, caché de paquetes que se limpia sola y caché de shaders grande.</li>
+<li><strong>Sabor Gaming:</strong> el planificador de CPU <code>scx_lavd</code> (sched_ext) desde el primer arranque, y <code>sl-game %command%</code> en las opciones de Steam pone la máquina en rendimiento solo mientras juegas.</li>
+<li><code>sl-ctl perf</code> enseña todo eso de un vistazo y cambia el perfil de energía o el planificador.</li>
+</ul>
+<p>No se toca la línea de arranque del kernel y todo se puede deshacer. Lo que se descartó (ananicy-cpp, <code>mitigations=off</code>…) está explicado en la wiki, en <a href="https://staticforge.me/static-linux/rendimiento/">Rendimiento</a>.</p>
+
+<h3>Los temas, en todas partes</h3>
+<p>Los nueve temas visten ya los nueve escritorios: XFCE, KDE Plasma, GNOME, Cinnamon, Hyprland, Openbox, i3, bspwm y sway. Y también LightDM o SDDM, el menú de GRUB y una pantalla de arranque propia con la contraseña del disco. La sesión en vivo de la ISO arranca con escritorio y el instalador encima.</p>
+<figure class="shot"><img src="/linux/img/temas/nube.webp" alt="Tema Nube con el estilo estante" loading="lazy" width="1280" height="720"><figcaption>Nube, con el estilo estante</figcaption></figure>
+
+<h2>Arreglos</h2>
+<ul>
+<li>El tema elegido en el instalador no llegaba entero al usuario nuevo con temas claros: ahora sí.</li>
+<li>Hyprland 0.57 daba error al entrar; hyprpaper fallaba en máquinas virtuales (ahora hay un plan B); kitty y LXTerminal ignoraban la paleta.</li>
+<li>Los tweaks <code>swappiness-10</code> y <code>hdd-bfq</code> de <code>sl-ctl</code> desaparecen: iban en contra de zram o ya vienen de serie.</li>
+</ul>
+
+<h2>Problemas conocidos</h2>
+<ul>
+<li>Los estilos (minimal, aero, ventanas, estante) solo dan forma a XFCE.</li>
+<li>Los escritorios nuevos y el sabor Gaming aún no se han probado en una instalación completa desde la ISO.</li>
+<li>Las alertas de i3 y sway siguen en español.</li>
+<li>Todavía no hay ISO pública.</li>
+</ul>
+
+<h2>Lo siguiente</h2>
+<p>Se acabó lo visual. Ahora, lo técnico: que <em>fast, private, yours</em> se note en algo más que en el aspecto.</p>
+""",
+        "en": """
+<h2>What's new</h2>
+<h3>18 languages</h3>
+<p>Spanish (the original), English, Catalan, Basque, Galician, French, German, Italian, Portuguese, Brazilian Portuguese, Dutch, Polish, Russian, Ukrainian, Turkish, Japanese, Korean and Simplified Chinese. Everything that is ours is translated: the installer (pages, slideshow and the steps it shows), sl-welcome, the quick settings, the Hyprland shortcut guide, screenshots, <code>sl-ctl</code>, theme and app names, the lock screen and even the disk password prompt at boot. If your language is missing, you get English.</p>
+<p>It uses gettext with the original Spanish strings in the code: adding a language takes one <code>.po</code> file. This page can also be read in all 18 from the selector at the top.</p>
+
+<h3>fast, out of the box</h3>
+<p>Following CachyOS' gaming guide, while also keeping a 2013 Celeron with a hard drive in mind:</p>
+<ul>
+<li><strong>zram</strong> is finally on, with the memory settings it needs (it used to be installed but off). With less than 4 GB of RAM there is also a 2 GB swapfile below it.</li>
+<li><strong>earlyoom</strong> configured: when memory runs out, it closes the biggest process before the desktop freezes. Never the session or the audio.</li>
+<li>Each disk gets its own <strong>scheduler</strong> (NVMe, SSD, hard drive) and writes go out in small batches, so a big copy no longer slows everything down. BBR networking, a capped journal, a package cache that cleans itself and a large shader cache.</li>
+<li><strong>Gaming flavor:</strong> the <code>scx_lavd</code> CPU scheduler (sched_ext) from the first boot, and <code>sl-game %command%</code> in Steam's launch options puts the machine in performance mode only while you play.</li>
+<li><code>sl-ctl perf</code> shows all of that at a glance and changes the power profile or the scheduler.</li>
+</ul>
+<p>The kernel boot line is never touched and everything can be undone. What was left out (ananicy-cpp, <code>mitigations=off</code>…) is explained in the wiki, under <a href="https://staticforge.me/static-linux/rendimiento/">Rendimiento</a>.</p>
+
+<h3>Themes, everywhere</h3>
+<p>The nine themes now dress all nine desktops: XFCE, KDE Plasma, GNOME, Cinnamon, Hyprland, Openbox, i3, bspwm and sway. Also LightDM or SDDM, the GRUB menu and our own boot splash with the disk password. The ISO's live session boots to a desktop with the installer on top.</p>
+<figure class="shot"><img src="/linux/img/temas/nube.webp" alt="Cloud theme with the estante style" loading="lazy" width="1280" height="720"><figcaption>Cloud, with the estante style</figcaption></figure>
+
+<h2>Fixes</h2>
+<ul>
+<li>The theme picked in the installer did not fully reach the new user with light themes: now it does.</li>
+<li>Hyprland 0.57 showed an error on login; hyprpaper failed in virtual machines (there is a fallback now); kitty and LXTerminal ignored the palette.</li>
+<li>The <code>swappiness-10</code> and <code>hdd-bfq</code> tweaks in <code>sl-ctl</code> are gone: they worked against zram or now come by default.</li>
+</ul>
+
+<h2>Known issues</h2>
+<ul>
+<li>Styles (minimal, aero, ventanas, estante) only shape XFCE.</li>
+<li>The new desktops and the Gaming flavor have not been tested in a full install from the ISO yet.</li>
+<li>The i3 and sway alerts are still in Spanish.</li>
+<li>There is no public ISO yet.</li>
+</ul>
+
+<h2>Next</h2>
+<p>The visual work is done. Now the technical side: making <em>fast, private, yours</em> show in more than the looks.</p>
+""",
+    },
+    {
         "slug": "2026-11-temas-estilos-codigo-abierto",
         "date": date(2026, 11, 12),
         "cat": "version",

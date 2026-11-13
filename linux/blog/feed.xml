@@ -6,6 +6,13 @@
   <description>Versiones, novedades y arreglos de Static Linux, la distribución de Static Forge.</description>
   <language>es</language>
   <item>
+    <title>18 idiomas, rendimiento de serie y los temas en todas partes</title>
+    <link>https://staticforge.me/linux/blog/2026-11-idiomas-rendimiento/</link>
+    <guid>https://staticforge.me/linux/blog/2026-11-idiomas-rendimiento/</guid>
+    <pubDate>Fri, 13 Nov 2026 12:00:00 +0000</pubDate>
+    <description>Static Linux habla 18 idiomas, viene afinado para ir rápido desde el primer arranque (zram, earlyoom, sched_ext y sl-game) y los nueve temas llegan a los nueve escritorios, al inicio de sesión y al arranque. Con esto se cierra lo visual: ahora toca lo técnico.</description>
+  </item>
+  <item>
     <title>Temas, estilos y el código, abierto</title>
     <link>https://staticforge.me/linux/blog/2026-11-temas-estilos-codigo-abierto/</link>
     <guid>https://staticforge.me/linux/blog/2026-11-temas-estilos-codigo-abierto/</guid>

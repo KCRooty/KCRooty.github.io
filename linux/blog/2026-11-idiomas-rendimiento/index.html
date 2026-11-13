@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/linux/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/linux/apple-touch-icon.png">
+<title data-en="18 languages, speed out of the box and themes everywhere · Static Linux">18 idiomas, rendimiento de serie y los temas en todas partes · Static Linux</title>
+<meta name="description" content="Static Linux habla 18 idiomas, viene afinado para ir rápido desde el primer arranque (zram, earlyoom, sched_ext y sl-game) y los nueve temas llegan a los nueve escritorios, al inicio de sesión y al arranque. Con esto se cierra lo visual: ahora toca lo técnico." data-en-content="Static Linux speaks 18 languages, comes tuned for speed from the first boot (zram, earlyoom, sched_ext and sl-game) and the nine themes reach all nine desktops, the login screen and the boot. That closes the visual work: now it is the technical side&#x27;s turn.">
+<link rel="canonical" href="https://staticforge.me/linux/blog/2026-11-idiomas-rendimiento/">
+<meta property="og:title" content="18 idiomas, rendimiento de serie y los temas en todas partes · Static Linux">
+<meta property="og:description" content="Static Linux habla 18 idiomas, viene afinado para ir rápido desde el primer arranque (zram, earlyoom, sched_ext y sl-game) y los nueve temas llegan a los nueve escritorios, al inicio de sesión y al arranque. Con esto se cierra lo visual: ahora toca lo técnico.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://staticforge.me/linux/blog/2026-11-idiomas-rendimiento/">
+<meta property="og:site_name" content="Static Forge">
+<meta property="og:image" content="https://staticforge.me/assets/og/linux.jpg">
+<meta name="theme-color" content="#0B0C10">
+<link rel="alternate" type="application/rss+xml" title="Static Linux · notas de desarrollo" href="/linux/blog/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
+<link rel="stylesheet" href="/linux/sl.css?v=20261113a">
+<link rel="stylesheet" href="/assets/lang.css">
+</head>
+<body>
+<a class="skip" href="/linux/#main" data-en="Skip to content">Saltar al contenido</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="mark" href="/linux/#main" aria-label="Static Linux, arriba" data-en-aria-label="Static Linux, back to top">static<b>linux</b><span class="cur" aria-hidden="true"></span></a>
+    <ul class="nav">
+      <li><a href="/linux/#que" data-en="What it is">Qué es</a></li>
+      <li><a href="/linux/galeria/" data-en="Gallery">Galería</a></li>
+      <li><a href="/linux/descargar/" data-en="Download">Descargar</a></li>
+      <li><a href="/linux/#estado" data-en="Status">Estado</a></li>
+      <li><a href="/linux/#wiki">Wiki</a></li>
+      <li><a href="/linux/blog/">Blog</a></li>
+      <li><a href="/linux/#comunidad" data-en="Community">Comunidad</a></li>
+    </ul>
+    <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+      <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+      <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+    </div>
+    <a class="back" href="/" aria-label="Volver a Static Forge" data-en-aria-label="Back to Static Forge">← <span class="bk-txt">Static Forge</span></a>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+<article class="post">
+  <p class="crumb"><a href="/linux/blog/" data-en="← Development notes">← Notas de desarrollo</a></p>
+  <p class="post-meta"><time datetime="2026-11-13" data-en="November 13, 2026">13 de noviembre de 2026</time> · <span data-en="release">versión</span> <span class="tag">idiomas</span> <span class="tag">rendimiento</span> <span class="tag">temas</span> <span class="tag">escritorios</span></p>
+  <h1 data-en="18 languages, speed out of the box and themes everywhere">18 idiomas, rendimiento de serie y los temas en todas partes</h1>
+  <p class="post-sub" data-en="Static Linux speaks 18 languages, comes tuned for speed from the first boot (zram, earlyoom, sched_ext and sl-game) and the nine themes reach all nine desktops, the login screen and the boot. That closes the visual work: now it is the technical side&#x27;s turn.">Static Linux habla 18 idiomas, viene afinado para ir rápido desde el primer arranque (zram, earlyoom, sched_ext y sl-game) y los nueve temas llegan a los nueve escritorios, al inicio de sesión y al arranque. Con esto se cierra lo visual: ahora toca lo técnico.</p>
+  <div class="post-body" data-only="es">
+<h2>Lo nuevo</h2>
+<h3>18 idiomas</h3>
+<p>Español (el original), inglés, catalán, euskera, gallego, francés, alemán, italiano, portugués, portugués de Brasil, neerlandés, polaco, ruso, ucraniano, turco, japonés, coreano y chino simplificado. Se traduce todo lo que es nuestro: el instalador (páginas, presentación y los pasos que va mostrando), sl-welcome, los ajustes rápidos, la guía de atajos de Hyprland, las capturas, <code>sl-ctl</code>, los nombres de temas y apps, la pantalla de bloqueo y hasta la contraseña del disco al arrancar. Si tu idioma no está, sale en inglés.</p>
+<p>Va con gettext y los textos originales en español dentro del código: para añadir un idioma basta un fichero <code>.po</code>. Esta página también se puede leer en los 18 desde el selector de arriba.</p>
+
+<h3>fast, de serie</h3>
+<p>Siguiendo la guía de gaming de CachyOS, pero pensando también en un Celeron de 2013 con disco duro:</p>
+<ul>
+<li><strong>zram</strong> por fin activo, con los ajustes de memoria que pide (antes estaba instalado y apagado). Con menos de 4 GB de RAM, además, un swapfile de 2 GB por debajo.</li>
+<li><strong>earlyoom</strong> configurado: si se acaba la memoria, cierra lo más grande antes de que el escritorio se congele. Nunca la sesión ni el audio.</li>
+<li>Cada disco con su <strong>planificador</strong> (NVMe, SSD, disco duro) y escritura en bloques pequeños, para que una copia grande no lo frene todo. Red con BBR, journal limitado, caché de paquetes que se limpia sola y caché de shaders grande.</li>
+<li><strong>Sabor Gaming:</strong> el planificador de CPU <code>scx_lavd</code> (sched_ext) desde el primer arranque, y <code>sl-game %command%</code> en las opciones de Steam pone la máquina en rendimiento solo mientras juegas.</li>
+<li><code>sl-ctl perf</code> enseña todo eso de un vistazo y cambia el perfil de energía o el planificador.</li>
+</ul>
+<p>No se toca la línea de arranque del kernel y todo se puede deshacer. Lo que se descartó (ananicy-cpp, <code>mitigations=off</code>…) está explicado en la wiki, en <a href="https://staticforge.me/static-linux/rendimiento/">Rendimiento</a>.</p>
+
+<h3>Los temas, en todas partes</h3>
+<p>Los nueve temas visten ya los nueve escritorios: XFCE, KDE Plasma, GNOME, Cinnamon, Hyprland, Openbox, i3, bspwm y sway. Y también LightDM o SDDM, el menú de GRUB y una pantalla de arranque propia con la contraseña del disco. La sesión en vivo de la ISO arranca con escritorio y el instalador encima.</p>
+<figure class="shot"><img src="/linux/img/temas/nube.webp" alt="Tema Nube con el estilo estante" loading="lazy" width="1280" height="720"><figcaption>Nube, con el estilo estante</figcaption></figure>
+
+<h2>Arreglos</h2>
+<ul>
+<li>El tema elegido en el instalador no llegaba entero al usuario nuevo con temas claros: ahora sí.</li>
+<li>Hyprland 0.57 daba error al entrar; hyprpaper fallaba en máquinas virtuales (ahora hay un plan B); kitty y LXTerminal ignoraban la paleta.</li>
+<li>Los tweaks <code>swappiness-10</code> y <code>hdd-bfq</code> de <code>sl-ctl</code> desaparecen: iban en contra de zram o ya vienen de serie.</li>
+</ul>
+
+<h2>Problemas conocidos</h2>
+<ul>
+<li>Los estilos (minimal, aero, ventanas, estante) solo dan forma a XFCE.</li>
+<li>Los escritorios nuevos y el sabor Gaming aún no se han probado en una instalación completa desde la ISO.</li>
+<li>Las alertas de i3 y sway siguen en español.</li>
+<li>Todavía no hay ISO pública.</li>
+</ul>
+
+<h2>Lo siguiente</h2>
+<p>Se acabó lo visual. Ahora, lo técnico: que <em>fast, private, yours</em> se note en algo más que en el aspecto.</p>
+  </div>
+  <div class="post-body" data-only="en" lang="en">
+<h2>What's new</h2>
+<h3>18 languages</h3>
+<p>Spanish (the original), English, Catalan, Basque, Galician, French, German, Italian, Portuguese, Brazilian Portuguese, Dutch, Polish, Russian, Ukrainian, Turkish, Japanese, Korean and Simplified Chinese. Everything that is ours is translated: the installer (pages, slideshow and the steps it shows), sl-welcome, the quick settings, the Hyprland shortcut guide, screenshots, <code>sl-ctl</code>, theme and app names, the lock screen and even the disk password prompt at boot. If your language is missing, you get English.</p>
+<p>It uses gettext with the original Spanish strings in the code: adding a language takes one <code>.po</code> file. This page can also be read in all 18 from the selector at the top.</p>
+
+<h3>fast, out of the box</h3>
+<p>Following CachyOS' gaming guide, while also keeping a 2013 Celeron with a hard drive in mind:</p>
+<ul>
+<li><strong>zram</strong> is finally on, with the memory settings it needs (it used to be installed but off). With less than 4 GB of RAM there is also a 2 GB swapfile below it.</li>
+<li><strong>earlyoom</strong> configured: when memory runs out, it closes the biggest process before the desktop freezes. Never the session or the audio.</li>
+<li>Each disk gets its own <strong>scheduler</strong> (NVMe, SSD, hard drive) and writes go out in small batches, so a big copy no longer slows everything down. BBR networking, a capped journal, a package cache that cleans itself and a large shader cache.</li>
+<li><strong>Gaming flavor:</strong> the <code>scx_lavd</code> CPU scheduler (sched_ext) from the first boot, and <code>sl-game %command%</code> in Steam's launch options puts the machine in performance mode only while you play.</li>
+<li><code>sl-ctl perf</code> shows all of that at a glance and changes the power profile or the scheduler.</li>
+</ul>
+<p>The kernel boot line is never touched and everything can be undone. What was left out (ananicy-cpp, <code>mitigations=off</code>…) is explained in the wiki, under <a href="https://staticforge.me/static-linux/rendimiento/">Rendimiento</a>.</p>
+
+<h3>Themes, everywhere</h3>
+<p>The nine themes now dress all nine desktops: XFCE, KDE Plasma, GNOME, Cinnamon, Hyprland, Openbox, i3, bspwm and sway. Also LightDM or SDDM, the GRUB menu and our own boot splash with the disk password. The ISO's live session boots to a desktop with the installer on top.</p>
+<figure class="shot"><img src="/linux/img/temas/nube.webp" alt="Cloud theme with the estante style" loading="lazy" width="1280" height="720"><figcaption>Cloud, with the estante style</figcaption></figure>
+
+<h2>Fixes</h2>
+<ul>
+<li>The theme picked in the installer did not fully reach the new user with light themes: now it does.</li>
+<li>Hyprland 0.57 showed an error on login; hyprpaper failed in virtual machines (there is a fallback now); kitty and LXTerminal ignored the palette.</li>
+<li>The <code>swappiness-10</code> and <code>hdd-bfq</code> tweaks in <code>sl-ctl</code> are gone: they worked against zram or now come by default.</li>
+</ul>
+
+<h2>Known issues</h2>
+<ul>
+<li>Styles (minimal, aero, ventanas, estante) only shape XFCE.</li>
+<li>The new desktops and the Gaming flavor have not been tested in a full install from the ISO yet.</li>
+<li>The i3 and sway alerts are still in Spanish.</li>
+<li>There is no public ISO yet.</li>
+</ul>
+
+<h2>Next</h2>
+<p>The visual work is done. Now the technical side: making <em>fast, private, yours</em> show in more than the looks.</p>
+  </div>
+  <p class="post-sign">KCRooty (Core) · Static Forge</p>
+  <p class="crumb"><a href="/linux/blog/" data-en="← All notes">← Todas las notas</a></p>
+</article>
+</div>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span data-en="Static Linux is a &lt;a href=&quot;/&quot;&gt;Static Forge&lt;/a&gt; project. Talk to us on &lt;a href=&quot;https://discord.gg/bVdwvtnbuH&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Discord&lt;/a&gt; or watch us on &lt;a href=&quot;https://www.tiktok.com/@staticforge2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;TikTok&lt;/a&gt;.">Static Linux es un proyecto de <a href="/">Static Forge</a>. Habla con nosotros en <a href="https://discord.gg/bVdwvtnbuH" target="_blank" rel="noopener">Discord</a> o míranos en <a href="https://www.tiktok.com/@staticforge2" target="_blank" rel="noopener">TikTok</a>.</span>
+    <span><a href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener">GitHub</a> · <a id="slmail" href="/#solicitud"></a></span>
+    <span style="font-family:var(--fm)">fast. private. yours.</span>
+  </div>
+</footer>
+<script>/* correo del estudio, montado aquí para no dejarlo en claro en el HTML */
+(function(){var a=['staticforge','staticforge.me'].join('@'),m=document.getElementById('slmail');m.href='mailto:'+a+'?subject='+encodeURIComponent('Static Linux');m.textContent=a})();
+</script>
+<script src="/assets/lang.js"></script>
+</body>
+</html>
