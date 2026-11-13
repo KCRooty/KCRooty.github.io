@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title data-en="Lab · Static Forge">Laboratorio · Static Forge</title>
+<meta name="description" content="El Laboratorio de Static Forge: mini proyectos, juegos y utilidades que se usan directamente en el navegador. Paint It!, Snake y una calculadora científica." data-en-content="The Static Forge Lab: mini projects, games and tools that run right in the browser. Paint It!, Snake and a scientific calculator.">
+<link rel="canonical" href="https://staticforge.me/laboratorio/">
+<meta property="og:title" content="Laboratorio · Static Forge" data-en-content="Lab · Static Forge">
+<meta property="og:description" content="Mini proyectos, juegos y utilidades en el navegador." data-en-content="Mini projects, games and tools in the browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://staticforge.me/laboratorio/">
+<meta property="og:site_name" content="Static Forge">
+<meta property="og:image" content="https://staticforge.me/assets/og/home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#14100C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
+<script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
+<link rel="stylesheet" href="/laboratorio/lab.css">
+<link rel="stylesheet" href="/assets/lang.css">
+<style>
+.hero{padding:56px 0 34px;position:relative}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(ellipse at 30% 40%,#000 0,transparent 70%);mask-image:radial-gradient(ellipse at 30% 40%,#000 0,transparent 70%)}
+.hero h1 .dot{color:var(--ph);text-shadow:0 0 18px var(--glow)}
+.meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font:19px/1 var(--fc);letter-spacing:.08em;color:var(--muted)}
+.meta b{color:var(--ink);font-weight:400}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 20px}
+.filters button{min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);font:18px/1 var(--fc);letter-spacing:.08em;cursor:pointer}
+.filters button:hover{color:var(--ink);border-color:var(--muted)}
+.filters button[aria-pressed="true"]{color:#14100C;background:var(--ph);border-color:var(--ph)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;list-style:none;margin:0;padding:0}
+.card{position:relative;display:flex;flex-direction:column;height:100%;padding:18px;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,var(--surface),var(--bg));text-decoration:none;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--c,var(--ph));transform:translateY(-2px)}
+.card:hover .ico{box-shadow:0 0 22px -4px var(--c,var(--ph))}
+.card-top{display:flex;justify-content:space-between;align-items:center;font:17px/1 var(--fc);letter-spacing:.1em;color:var(--dim)}
+.tag{color:var(--c,var(--ph))}
+.ico{display:grid;place-items:center;width:64px;height:64px;margin:18px 0 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg);color:var(--c,var(--ph));transition:box-shadow .15s}
+.ico svg{width:34px;height:34px}
+.card h2{font:700 1.45rem/1.15 var(--fd);margin:0 0 6px}
+.card p{color:var(--muted);margin:0 0 16px;font-size:.96rem}
+.go{margin-top:auto;font:18px/1 var(--fc);letter-spacing:.08em;color:var(--c,var(--ph))}
+.new{position:absolute;top:-9px;right:14px;padding:3px 8px;border-radius:6px;background:var(--ph);color:#14100C;font:15px/1 var(--fc);letter-spacing:.1em}
+.soon{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;height:100%;min-height:220px;padding:18px;border:1px dashed var(--line);border-radius:var(--r);color:var(--dim)}
+.soon b{font:22px/1 var(--fc);letter-spacing:.1em;color:var(--muted);font-weight:400;margin-bottom:8px}
+.soon b::after{content:"_";animation:blink 1s steps(1) infinite;color:var(--ph)}
+@keyframes blink{50%{opacity:0}}
+.empty{color:var(--muted);font:19px var(--fc);letter-spacing:.06em}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-en="Skip to content">Ir al contenido</a>
+<nav class="back" aria-label="Navegación" data-en-aria-label="Navigation">
+  <div class="crumb"><a href="/" aria-label="Static Forge">◂<span class="h"> STATIC FORGE</span></a><span>/</span><span data-en="LAB">LABORATORIO</span></div>
+  <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+    <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+    <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero">
+    <div class="wrap">
+      <p class="kick" data-en="// STATIC FORGE LAB">// LABORATORIO STATIC FORGE</p>
+      <h1 data-en="The Lab<span class='dot'>.</span>">Laboratorio<span class="dot">.</span></h1>
+      <p class="lead" data-en="Mini projects, games and tools that run right in the browser. No installs, no accounts, no ads. New experiments get added here as they come out of the forge.">Mini proyectos, juegos y utilidades que funcionan directamente en el navegador. Sin instalar nada, sin cuentas y sin anuncios. Cada experimento nuevo que sale de la forja se queda aquí.</p>
+      <div class="meta"><span><b id="count">3</b> <span data-en="EXPERIMENTS">EXPERIMENTOS</span></span><span data-en="EVERYTHING RUNS IN YOUR BROWSER">TODO FUNCIONA EN TU NAVEGADOR</span></div>
+    </div>
+  </header>
+
+  <section class="wrap" aria-labelledby="h-exp">
+    <h2 id="h-exp" class="kick" style="font-size:20px" data-en="EXPERIMENTS">EXPERIMENTOS</h2>
+    <div class="filters" id="filters" role="group" aria-label="Filtrar" data-en-aria-label="Filter"></div>
+    <ul class="grid" id="grid"></ul>
+    <noscript>
+      <ul class="grid">
+        <li><a class="card" href="/paint-it/"><h2>Paint It!</h2><p>El Paint de toda la vida dentro de la web.</p></a></li>
+        <li><a class="card" href="/laboratorio/snake/"><h2>Snake</h2><p>La serpiente de siempre.</p></a></li>
+        <li><a class="card" href="/laboratorio/calculadora/"><h2>Calculadora científica</h2><p>Trigonometría, logaritmos y potencias.</p></a></li>
+      </ul>
+    </noscript>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap"><span>STATIC FORGE · LAB</span><a href="/" data-en="◂ BACK TO THE HOME PAGE">◂ VOLVER A LA PORTADA</a></div>
+</footer>
+
+<script>
+/* Lista de experimentos. Para añadir uno nuevo, se añade un objeto aquí:
+   id, href, tipo (juego | utilidad | dibujo), color, icono (clave de ICONS), fecha (AAAA-MM-DD)
+   y los textos en es y en. Los marcados con fecha de los últimos 30 días salen como NUEVO. */
+var EXP=[
+  {id:'paint-it',href:'/paint-it/',type:'draw',c:'#E79D56',icon:'paint',date:'2026-11-09',
+    es:{t:'Paint It!',d:'El Paint de toda la vida dentro de la web: lápiz, cubo, formas, texto y guardar en PNG.'},
+    en:{t:'Paint It!',d:'Good old Paint right inside the site: pencil, bucket, shapes, text and save as PNG.'}},
+  {id:'snake',href:'/laboratorio/snake/',type:'game',c:'#7BD88F',icon:'snake',date:'2026-11-13',
+    es:{t:'Snake',d:'La serpiente de siempre en una pantalla de fósforo. Teclado, gestos o cruceta táctil.'},
+    en:{t:'Snake',d:'The classic snake on a phosphor screen. Keyboard, swipes or a touch d-pad.'}},
+  {id:'calculadora',href:'/laboratorio/calculadora/',type:'tool',c:'#4C9DB0',icon:'calc',date:'2026-11-13',
+    es:{t:'Calculadora científica',d:'Trigonometría, logaritmos, potencias, factorial, grados o radianes e historial.'},
+    en:{t:'Scientific calculator',d:'Trigonometry, logarithms, powers, factorial, degrees or radians and history.'}}
+];
+var TYPES={game:{es:'JUEGO',en:'GAME'},tool:{es:'UTILIDAD',en:'TOOL'},draw:{es:'DIBUJO',en:'DRAWING'}};
+var ICONS={
+  paint:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l5 5L10 19H5v-5z"/><path d="M12.5 6.5l5 5"/></svg>',
+  snake:'<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="15" width="4" height="4" rx="1"/><rect x="7" y="15" width="4" height="4" rx="1"/><rect x="7" y="11" width="4" height="4" rx="1"/><rect x="7" y="7" width="4" height="4" rx="1"/><rect x="11" y="7" width="4" height="4" rx="1"/><rect x="15" y="7" width="4" height="4" rx="1"/><circle cx="19" cy="17" r="2"/></svg>',
+  calc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8.5 12h1M14.5 12h1M8.5 16h1M14.5 16h1"/></svg>'
+};
+var NEW_DAYS=30, filter='all';
+function L(){return document.documentElement.getAttribute('lang')==='en'?'en':'es'}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function isNew(d){var t=Date.parse(d);return !isNaN(t)&&(Date.now()-t)<NEW_DAYS*864e5}
+function render(){
+  var l=L(),g=document.getElementById('grid'),f=document.getElementById('filters'),html='';
+  var opts=[['all',{es:'TODO',en:'ALL'}]];Object.keys(TYPES).forEach(function(k){if(EXP.some(function(e){return e.type===k}))opts.push([k,TYPES[k]])});
+  f.innerHTML=opts.map(function(o){return '<button type="button" data-f="'+o[0]+'" aria-pressed="'+(filter===o[0])+'">'+o[1][l]+'</button>'}).join('');
+  var list=EXP.filter(function(e){return filter==='all'||e.type===filter});
+  list.forEach(function(e){
+    var i=EXP.indexOf(e)+1,tx=e[l];
+    html+='<li><a class="card" href="'+e.href+'" style="--c:'+e.c+'">'+(isNew(e.date)?'<span class="new">'+(l==='en'?'NEW':'NUEVO')+'</span>':'')+
+      '<div class="card-top"><span>EXP-'+String(i).padStart(2,'0')+'</span><span class="tag">'+TYPES[e.type][l]+'</span></div>'+
+      '<div class="ico" aria-hidden="true">'+(ICONS[e.icon]||'')+'</div><h2>'+esc(tx.t)+'</h2><p>'+esc(tx.d)+'</p>'+
+      '<span class="go">'+(l==='en'?'OPEN ▸':'ABRIR ▸')+'</span></a></li>';
+  });
+  if(filter==='all')html+='<li><div class="soon"><b>'+(l==='en'?'MORE COMING':'PRÓXIMAMENTE')+'</b><span>'+(l==='en'?'More experiments are on the way.':'Hay más experimentos en camino.')+'</span></div></li>';
+  g.innerHTML=html;
+  document.getElementById('count').textContent=EXP.length;
+}
+document.getElementById('filters').addEventListener('click',function(ev){var b=ev.target.closest('button[data-f]');if(!b)return;filter=b.getAttribute('data-f');render()});
+document.addEventListener('sf:lang',render);
+render();
+</script>
+<script src="/assets/lang.js"></script>
+</body>
+</html>

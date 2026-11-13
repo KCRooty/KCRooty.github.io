@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<title data-en="Scientific calculator · Static Forge Lab">Calculadora científica · Laboratorio Static Forge</title>
+<meta name="description" content="Calculadora científica en el navegador: trigonometría, logaritmos, potencias, factorial, grados o radianes e historial. Laboratorio de Static Forge." data-en-content="Scientific calculator in the browser: trigonometry, logarithms, powers, factorial, degrees or radians and history. Static Forge Lab.">
+<link rel="canonical" href="https://staticforge.me/laboratorio/calculadora/">
+<meta property="og:title" content="Calculadora científica · Static Forge" data-en-content="Scientific calculator · Static Forge">
+<meta property="og:description" content="Trigonometría, logaritmos, potencias e historial, en el navegador." data-en-content="Trigonometry, logarithms, powers and history, in the browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://staticforge.me/laboratorio/calculadora/">
+<meta property="og:site_name" content="Static Forge">
+<meta property="og:image" content="https://staticforge.me/assets/og/home.jpg">
+<meta name="theme-color" content="#14100C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
+<script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
+<link rel="stylesheet" href="/laboratorio/lab.css">
+<link rel="stylesheet" href="/assets/lang.css">
+<style>
+:root{--k:#4C9DB0;--kglow:rgba(76,157,176,.45)}
+main{padding:22px 16px 10px}
+.layout{width:min(940px,100%);margin:0 auto;display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:22px;align-items:start}
+.head{width:min(940px,100%);margin:0 auto 14px}
+.head h1{font-size:clamp(2rem,6vw,2.8rem);margin:0}
+.calc{padding:14px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#2E261E,#1A1510);box-shadow:0 20px 50px -20px #000}
+.lcd{position:relative;padding:12px 14px 10px;border-radius:12px;background:#0b0d0a;border:1px solid #000;box-shadow:inset 0 0 24px rgba(76,157,176,.12);margin-bottom:12px;min-height:118px;display:flex;flex-direction:column;justify-content:space-between}
+.flags{display:flex;justify-content:space-between;font:16px/1 var(--fc);letter-spacing:.1em;color:var(--dim)}
+.flags .on{color:var(--k);text-shadow:0 0 8px var(--kglow)}
+#expr{width:100%;border:0;background:transparent;color:var(--muted);font:22px/1.2 var(--fc);letter-spacing:.04em;padding:6px 0 0;text-align:right;outline:none;caret-color:var(--k)}
+#out{font:46px/1 var(--fc);color:var(--k);text-shadow:0 0 14px var(--kglow);text-align:right;white-space:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;min-height:46px}
+#out.err{color:#E06C75;text-shadow:0 0 12px rgba(224,108,117,.4);font-size:30px}
+#out.preview{opacity:.55}
+.keys{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.keys button{min-height:48px;padding:0 4px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:500 1.02rem/1 var(--fb);cursor:pointer;touch-action:manipulation;transition:background .08s,border-color .08s}
+.keys button:hover{border-color:var(--muted)}
+.keys button:active,.keys button.hit{background:var(--surface2);border-color:var(--k)}
+.keys .fn{background:#171310;color:var(--muted);font-size:.92rem}
+.keys .op{color:var(--k);font-size:1.25rem}
+.keys .ac{color:#E06C75}
+.keys .eq{background:var(--k);border-color:var(--k);color:#0b0d0a;font-weight:700;font-size:1.3rem}
+.keys .eq:hover{filter:brightness(1.1)}
+.keys sup{font-size:.7em}
+.side h2{font:20px/1 var(--fc);letter-spacing:.1em;color:var(--k);margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}
+.side h2 button{min-height:36px;padding:0 10px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--muted);font:16px/1 var(--fc);letter-spacing:.08em;cursor:pointer}
+.side h2 button:hover{color:var(--ink);border-color:var(--muted)}
+#hist{list-style:none;margin:0 0 22px;padding:0;max-height:330px;overflow:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+#hist li+li{border-top:1px solid var(--line)}
+#hist button{display:block;width:100%;padding:10px 14px;border:0;background:transparent;color:var(--ink);text-align:right;cursor:pointer;font:inherit}
+#hist button:hover{background:var(--surface2)}
+#hist .e{display:block;color:var(--muted);font:18px/1.2 var(--fc);letter-spacing:.04em;word-break:break-all}
+#hist .r{display:block;color:var(--k);font:26px/1.2 var(--fc)}
+#hist .none{padding:14px;color:var(--dim);font:18px var(--fc);letter-spacing:.06em}
+.help{color:var(--muted);font-size:.92rem;border:1px dashed var(--line);border-radius:14px;padding:14px 16px}
+.help p{margin:0 0 8px}.help p:last-child{margin:0}
+.help kbd{font:17px/1 var(--fc);padding:1px 6px;border:1px solid var(--line);border-radius:5px;color:var(--ink);background:var(--surface)}
+@media(max-width:820px){.layout{grid-template-columns:1fr}.calc{max-width:480px;width:100%;margin:0 auto}.side{max-width:480px;width:100%;margin:0 auto}}
+@media(max-width:380px){.keys{gap:5px}.keys button{min-height:44px;font-size:.92rem}.keys .fn{font-size:.82rem}}
+</style>
+</head>
+<body>
+<a class="skip" href="#expr" data-en="Skip to the calculator">Ir a la calculadora</a>
+<nav class="back" aria-label="Navegación" data-en-aria-label="Navigation">
+  <div class="crumb"><a href="/" aria-label="Static Forge">◂<span class="h"> STATIC FORGE</span></a><span>/</span><a href="/laboratorio/" data-en="LAB">LABORATORIO</a><span>/</span><span data-en="CALCULATOR">CALCULADORA</span></div>
+  <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+    <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+    <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="head"><p class="kick">EXP-03</p><h1 data-en="Scientific calculator">Calculadora científica</h1></div>
+  <div class="layout">
+    <section class="calc" aria-label="Calculadora" data-en-aria-label="Calculator">
+      <div class="lcd">
+        <div class="flags"><span id="fAng" class="on">DEG</span><span id="fInv">2ND</span><span id="fMem">M</span></div>
+        <input id="expr" type="text" inputmode="none" autocomplete="off" spellcheck="false" aria-label="Expresión" data-en-aria-label="Expression">
+        <div id="out" aria-live="polite">0</div>
+      </div>
+      <div class="keys" id="keys">
+        <button class="fn" data-k="2nd" aria-pressed="false">2nd</button>
+        <button class="fn" data-k="ang">DEG</button>
+        <button class="fn" data-k="mc">MC</button>
+        <button class="fn" data-k="m+">M+</button>
+        <button class="fn" data-k="mr">MR</button>
+
+        <button class="fn" data-k="sin" data-k2="asin">sin</button>
+        <button class="fn" data-k="cos" data-k2="acos">cos</button>
+        <button class="fn" data-k="tan" data-k2="atan">tan</button>
+        <button class="fn" data-k="ln" data-k2="e^">ln</button>
+        <button class="fn" data-k="log" data-k2="10^">log</button>
+
+        <button class="fn" data-k="^2" data-k2="^3">x<sup>2</sup></button>
+        <button class="fn" data-k="^" data-k2="root">x<sup>y</sup></button>
+        <button class="fn" data-k="sqrt" data-k2="cbrt">√</button>
+        <button class="fn" data-k="!" data-k2="1/">n!</button>
+        <button class="fn" data-k="%" data-k2="abs">%</button>
+
+        <button class="fn" data-k="(">(</button>
+        <button class="fn" data-k=")">)</button>
+        <button class="fn" data-k="pi">π</button>
+        <button class="fn" data-k="e">e</button>
+        <button class="fn" data-k="E">EXP</button>
+
+        <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button>
+        <button class="ac" data-k="del" aria-label="Borrar" data-en-aria-label="Delete">DEL</button>
+        <button class="ac" data-k="ac" aria-label="Borrar todo" data-en-aria-label="Clear all">AC</button>
+
+        <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
+        <button class="op" data-k="×" aria-label="Multiplicar" data-en-aria-label="Multiply">×</button>
+        <button class="op" data-k="÷" aria-label="Dividir" data-en-aria-label="Divide">÷</button>
+
+        <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
+        <button class="op" data-k="+" aria-label="Sumar" data-en-aria-label="Add">+</button>
+        <button class="op" data-k="−" aria-label="Restar" data-en-aria-label="Subtract">−</button>
+
+        <button data-k="0">0</button><button data-k=".">.</button>
+        <button class="fn" data-k="ans">Ans</button>
+        <button class="fn" data-k="neg" aria-label="Cambiar signo" data-en-aria-label="Change sign">(−)</button>
+        <button class="eq" data-k="=">=</button>
+      </div>
+    </section>
+
+    <aside class="side">
+      <h2><span data-en="HISTORY">HISTORIAL</span><button type="button" id="clearHist" data-en="CLEAR">BORRAR</button></h2>
+      <ul id="hist"></ul>
+      <div class="help" data-only="es">
+        <p>Puedes escribir con el teclado: números, <kbd>+</kbd> <kbd>-</kbd> <kbd>*</kbd> <kbd>/</kbd> <kbd>^</kbd> <kbd>!</kbd> <kbd>%</kbd>, paréntesis y funciones como <kbd>sin(</kbd> o <kbd>sqrt(</kbd>. <kbd>Enter</kbd> calcula, <kbd>Esc</kbd> borra.</p>
+        <p><b>2nd</b> cambia las teclas por sus inversas (asin, eˣ, ³√…). Los paréntesis que falten al final se cierran solos y <kbd>2π</kbd> o <kbd>3(4+1)</kbd> se entienden como multiplicación.</p>
+        <p>Pulsa una línea del historial para recuperar la operación.</p>
+      </div>
+      <div class="help" data-only="en">
+        <p>You can type on the keyboard: numbers, <kbd>+</kbd> <kbd>-</kbd> <kbd>*</kbd> <kbd>/</kbd> <kbd>^</kbd> <kbd>!</kbd> <kbd>%</kbd>, brackets and functions such as <kbd>sin(</kbd> or <kbd>sqrt(</kbd>. <kbd>Enter</kbd> evaluates, <kbd>Esc</kbd> clears.</p>
+        <p><b>2nd</b> swaps the keys for their inverses (asin, eˣ, ³√…). Missing closing brackets at the end are added for you, and <kbd>2π</kbd> or <kbd>3(4+1)</kbd> count as multiplication.</p>
+        <p>Click a history line to bring the expression back.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap"><span>STATIC FORGE · LAB · EXP-03</span><a href="/laboratorio/" data-en="◂ BACK TO THE LAB">◂ VOLVER AL LABORATORIO</a></div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+/* ---------- Intérprete (descenso recursivo, sin eval) ---------- */
+var FUNCS={sin:1,cos:1,tan:1,asin:1,acos:1,atan:1,ln:1,log:1,sqrt:1,cbrt:1,abs:1};
+var CONST={'π':Math.PI,pi:Math.PI,e:Math.E};
+var deg=true, ans=0;
+function tokenize(s){
+  var t=[],i=0,m;
+  s=s.replace(/×/g,'*').replace(/÷/g,'/').replace(/[−–]/g,'-').replace(/√/g,'sqrt').replace(/,/g,'.');
+  while(i<s.length){
+    var c=s[i];
+    if(/\s/.test(c)){i++;continue}
+    if((m=/^(\d+\.?\d*|\.\d+)(E[+-]?\d+)?/.exec(s.slice(i)))){t.push({t:'num',v:parseFloat(m[0].replace('E','e'))});i+=m[0].length;continue}
+    if((m=/^[a-zA-Zπ]+/.exec(s.slice(i)))){
+      var w=m[0],lw=w.toLowerCase();
+      if(lw==='ans'){t.push({t:'num',v:ans});i+=3;continue}
+      var f=Object.keys(FUNCS).sort(function(a,b){return b.length-a.length}).find(function(k){return lw.indexOf(k)===0});
+      if(f){t.push({t:'fn',v:f});i+=f.length;continue}
+      if(lw.indexOf('pi')===0){t.push({t:'num',v:Math.PI});i+=2;continue}
+      if(w[0]==='π'){t.push({t:'num',v:Math.PI});i+=1;continue}
+      if(w[0]==='e'){t.push({t:'num',v:Math.E});i+=1;continue}
+      throw new Error('?'+w);
+    }
+    if('+-*/^!%()'.indexOf(c)>=0){t.push({t:c});i++;continue}
+    throw new Error('?'+c);
+  }
+  return t;
+}
+function parse(src){
+  var t=tokenize(src),p=0,open=0;
+  t.forEach(function(x){if(x.t==='(')open++;else if(x.t===')')open--});
+  while(open-->0)t.push({t:')'});
+  function peek(){return t[p]}function eat(k){if(t[p]&&t[p].t===k){p++;return true}return false}
+  function startsPrimary(x){return x&&(x.t==='num'||x.t==='fn'||x.t==='(')}
+  function expr(){var v=term();for(;;){if(eat('+'))v+=term();else if(eat('-'))v-=term();else return v}}
+  function term(){var v=unary();for(;;){if(eat('*'))v*=unary();else if(eat('/')){var d=unary();v=v/d}else if(startsPrimary(peek()))v*=power();else return v}}
+  function unary(){if(eat('-'))return -unary();if(eat('+'))return unary();return power()}
+  function power(){var b=postfix();if(eat('^'))return Math.pow(b,unary());return b}
+  function postfix(){var v=primary();for(;;){if(eat('!'))v=fact(v);else if(eat('%'))v=v/100;else return v}}
+  function primary(){
+    var x=peek();if(!x)throw new Error('end');
+    if(x.t==='num'){p++;return x.v}
+    if(x.t==='('){p++;var v=expr();if(!eat(')'))throw new Error(')');return v}
+    if(x.t==='fn'){p++;var a=eat('(')?(function(){var v=expr();if(!eat(')'))throw new Error(')');return v})():power();return fn(x.v,a)}
+    throw new Error('tok');
+  }
+  var r=expr();if(p<t.length)throw new Error('extra');return r;
+}
+var R=Math.PI/180;
+function clean(v){return Math.abs(v)<1e-12?0:v}
+function fn(n,a){
+  switch(n){
+    case 'sin':return clean(Math.sin(deg?a*R:a));
+    case 'cos':return clean(Math.cos(deg?a*R:a));
+    case 'tan':if(deg&&Math.abs(((a%180)+180)%180-90)<1e-9)return NaN;return clean(Math.tan(deg?a*R:a));
+    case 'asin':return Math.asin(a)/(deg?R:1);
+    case 'acos':return Math.acos(a)/(deg?R:1);
+    case 'atan':return Math.atan(a)/(deg?R:1);
+    case 'ln':return Math.log(a);
+    case 'log':return Math.log10(a);
+    case 'sqrt':return Math.sqrt(a);
+    case 'cbrt':return Math.cbrt(a);
+    case 'abs':return Math.abs(a);
+  }
+}
+function fact(n){
+  if(n<0||!Number.isInteger(n))return gamma(n+1);
+  if(n>170)return Infinity;var r=1;for(var i=2;i<=n;i++)r*=i;return r;
+}
+function gamma(z){ /* Lanczos, para factoriales no enteros */
+  if(z<.5)return Math.PI/(Math.sin(Math.PI*z)*gamma(1-z));
+  z-=1;var g=7,c=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+  var x=c[0];for(var i=1;i<g+2;i++)x+=c[i]/(z+i);var t=z+g+.5;return Math.sqrt(2*Math.PI)*Math.pow(t,z+.5)*Math.exp(-t)*x;
+}
+function fmt(v){
+  if(!isFinite(v))return null;
+  if(v===0)return '0';
+  var a=Math.abs(v);
+  if(a>=1e15||a<1e-9){return v.toExponential(10).replace(/\.?0+e/,'e').replace('e+','E').replace('e-','E-')}
+  return String(parseFloat(v.toPrecision(14)));
+}
+
+/* ---------- Interfaz ---------- */
+var $e=document.getElementById('expr'),$o=document.getElementById('out'),$h=document.getElementById('hist');
+var inv=false, mem=0, justEval=false, hist=[];
+function get(k){try{return localStorage.getItem(k)}catch(x){return null}}
+function set(k,v){try{localStorage.setItem(k,v)}catch(x){}}
+function L(){return document.documentElement.getAttribute('lang')==='en'?'en':'es'}
+try{hist=JSON.parse(get('sf-calc-hist')||'[]');if(!Array.isArray(hist))hist=[]}catch(x){hist=[]}
+deg=get('sf-calc-deg')!=='0';mem=parseFloat(get('sf-calc-mem'))||0;ans=parseFloat(get('sf-calc-ans'))||0;
+
+function setOut(txt,cls){$o.textContent=txt;$o.className=cls||''}
+function preview(){
+  var s=$e.value.trim();
+  if(!s){setOut(fmt(ans)&&justEval?fmt(ans):'0');return}
+  try{var v=parse(s),f=fmt(v);if(f!==null)setOut(f,'preview');else setOut('','preview')}catch(x){setOut('','preview')}
+}
+function insert(txt){
+  if(justEval){
+    if(/^[+\-*/^!%×÷−)]/.test(txt)||txt==='^2'||txt==='^3'){$e.value='Ans'}else{$e.value=''}
+    justEval=false;
+  }
+  var a=$e.selectionStart==null?$e.value.length:$e.selectionStart,b=$e.selectionEnd==null?a:$e.selectionEnd;
+  $e.value=$e.value.slice(0,a)+txt+$e.value.slice(b);
+  var pos=a+txt.length;$e.setSelectionRange(pos,pos);preview();
+}
+function evaluate(){
+  var s=$e.value.trim();if(!s)return;
+  try{
+    var v=parse(s),f=fmt(v);
+    if(f===null)throw new Error('math');
+    ans=v;set('sf-calc-ans',v);setOut(f);justEval=true;
+    hist.unshift({e:s,r:f});hist=hist.slice(0,50);set('sf-calc-hist',JSON.stringify(hist));renderHist();
+  }catch(x){setOut(x.message==='math'?(L()==='en'?'Math error':'Error matemático'):(L()==='en'?'Syntax error':'Error de sintaxis'),'err')}
+}
+function renderHist(){
+  if(!hist.length){$h.innerHTML='<li class="none">'+(L()==='en'?'NOTHING YET':'NADA TODAVÍA')+'</li>';return}
+  $h.innerHTML='';hist.forEach(function(it){
+    var li=document.createElement('li'),b=document.createElement('button');b.type='button';
+    var e=document.createElement('span');e.className='e';e.textContent=it.e;
+    var r=document.createElement('span');r.className='r';r.textContent='= '+it.r;
+    b.appendChild(e);b.appendChild(r);b.addEventListener('click',function(){$e.value=it.e;justEval=false;$e.focus();preview()});
+    li.appendChild(b);$h.appendChild(li);
+  });
+}
+function flags(){
+  document.getElementById('fAng').textContent=deg?'DEG':'RAD';
+  document.querySelector('[data-k="ang"]').textContent=deg?'DEG':'RAD';
+  document.getElementById('fInv').className=inv?'on':'';
+  document.getElementById('fMem').className=mem!==0?'on':'';
+  var b2=document.querySelector('[data-k="2nd"]');b2.setAttribute('aria-pressed',inv);b2.style.color=inv?'var(--k)':'';
+  var LBL2={asin:'sin⁻¹',acos:'cos⁻¹',atan:'tan⁻¹','e^':'eˣ','10^':'10ˣ','^3':'x³',root:'ʸ√x',cbrt:'³√','1/':'1/x',abs:'|x|'};
+  document.querySelectorAll('[data-k2]').forEach(function(b){
+    if(!b.dataset.l1)b.dataset.l1=b.innerHTML;
+    if(inv)b.textContent=LBL2[b.dataset.k2];else b.innerHTML=b.dataset.l1;
+  });
+}
+var INS={sin:'sin(',cos:'cos(',tan:'tan(',asin:'asin(',acos:'acos(',atan:'atan(',ln:'ln(',log:'log(',sqrt:'√(',cbrt:'cbrt(',abs:'abs(',
+  'e^':'e^(','10^':'10^(','^2':'^2','^3':'^3','^':'^',root:'^(1÷','1/':'1÷(','!':'!','%':'%','(':'(',')':')',pi:'π',e:'e',E:'E',
+  '×':'×','÷':'÷','+':'+','−':'−','.':'.',ans:'Ans'};
+function press(k,el){
+  var useInv=inv&&el&&el.dataset.k2;if(useInv)k=el.dataset.k2;
+  if(/^\d$/.test(k)){insert(k)}
+  else if(INS[k]!==undefined){insert(INS[k])}
+  else if(k==='=')evaluate();
+  else if(k==='ac'){$e.value='';justEval=false;setOut('0')}
+  else if(k==='del'){
+    if(justEval){$e.value='';justEval=false;setOut('0');return}
+    var a=$e.selectionStart,b=$e.selectionEnd;
+    if(a!==b){$e.value=$e.value.slice(0,a)+$e.value.slice(b);$e.setSelectionRange(a,a)}
+    else if(a>0){var before=$e.value.slice(0,a),m=/(asin\(|acos\(|atan\(|sin\(|cos\(|tan\(|cbrt\(|abs\(|log\(|ln\(|√\(|Ans)$/.exec(before),n=m?m[0].length:1;
+      $e.value=before.slice(0,-n)+$e.value.slice(a);$e.setSelectionRange(a-n,a-n)}
+    preview();
+  }
+  else if(k==='neg'){insert('(−')}
+  else if(k==='2nd'){inv=!inv;flags();return}
+  else if(k==='ang'){deg=!deg;set('sf-calc-deg',deg?'1':'0');flags();preview()}
+  else if(k==='mc'){mem=0;set('sf-calc-mem',0);flags()}
+  else if(k==='m+'){var s=$e.value.trim(),v=ans;if(s&&!justEval){try{v=parse(s)}catch(x){return}}if(isFinite(v)){mem+=v;set('sf-calc-mem',mem);flags()}}
+  else if(k==='mr'){insert(fmt(mem)||'0')}
+  if(useInv){inv=false;flags()}
+}
+document.getElementById('keys').addEventListener('click',function(ev){
+  var b=ev.target.closest('button[data-k]');if(!b)return;press(b.dataset.k,b);
+  if(window.matchMedia('(pointer:fine)').matches)$e.focus({preventScroll:true});
+});
+$e.addEventListener('input',function(){justEval=false;preview()});
+$e.addEventListener('keydown',function(ev){
+  if(ev.key==='Enter'||ev.key==='='){ev.preventDefault();evaluate();flash('=')}
+  else if(ev.key==='Escape'){ev.preventDefault();press('ac');flash('ac')}
+  else if(justEval&&ev.key.length===1&&!ev.ctrlKey&&!ev.metaKey){
+    ev.preventDefault();var k=ev.key==='*'?'×':ev.key==='/'?'÷':ev.key==='-'?'−':ev.key;insert(k);
+  }
+});
+function flash(k){var b=document.querySelector('[data-k="'+k+'"]');if(!b)return;b.classList.add('hit');setTimeout(function(){b.classList.remove('hit')},120)}
+document.getElementById('clearHist').addEventListener('click',function(){hist=[];set('sf-calc-hist','[]');renderHist()});
+document.addEventListener('sf:lang',function(){renderHist();if($o.classList.contains('err'))evaluate()});
+document.addEventListener('keydown',function(ev){
+  if(document.activeElement===$e||ev.ctrlKey||ev.metaKey||ev.altKey)return;
+  if(ev.target.closest&&ev.target.closest('button,a,input'))return;
+  if(/^[0-9+\-*/^().!%]$/.test(ev.key)||ev.key==='Enter'||ev.key==='Backspace'){
+    $e.focus();var e=$e.value.length;$e.setSelectionRange(e,e);
+    if(ev.key==='Enter'){ev.preventDefault();evaluate()}else if(ev.key==='Backspace'){ev.preventDefault();press('del')}
+  }
+});
+window.__calc={parse:parse,fmt:fmt,setDeg:function(d){deg=d}};
+flags();renderHist();preview();
+})();
+</script>
+<script src="/assets/lang.js"></script>
+</body>
+</html>
