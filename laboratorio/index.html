@@ -16,45 +16,53 @@
 <meta property="og:site_name" content="Static Forge">
 <meta property="og:image" content="https://staticforge.me/assets/og/home.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#14100C">
+<meta name="theme-color" content="#0f7fd8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
 <script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
 <link rel="stylesheet" href="/laboratorio/lab.css">
 <link rel="stylesheet" href="/assets/lang.css">
 <style>
-.hero{padding:56px 0 34px;position:relative}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;
-  -webkit-mask-image:radial-gradient(ellipse at 30% 40%,#000 0,transparent 70%);mask-image:radial-gradient(ellipse at 30% 40%,#000 0,transparent 70%)}
-.hero h1 .dot{color:var(--ph);text-shadow:0 0 18px var(--glow)}
-.meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font:19px/1 var(--fc);letter-spacing:.08em;color:var(--muted)}
-.meta b{color:var(--ink);font-weight:400}
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 20px}
-.filters button{min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);font:18px/1 var(--fc);letter-spacing:.08em;cursor:pointer}
-.filters button:hover{color:var(--ink);border-color:var(--muted)}
-.filters button[aria-pressed="true"]{color:#14100C;background:var(--ph);border-color:var(--ph)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;list-style:none;margin:0;padding:0}
-.card{position:relative;display:flex;flex-direction:column;height:100%;padding:18px;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,var(--surface),var(--bg));text-decoration:none;transition:border-color .15s,transform .15s}
-.card:hover{border-color:var(--c,var(--ph));transform:translateY(-2px)}
-.card:hover .ico{box-shadow:0 0 22px -4px var(--c,var(--ph))}
-.card-top{display:flex;justify-content:space-between;align-items:center;font:17px/1 var(--fc);letter-spacing:.1em;color:var(--dim)}
-.tag{color:var(--c,var(--ph))}
-.ico{display:grid;place-items:center;width:64px;height:64px;margin:18px 0 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg);color:var(--c,var(--ph));transition:box-shadow .15s}
-.ico svg{width:34px;height:34px}
-.card h2{font:700 1.45rem/1.15 var(--fd);margin:0 0 6px}
-.card p{color:var(--muted);margin:0 0 16px;font-size:.96rem}
-.go{margin-top:auto;font:18px/1 var(--fc);letter-spacing:.08em;color:var(--c,var(--ph))}
-.new{position:absolute;top:-9px;right:14px;padding:3px 8px;border-radius:6px;background:var(--ph);color:#14100C;font:15px/1 var(--fc);letter-spacing:.1em}
-.soon{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;height:100%;min-height:220px;padding:18px;border:1px dashed var(--line);border-radius:var(--r);color:var(--dim)}
-.soon b{font:22px/1 var(--fc);letter-spacing:.1em;color:var(--muted);font-weight:400;margin-bottom:8px}
-.soon b::after{content:"_";animation:blink 1s steps(1) infinite;color:var(--ph)}
-@keyframes blink{50%{opacity:0}}
-.empty{color:var(--muted);font:19px var(--fc);letter-spacing:.06em}
+.hero{padding:56px 0 30px}
+.hero h1 .dot{color:#ffe04d;text-shadow:0 0 18px rgba(255,220,60,.8)}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.meta>span{padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.55);border:1px solid #fff;font:800 13px/1 var(--fd);letter-spacing:.08em;color:var(--muted);box-shadow:0 4px 12px -6px rgba(0,60,130,.4)}
+.meta b{color:var(--ph);font-weight:900}
+.sec{padding:22px;margin-top:6px}
+.sec-h{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.sec-h h2{font:900 1.5rem/1 var(--fd);margin:0;color:var(--ink)}
+.filters{display:flex;gap:6px;flex-wrap:wrap;padding:4px;border-radius:999px;background:rgba(0,90,170,.08);box-shadow:inset 0 1px 3px rgba(0,60,130,.2)}
+.filters button{min-height:38px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--muted);font:800 13px/1 var(--fd);letter-spacing:.06em;cursor:pointer}
+.filters button:hover{color:var(--ink);background:rgba(255,255,255,.6)}
+.filters button[aria-pressed="true"]{color:#fff;background:linear-gradient(180deg,#7fd9ff 0,#1fa3ec 50%,#0a86d8 51%,#35bdfb 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 3px 8px -3px rgba(0,80,160,.7);text-shadow:0 1px 1px rgba(0,50,110,.5)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;list-style:none;margin:0;padding:0}
+.card{position:relative;display:flex;flex-direction:column;align-items:flex-start;height:100%;padding:20px;border-radius:20px;text-decoration:none;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(235,248,255,.75));border:1px solid #fff;box-shadow:0 14px 30px -16px rgba(0,60,130,.6),inset 0 1px 0 #fff;transition:transform .18s,box-shadow .18s}
+.card::before{content:"";position:absolute;inset:0 0 auto;height:46%;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,0));pointer-events:none}
+.card::after{content:"";position:absolute;right:-40px;bottom:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,var(--c),transparent 70%);opacity:.18}
+.card:hover{transform:translateY(-4px);box-shadow:0 22px 40px -16px rgba(0,60,130,.7),0 0 0 3px rgba(255,255,255,.8),inset 0 1px 0 #fff}
+.card>*{position:relative;z-index:1}
+.card-top{display:flex;justify-content:space-between;align-items:center;width:100%;font:800 12px/1 var(--fd);letter-spacing:.12em;color:var(--dim)}
+.tag{color:var(--c)}
+.orb{position:relative;display:grid;place-items:center;width:72px;height:72px;margin:16px 0 14px;border-radius:50%;color:#fff;
+  background:radial-gradient(circle at 50% 120%,rgba(255,255,255,.55),transparent 60%),radial-gradient(circle at 50% 40%,var(--c),color-mix(in srgb,var(--c) 60%,#003060));
+  box-shadow:inset 0 -6px 12px rgba(0,0,0,.18),0 8px 16px -6px color-mix(in srgb,var(--c) 80%,#000),0 0 0 3px rgba(255,255,255,.9)}
+.orb::before{content:"";position:absolute;left:14%;right:14%;top:5%;height:44%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.05))}
+.orb svg{position:relative;width:34px;height:34px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+.card h2{font:900 1.4rem/1.15 var(--fd);margin:0 0 6px;color:var(--ink)}
+.card p{color:var(--muted);margin:0 0 18px;font-size:.96rem}
+.go{margin-top:auto;padding:0 18px;min-height:38px;font-size:.92rem}
+.new{margin-left:8px;padding:4px 9px;border-radius:999px;border:1px solid #e09a00;background:linear-gradient(180deg,#fff3a8 0,#ffd23f 48%,#ffb300 52%,#ffd84d 100%);color:#6a3b00;font:900 10px/1 var(--fd);letter-spacing:.12em;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
+.soon{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;min-height:240px;padding:20px;border-radius:20px;border:2px dashed rgba(255,255,255,.95);background:rgba(255,255,255,.28);color:var(--muted)}
+.soon .bub{width:56px;height:56px;margin-bottom:12px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff 0 10%,rgba(255,255,255,.2) 22% 60%,rgba(120,210,255,.6) 72%,#fff 76%,transparent 78%);animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@media(max-width:560px){.hero{padding:28px 0 22px}.lead{font-size:1rem}.meta{gap:6px;margin-top:16px}.meta>span{font-size:11px;padding:6px 10px}.sec{padding:16px}.filters{gap:2px}.filters button{padding:0 11px;font-size:12px;min-height:36px}.sec-h h2{font-size:1.3rem}}
+.soon b{font:900 1.1rem/1 var(--fd);color:var(--ink);margin-bottom:6px}
 </style>
 </head>
 <body>
+<div class="sky" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <a class="skip" href="#main" data-en="Skip to content">Ir al contenido</a>
 <nav class="back" aria-label="Navegación" data-en-aria-label="Navigation">
   <div class="crumb"><a href="/" aria-label="Static Forge">◂<span class="h"> STATIC FORGE</span></a><span>/</span><span data-en="LAB">LABORATORIO</span></div>
@@ -67,16 +75,16 @@
 <main id="main">
   <header class="hero">
     <div class="wrap">
-      <p class="kick" data-en="// STATIC FORGE LAB">// LABORATORIO STATIC FORGE</p>
+      <p class="kick" data-en="Static Forge Lab">Laboratorio Static Forge</p>
       <h1 data-en="The Lab<span class='dot'>.</span>">Laboratorio<span class="dot">.</span></h1>
       <p class="lead" data-en="Mini projects, games and tools that run right in the browser. No installs, no accounts, no ads. New experiments get added here as they come out of the forge.">Mini proyectos, juegos y utilidades que funcionan directamente en el navegador. Sin instalar nada, sin cuentas y sin anuncios. Cada experimento nuevo que sale de la forja se queda aquí.</p>
-      <div class="meta"><span><b id="count">3</b> <span data-en="EXPERIMENTS">EXPERIMENTOS</span></span><span data-en="EVERYTHING RUNS IN YOUR BROWSER">TODO FUNCIONA EN TU NAVEGADOR</span></div>
+      <div class="meta"><span><b id="count">3</b> <span data-en="EXPERIMENTS">EXPERIMENTOS</span></span><span data-en="RUNS IN YOUR BROWSER">FUNCIONA EN TU NAVEGADOR</span><span data-en="NO ADS">SIN ANUNCIOS</span></div>
     </div>
   </header>
 
-  <section class="wrap" aria-labelledby="h-exp">
-    <h2 id="h-exp" class="kick" style="font-size:20px" data-en="EXPERIMENTS">EXPERIMENTOS</h2>
-    <div class="filters" id="filters" role="group" aria-label="Filtrar" data-en-aria-label="Filter"></div>
+  <section class="wrap glass sec" aria-labelledby="h-exp">
+    <div class="sec-h"><h2 id="h-exp" data-en="Experiments">Experimentos</h2>
+    <div class="filters" id="filters" role="group" aria-label="Filtrar" data-en-aria-label="Filter"></div></div>
     <ul class="grid" id="grid"></ul>
     <noscript>
       <ul class="grid">
@@ -97,13 +105,13 @@
    id, href, tipo (juego | utilidad | dibujo), color, icono (clave de ICONS), fecha (AAAA-MM-DD)
    y los textos en es y en. Los marcados con fecha de los últimos 30 días salen como NUEVO. */
 var EXP=[
-  {id:'paint-it',href:'/paint-it/',type:'draw',c:'#E79D56',icon:'paint',date:'2026-11-09',
+  {id:'paint-it',href:'/paint-it/',type:'draw',c:'#ff8a1f',icon:'paint',date:'2026-11-09',
     es:{t:'Paint It!',d:'El Paint de toda la vida dentro de la web: lápiz, cubo, formas, texto y guardar en PNG.'},
     en:{t:'Paint It!',d:'Good old Paint right inside the site: pencil, bucket, shapes, text and save as PNG.'}},
-  {id:'snake',href:'/laboratorio/snake/',type:'game',c:'#7BD88F',icon:'snake',date:'2026-11-13',
-    es:{t:'Snake',d:'La serpiente de siempre en una pantalla de fósforo. Teclado, gestos o cruceta táctil.'},
-    en:{t:'Snake',d:'The classic snake on a phosphor screen. Keyboard, swipes or a touch d-pad.'}},
-  {id:'calculadora',href:'/laboratorio/calculadora/',type:'tool',c:'#4C9DB0',icon:'calc',date:'2026-11-13',
+  {id:'snake',href:'/laboratorio/snake/',type:'game',c:'#3cbf2c',icon:'snake',date:'2026-11-13',
+    es:{t:'Snake',d:'La serpiente de siempre, nadando en agua cristalina. Teclado, gestos o cruceta táctil.'},
+    en:{t:'Snake',d:'The classic snake, swimming in crystal-clear water. Keyboard, swipes or a touch d-pad.'}},
+  {id:'calculadora',href:'/laboratorio/calculadora/',type:'tool',c:'#1a8fff',icon:'calc',date:'2026-11-13',
     es:{t:'Calculadora científica',d:'Trigonometría, logaritmos, potencias, factorial, grados o radianes e historial.'},
     en:{t:'Scientific calculator',d:'Trigonometry, logarithms, powers, factorial, degrees or radians and history.'}}
 ];
@@ -124,12 +132,12 @@ function render(){
   var list=EXP.filter(function(e){return filter==='all'||e.type===filter});
   list.forEach(function(e){
     var i=EXP.indexOf(e)+1,tx=e[l];
-    html+='<li><a class="card" href="'+e.href+'" style="--c:'+e.c+'">'+(isNew(e.date)?'<span class="new">'+(l==='en'?'NEW':'NUEVO')+'</span>':'')+
-      '<div class="card-top"><span>EXP-'+String(i).padStart(2,'0')+'</span><span class="tag">'+TYPES[e.type][l]+'</span></div>'+
-      '<div class="ico" aria-hidden="true">'+(ICONS[e.icon]||'')+'</div><h2>'+esc(tx.t)+'</h2><p>'+esc(tx.d)+'</p>'+
-      '<span class="go">'+(l==='en'?'OPEN ▸':'ABRIR ▸')+'</span></a></li>';
+    html+='<li><a class="card" href="'+e.href+'" style="--c:'+e.c+'">'+
+      '<div class="card-top"><span>EXP-'+String(i).padStart(2,'0')+(isNew(e.date)?'<span class="new">'+(l==='en'?'NEW':'NUEVO')+'</span>':'')+'</span><span class="tag">'+TYPES[e.type][l]+'</span></div>'+
+      '<div class="orb" aria-hidden="true">'+(ICONS[e.icon]||'')+'</div><h2>'+esc(tx.t)+'</h2><p>'+esc(tx.d)+'</p>'+
+      '<span class="btn go">'+(l==='en'?'Open':'Abrir')+'</span></a></li>';
   });
-  if(filter==='all')html+='<li><div class="soon"><b>'+(l==='en'?'MORE COMING':'PRÓXIMAMENTE')+'</b><span>'+(l==='en'?'More experiments are on the way.':'Hay más experimentos en camino.')+'</span></div></li>';
+  if(filter==='all')html+='<li><div class="soon"><span class="bub"></span><b>'+(l==='en'?'More on the way':'Próximamente')+'</b><span>'+(l==='en'?'More experiments are on the way.':'Hay más experimentos en camino.')+'</span></div></li>';
   g.innerHTML=html;
   document.getElementById('count').textContent=EXP.length;
 }
