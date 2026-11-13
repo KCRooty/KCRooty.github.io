@@ -138,12 +138,18 @@ OPTS.forEach(function(k){$(k).addEventListener('change',function(){var o={};OPTS
 /* estado del servidor y Turnstile */
 var info=null,jwt=null,jwtExp=0,tsWidget=null,tsWait=[];
 function setStatus(cls,es,en){var s=$('status');s.className='status '+cls;$('statusTxt').textContent=T(es,en);s._es=es;s._en=en}
+/* El servidor gratuito se duerme si nadie lo usa: la primera visita lo despierta (hasta ~1 min). */
+var checking=null;
 function check(){
+  if(checking)return checking;
   setStatus('wait','Comprobando servidor…','Checking server…');
-  fetch(API+'/',{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){info=j.cobalt||{};
+  var slow=setTimeout(function(){setStatus('wait','Despertando el servidor (puede tardar un minuto)…','Waking the server up (may take a minute)…')},3000);
+  var ctl=window.AbortController?new AbortController():null,kill=setTimeout(function(){if(ctl)ctl.abort()},90000);
+  checking=fetch(API+'/',{cache:'no-store',signal:ctl?ctl.signal:undefined}).then(function(r){return r.json()}).then(function(j){info=j.cobalt||{};
     setStatus('ok','Servidor en línea','Server online');
     if(info.turnstileSitekey)loadTurnstile();
-  }).catch(function(){info=null;setStatus('bad','Servidor fuera de línea','Server offline')});
+  }).catch(function(){info=null;setStatus('bad','Servidor fuera de línea','Server offline')}).then(function(){clearTimeout(slow);clearTimeout(kill);checking=null});
+  return checking;
 }
 function loadTurnstile(){if(window.turnstile||document.getElementById('tsjs'))return;var s=document.createElement('script');s.id='tsjs';s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__tsReady';s.async=true;document.head.appendChild(s)}
 window.__tsReady=function(){tsWidget=turnstile.render('#ts',{sitekey:info.turnstileSitekey,appearance:'interaction-only',size:'flexible',callback:function(tok){var w=tsWait;tsWait=[];w.forEach(function(f){f(tok)})},'error-callback':function(){var w=tsWait;tsWait=[];w.forEach(function(f){f(null)})}})};
@@ -186,7 +192,9 @@ function pump(){
 }
 function run(it){
   if(it.s.k==='spot'){it.state='err';it.msg=T('Spotify solo funciona en la app de escritorio.','Spotify only works in the desktop app.');render();return}
-  if(!info){it.state='err';it.msg=T('El servidor está fuera de línea ahora mismo.','The server is offline right now.');render();return}
+  if(!info){
+    if(checking||!it.waited){it.waited=true;it.state='work';render();running++;check().then(function(){running--;it.state='queued';pump()});return}
+    it.state='err';it.msg=T('El servidor está fuera de línea ahora mismo.','The server is offline right now.');render();return}
   running++;it.state='work';render();
   var o=it.opts,body={url:it.url,downloadMode:o.mode,videoQuality:o.vq,youtubeVideoCodec:o.codec,audioFormat:o.af,audioBitrate:o.ab,filenameStyle:'pretty'};
   auth().then(function(tok){var h={'Accept':'application/json','Content-Type':'application/json'};if(tok)h.Authorization='Bearer '+tok;
@@ -216,7 +224,7 @@ function render(){
   }).join('');
 }
 $('queue').addEventListener('click',function(e){var b=e.target.closest('button[data-a]');if(!b)return;var it=Q.find(function(x){return x.id===+b.dataset.id});if(!it)return;
-  if(b.dataset.a==='dl')save(it);else if(b.dataset.a==='retry'){it.state='queued';it.msg='';render();pump()}else{Q=Q.filter(function(x){return x!==it});render()}});
+  if(b.dataset.a==='dl')save(it);else if(b.dataset.a==='retry'){it.state='queued';it.msg='';it.waited=false;render();pump()}else{Q=Q.filter(function(x){return x!==it});render()}});
 $('add').onclick=add;
 $('urls').addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();add()}});
 $('pasteBtn').onclick=function(){navigator.clipboard.readText().then(function(t){$('urls').value+=($('urls').value?'\n':'')+t;$('urls').focus()},function(){toast(T('Pega con Ctrl+V','Paste with Ctrl+V'))})};

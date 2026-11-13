@@ -1,10 +1,37 @@
 # Servidor de KC Downloader Web
 
-La página `/laboratorio/kc-downloader/` habla con este servidor, que es una instancia propia de
+La página `/laboratorio/kc-downloader/` habla con una instancia propia de
 [cobalt](https://github.com/imputnet/cobalt) (AGPL-3.0) publicada en `https://dl.staticforge.me`.
 Esta carpeta no se publica en la web (está en `.assetsignore`).
 
-## Qué hace falta
+## Montaje actual: Render (plan gratuito)
+
+- **Servicio**: Web Service desde imagen existente `ghcr.io/imputnet/cobalt:11`, plan *Free*,
+  región Frankfurt.
+- **Variables**: las de `.env.example` más las fijas de abajo (Render lee `PORT=10000`, por eso
+  `API_PORT=10000`). Se pegan todas a la vez con *Add from .env*.
+  ```
+  API_URL=https://dl.staticforge.me/
+  API_PORT=10000
+  CORS_WILDCARD=0
+  CORS_URL=https://staticforge.me
+  API_AUTH_REQUIRED=1
+  RATELIMIT_WINDOW=60
+  RATELIMIT_MAX=20
+  DURATION_LIMIT=5400
+  ```
+- **Dominio**: en Render, *Settings → Custom Domains → dl.staticforge.me*; en Cloudflare, un
+  CNAME `dl` → `<servicio>.onrender.com` en modo *Solo DNS* (nube gris) para que Render pueda
+  emitir el certificado.
+- **Turnstile**: widget "KC Downloader Web" (modo Managed, dominio staticforge.me).
+- **Límites del plan gratuito**: se duerme tras 15 minutos sin uso y tarda hasta un minuto en
+  despertar (la web lo avisa y espera); 512 MB de RAM. YouTube bloquea a menudo las IPs de
+  centros de datos, así que puede fallar a ratos; Pinterest, TikTok, X, Instagram y SoundCloud
+  van mejor.
+
+## Alternativa: máquina propia con Docker
+
+### Qué hace falta
 
 - Una máquina encendida con Docker: un VPS, una mini PC, o el PC principal con Docker Desktop.
   YouTube bloquea mucho las IPs de centros de datos; una conexión de casa suele ir mejor.
@@ -13,7 +40,7 @@ Esta carpeta no se publica en la web (está en `.assetsignore`).
 El túnel de Cloudflare saca el servidor a internet sin abrir puertos en el router y sin mostrar la
 IP de la máquina: quien use la web solo ve `dl.staticforge.me`.
 
-## Pasos
+### Pasos
 
 1. **Túnel**: Cloudflare → Zero Trust → Networks → Tunnels → *Create a tunnel* → Cloudflared →
    nombre `kcdl` → entorno *Docker*. Copia el token (lo que va detrás de `--token`).
@@ -31,7 +58,7 @@ IP de la máquina: quien use la web solo ve `dl.staticforge.me`.
 5. **Comprobar**: abre `https://dl.staticforge.me/` en el navegador. Tiene que devolver un JSON con
    `"cobalt"` y `"turnstileSitekey"`. En la web, el indicador pasa a *Servidor en línea*.
 
-## Mantenimiento
+### Mantenimiento
 
 - Watchtower actualiza cobalt y cloudflared solo. Cuando YouTube cambia algo, cobalt suele
   sacar el arreglo en unos días.
