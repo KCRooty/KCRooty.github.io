@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/linux/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/linux/apple-touch-icon.png">
+<title data-en="Download · Static Linux">Descargar · Static Linux</title>
+<meta name="description" content="Dónde estará la ISO de Static Linux, requisitos, cómo construirla y cómo comprobarla." data-en-content="Where the Static Linux ISO will be, requirements, how to build it and how to check it.">
+<link rel="canonical" href="https://staticforge.me/linux/descargar/">
+<meta property="og:title" content="Descargar · Static Linux">
+<meta property="og:description" content="Dónde estará la ISO de Static Linux, requisitos, cómo construirla y cómo comprobarla.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://staticforge.me/linux/descargar/">
+<meta property="og:site_name" content="Static Forge">
+<meta property="og:image" content="https://staticforge.me/assets/og/linux.jpg">
+<meta name="theme-color" content="#0B0C10">
+<link rel="alternate" type="application/rss+xml" title="Static Linux · notas de desarrollo" href="/linux/blog/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
+<link rel="stylesheet" href="/linux/sl.css?v=20261113a">
+<link rel="stylesheet" href="/assets/lang.css">
+</head>
+<body>
+<a class="skip" href="/linux/#main" data-en="Skip to content">Saltar al contenido</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="mark" href="/linux/#main" aria-label="Static Linux, arriba" data-en-aria-label="Static Linux, back to top">static<b>linux</b><span class="cur" aria-hidden="true"></span></a>
+    <ul class="nav">
+      <li><a href="/linux/#que" data-en="What it is">Qué es</a></li>
+      <li><a href="/linux/galeria/" data-en="Gallery">Galería</a></li>
+      <li><a href="/linux/descargar/" data-en="Download">Descargar</a></li>
+      <li><a href="/linux/#estado" data-en="Status">Estado</a></li>
+      <li><a href="/linux/#wiki">Wiki</a></li>
+      <li><a href="/linux/blog/">Blog</a></li>
+      <li><a href="/linux/#comunidad" data-en="Community">Comunidad</a></li>
+    </ul>
+    <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
+      <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
+      <button type="button" data-setlang="en" aria-pressed="false" aria-label="English"><img src="/assets/flags/gb.svg" alt="" width="28" height="14"><span class="lbl">EN</span></button>
+    </div>
+    <a class="back" href="/" aria-label="Volver a Static Forge" data-en-aria-label="Back to Static Forge">← <span class="bk-txt">Static Forge</span></a>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+<header class="dl-hero">
+  <p class="label" data-en="download">descargar</p>
+  <h1 data-en="Download Static Linux">Descarga Static Linux</h1>
+  <p class="intro" data-en="One 64-bit ISO (x86_64, UEFI) that boots straight into the installer. You pick the desktop, theme, style, flavors and privacy profile while installing.">Una ISO de 64 bits (x86_64, UEFI) que arranca directamente en el instalador. El escritorio, el tema, el estilo, los sabores y el perfil de privacidad se eligen al instalar.</p>
+  <div class="release">
+    <p data-en="&lt;b&gt;There is no public ISO yet.&lt;/b&gt; The latest workshop build is &lt;code&gt;static-linux-2026.11.13-x86_64.iso&lt;/code&gt; and it installs from start to finish in a VM, but it still needs a network to install and has only been tested end to end with XFCE. It will be published signed when it is ready to use outside the workshop, and announced in the blog."><b>Todavía no hay ISO pública.</b> La última del taller es <code>static-linux-2026.11.13-x86_64.iso</code> y se instala de principio a fin en una máquina virtual, pero aún necesita red para instalar y solo se ha probado entera con XFCE. Se publicará firmada cuando esté lista para usarse fuera del taller, y se anunciará en el blog.</p>
+    <a class="btn" href="/linux/blog/feed.xml" data-en="Follow by RSS">Seguir por RSS</a>
+  </div>
+</header>
+
+<section id="espejos" aria-labelledby="h-mir">
+  <p class="label" data-en="01 · where">01 · dónde</p>
+  <h2 id="h-mir" data-en="Where it will be">Dónde estará</h2>
+  <div class="mirrors">
+    <article class="mirror"><h3>SourceForge</h3><p data-en="The main mirror: the ISO, its SHA256 sum and its GPG signature, side by side.">El espejo principal: la ISO, su suma SHA256 y su firma GPG, una al lado de la otra.</p><a class="btn" href="https://sourceforge.net/projects/static-linux/" target="_blank" rel="noopener" data-en="Project page ↗">Página del proyecto ↗</a></article>
+    <article class="mirror"><h3>GitHub Releases</h3><p data-en="The release notes of each version: changes, fixes and known issues, with links to the files.">Las notas de cada versión: cambios, arreglos y problemas conocidos, con enlaces a los archivos.</p><a class="btn" href="https://github.com/KCRooty/static-linux/releases" target="_blank" rel="noopener" data-en="Releases ↗">Versiones ↗</a></article>
+    <article class="mirror"><h3 data-en="Build it yourself">Constrúyela tú</h3><p data-en="Available today: the ISO comes out of the repository with one script, on any Arch system.">Disponible hoy: la ISO sale del repositorio con un script, en cualquier Arch.</p><a class="btn pri" href="#construir" data-en="How">Cómo</a></article>
+  </div>
+</section>
+
+<section id="requisitos" aria-labelledby="h-req">
+  <p class="label" data-en="02 · requirements">02 · requisitos</p>
+  <h2 id="h-req" data-en="What your machine needs">Qué necesita tu equipo</h2>
+  <div class="table-wrap" style="margin-top:32px">
+    <table>
+      <thead><tr><th data-en="Tier">Nivel</th><th>RAM</th><th data-en="Disk">Disco</th><th data-en="Recommended desktop">Entorno recomendado</th></tr></thead>
+      <tbody>
+        <tr><td data-en="Absolute minimum">Mínimo absoluto</td><td>512 MB</td><td>10 GB</td><td>Openbox minimal</td></tr>
+        <tr><td data-en="Usable minimum">Mínimo funcional</td><td>1 GB</td><td>15 GB</td><td data-en="Themed XFCE">XFCE temático</td></tr>
+        <tr><td data-en="Standard">Estándar</td><td>2 GB</td><td>20 GB</td><td data-en="XFCE or Hyprland lite">XFCE o Hyprland lite</td></tr>
+        <tr><td data-en="Recommended">Recomendado</td><td>4 GB</td><td>30 GB</td><td>Hyprland · KDE Plasma</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sub" data-en="64-bit x86 only, with UEFI. Secure Boot must be off (GRUB is unsigned). Old BIOS boot is still to be tested. The installer needs an internet connection for now.">Solo x86 de 64 bits, con UEFI. Secure Boot tiene que ir apagado (GRUB va sin firmar). El arranque en BIOS antigua está por probar. Por ahora el instalador necesita conexión a internet.</p>
+</section>
+
+<section id="construir" aria-labelledby="h-build">
+  <p class="label" data-en="03 · build">03 · construir</p>
+  <h2 id="h-build" data-en="Build the ISO">Construye la ISO</h2>
+  <p class="intro" data-en="On Arch or Static Linux, with about 15 GB free. The script builds the local packages, then the ISO with archiso.">En Arch o Static Linux, con unos 15 GB libres. El script construye los paquetes propios y después la ISO con archiso.</p>
+  <pre class="cmd"><span class="c"># herramientas</span>
+sudo pacman -S --needed archiso git base-devel
+<span class="c"># código</span>
+git clone https://github.com/KCRooty/static-linux
+cd static-linux
+<span class="c"># paquetes propios, como usuario normal</span>
+packages/local-repo.sh
+<span class="c"># ISO online (~1,7 GB, sale en iso/out/)</span>
+sudo iso/build.sh online</pre>
+  <p class="sub" data-en="Details and options in &lt;code&gt;iso/README.md&lt;/code&gt; of the repository. To try it without touching your disk, boot it in QEMU or VirtualBox with UEFI enabled.">Detalles y opciones en <code>iso/README.md</code> del repositorio. Para probarla sin tocar tu disco, arráncala en QEMU o VirtualBox con UEFI activado.</p>
+</section>
+
+<section id="verificar" aria-labelledby="h-ver">
+  <p class="label" data-en="04 · verify">04 · verificar</p>
+  <h2 id="h-ver" data-en="Check the ISO">Comprueba la ISO</h2>
+  <p class="intro" data-en="When the public ISO is out, each one will come with a SHA256 sum and a GPG signature. With the three files in the same folder:">Cuando salga la ISO pública, cada una llevará su suma SHA256 y su firma GPG. Con los tres archivos en la misma carpeta:</p>
+  <pre class="cmd">sha256sum -c static-linux-<i>VERSION</i>-x86_64.iso.sha256
+gpg --verify static-linux-<i>VERSION</i>-x86_64.iso.sig</pre>
+  <p class="sub" data-en="The signing key will be published here and in the repository together with the first release.">La clave de firma se publicará aquí y en el repositorio junto con la primera versión.</p>
+</section>
+
+<section id="ciclo" aria-labelledby="h-cyc">
+  <p class="label" data-en="05 · updates">05 · actualizaciones</p>
+  <h2 id="h-cyc" data-en="Rolling, like Arch">Continua, como Arch</h2>
+  <p class="intro" data-en="Once installed there is no reinstalling for new versions: the system updates as a whole. New ISOs only make the first install shorter.">Una vez instalada no hay que reinstalar para tener versiones nuevas: el sistema se actualiza entero. Las ISO nuevas solo acortan la primera instalación.</p>
+  <pre class="cmd">sudo pacman -Syu   <span class="c"># o: paru</span></pre>
+</section>
+</div>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span data-en="Static Linux is a &lt;a href=&quot;/&quot;&gt;Static Forge&lt;/a&gt; project. Talk to us on &lt;a href=&quot;https://discord.gg/bVdwvtnbuH&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Discord&lt;/a&gt; or watch us on &lt;a href=&quot;https://www.tiktok.com/@staticforge2&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;TikTok&lt;/a&gt;.">Static Linux es un proyecto de <a href="/">Static Forge</a>. Habla con nosotros en <a href="https://discord.gg/bVdwvtnbuH" target="_blank" rel="noopener">Discord</a> o míranos en <a href="https://www.tiktok.com/@staticforge2" target="_blank" rel="noopener">TikTok</a>.</span>
+    <span><a href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener">GitHub</a> · <a id="slmail" href="/#solicitud"></a></span>
+    <span style="font-family:var(--fm)">fast. private. yours.</span>
+  </div>
+</footer>
+<script>/* correo del estudio, montado aquí para no dejarlo en claro en el HTML */
+(function(){var a=['staticforge','staticforge.me'].join('@'),m=document.getElementById('slmail');m.href='mailto:'+a+'?subject='+encodeURIComponent('Static Linux');m.textContent=a})();
+</script>
+<script src="/assets/lang.js"></script>
+</body>
+</html>

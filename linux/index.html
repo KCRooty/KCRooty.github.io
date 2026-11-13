@@ -24,7 +24,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>(function(){var l;try{l=localStorage.getItem('sf-lang')}catch(e){}document.documentElement.setAttribute('lang',l==='en'?'en':'es')})();</script>
 <link rel="alternate" type="application/rss+xml" title="Static Linux · notas de desarrollo" href="/linux/blog/feed.xml">
-<link rel="stylesheet" href="/linux/sl.css?v=20261112a">
+<link rel="stylesheet" href="/linux/sl.css?v=20261113a">
 <link rel="stylesheet" href="/assets/join.css?v=20261027a">
 <link rel="stylesheet" href="/assets/lang.css">
 </head>
@@ -36,12 +36,12 @@
     <a class="mark" href="#main" aria-label="Static Linux, arriba" data-en-aria-label="Static Linux, back to top">static<b>linux</b><span class="cur" aria-hidden="true"></span></a>
     <ul class="nav">
       <li><a href="#que" data-en="What it is">Qué es</a></li>
-      <li><a href="#herramientas" data-en="Tools">Herramientas</a></li>
-      <li><a href="#temas" data-en="Themes">Temas</a></li>
+      <li><a href="/linux/galeria/" data-en="Gallery">Galería</a></li>
+      <li><a href="/linux/descargar/" data-en="Download">Descargar</a></li>
       <li><a href="#estado" data-en="Status">Estado</a></li>
       <li><a href="#wiki">Wiki</a></li>
       <li><a href="/linux/blog/">Blog</a></li>
-      <li><a href="#unete" data-en="Join">Únete</a></li>
+      <li><a href="#comunidad" data-en="Community">Comunidad</a></li>
     </ul>
     <div class="langsw" role="group" aria-label="Idioma" data-en-aria-label="Language">
       <button type="button" data-setlang="es" aria-pressed="true" aria-label="Español"><img src="/assets/flags/es.svg" alt="" width="21" height="14"><span class="lbl">ES</span></button>
@@ -53,47 +53,54 @@
 
 <main id="main">
 <div class="wrap">
-  <header class="hero">
-    <div>
-      <p class="prompt"><span>core@forge</span>:~$ sl-ctl info</p>
-      <h1>Static Linux<span class="tagline">fast. private. yours.</span></h1>
-      <p class="lead" data-en="Static Forge's distribution. An Arch base, an installer that &lt;strong&gt;looks at your hardware before recommending anything&lt;/strong&gt; and zero telemetry, always.">La distribución de Static Forge. Base Arch, un instalador que <strong>mira tu hardware antes de recomendarte nada</strong> y cero telemetría, siempre.</p>
-      <div class="cta">
-        <a class="btn pri" href="#estado" data-en="See where it stands">Ver en qué punto está</a>
-        <a class="btn" href="#wiki" data-en="Read the wiki">Leer la wiki</a>
-        <a class="btn" href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener" data-en="Code on GitHub ↗">Código en GitHub ↗</a>
-        <a class="btn" href="#unete" data-en="Join">Únete</a>
-      </div>
-      <div class="phases" aria-label="Fases del proyecto" data-en-aria-label="Project phases">
-        <span class="ph ok" data-en="phase 1 ✓">fase 1 ✓</span><span class="ph ok" data-en="phase 2 ✓">fase 2 ✓</span><span class="ph now" data-en="phase 3 · in progress">fase 3 · en curso</span>
-      </div>
+  <header class="hero hero-show">
+    <p class="prompt"><span>core@forge</span>:~$ sl-ctl info</p>
+    <h1>Static Linux<span class="tagline">fast. private. yours.</span></h1>
+    <p class="lead" data-en="Static Forge's Arch-based distribution. An installer that &lt;strong&gt;looks at your hardware before recommending anything&lt;/strong&gt;, nine themes that dress the whole desktop at once, and zero telemetry, always.">La distribución de Static Forge, sobre Arch. Un instalador que <strong>mira tu hardware antes de recomendarte nada</strong>, nueve temas que visten todo el escritorio a la vez y cero telemetría, siempre.</p>
+    <div class="cta">
+      <a class="btn pri" href="/linux/descargar/" data-en="Download">Descargar</a>
+      <a class="btn" href="/linux/galeria/" data-en="See the gallery">Ver la galería</a>
+      <a class="btn" href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener" data-en="Code on GitHub ↗">Código en GitHub ↗</a>
     </div>
-    <aside class="term" aria-label="Ficha del sistema" data-en-aria-label="System sheet">
-      <div class="term-h"><span>static-linux</span><span data-en="spec">ficha</span></div>
-      <div class="term-b">
-        <dl>
-          <dt>base</dt><dd>Arch Linux (rolling)</dd>
-          <dt>init</dt><dd>systemd</dd>
-          <dt data-en="installer">instalador</dt><dd>Calamares + sl-detect</dd>
-          <dt data-en="desktop">escritorio</dt><dd>XFCE · KDE Plasma · Hyprland · Openbox</dd>
-          <dt data-en="boot">arranque</dt><dd>GRUB · UEFI</dd>
-          <dt>aur</dt><dd>paru</dd>
-          <dt data-en="license">licencia</dt><dd>GPL-3.0</dd>
-          <dt data-en="telemetry">telemetría</dt><dd>0</dd>
-        </dl>
-        <p class="end">fast. private. yours.</p>
-      </div>
-    </aside>
+    <div class="phases" aria-label="Fases del proyecto" data-en-aria-label="Project phases">
+      <span class="ph ok" data-en="phase 1 ✓">fase 1 ✓</span><span class="ph ok" data-en="phase 2 ✓">fase 2 ✓</span><span class="ph now" data-en="phase 3 · in progress">fase 3 · en curso</span>
+    </div>
+    <div class="showcase">
+      <img class="sc-side sc-l" src="/linux/img/temas/mini/nube.webp" width="640" height="360" alt="" loading="eager">
+      <img class="sc-side sc-r" src="/linux/img/temas/mini/aero.webp" width="640" height="360" alt="" loading="eager">
+      <a class="sc-main" href="/linux/galeria/"><img src="/linux/img/temas/ambar.webp" width="1280" height="720" alt="Escritorio XFCE de Static Linux con el tema Ámbar" data-en-alt="Static Linux XFCE desktop with the Amber theme" loading="eager"></a>
+    </div>
   </header>
 
   <section id="que" aria-labelledby="h-que">
     <p class="label" data-en="01 · the project">01 · el proyecto</p>
     <h2 id="h-que" data-en="What Static Linux is">Qué es Static Linux</h2>
-    <div class="grid g4">
-      <article class="card"><span class="k">base</span><h3>Arch Linux</h3><p data-en="Rolling release, Arch repos and the AUR (through &lt;code&gt;paru&lt;/code&gt;), with no extra layers between you and the system.">Rolling release, repos de Arch y AUR (vía <code>paru</code>), sin capas de más entre el sistema y tú.</p></article>
-      <article class="card"><span class="k" data-en="desktop">escritorio</span><h3 data-en="The one your machine can handle">El que tu equipo aguanta</h3><p data-en="Five environments, from Openbox on 512 MB to Hyprland and KDE Plasma. &lt;code&gt;sl-detect&lt;/code&gt; recommends one based on your hardware.">Cinco entornos, de Openbox con 512 MB a Hyprland y KDE Plasma. <code>sl-detect</code> recomienda uno según tu hardware.</p></article>
-      <article class="card"><span class="k" data-en="installer">instalador</span><h3>Calamares</h3><p data-en="A guided graphical install: it detects the hardware, you pick the environment, theme, flavors, apps and privacy, and you are done. It fits any screen, 4K included.">Instalación gráfica guiada y en español: detecta el hardware, eliges entorno, tema, sabores, apps y privacidad, y listo. Se adapta a cualquier pantalla, 4K incluida.</p></article>
-      <article class="card"><span class="k" data-en="philosophy">filosofía</span><h3 data-en="Private by default">Privado por defecto</h3><p data-en="Zero telemetry in every profile. It is not an option: it is the baseline.">Cero telemetría en todos los perfiles. No es una opción: es la línea base.</p></article>
+    <div class="que">
+      <div>
+        <p class="intro" data-en="A distribution built on Arch Linux that sets itself up for your machine: it detects the hardware, recommends the desktop that machine can handle and arrives themed, private and ready to use. No extra layers between you and the system: Arch repos, the AUR through &lt;code&gt;paru&lt;/code&gt; and a rolling release.">Una distribución sobre Arch Linux que se configura para tu equipo: detecta el hardware, te recomienda el escritorio que ese equipo aguanta y llega con tema, privada y lista para usar. Sin capas de más entre el sistema y tú: repos de Arch, AUR vía <code>paru</code> y actualización continua.</p>
+        <div class="feats">
+          <article class="feat"><span class="fi" aria-hidden="true">⚡</span><h3 data-en="Light">Ligero</h3><p data-en="From Openbox on 512 MB to Hyprland and KDE Plasma. Design rule: a desktop that uses more than 500 MB of RAM at idle is a bug.">De Openbox con 512 MB a Hyprland y KDE Plasma. Regla de diseño: un escritorio que pasa de 500 MB de RAM en reposo es un bug.</p></article>
+          <article class="feat"><span class="fi" aria-hidden="true">◐</span><h3 data-en="Good-looking">Bonito</h3><p data-en="Nine themes and four styles. One click changes the wallpaper, windows, bar, GTK apps, terminal and folders together. All of them pass AA contrast.">Nueve temas y cuatro estilos. Un clic cambia a la vez fondo, ventanas, barra, apps GTK, terminal y carpetas. Todos pasan el contraste AA.</p></article>
+          <article class="feat"><span class="fi" aria-hidden="true">◆</span><h3 data-en="Private">Privado</h3><p data-en="Zero telemetry in every profile, encrypted DNS from the first boot, firewall and randomised MAC. It is not an option: it is the baseline.">Cero telemetría en todos los perfiles, DNS cifrado desde el primer arranque, cortafuegos y MAC aleatoria. No es una opción: es la línea base.</p></article>
+        </div>
+      </div>
+      <aside class="term" aria-label="Ficha del sistema" data-en-aria-label="System sheet">
+        <div class="term-h"><span>static-linux</span><span data-en="spec">ficha</span></div>
+        <div class="term-b">
+          <dl>
+            <dt>base</dt><dd>Arch Linux (rolling)</dd>
+            <dt>init</dt><dd>systemd</dd>
+            <dt data-en="installer">instalador</dt><dd>Calamares + sl-detect</dd>
+            <dt data-en="desktop">escritorio</dt><dd>XFCE · KDE Plasma · Hyprland · Openbox</dd>
+            <dt data-en="themes">temas</dt><dd data-en="9 themes · 4 styles">9 temas · 4 estilos</dd>
+            <dt data-en="boot">arranque</dt><dd>GRUB · UEFI</dd>
+            <dt>aur</dt><dd>paru</dd>
+            <dt data-en="license">licencia</dt><dd>GPL-3.0</dd>
+            <dt data-en="telemetry">telemetría</dt><dd>0</dd>
+          </dl>
+          <p class="end">fast. private. yours.</p>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -112,50 +119,24 @@
 
   <section id="temas" aria-labelledby="h-temas">
     <p class="label" data-en="03 · themes">03 · temas</p>
-    <h2 id="h-temas" data-en="Themes: wallpaper + palette">Temas: fondo + paleta</h2>
-    <p class="intro" data-en="A theme is a wallpaper and a palette taken from it, and it sets the look of everything at once: windows, bar, GTK apps, terminal, fastfetch and folders. You pick it in the installer and change it whenever you like from the welcome app or with &lt;code&gt;sl-theme&lt;/code&gt;, which backs up what it replaces. All of them pass AA contrast. The screenshots are real, on XFCE.">Un tema es un fondo y una paleta sacada de él, y decide el aspecto de todo a la vez: ventanas, barra, apps GTK, terminal, fastfetch y carpetas. Se elige en el instalador y se cambia cuando quieras desde la bienvenida o con <code>sl-theme</code>, que guarda copia de lo que sustituye. Todos pasan el contraste AA. Las capturas son reales, de XFCE.</p>
-    <div class="gal">
-      <figure class="shot">
-        <a href="/linux/img/temas/ambar.webp" target="_blank" rel="noopener"><img src="/linux/img/temas/ambar.webp" width="1280" height="720" loading="eager" alt="Escritorio XFCE con el tema Ámbar" data-en-alt="XFCE desktop with the Amber theme"></a>
-        <figcaption><b data-en="Amber">Ámbar</b> <span data-en="dark · default">oscuro · por defecto</span><small data-en="Hokusai, Storm below Mount Fuji">Hokusai, «Tormenta bajo el Fuji»</small></figcaption>
-      </figure>
-      <figure class="shot">
-        <a href="/linux/img/temas/papel.webp" target="_blank" rel="noopener"><img src="/linux/img/temas/papel.webp" width="1280" height="720" loading="eager" alt="Escritorio XFCE con el tema Papel" data-en-alt="XFCE desktop with the Paper theme"></a>
-        <figcaption><b data-en="Paper">Papel</b> <span data-en="light">claro</span><small data-en="Hokusai, Fujimigahara in Owari">Hokusai, «Fujimigahara en Owari»</small></figcaption>
-      </figure>
-      <figure class="shot">
-        <a href="/linux/img/temas/nordico.webp" target="_blank" rel="noopener"><img src="/linux/img/temas/nordico.webp" width="1280" height="720" loading="lazy" alt="Escritorio XFCE con el tema Nórdico" data-en-alt="XFCE desktop with the Nordic theme"></a>
-        <figcaption><b data-en="Nordic">Nórdico</b> <span data-en="dark">oscuro</span><small data-en="Hiroshige, Evening Snow at Kanbara">Hiroshige, «Nieve al anochecer en Kanbara»</small></figcaption>
-      </figure>
-      <figure class="shot">
-        <a href="/linux/img/temas/bosque.webp" target="_blank" rel="noopener"><img src="/linux/img/temas/bosque.webp" width="1280" height="720" loading="lazy" alt="Escritorio XFCE con el tema Bosque" data-en-alt="XFCE desktop with the Forest theme"></a>
-        <figcaption><b data-en="Forest">Bosque</b> <span data-en="dark">oscuro</span><small data-en="Hiroshige, Spring Rain at Tsuchiyama">Hiroshige, «Lluvia de primavera en Tsuchiyama»</small></figcaption>
-      </figure>
-      <figure class="shot">
-        <a href="/linux/img/temas/sakura.webp" target="_blank" rel="noopener"><img src="/linux/img/temas/sakura.webp" width="1280" height="720" loading="lazy" alt="Escritorio XFCE con el tema Sakura" data-en-alt="XFCE desktop with the Sakura theme"></a>
-        <figcaption><b>Sakura</b> <span data-en="dark">oscuro</span><small data-en="Hokusai, Fuji from Gotenyama">Hokusai, «El Fuji desde Gotenyama»</small></figcaption>
-      </figure>
-      <figure class="shot">
-        <a href="/linux/img/temas/violeta.webp" target="_blank" rel="noopener"><img src="/linux/img/temas/violeta.webp" width="1280" height="720" loading="lazy" alt="Escritorio XFCE con el tema Violeta" data-en-alt="XFCE desktop with the Violet theme"></a>
-        <figcaption><b data-en="Violet">Violeta</b> <span data-en="dark">oscuro</span><small data-en="ridges at dusk (provisional)">montañas al anochecer (provisional)</small></figcaption>
-      </figure>
-      <figure class="shot">
-        <a href="/linux/img/temas/aero.webp" target="_blank" rel="noopener"><img src="/linux/img/temas/aero.webp" width="1280" height="720" loading="lazy" alt="Escritorio XFCE con el tema Aero" data-en-alt="XFCE desktop with the Aero theme"></a>
-        <figcaption><b>Aero</b> <span data-en="light · Aero style">claro · estilo Aero</span><small data-en="sky and bubbles, drawn by code">cielo y burbujas, dibujado por código</small></figcaption>
-      </figure>
-      <figure class="shot">
-        <a href="/linux/img/temas/ventanas.webp" target="_blank" rel="noopener"><img src="/linux/img/temas/ventanas.webp" width="1280" height="720" loading="lazy" alt="Escritorio XFCE con el tema Ventanas" data-en-alt="XFCE desktop with the Ventanas theme"></a>
-        <figcaption><b>Ventanas</b> <span data-en="dark · Ventanas style">oscuro · estilo Ventanas</span><small data-en="light ribbons, drawn by code">cintas de luz, dibujado por código</small></figcaption>
-      </figure>
+    <h2 id="h-temas" data-en="Nine themes, four styles">Nueve temas, cuatro estilos</h2>
+    <p class="intro" data-en="A theme is a wallpaper and a palette taken from it; a style sets the shapes (windows, bar, controls). You pick both in the installer and change them whenever you like from the welcome app or with &lt;code&gt;sl-theme&lt;/code&gt;, which backs up what it replaces. The screenshots are real, on XFCE.">Un tema es un fondo y una paleta sacada de él; un estilo decide las formas (ventanas, barra, controles). Los dos se eligen en el instalador y se cambian cuando quieras desde la bienvenida o con <code>sl-theme</code>, que guarda copia de lo que sustituye. Las capturas son reales, de XFCE.</p>
+    <div class="tiles">
+      <a class="tile" href="/linux/galeria/#ambar"><img src="/linux/img/temas/mini/ambar.webp" width="640" height="360" loading="lazy" alt=""><span><b data-en="Amber">Ámbar</b> <small data-en="dark · minimal">oscuro · minimal</small></span></a>
+      <a class="tile" href="/linux/galeria/#nube"><img src="/linux/img/temas/mini/nube.webp" width="640" height="360" loading="lazy" alt=""><span><b data-en="Cloud">Nube</b> <small data-en="light · estante">claro · estante</small></span></a>
+      <a class="tile" href="/linux/galeria/#aero"><img src="/linux/img/temas/mini/aero.webp" width="640" height="360" loading="lazy" alt=""><span><b data-en="Aero">Aero</b> <small data-en="light · aero">claro · aero</small></span></a>
+      <a class="tile" href="/linux/galeria/#nordico"><img src="/linux/img/temas/mini/nordico.webp" width="640" height="360" loading="lazy" alt=""><span><b data-en="Nordic">Nórdico</b> <small data-en="dark · minimal">oscuro · minimal</small></span></a>
+      <a class="tile" href="/linux/galeria/#ventanas"><img src="/linux/img/temas/mini/ventanas.webp" width="640" height="360" loading="lazy" alt=""><span><b data-en="Ventanas">Ventanas</b> <small data-en="dark · ventanas">oscuro · ventanas</small></span></a>
+      <a class="tile" href="/linux/galeria/#sakura"><img src="/linux/img/temas/mini/sakura.webp" width="640" height="360" loading="lazy" alt=""><span><b data-en="Sakura">Sakura</b> <small data-en="dark · minimal">oscuro · minimal</small></span></a>
     </div>
-    <h3 class="sub-h" data-en="Three styles">Tres estilos</h3>
-    <p class="intro" data-en="The style sets the shapes (windows, bar, controls); the theme brings colours and wallpaper. Changing only the palette keeps your own panel tweaks.">El estilo decide las formas (ventanas, barra, controles); el tema pone colores y fondo. Si solo cambias la paleta, tus retoques del panel se quedan.</p>
-    <div class="grid g3">
-      <article class="card style"><img src="/linux/img/temas/ambar.webp" width="1280" height="720" loading="lazy" alt="" ><span class="k">style=minimal</span><p data-en="A thin top bar with workspaces as dots and the clock in the middle. Solid windows with a 2 px border and three dots for buttons.">Barra fina arriba con los escritorios como puntos y el reloj en el centro. Ventanas sólidas con borde de 2 px y tres puntos por botones.</p></article>
-      <article class="card style"><img src="/linux/img/temas/aero.webp" width="1280" height="720" loading="lazy" alt="" ><span class="k">style=aero</span><p data-en="Frutiger Aero: glossy title bars, capsule buttons and a glossy taskbar at the bottom. The gloss is a gradient, nothing is see-through.">Frutiger Aero: barras de título con brillo, botones en cápsula y la barra de tareas abajo, también con brillo. El brillo es degradado, sin transparencias.</p></article>
-      <article class="card style"><img src="/linux/img/temas/ventanas.webp" width="1280" height="720" loading="lazy" alt="" ><span class="k">style=ventanas</span><p data-en="Close to Windows: taskbar at the bottom with apps in the middle and the active one underlined, flat ─ □ ✕ window buttons.">Parecido a Windows: barra abajo con las apps al centro y la activa subrayada, botones de ventana planos ─ □ ✕.</p></article>
+    <p class="more"><a class="btn pri" href="/linux/galeria/" data-en="Open the full gallery →">Abrir la galería completa →</a></p>
+    <h3 class="sub-h" data-en="Four styles">Cuatro estilos</h3>
+    <div class="grid g4">
+      <article class="card style"><img src="/linux/img/temas/mini/ambar.webp" width="640" height="360" loading="lazy" alt=""><span class="k">style=minimal</span><p data-en="A thin top bar, workspaces as dots, the clock in the middle and solid windows with three dots for buttons.">Barra fina arriba, escritorios como puntos, reloj en el centro y ventanas sólidas con tres puntos por botones.</p></article>
+      <article class="card style"><img src="/linux/img/temas/mini/aero.webp" width="640" height="360" loading="lazy" alt=""><span class="k">style=aero</span><p data-en="Frutiger Aero: glossy title bars, capsule buttons and a glossy taskbar at the bottom.">Frutiger Aero: barras de título con brillo, botones en cápsula y barra de tareas abajo con brillo.</p></article>
+      <article class="card style"><img src="/linux/img/temas/mini/ventanas.webp" width="640" height="360" loading="lazy" alt=""><span class="k">style=ventanas</span><p data-en="Close to Windows: apps in the middle of the bottom bar, the active one underlined, flat ─ □ ✕ buttons.">Parecido a Windows: apps al centro de la barra de abajo, la activa subrayada, botones planos ─ □ ✕.</p></article>
+      <article class="card style"><img src="/linux/img/temas/mini/nube.webp" width="640" height="360" loading="lazy" alt=""><span class="k">style=estante</span><p data-en="A launcher and shelf at the bottom, pinned apps in the middle, quick settings behind the clock and Alt+[ / Alt+] to snap windows.">Lanzador y estante abajo, apps fijadas al centro, ajustes rápidos tras el reloj y Alt+[ / Alt+] para ajustar ventanas.</p></article>
     </div>
-    <p class="sub" data-en="Today themes work on XFCE. KDE, Hyprland and Openbox get them next, then the login screen, boot and installer. The prints are public domain scans from the Metropolitan Museum (Open Access); credits ship inside the system.">Hoy los temas funcionan en XFCE. Después llegan a KDE, Hyprland y Openbox, y luego al inicio de sesión, el arranque y el instalador. Los grabados son escaneos de dominio público del Metropolitan Museum (Open Access); los créditos van dentro del sistema.</p>
   </section>
 
   <section id="estado" aria-labelledby="h-estado">
@@ -170,7 +151,7 @@
           <li data-en="&lt;strong&gt;Online ISO&lt;/strong&gt; tested in QEMU/KVM with UEFI: it boots, Calamares installs (ext4, XFCE and basic privacy), GRUB, LightDM, XFCE and sl-welcome."><strong>ISO online</strong> probada en QEMU/KVM con UEFI: arranca, Calamares instala (ext4, XFCE y privacidad básica), GRUB, LightDM, XFCE y sl-welcome.</li>
           <li data-en="&lt;strong&gt;New installer:&lt;/strong&gt; style, flavors and app catalog pages, in Spanish and full screen at any resolution."><strong>Instalador nuevo:</strong> páginas de estilo, sabores y catálogo de apps, en español y a pantalla completa en cualquier resolución.</li>
           <li data-en="&lt;strong&gt;Real encrypted DNS:&lt;/strong&gt; every query goes through dnscrypt-proxy from the first boot."><strong>DNS cifrado de verdad:</strong> todas las consultas pasan por dnscrypt-proxy desde el primer arranque.</li>
-          <li data-en="&lt;strong&gt;Eight themes and three styles&lt;/strong&gt; (minimal, aero, ventanas) on XFCE, chosen in the installer, in sl-welcome or with &lt;code&gt;sl-ctl theme&lt;/code&gt;."><strong>Ocho temas y tres estilos</strong> (minimal, aero, ventanas) en XFCE, elegibles en el instalador, en sl-welcome o con <code>sl-ctl theme</code>.</li>
+          <li data-en="&lt;strong&gt;Nine themes and four styles&lt;/strong&gt; (minimal, aero, ventanas, estante) on XFCE, chosen in the installer, in sl-welcome or with &lt;code&gt;sl-ctl theme&lt;/code&gt;. Install with the Cloud theme tested on 13 November 2026."><strong>Nueve temas y cuatro estilos</strong> (minimal, aero, ventanas, estante) en XFCE, elegibles en el instalador, en sl-welcome o con <code>sl-ctl theme</code>. Instalación con el tema Nube probada el 13 de noviembre de 2026.</li>
           <li data-en="Brave Origin comes preinstalled, the Super key opens the menu and multimedia codecs are included.">Brave Origin preinstalado, la tecla Super abre el menú y vienen los códecs multimedia.</li>
         </ul>
       </article>
@@ -189,8 +170,20 @@
     <p class="note" data-en="&lt;b&gt;Development notes:&lt;/b&gt; every release and every big step, with fixes and known issues, in the &lt;a href=&quot;/linux/blog/&quot;&gt;blog&lt;/a&gt; (also by &lt;a href=&quot;/linux/blog/feed.xml&quot;&gt;RSS&lt;/a&gt;). Latest: &lt;a href=&quot;/linux/blog/2026-11-temas-estilos-codigo-abierto/&quot;&gt;Themes, styles and the code, in the open&lt;/a&gt;."><b>Notas de desarrollo:</b> cada versión y cada paso grande, con arreglos y problemas conocidos, en el <a href="/linux/blog/">blog</a> (también por <a href="/linux/blog/feed.xml">RSS</a>). La última: <a href="/linux/blog/2026-11-temas-estilos-codigo-abierto/">Temas, estilos y el código, abierto</a>.</p>
   </section>
 
+  <section id="descargar" class="dl-band" aria-labelledby="h-dl">
+    <div>
+      <p class="label" data-en="05 · download">05 · descargar</p>
+      <h2 id="h-dl" data-en="Get Static Linux">Consigue Static Linux</h2>
+      <p class="intro" data-en="The public ISO is not out yet: it will be released signed, on SourceForge, once the install is ready outside the workshop. Meanwhile you can build it yourself from the code.">La ISO pública todavía no ha salido: se publicará firmada, en SourceForge, cuando la instalación esté lista fuera del taller. Mientras tanto puedes construirla tú desde el código.</p>
+    </div>
+    <div class="cta">
+      <a class="btn pri" href="/linux/descargar/" data-en="Download page">Página de descarga</a>
+      <a class="btn" href="/linux/descargar/#construir" data-en="Build the ISO">Construir la ISO</a>
+    </div>
+  </section>
+
   <section id="wiki" aria-labelledby="h-wiki">
-    <p class="label" data-en="05 · documentation">05 · documentación</p>
+    <p class="label" data-en="06 · documentation">06 · documentación</p>
     <h2 id="h-wiki">Wiki</h2>
     <p class="intro" data-en="The essentials of every piece, in one place.">Lo esencial de cada pieza, en un sitio.</p>
 
@@ -266,8 +259,22 @@
     </div>
   </section>
 
+  <section id="comunidad" aria-labelledby="h-com">
+    <p class="label" data-en="07 · community">07 · comunidad</p>
+    <h2 id="h-com" data-en="Talk to us">Habla con nosotros</h2>
+    <p class="intro" data-en="Questions, bugs, screenshots of your desktop or ideas for a theme: there is a place for each.">Dudas, fallos, capturas de tu escritorio o ideas para un tema: hay un sitio para cada cosa.</p>
+    <div class="links">
+      <a class="lnk" href="https://discord.gg/bVdwvtnbuH" target="_blank" rel="noopener"><b>Discord</b><span data-en="chat with the workshop">charla con el taller</span></a>
+      <a class="lnk" href="https://github.com/KCRooty/static-linux/issues" target="_blank" rel="noopener"><b>Issues</b><span data-en="report a bug">avisa de un fallo</span></a>
+      <a class="lnk" href="https://github.com/KCRooty/static-linux" target="_blank" rel="noopener"><b>GitHub</b><span data-en="code, GPL-3.0">el código, GPL-3.0</span></a>
+      <a class="lnk" href="/linux/blog/"><b>Blog</b><span data-en="development notes · RSS">notas de desarrollo · RSS</span></a>
+      <a class="lnk" href="https://www.tiktok.com/@staticforge2" target="_blank" rel="noopener"><b>TikTok</b><span data-en="the workshop on video">el taller en vídeo</span></a>
+      <a class="lnk" href="/foros.html"><b data-en="Forum">Foro</b><span data-en="Static Forge community">comunidad de Static Forge</span></a>
+    </div>
+  </section>
+
   <section id="unete" aria-labelledby="h-unete">
-    <p class="label" data-en="06 · join">06 · únete</p>
+    <p class="label" data-en="08 · join">08 · únete</p>
     <h2 id="h-unete" data-en="Join Static Linux">Únete a Static Linux</h2>
     <p class="intro join-intro" data-en="Static Linux is made by a small workshop and phase 3 has work for several profiles: packages, the installer, &lt;code&gt;sl-detect&lt;/code&gt;, desktops, the wiki or simply testing it on different machines. This application is only for Static Linux. For the rest of Static Forge there is the &lt;a href=&quot;/unete.html#solicitud&quot;&gt;general application&lt;/a&gt;.">Static Linux lo hace un taller pequeño y la fase 3 tiene trabajo para varios perfiles: paquetes, el instalador, <code>sl-detect</code>, escritorios, la wiki o, simplemente, probarlo en equipos distintos. Esta solicitud es solo para Static Linux. Para el resto de Static Forge está la <a href="/unete.html#solicitud">solicitud general</a>.</p>
     <form class="joinf" data-join="linux" novalidate aria-labelledby="h-unete"></form>

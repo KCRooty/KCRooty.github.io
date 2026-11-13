@@ -23,6 +23,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 LINUX = HERE.parent
 SITE = "https://staticforge.me"
+CSS_V = "20261113a"  # sube con cada cambio de linux/sl.css
 sys.path.insert(0, str(HERE))
 from _posts import POSTS  # noqa: E402
 
@@ -47,7 +48,7 @@ def chrome() -> tuple[str, str]:
     start = page.index('<a class="skip"')
     head_end = page.index("</header>", start) + len("</header>")
     header = page[start:head_end]
-    header = re.sub(r'href="#(que|herramientas|temas|estado|wiki|unete)"', r'href="/linux/#\1"', header)
+    header = re.sub(r'href="#([\w-]+)"', r'href="/linux/#\1"', header)
     header = header.replace('href="#main"', 'href="/linux/"')
     foot_start = page.index("<footer>")
     foot_end = page.index("</footer>") + len("</footer>")
@@ -57,7 +58,7 @@ def chrome() -> tuple[str, str]:
     return header, footer + "\n" + mail
 
 
-def document(title: str, title_en: str, desc: str, desc_en: str, url: str, body: str) -> str:
+def document(title: str, title_en: str, desc: str, desc_en: str, url: str, body: str, scripts: str = "") -> str:
     header, footer = chrome()
     return f'''<!DOCTYPE html>
 <html lang="es">
@@ -81,7 +82,7 @@ def document(title: str, title_en: str, desc: str, desc_en: str, url: str, body:
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>(function(){{var l;try{{l=localStorage.getItem('sf-lang')}}catch(e){{}}document.documentElement.setAttribute('lang',l==='en'?'en':'es')}})();</script>
-<link rel="stylesheet" href="/linux/sl.css?v=20261112a">
+<link rel="stylesheet" href="/linux/sl.css?v={CSS_V}">
 <link rel="stylesheet" href="/assets/lang.css">
 </head>
 <body>
@@ -92,7 +93,7 @@ def document(title: str, title_en: str, desc: str, desc_en: str, url: str, body:
 </div>
 </main>
 {footer}
-<script src="/assets/lang.js"></script>
+{scripts}<script src="/assets/lang.js"></script>
 </body>
 </html>
 '''
