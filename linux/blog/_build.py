@@ -61,7 +61,7 @@ def chrome() -> tuple[str, str]:
 def document(title: str, title_en: str, desc: str, desc_en: str, url: str, body: str, scripts: str = "") -> str:
     header, footer = chrome()
     return f'''<!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-i18n="/linux/i18n/">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

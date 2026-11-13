@@ -18,7 +18,8 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-PAGES = [HERE / "index.html"]
+PAGES = [HERE / "index.html", HERE / "descargar/index.html", HERE / "galeria/index.html",
+         HERE / "blog/index.html", *sorted(HERE.glob("blog/20*/index.html"))]
 LANGS = ["ca", "eu", "gl", "fr", "de", "it", "pt", "pt-BR", "nl", "pl", "ru", "uk", "tr", "ja", "ko", "zh-CN"]
 ATTR = re.compile(r'\sdata-en(?:-(?:alt|aria-label|title|content|placeholder))?="([^"]*)"')
 
