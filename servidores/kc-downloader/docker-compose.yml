@@ -1,0 +1,56 @@
+# Servidor de KC Downloader Web: una instancia propia de cobalt (https://github.com/imputnet/cobalt, AGPL-3.0)
+# publicada en https://dl.staticforge.me a través de un túnel de Cloudflare.
+# El túnel no abre puertos en el router ni expone la IP de la máquina.
+# Pasos completos en README.md.
+
+services:
+  cobalt:
+    image: ghcr.io/imputnet/cobalt:11
+    init: true
+    read_only: true
+    restart: unless-stopped
+    container_name: kcdl-cobalt
+    env_file: .env
+    environment:
+      API_URL: "https://dl.staticforge.me/"
+      # Solo la web de Static Forge puede usar el servidor desde el navegador.
+      CORS_WILDCARD: "0"
+      CORS_URL: "https://staticforge.me"
+      # Límites para que nadie lo acapare.
+      RATELIMIT_WINDOW: "60"
+      RATELIMIT_MAX: "20"
+      DURATION_LIMIT: "5400"
+      # Sin Turnstile o clave, no responde.
+      API_AUTH_REQUIRED: "1"
+      # Descomenta si YouTube empieza a pedir verificación (ver README).
+      # YOUTUBE_SESSION_SERVER: "http://yt-session:8080/"
+    labels:
+      - com.centurylinklabs.watchtower.scope=kcdl
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    container_name: kcdl-tunnel
+    command: tunnel --no-autoupdate run
+    env_file: .env
+    depends_on:
+      - cobalt
+    labels:
+      - com.centurylinklabs.watchtower.scope=kcdl
+
+  # Actualiza cobalt y cloudflared solos cada 15 minutos.
+  watchtower:
+    image: ghcr.io/containrrr/watchtower
+    restart: unless-stopped
+    command: --cleanup --scope kcdl --interval 900 --include-restarting
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  # Opcional: genera los tokens que YouTube pide a veces (poToken).
+  # yt-session:
+  #   image: ghcr.io/imputnet/yt-session-generator:webserver
+  #   init: true
+  #   restart: unless-stopped
+  #   container_name: kcdl-yt-session
+  #   labels:
+  #     - com.centurylinklabs.watchtower.scope=kcdl

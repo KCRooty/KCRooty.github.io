@@ -78,7 +78,7 @@
       <p class="kick" data-en="Static Forge Lab">Laboratorio Static Forge</p>
       <h1 data-en="The Lab<span class='dot'>.</span>">Laboratorio<span class="dot">.</span></h1>
       <p class="lead" data-en="Mini projects, games and tools that run right in the browser. No installs, no accounts, no ads. New experiments get added here as they come out of the forge.">Mini proyectos, juegos y utilidades que funcionan directamente en el navegador. Sin instalar nada, sin cuentas y sin anuncios. Cada experimento nuevo que sale de la forja se queda aquí.</p>
-      <div class="meta"><span><b id="count">3</b> <span data-en="EXPERIMENTS">EXPERIMENTOS</span></span><span data-en="RUNS IN YOUR BROWSER">FUNCIONA EN TU NAVEGADOR</span><span data-en="NO ADS">SIN ANUNCIOS</span></div>
+      <div class="meta"><span><b id="count">7</b> <span data-en="EXPERIMENTS">EXPERIMENTOS</span></span><span data-en="RUNS IN YOUR BROWSER">FUNCIONA EN TU NAVEGADOR</span><span data-en="NO ADS">SIN ANUNCIOS</span></div>
     </div>
   </header>
 
@@ -91,6 +91,10 @@
         <li><a class="card" href="/paint-it/"><h2>Paint It!</h2><p>El Paint de toda la vida dentro de la web.</p></a></li>
         <li><a class="card" href="/laboratorio/snake/"><h2>Snake</h2><p>La serpiente de siempre.</p></a></li>
         <li><a class="card" href="/laboratorio/calculadora/"><h2>Calculadora científica</h2><p>Trigonometría, logaritmos y potencias.</p></a></li>
+        <li><a class="card" href="/laboratorio/quitafondos/"><h2>Quitafondos</h2><p>Quita el fondo de tus imágenes con IA.</p></a></li>
+        <li><a class="card" href="/laboratorio/kc-downloader/"><h2>KC Downloader Web</h2><p>Descarga vídeo y audio desde el navegador.</p></a></li>
+        <li><a class="card" href="/laboratorio/ascii/"><h2>Generador ASCII</h2><p>Imágenes y texto en arte ASCII.</p></a></li>
+        <li><a class="card" href="/laboratorio/morse/"><h2>Traductor Morse</h2><p>Texto a Morse y al revés, con sonido.</p></a></li>
       </ul>
     </noscript>
   </section>
@@ -113,12 +117,28 @@ var EXP=[
     en:{t:'Snake',d:'The classic snake, swimming in crystal-clear water. Keyboard, swipes or a touch d-pad.'}},
   {id:'calculadora',href:'/laboratorio/calculadora/',type:'tool',c:'#1a8fff',icon:'calc',date:'2026-11-13',
     es:{t:'Calculadora científica',d:'Trigonometría, logaritmos, potencias, factorial, grados o radianes e historial.'},
-    en:{t:'Scientific calculator',d:'Trigonometry, logarithms, powers, factorial, degrees or radians and history.'}}
+    en:{t:'Scientific calculator',d:'Trigonometry, logarithms, powers, factorial, degrees or radians and history.'}},
+  {id:'quitafondos',href:'/laboratorio/quitafondos/',type:'tool',c:'#9b4dff',icon:'cut',date:'2026-11-13',
+    es:{t:'Quitafondos',d:'Quita el fondo de cualquier imagen con IA, gratis y sin subirla a ningún servidor.'},
+    en:{t:'Background remover',d:'Remove the background from any image with AI, free and without uploading it anywhere.'}},
+  {id:'kc-downloader',href:'/laboratorio/kc-downloader/',type:'tool',c:'#e5243b',icon:'dl',date:'2026-11-13',
+    es:{t:'KC Downloader Web',d:'La versión web de KC Downloader: vídeo y audio de YouTube, Pinterest y más, con cola.'},
+    en:{t:'KC Downloader Web',d:'The web version of KC Downloader: video and audio from YouTube, Pinterest and more, with a queue.'}},
+  {id:'ascii',href:'/laboratorio/ascii/',type:'draw',c:'#0aa58c',icon:'ascii',date:'2026-11-13',
+    es:{t:'Generador ASCII',d:'Convierte imágenes en arte ASCII y escribe rótulos de texto ASCII con 30 fuentes.'},
+    en:{t:'ASCII generator',d:'Turn images into ASCII art and write ASCII text banners in 30 fonts.'}},
+  {id:'morse',href:'/laboratorio/morse/',type:'tool',c:'#ffb300',icon:'morse',date:'2026-11-13',
+    es:{t:'Traductor Morse',d:'Texto a Morse y al revés, con luz, sonido, descarga en WAV y manipulador para teclear.'},
+    en:{t:'Morse translator',d:'Text to Morse and back, with light, sound, WAV download and a key to tap it yourself.'}}
 ];
 var TYPES={game:{es:'JUEGO',en:'GAME'},tool:{es:'UTILIDAD',en:'TOOL'},draw:{es:'DIBUJO',en:'DRAWING'}};
 var ICONS={
   paint:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l5 5L10 19H5v-5z"/><path d="M12.5 6.5l5 5"/></svg>',
   snake:'<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="15" width="4" height="4" rx="1"/><rect x="7" y="15" width="4" height="4" rx="1"/><rect x="7" y="11" width="4" height="4" rx="1"/><rect x="7" y="7" width="4" height="4" rx="1"/><rect x="11" y="7" width="4" height="4" rx="1"/><rect x="15" y="7" width="4" height="4" rx="1"/><circle cx="19" cy="17" r="2"/></svg>',
+  cut:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12"/></svg>',
+  dl:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>',
+  ascii:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19L9 5l5 14M5.8 14h6.4"/><path d="M16 9h4M16 13h4M16 17h4"/></svg>',
+  morse:'<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="8" r="2"/><rect x="9" y="6.5" width="10" height="3" rx="1.5"/><rect x="3" y="14.5" width="10" height="3" rx="1.5"/><circle cx="17" cy="16" r="2"/></svg>',
   calc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8.5 12h1M14.5 12h1M8.5 16h1M14.5 16h1"/></svg>'
 };
 var NEW_DAYS=30, filter='all';
