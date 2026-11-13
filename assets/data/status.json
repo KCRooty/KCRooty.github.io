@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12T19:55:52Z",
+  "updated": "2026-11-13T19:44:51Z",
   "projects": {
     "xusb": {
       "repo": "KCRooty/X-USB",
@@ -33,7 +33,7 @@
     },
     "linux": {
       "repo": "KCRooty/static-linux",
-      "last_commit": "2026-11-12T17:05:31Z",
+      "last_commit": "2026-11-13T18:50:14Z",
       "version": null,
       "stars": 0
     },
