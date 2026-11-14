@@ -9,6 +9,98 @@ from datetime import date
 
 POSTS = [
     {
+        "slug": "2026-11-primera-iso-publica",
+        "date": date(2026, 11, 14),
+        "cat": "version",
+        "tags": ["iso", "privacidad", "instalador", "prueba"],
+        "title": "La primera ISO pública de prueba: 2026.11.14",
+        "title_en": "The first public test ISO: 2026.11.14",
+        "sub": "Ya se puede descargar Static Linux. Es una ISO de prueba de 4,8 GB que instala sin conexión: el sistema, cualquiera de los diez escritorios, los tres kernels y el perfil de privacidad van dentro. Firmada, y con la lista de lo que aún falla.",
+        "sub_en": "Static Linux can be downloaded now. It is a 4.8 GB test ISO that installs with no connection: the system, any of the ten desktops, the three kernels and the privacy profile are inside. Signed, and with the list of what still fails.",
+        "es": """
+<h2>Qué es esta ISO</h2>
+<p>Una <strong>versión de prueba</strong>. Se instala de principio a fin en máquinas virtuales y la he probado con varios escritorios y perfiles, pero todavía no en un PC real con la ISO: esa prueba llega cuando tenga otro equipo a mano. Si la pruebas en el tuyo, mejor en un disco que no te importe o en una máquina virtual, y cuéntanos qué pasa en Discord.</p>
+
+<h2>Una sola ISO, con o sin red</h2>
+<p>En vez de dos ISO (online y offline), una: la <strong>universal</strong>. Lleva dentro 1.300 paquetes (2,6 GB): la base, los diez escritorios, <code>linux-lts</code>, <code>linux-zen</code> y <code>linux-hardened</code>, y las herramientas de privacidad. Así:</p>
+<ul>
+<li><strong>Sin conexión</strong> instala el sistema completo, con el escritorio y el perfil que elijas. Probado en una VM sin salida a internet: KDE Plasma y el perfil Máximo, en unos 7 minutos.</li>
+<li><strong>Con conexión</strong> instala lo mismo desde la ISO, pone el sistema al día y añade los sabores.</li>
+<li>Los <strong>sabores</strong> (Gaming, Oficina…) no van dentro: doblarían el tamaño. Si instalas sin red, quedan apuntados y se añaden después con <code>sudo sl-ctl flavor add pending</code>.</li>
+</ul>
+<p>La ISO pesa <strong>4,8 GB</strong>: cabe en un USB de 8 GB. No se copia a la RAM al arrancar, así que también arranca en equipos de 2 GB.</p>
+
+<h2>private, comprobado</h2>
+<p>Antes de publicar dejé un sistema recién instalado en reposo con la red grabada y miré a quién hablaba. Salieron dos cosas, ya arregladas:</p>
+<ul>
+<li>dnscrypt-proxy probaba unos 170 servidores DNS públicos en cada arranque, algunos caseros. Ahora usa una lista corta: Quad9, Mullvad y dnscry.pt (Madrid, París, Fráncfort, Ámsterdam).</li>
+<li>NetworkManager preguntaba a <code>ping.archlinux.org</code> cada 5 minutos, por HTTP sin cifrar. Apagado. Lo único que se pierde es la página que abren solos los wifis de hotel.</li>
+</ul>
+<p>Tras eso, en reposo solo quedan el DNS cifrado y la hora (NTP). <code>sl-ctl audit</code> enseña lo mismo en tu equipo.</p>
+
+<h2>También en esta versión</h2>
+<ul>
+<li><strong>Repositorio propio firmado</strong>: las correcciones de Static Linux llegan con <code>sudo pacman -Syu</code>, sin reinstalar.</li>
+<li><strong>Instantáneas</strong> antes y después de cada actualización en BTRFS, y en el menú de arranque.</li>
+<li><code>sl-ctl flavor add/remove</code> y <code>sl-ctl audit</code>.</li>
+<li>AppArmor se carga de verdad en Mejorado y Máximo, y Máximo instala <code>linux-hardened</code> como prometía.</li>
+<li>Fondos nuevos para Aero y Nube, de fotos libres de Wikimedia Commons.</li>
+</ul>
+
+<h2>Problemas conocidos</h2>
+<ul>
+<li>Sin probar todavía en hardware real con la ISO, ni el arranque en BIOS antigua ni el cifrado LUKS.</li>
+<li>XFCE en reposo usa unos 700 MB de RAM, por encima de nuestro límite de 650 MB. Toca recortar.</li>
+<li>Secure Boot tiene que ir apagado.</li>
+<li>Los estilos (minimal, aero, ventanas, estante) solo dan forma a XFCE.</li>
+</ul>
+
+<h2>Descargar y comprobar</h2>
+<p>En la <a href="/linux/descargar/">página de descarga</a>: la ISO, su suma SHA256 y su firma con la clave de Static Forge (<code>3E61 7ED0 6C90 C757 35C9 C45E 51D5 8FA3 5045 B8D0</code>).</p>
+""",
+        "en": """
+<h2>What this ISO is</h2>
+<p>A <strong>test release</strong>. It installs from start to finish in virtual machines and I have tried it with several desktops and profiles, but not yet on a real PC from the ISO: that test comes when I have another machine at hand. If you try it on yours, better on a disk you do not mind losing or in a virtual machine, and tell us how it goes on Discord.</p>
+
+<h2>One ISO, with or without a network</h2>
+<p>Instead of two ISOs (online and offline), one: the <strong>universal</strong> one. It carries 1,300 packages (2.6 GB): the base, the ten desktops, <code>linux-lts</code>, <code>linux-zen</code> and <code>linux-hardened</code>, and the privacy tools. So:</p>
+<ul>
+<li><strong>With no connection</strong> it installs the whole system, with the desktop and profile you pick. Tested in a VM with no internet access: KDE Plasma and the Maximum profile, in about 7 minutes.</li>
+<li><strong>With a connection</strong> it installs the same from the ISO, updates the system and adds the flavors.</li>
+<li><strong>Flavors</strong> (Gaming, Office…) are not inside: they would double the size. If you install offline, they are noted down and added later with <code>sudo sl-ctl flavor add pending</code>.</li>
+</ul>
+<p>The ISO is <strong>4.8 GB</strong>: it fits on an 8 GB USB stick. It is not copied to RAM at boot, so it also boots on 2 GB machines.</p>
+
+<h2>private, checked</h2>
+<p>Before publishing I left a freshly installed system idle with its network traffic recorded and looked at who it talked to. Two things came up, both fixed:</p>
+<ul>
+<li>dnscrypt-proxy probed about 170 public DNS servers at every boot, some of them home servers. It now uses a short list: Quad9, Mullvad and dnscry.pt (Madrid, Paris, Frankfurt, Amsterdam).</li>
+<li>NetworkManager asked <code>ping.archlinux.org</code> every 5 minutes, over plain HTTP. Off. The only loss is the page hotel wifi opens on its own.</li>
+</ul>
+<p>After that, at idle only encrypted DNS and the clock (NTP) remain. <code>sl-ctl audit</code> shows the same on your machine.</p>
+
+<h2>Also in this release</h2>
+<ul>
+<li><strong>Our own signed repository</strong>: Static Linux fixes arrive with <code>sudo pacman -Syu</code>, no reinstall.</li>
+<li><strong>Snapshots</strong> before and after every update on BTRFS, and in the boot menu.</li>
+<li><code>sl-ctl flavor add/remove</code> and <code>sl-ctl audit</code>.</li>
+<li>AppArmor really loads in Enhanced and Maximum, and Maximum installs <code>linux-hardened</code> as promised.</li>
+<li>New wallpapers for Aero and Cloud, from free photos on Wikimedia Commons.</li>
+</ul>
+
+<h2>Known issues</h2>
+<ul>
+<li>Not tested yet on real hardware from the ISO, nor old BIOS boot, nor LUKS encryption.</li>
+<li>XFCE at idle uses about 700 MB of RAM, above our 650 MB limit. Trimming is next.</li>
+<li>Secure Boot must be off.</li>
+<li>Styles (minimal, aero, ventanas, estante) only shape XFCE.</li>
+</ul>
+
+<h2>Download and verify</h2>
+<p>On the <a href="/linux/descargar/">download page</a>: the ISO, its SHA256 sum and its signature with the Static Forge key (<code>3E61 7ED0 6C90 C757 35C9 C45E 51D5 8FA3 5045 B8D0</code>).</p>
+""",
+    },
+    {
         "slug": "2026-11-idiomas-rendimiento",
         "date": date(2026, 11, 13),
         "cat": "version",

@@ -6,6 +6,13 @@
   <description>Versiones, novedades y arreglos de Static Linux, la distribución de Static Forge.</description>
   <language>es</language>
   <item>
+    <title>La primera ISO pública de prueba: 2026.11.14</title>
+    <link>https://staticforge.me/linux/blog/2026-11-primera-iso-publica/</link>
+    <guid>https://staticforge.me/linux/blog/2026-11-primera-iso-publica/</guid>
+    <pubDate>Sat, 14 Nov 2026 12:00:00 +0000</pubDate>
+    <description>Ya se puede descargar Static Linux. Es una ISO de prueba de 4,8 GB que instala sin conexión: el sistema, cualquiera de los diez escritorios, los tres kernels y el perfil de privacidad van dentro. Firmada, y con la lista de lo que aún falla.</description>
+  </item>
+  <item>
     <title>18 idiomas, rendimiento de serie y los temas en todas partes</title>
     <link>https://staticforge.me/linux/blog/2026-11-idiomas-rendimiento/</link>
     <guid>https://staticforge.me/linux/blog/2026-11-idiomas-rendimiento/</guid>

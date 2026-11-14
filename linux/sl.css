@@ -8,6 +8,8 @@
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+button,summary,[role=button]{cursor:pointer}
+button:disabled,[aria-disabled=true]{cursor:not-allowed}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{background:var(--void);color:var(--text);font:400 16.5px/1.7 var(--fu);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit}
@@ -263,7 +265,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
 .fbtn{width:100%;display:flex;justify-content:space-between;align-items:center;min-height:40px;padding:0 12px;border:1px solid transparent;border-radius:var(--r-sm);background:none;color:var(--dim);font:500 .93rem var(--fu);cursor:pointer;text-align:left}
 .fbtn:hover{color:var(--bright);background:var(--panel2)}
 .fbtn[aria-pressed="true"]{color:var(--green);border-color:var(--green-d);background:rgba(0,200,160,.07)}
-.fbtn[disabled]{cursor:default;opacity:.55}
+.fbtn[disabled]{cursor:not-allowed;opacity:.55}
 .fbtn[disabled]:hover{background:none;color:var(--dim)}
 .fbtn small{font:400 .72rem var(--fm)}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;align-content:start}
@@ -317,3 +319,4 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px}
 pre.cmd{margin-top:16px;padding:16px 18px;border:1px solid var(--line);border-radius:var(--r);background:var(--panel);overflow-x:auto;font:400 .88rem/1.7 var(--fm);color:var(--text)}
 pre.cmd .c{color:var(--dim)}
 @media (max-width:900px){.mirrors{grid-template-columns:1fr}.release{grid-template-columns:1fr}}
+code.hash{word-break:break-all}

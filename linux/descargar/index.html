@@ -6,10 +6,10 @@
 <link rel="icon" href="/linux/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/linux/apple-touch-icon.png">
 <title data-en="Download · Static Linux">Descargar · Static Linux</title>
-<meta name="description" content="Dónde estará la ISO de Static Linux, requisitos, cómo construirla y cómo comprobarla." data-en-content="Where the Static Linux ISO will be, requirements, how to build it and how to check it.">
+<meta name="description" content="Descarga la ISO de Static Linux: espejos, requisitos, cómo comprobar la firma y cómo construirla." data-en-content="Download the Static Linux ISO: mirrors, requirements, how to check the signature and how to build it.">
 <link rel="canonical" href="https://staticforge.me/linux/descargar/">
 <meta property="og:title" content="Descargar · Static Linux">
-<meta property="og:description" content="Dónde estará la ISO de Static Linux, requisitos, cómo construirla y cómo comprobarla.">
+<meta property="og:description" content="Descarga la ISO de Static Linux: espejos, requisitos, cómo comprobar la firma y cómo construirla.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://staticforge.me/linux/descargar/">
 <meta property="og:site_name" content="Static Forge">
@@ -50,23 +50,22 @@
 <header class="dl-hero">
   <p class="label" data-en="download">descargar</p>
   <h1 data-en="Download Static Linux">Descarga Static Linux</h1>
-  <p class="intro" data-en="One 64-bit ISO (x86_64, UEFI) that boots straight into the installer. You pick the desktop, theme, style, flavors and privacy profile while installing.">Una ISO de 64 bits (x86_64, UEFI) que arranca directamente en el instalador. El escritorio, el tema, el estilo, los sabores y el perfil de privacidad se eligen al instalar.</p>
+  <p class="intro" data-en="One 64-bit ISO (x86_64, UEFI) that boots straight into the installer. You pick the desktop, theme, flavors and privacy profile while installing, and it installs with or without a connection.">Una ISO de 64 bits (x86_64, UEFI) que arranca directamente en el instalador. El escritorio, el tema, los sabores y el perfil de privacidad se eligen al instalar, y se instala con conexión o sin ella.</p>
   <div class="release">
-    <p data-en="&lt;b&gt;There is no public ISO yet.&lt;/b&gt; The latest workshop build is &lt;code&gt;static-linux-2026.11.13-x86_64.iso&lt;/code&gt; and it installs from start to finish in a VM, but it still needs a network to install and has only been tested end to end with XFCE. It will be published signed when it is ready to use outside the workshop, and announced in the blog."><b>Todavía no hay ISO pública.</b> La última del taller es <code>static-linux-2026.11.13-x86_64.iso</code> y se instala de principio a fin en una máquina virtual, pero aún necesita red para instalar y solo se ha probado entera con XFCE. Se publicará firmada cuando esté lista para usarse fuera del taller, y se anunciará en el blog.</p>
-    <a class="btn" href="/linux/blog/feed.xml" data-en="Follow by RSS">Seguir por RSS</a>
+    <p data-en="&lt;b&gt;Test release 2026.11.14.&lt;/b&gt; &lt;code&gt;static-linux-2026.11.14-x86_64.iso&lt;/code&gt;, 4.8 GB. It installs from start to finish in virtual machines, with or without a network, but has not been tried on real hardware from the ISO yet. Try it in a VM or on a disk you do not need. Known issues are in the &lt;a href=&quot;/linux/blog/2026-11-primera-iso-publica/&quot;&gt;release note&lt;/a&gt;."><b>Versión de prueba 2026.11.14.</b> <code>static-linux-2026.11.14-x86_64.iso</code>, 4,8 GB. Se instala de principio a fin en máquinas virtuales, con red o sin ella, pero aún no se ha probado en hardware real desde la ISO. Pruébala en una máquina virtual o en un disco que no necesites. Los problemas conocidos están en la <a href="/linux/blog/2026-11-primera-iso-publica/">nota de la versión</a>.</p>
+    <a class="btn pri" href="https://sourceforge.net/projects/static-linux/files/2026.11.14/static-linux-2026.11.14-x86_64.iso/download" target="_blank" rel="noopener" data-en="Download from SourceForge">Descargar de SourceForge</a>
   </div>
 </header>
-
 <section id="espejos" aria-labelledby="h-mir">
   <p class="label" data-en="01 · where">01 · dónde</p>
-  <h2 id="h-mir" data-en="Where it will be">Dónde estará</h2>
+  <h2 id="h-mir" data-en="Where to get it">Dónde está</h2>
   <div class="mirrors">
-    <article class="mirror"><h3>SourceForge</h3><p data-en="The main mirror: the ISO, its SHA256 sum and its GPG signature, side by side.">El espejo principal: la ISO, su suma SHA256 y su firma GPG, una al lado de la otra.</p><a class="btn" href="https://sourceforge.net/projects/static-linux/" target="_blank" rel="noopener" data-en="Project page ↗">Página del proyecto ↗</a></article>
-    <article class="mirror"><h3>GitHub Releases</h3><p data-en="The release notes of each version: changes, fixes and known issues, with links to the files.">Las notas de cada versión: cambios, arreglos y problemas conocidos, con enlaces a los archivos.</p><a class="btn" href="https://github.com/KCRooty/static-linux/releases" target="_blank" rel="noopener" data-en="Releases ↗">Versiones ↗</a></article>
-    <article class="mirror"><h3 data-en="Build it yourself">Constrúyela tú</h3><p data-en="Available today: the ISO comes out of the repository with one script, on any Arch system.">Disponible hoy: la ISO sale del repositorio con un script, en cualquier Arch.</p><a class="btn pri" href="#construir" data-en="How">Cómo</a></article>
+    <article class="mirror"><h3>SourceForge</h3><p data-en="The main mirror, with servers all over the world: the ISO, its SHA256 sum and its GPG signature, side by side.">El espejo principal, con servidores por todo el mundo: la ISO, su suma SHA256 y su firma GPG, una al lado de la otra.</p><a class="btn pri" href="https://sourceforge.net/projects/static-linux/files/2026.11.14/" target="_blank" rel="noopener" data-en="Files on SourceForge">Archivos en SourceForge</a></article>
+    <article class="mirror"><h3>Google Drive</h3><p data-en="A second copy of the same four files, in case SourceForge is slow where you are.">Una segunda copia de los mismos cuatro archivos, por si SourceForge va lento donde estás.</p><a class="btn" href="https://drive.google.com/drive/folders/1o0G4OAZyRJqc2Ue4_tjCZehrB7YB97G0" target="_blank" rel="noopener" data-en="Folder on Google Drive">Carpeta en Google Drive</a></article>
+    <article class="mirror"><h3 data-en="Build it yourself">Constrúyela tú</h3><p data-en="The ISO comes out of the repository with one script, on any Arch system.">La ISO sale del repositorio con un script, en cualquier Arch.</p><a class="btn" href="#construir" data-en="How to build it">Cómo se construye</a></article>
   </div>
+  <p class="sub" data-en="To write it to a USB stick of 8 GB or more: Ventoy, balenaEtcher, Rufus in DD mode, or &lt;code&gt;dd&lt;/code&gt; on Linux.">Para grabarla en un USB de 8 GB o más: Ventoy, balenaEtcher, Rufus en modo DD, o <code>dd</code> en Linux.</p>
 </section>
-
 <section id="requisitos" aria-labelledby="h-req">
   <p class="label" data-en="02 · requirements">02 · requisitos</p>
   <h2 id="h-req" data-en="What your machine needs">Qué necesita tu equipo</h2>
@@ -81,13 +80,25 @@
       </tbody>
     </table>
   </div>
-  <p class="sub" data-en="64-bit x86 only, with UEFI. Secure Boot must be off (GRUB is unsigned). Old BIOS boot is still to be tested. The installer needs an internet connection for now.">Solo x86 de 64 bits, con UEFI. Secure Boot tiene que ir apagado (GRUB va sin firmar). El arranque en BIOS antigua está por probar. Por ahora el instalador necesita conexión a internet.</p>
+  <p class="sub" data-en="64-bit x86 only, with UEFI. Secure Boot must be off (GRUB is unsigned). Old BIOS boot is still to be tested. No connection is needed to install; the flavors (Gaming, Office…) are added once you have one.">Solo x86 de 64 bits, con UEFI. Secure Boot tiene que ir apagado (GRUB va sin firmar). El arranque en BIOS antigua está por probar. Para instalar no hace falta conexión; los sabores (Gaming, Oficina…) se añaden cuando la tengas.</p>
 </section>
-
+<section id="verificar" aria-labelledby="h-ver">
+  <p class="label" data-en="03 · verify">03 · verificar</p>
+  <h2 id="h-ver" data-en="Check the ISO">Comprueba la ISO</h2>
+  <p class="intro" data-en="Every ISO comes with a SHA256 sum and a signature made with the Static Forge key. With the files in the same folder:">Cada ISO lleva su suma SHA256 y una firma hecha con la clave de Static Forge. Con los archivos en la misma carpeta:</p>
+  <pre class="cmd">sha256sum -c static-linux-2026.11.14-x86_64.iso.sha256
+<span class="c"># la clave, una vez</span>
+curl -O https://staticforge.me/linux/static-forge-release.asc
+gpg --import static-forge-release.asc
+gpg --verify static-linux-2026.11.14-x86_64.iso.sig</pre>
+  <p class="sub" data-en="The key fingerprint is &lt;code&gt;3E61 7ED0 6C90 C757 35C9 C45E 51D5 8FA3 5045 B8D0&lt;/code&gt;. It also signs the Static Linux package repository.">La huella de la clave es <code>3E61 7ED0 6C90 C757 35C9 C45E 51D5 8FA3 5045 B8D0</code>. Es la misma que firma el repositorio de paquetes de Static Linux.</p>
+  <p class="sub">SHA256: <code class="hash">6b34906f4745ff577b1730701c987f9e862ed80954c8655c81850fb8d17aa302</code></p>
+  <a class="btn" href="/linux/static-forge-release.asc" download data-en="Download the key (.asc)">Descargar la clave (.asc)</a>
+</section>
 <section id="construir" aria-labelledby="h-build">
-  <p class="label" data-en="03 · build">03 · construir</p>
+  <p class="label" data-en="04 · build">04 · construir</p>
   <h2 id="h-build" data-en="Build the ISO">Construye la ISO</h2>
-  <p class="intro" data-en="On Arch or Static Linux, with about 15 GB free. The script builds the local packages, then the ISO with archiso.">En Arch o Static Linux, con unos 15 GB libres. El script construye los paquetes propios y después la ISO con archiso.</p>
+  <p class="intro" data-en="On Arch or Static Linux, with about 25 GB free. The script builds our own packages, then the ISO with archiso.">En Arch o Static Linux, con unos 25 GB libres. El script construye los paquetes propios y después la ISO con archiso.</p>
   <pre class="cmd"><span class="c"># herramientas</span>
 sudo pacman -S --needed archiso git base-devel
 <span class="c"># código</span>
@@ -95,20 +106,10 @@ git clone https://github.com/KCRooty/static-linux
 cd static-linux
 <span class="c"># paquetes propios, como usuario normal</span>
 packages/local-repo.sh
-<span class="c"># ISO online (~1,7 GB, sale en iso/out/)</span>
-sudo iso/build.sh online</pre>
+<span class="c"># ISO universal (~4,8 GB, sale en iso/out/)</span>
+sudo iso/build.sh universal</pre>
   <p class="sub" data-en="Details and options in &lt;code&gt;iso/README.md&lt;/code&gt; of the repository. To try it without touching your disk, boot it in QEMU or VirtualBox with UEFI enabled.">Detalles y opciones en <code>iso/README.md</code> del repositorio. Para probarla sin tocar tu disco, arráncala en QEMU o VirtualBox con UEFI activado.</p>
 </section>
-
-<section id="verificar" aria-labelledby="h-ver">
-  <p class="label" data-en="04 · verify">04 · verificar</p>
-  <h2 id="h-ver" data-en="Check the ISO">Comprueba la ISO</h2>
-  <p class="intro" data-en="When the public ISO is out, each one will come with a SHA256 sum and a GPG signature. With the three files in the same folder:">Cuando salga la ISO pública, cada una llevará su suma SHA256 y su firma GPG. Con los tres archivos en la misma carpeta:</p>
-  <pre class="cmd">sha256sum -c static-linux-<i>VERSION</i>-x86_64.iso.sha256
-gpg --verify static-linux-<i>VERSION</i>-x86_64.iso.sig</pre>
-  <p class="sub" data-en="The signing key will be published here and in the repository together with the first release.">La clave de firma se publicará aquí y en el repositorio junto con la primera versión.</p>
-</section>
-
 <section id="ciclo" aria-labelledby="h-cyc">
   <p class="label" data-en="05 · updates">05 · actualizaciones</p>
   <h2 id="h-cyc" data-en="Rolling, like Arch">Continua, como Arch</h2>
